@@ -1,9 +1,24 @@
 <ion-view view-title="Chats">
   <ion-content>
+    <p>Restaurant Name</p>
+    <p>Hours</p>
+    <p>Address</p>
+    <label>Search: <input ng-model="searchText"></label>
+    <ion-list>
+   <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="chat in chats| filter:searchText |limitTo: 3 " type="item-text-wrap" href="#/tab/chats/{{chat.id}}">
+        <img ng-src="{{chat.face}}">
+        <h2>{{chat.name}}</h2>
+        <p>{{chat.lastText}}</p>
+        <i class="icon ion-chevron-right icon-accessory"></i>
 
-        <ion-item>Preference:</ion-item>
+        <ion-option-button class="button-assertive" ng-click="remove(chat)">
+          Delete
+        </ion-option-button>
+        </ion-item> 
 
-        <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="chat in chats| filter:{preference: 1} |limitTo: 1 " type="item-text-wrap" href="#/tab/chats/{{chat.id}}">
+<!--        <ion-item>Preference:</ion-item>
+
+        <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="chat in chats| filter:{preference: 1} |limitTo: 2 " type="item-text-wrap" href="#/tab/chats/{{chat.id}}">
         <img ng-src="{{chat.face}}">
         <h2>{{chat.name}}</h2>
         <p>{{chat.lastText}}</p>
@@ -16,7 +31,7 @@
 
         <ion-item>Deals:</ion-item>
 
-        <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="chat in chats| filter:{deals: 1} |limitTo: 1 " type="item-text-wrap" href="#/tab/chats/{{chat.id}}">
+        <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="chat in chats| filter:{deals: 1} |limitTo: 2 " type="item-text-wrap" href="#/tab/chats/{{chat.id}}">
         <img ng-src="{{chat.face}}">
         <h2>{{chat.name}}</h2>
         <p>{{chat.lastText}}</p>
@@ -29,7 +44,7 @@
 
         <ion-item>Recommended:</ion-item>
 
-        <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="chat in chats| filter:{recommended: 1} |limitTo: 1 " type="item-text-wrap" href="#/tab/chats/{{chat.id}}">
+        <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="chat in chats| filter:{recommended: 1} |limitTo: 2 " type="item-text-wrap" href="#/tab/chats/{{chat.id}}">
         <img ng-src="{{chat.face}}">
         <h2>{{chat.name}}</h2>
         <p>{{chat.lastText}}</p>
@@ -38,7 +53,7 @@
         <ion-option-button class="button-assertive" ng-click="remove(chat)">
           Delete
         </ion-option-button>
-        </ion-item>
+        </ion-item> -->
 
     </ion-list>
   </ion-content>
