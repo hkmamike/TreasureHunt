@@ -5,10 +5,14 @@ angular.module('starter.controllers', [])
 //Foodie Articles
 
   $scope.Articles = Articles.all();
+
   $scope.remove = function(Articles) {
     Articles.remove(Articles);
   };
 
+  $scope.bookmark = function(Articles) {
+    Articles.bookmark(Articles);
+  };
 
 })
 

@@ -105,6 +105,9 @@ angular.module('starter.services', [])
     remove: function(Article) {
       Articles.splice(Articles.indexOf(Article), 1);
     },
+    bookmark: function(Article) {
+      Articles.splice(Articles.indexOf(Article), 1);
+    },
     get: function(ArticleId) {
       for (var i = 0; i < Articles.length; i++) {
         if (Articles[i].id === parseInt(ArticleId)) {
