@@ -1,58 +1,54 @@
 <ion-view view-title="Articles">
   <ion-content>
     <label>Search: <input ng-model="searchText"></label>
+    <br>
+
+    <!--<label class="toggle">
+     <input type="checkbox">
+     <div class="track">
+         <div class="handle"></div>
+     </div>
+    </label>-->
+
+    <label class = "item item-input item-select">
+     <div class = "input-label">
+      Location
+      </div>
+  
+      <select>
+        <option>All</option>
+        <option>HK</option>
+        <option>KL</option>
+        <option>NT</option>
+      </select>
+    </label>
+
+    <label class = "item item-input item-select">
+     <div class = "input-label">
+      Type
+      </div>
+  
+      <select>
+        <option>All</option>
+        <option>Chinese</option>
+        <option>Westen</option>
+        <option>Japanese</option>
+        <option>Korean</option> 
+        <option>South East</option> 
+      </select>
+    </label>
+
+
     <ion-list>
-   <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="Articles in Articles| filter:searchText |limitTo: 100 " type="item-text-wrap" href="#/tab/dash/{{Article.id}}">
+   <ion-item class="item-remove-animate item-avatar item-icon-right" collection-repeat="Articles in Articles| filter:searchText |filter:filter |limitTo: 100 " type="item-text-wrap" href="#/tab/dash/{{Article.id}}">
         <!--<img ng-src="{{Article.face}}">-->
         <h2>{{Article.name}}</h2>
         <p>{{Article.id}}</p>
         <p>Donno why article name not being displayed</p>
         <i class="icon ion-chevron-right icon-accessory"></i>
 
-        <ion-option-button class="button-balanced" ng-click="bookmark(article)">
-          Bookmark
-        </ion-option-button>
+        <ion-option-button class="button-balanced" ng-click="bookmark(article)"> Bookmark</ion-option-button>
         </ion-item> 
-
-<!--        <ion-item>Preference:</ion-item>
-
-        <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="chat in chats| filter:{preference: 1} |limitTo: 2 " type="item-text-wrap" href="#/tab/chats/{{chat.id}}">
-        <img ng-src="{{chat.face}}">
-        <h2>{{chat.name}}</h2>
-        <p>{{chat.lastText}}</p>
-        <i class="icon ion-chevron-right icon-accessory"></i>
-
-        <ion-option-button class="button-assertive" ng-click="remove(chat)">
-          Delete
-        </ion-option-button>
-        </ion-item>
-
-        <ion-item>Deals:</ion-item>
-
-        <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="chat in chats| filter:{deals: 1} |limitTo: 2 " type="item-text-wrap" href="#/tab/chats/{{chat.id}}">
-        <img ng-src="{{chat.face}}">
-        <h2>{{chat.name}}</h2>
-        <p>{{chat.lastText}}</p>
-        <i class="icon ion-chevron-right icon-accessory"></i>
-
-        <ion-option-button class="button-assertive" ng-click="remove(chat)">
-          Delete
-        </ion-option-button>
-        </ion-item>
-
-        <ion-item>Recommended:</ion-item>
-
-        <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="chat in chats| filter:{recommended: 1} |limitTo: 2 " type="item-text-wrap" href="#/tab/chats/{{chat.id}}">
-        <img ng-src="{{chat.face}}">
-        <h2>{{chat.name}}</h2>
-        <p>{{chat.lastText}}</p>
-        <i class="icon ion-chevron-right icon-accessory"></i>
-
-        <ion-option-button class="button-assertive" ng-click="remove(chat)">
-          Delete
-        </ion-option-button>
-        </ion-item> -->
-
     </ion-list>
   </ion-content>
 </ion-view>
