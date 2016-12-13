@@ -79,7 +79,7 @@ angular.module('starter.services', [])
     location: 'HK',
     type: 'Chinese',
     rating: '90%',
-    cover: 'img/max.png',
+    cover: 'img/food3.jpg',
     age: 'Within 3 months',
     foodie: 'Mike',
     foodieimg: 'img/mike.png'
@@ -90,7 +90,7 @@ angular.module('starter.services', [])
     name: 'My Dinner @ Double Cafe',
     location: 'Kowloon',
     type: 'Westen',
-    cover: 'img/ionic.png',
+    cover: 'img/food1.jpg',
     rating: '100%',
     age: 'Within 6 months',
     foodie: 'Mike',
@@ -103,9 +103,9 @@ angular.module('starter.services', [])
     location: 'HK',
     type: 'Westen',
     rating: '20%',
-    cover: 'img/ben.png',
+    cover: 'img/food2.jpg',
     age: 'Within 3 months',
-    foodie: 'perry',
+    foodie: 'Perry',
     foodieimg: 'img/perry.png'
   }
   ];

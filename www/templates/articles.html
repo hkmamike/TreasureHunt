@@ -39,22 +39,26 @@
     </label>
     -->
     <ion-item 
-        class="item-avatar item-text-wrap list card" 
-        ng-repeat="article in Articles| filter:searchText |limitTo: 10 " 
-        href="#/tab/dash/{{Article.id}}">
+        class="item-text-wrap list card" 
+        ng-repeat="article in Articles| filter:searchText" 
+        href="#/tab/article/{{Article.id}}">
 
-        <img ng-src="{{article.foodieimg}}">
-        <h2>{{article.name}}</h2>
-        <p>{{article.caption}}</p>
-        <a class="full image"><img src= {{article.cover}}>
-        <!--<a class="image"><img src= {{article.cover}} style="width:90%">-->
-        <div class="card-footer text-left">
-            Foodie: {{article.foodie}}
-        </div>        
-        <div class="card-footer text-right">
-            <i class="icon ion-clock"></i> {{article.age}}
-            <i class="icon ion-heart assertive"></i> {{article.rating}} 
+        <div class="item item-divider">
+          <p1>{{article.name}}</p>
         </div>
+
+        <div class="item item-image">
+          <img src= {{article.cover}}>
+        </div>
+
+        <div class="item item-avatar-left"> 
+          <img src= {{article.foodieimg}}>
+          {{article.foodie}}<br>
+          <i class="icon ion-clock"></i> {{article.age}}
+          <i class="icon ion-heart assertive"></i> {{article.rating}} 
+        </div>
+
     </ion-item>
+
   </ion-content>
 </ion-view>
