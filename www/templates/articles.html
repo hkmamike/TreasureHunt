@@ -39,14 +39,15 @@
     </label>
     -->
     <ion-item 
-        class="item-avatar item-text-wrap card" 
+        class="item-avatar item-text-wrap list card" 
         ng-repeat="article in Articles| filter:searchText |limitTo: 10 " 
         href="#/tab/dash/{{Article.id}}">
 
         <img ng-src="{{article.foodieimg}}">
         <h2>{{article.name}}</h2>
         <p>{{article.caption}}</p>
-        <a class="image"><img src= {{article.cover}}>
+        <a class="full image"><img src= {{article.cover}}>
+        <!--<a class="image"><img src= {{article.cover}} style="width:90%">-->
         <div class="card-footer text-left">
             Foodie: {{article.foodie}}
         </div>        
