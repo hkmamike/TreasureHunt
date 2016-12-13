@@ -134,7 +134,7 @@
 .ion-android-refresh:before,
 .ion-android-remove:before,
 .ion-android-remove-circle:before,
-.ion-android-restaurant:before,
+.ion-android-chat:before,
 .ion-android-sad:before,
 .ion-android-search:before,
 .ion-android-send:before,
@@ -1085,7 +1085,7 @@
 .ion-android-remove-circle:before {
   content: ""; }
 
-.ion-android-restaurant:before {
+.ion-android-chat:before {
   content: ""; }
 
 .ion-android-sad:before {
