@@ -40,46 +40,46 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
   // Each tab has its own nav history stack:
 
-  .state('tab.dash', {
-    url: '/dash',
+  .state('tab.articles', {
+    url: '/articles',
     views: {
-      'tab-dash': {
-        templateUrl: 'templates/tab-dash.html',
-        controller: 'DashCtrl'
+      'articles': {
+        templateUrl: 'templates/articles.html',
+        controller: 'ArticlesCtrl'
       }
     }
   })
 
-  .state('tab.chats', {
-      url: '/chats',
+  .state('tab.restaurants', {
+      url: '/restaurants',
       views: {
-        'tab-chats': {
-          templateUrl: 'templates/tab-chats.html',
-          controller: 'ChatsCtrl'
+        'tab-restaurants': {
+          templateUrl: 'templates/tab-restaurants.html',
+          controller: 'RestaurantsCtrl'
         }
       }
     })
-    .state('tab.chat-detail', {
-      url: '/chats/:chatId',
+    .state('tab.restaurant-detail', {
+      url: '/restaurants/:restaurantId',
       views: {
-        'tab-chats': {
-          templateUrl: 'templates/chat-detail.html',
-          controller: 'ChatDetailCtrl'
+        'tab-restaurants': {
+          templateUrl: 'templates/restaurant-detail.html',
+          controller: 'RestaurantDetailCtrl'
         }
       }
     })
 
-  .state('tab.account', {
-    url: '/account',
+  .state('tab.favourites', {
+    url: '/favourites',
     views: {
-      'tab-account': {
-        templateUrl: 'templates/tab-account.html',
-        controller: 'AccountCtrl'
+      'favourites': {
+        templateUrl: 'templates/favourites.html',
+        controller: 'FavouritesCtrl'
       }
     }
   });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/dash');
+  $urlRouterProvider.otherwise('/tab/restaurants');
 
 });
