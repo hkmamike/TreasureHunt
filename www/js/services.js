@@ -76,25 +76,37 @@ angular.module('starter.services', [])
   {
     id: 0,
     name: 'My lunch @ Healthy Cafe',
-    Location: 'HK',
-    Type: 'Chinese',
-    Foodie: 'Mike'
+    location: 'HK',
+    type: 'Chinese',
+    rating: '90%',
+    cover: 'img/max.png',
+    age: 'Within 3 months',
+    foodie: 'Mike',
+    foodieimg: 'img/mike.png'
   }, 
 
   {
     id: 1,
     name: 'My Dinner @ Double Cafe',
-    Location: 'Kowloon',
-    Type: 'Westen',
-    Foodie: 'Mike'
+    location: 'Kowloon',
+    type: 'Westen',
+    cover: 'img/ionic.png',
+    rating: '100%',
+    age: 'Within 6 months',
+    foodie: 'Mike',
+    foodieimg: 'img/mike.png'
   },
 
   {
     id: 2,
     name: 'Great experience ever in HAHA Restuarant',
-    Location: 'HK',
-    Type: 'Westen',
-    Foodie: 'Alex'
+    location: 'HK',
+    type: 'Westen',
+    rating: '20%',
+    cover: 'img/ben.png',
+    age: 'Within 3 months',
+    foodie: 'perry',
+    foodieimg: 'img/perry.png'
   }
   ];
 
