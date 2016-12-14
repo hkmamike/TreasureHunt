@@ -57,6 +57,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     }
   })
 
+  .state('tab.foodie-profile', {
+    url: '/articles/:articleId',
+    views: {
+      'articles': {
+        templateUrl: 'templates/foodie-profile.html',
+        controller: 'ArticlesCtrl'
+      }
+    }
+  })
+
   .state('tab.restaurants', {
       url: '/restaurants',
       views: {
