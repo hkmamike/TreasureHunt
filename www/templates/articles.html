@@ -65,14 +65,14 @@
             <button class="button icon-left button-positive icon ion-thumbsdown button-clear">Inaccruate</button>
         </div>
 
-        <div 
+        <a 
           class="item item-avatar-left"
-          ng-click="to link to foodie profile">
+          href="#/tab/foodie-profile/{{article.id}}">
             <img src= {{article.foodieimg}}>
               {{article.foodie}}<br>
             <i class="icon ion-clock"></i> {{article.age}}
             <i class="icon ion-stats-bars"></i> {{article.rating}} 
-        </div>
+        </a>
     </ion-item>
 
   </ion-content>
