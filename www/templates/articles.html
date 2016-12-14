@@ -57,7 +57,11 @@
         <div 
           class="item-accordion"
           ng-show="isGroupShown(article)">
-            {{article.details}}
+            {{article.details}}<br>
+            {{article.details}}<br>
+            <button class="button icon-left button-assertive icon ion-heart button-clear">Wanna Try</button>
+            <button class="button icon-left button-positive icon ion-thumbsup button-clear">Like!</button>
+            <button class="button icon-left button-positive icon ion-thumbsdown button-clear">Inaccruate</button>
         </div>
 
         <div 
@@ -65,7 +69,7 @@
             <img src= {{article.foodieimg}}>
               {{article.foodie}}<br>
             <i class="icon ion-clock"></i> {{article.age}}
-            <i class="icon ion-heart assertive"></i> {{article.rating}} 
+            <i class="icon ion-stats-bars"></i> {{article.rating}} 
         </div>
     </ion-item>
 
