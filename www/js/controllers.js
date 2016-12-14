@@ -1,5 +1,7 @@
 angular.module('starter.controllers', [])
 
+//Login page controller to be added
+
 .controller('ArticlesCtrl', function($scope, Articles) {
 
 //Foodie Articles
