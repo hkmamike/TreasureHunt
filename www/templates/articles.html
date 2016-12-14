@@ -39,25 +39,34 @@
     </label>
     -->
     <ion-item 
-        class="item-text-wrap list card" 
-        ng-repeat="article in Articles| filter:searchText" 
-        href="#/tab/article/{{Article.id}}">
+      class="card item-text-wrap" 
+      ng-repeat="article in Articles| filter:searchText">
 
-        <div class="item item-divider">
-          <p1>{{article.name}}</p>
+        <div 
+          class="item item-divider">
+            <p1>{{article.name}}</p>
         </div>
 
-        <div class="item item-image">
-          <img src= {{article.cover}}>
+        <div
+          class="item item-image" 
+          ng-click="toggleGroup(article)"
+          ng-class="{active: isGroupShown(article)}">
+            <img src= {{article.cover}}>
         </div>
 
-        <div class="item item-avatar-left"> 
-          <img src= {{article.foodieimg}}>
-          {{article.foodie}}<br>
-          <i class="icon ion-clock"></i> {{article.age}}
-          <i class="icon ion-heart assertive"></i> {{article.rating}} 
+        <div 
+          class="item-accordion"
+          ng-show="isGroupShown(article)">
+            {{article.details}}
         </div>
 
+        <div 
+          class="item item-avatar-left"> 
+            <img src= {{article.foodieimg}}>
+              {{article.foodie}}<br>
+            <i class="icon ion-clock"></i> {{article.age}}
+            <i class="icon ion-heart assertive"></i> {{article.rating}} 
+        </div>
     </ion-item>
 
   </ion-content>
