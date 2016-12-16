@@ -1,25 +1,49 @@
+
+
+
+
 <ion-view view-title="Foodie">
-  <ion-content>
-    
-    <div style="background-image: url('img/perry.png');">
+
+
+<ion-item class= "item-text-wrap">
+    <div style="background-image: url('img/ionic.png');">
+        <div class="Content item-avatar-right"> 
+            <img src= 'img/perry.png'>
+        </div>
         <div class="content">
-                <div class="item item-avatar" style="background-image: url('img/perry.png');"></div>
-                <h3>Foodie Name Here</h3>
+            <h3>Name Here</h3>
         </div>
     </div>
+</ion-item>
 
 
-    <div class="tabs tabs-icon-top static">
-            <a ui-sref="tab.statistics" class="tab-item">
-                <i class="icon ion-arrow-graph-up-right"></i> Statistics
-            </a>
-            <a ui-sref="tab.follower" class="tab-item">
-                <i class="icon ion-ios-people"></i> Follower
-            </a>
-            <a ui-sref="tab.articles" class="tab-item">
-                <i class="icon ion-android-list"></i> Articles
-            </a>
-    </div>
+<ion-list>
+ <ion-tabs class="tabs-icon-top tabs-color-active-positive">
 
-  </ion-content>
+  <ion-tab title="Statistic" 
+           icon-off="ion-stats-bars" 
+           icon-on="ion-stats-bars-strong" 
+           href="#/tab/articles">
+           <ion-nav-view name="articles"></ion-nav-view>
+  </ion-tab>
+
+  <ion-tab title="Follows" 
+           icon-off="ion-ios-people" 
+           icon-on="ion-ios-people-strong" 
+           href="#/tab/articles">
+           <ion-nav-view name="articles"></ion-nav-view>
+  </ion-tab>
+
+  <ion-tab title="Articles" 
+           icon-off="ion-android-list-outline" 
+           icon-on="ion-android-list" 
+           href="#/tab/articles">
+           <ion-nav-view name="articles"></ion-nav-view>
+  </ion-tab>
+
+ </ion-tabs>
+</ion-list>
+
+
+
 </ion-view>
