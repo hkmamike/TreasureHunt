@@ -1,1 +1,41 @@
 /* Empty. Add your own CSS if you like */
+
+.login-title {
+	height: 176px;
+	margin-top: 40px;
+}
+
+.button-login {
+	text-align: center;
+	max-width: 300px;
+	width: 400px;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;	
+}
+
+.blue-fb {
+	background-color: #8b9dc3;
+	color: white;
+	font-weight: bold;
+}
+
+.blue-fb:hover {
+	background-color: #3b5998;
+	color: white;
+	font-weight: bold;
+}
+
+.login-box {
+	width: 400px;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.login-image {
+	width: 400px;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
