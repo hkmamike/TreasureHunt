@@ -7,6 +7,7 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
+
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -57,14 +58,17 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     }
   })
 
-  .state('tab.foodie-profile', {
-    url: '/articles/profile',
+  .state('tab.profile', {
+    url: '/profile',
     views: {
-      'articles': {
-        templateUrl: 'templates/foodie-profile.html',
+      'profile': {
+        templateUrl: 'templates/profile.html',
+        controller: 'ProfileCtrl'
       }
     }
   })
+
+  // setup an abstract state for the tabs directive
 
   .state('tab.restaurants', {
       url: '/restaurants',
@@ -96,6 +100,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/restaurants');
+  $urlRouterProvider.otherwise('/login');
 
 });
