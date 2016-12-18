@@ -58,11 +58,10 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   })
 
   .state('tab.foodie-profile', {
-    url: '/articles/:articleId',
+    url: '/articles/:profileID',
     views: {
       'articles': {
         templateUrl: 'templates/foodie-profile.html',
-        controller: 'ArticlesCtrl'
       }
     }
   })
