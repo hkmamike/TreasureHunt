@@ -1,7 +1,7 @@
 angular.module('starter.controllers', [])
 
 //Login page controller to be added
-.controller('LoginCtrl', function($scope, $state) {
+.controller('LoginCtrl', function($scope, $state, userData) {
 
   $scope.authPopup = function () {
     auth.signInWithRedirect(provider);
@@ -15,7 +15,8 @@ angular.module('starter.controllers', [])
     //}
 
     // The signed-in user info
-    user = auth.currentUser;
+    userData.setUser(auth.currentUser);
+    console.log(userData.getUser().displayName);
     //redirect back to home page
     $state.go('tab.restaurants');
 
@@ -32,11 +33,14 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('ArticlesCtrl', function($scope, Articles) {
+.controller('ArticlesCtrl', function($scope, Articles, userData) {
 
 //Foodie Articles
 
   $scope.Articles = Articles.all();
+
+  //so Articles page has access to user data
+  $scope.user = userData.getUser();
 
   $scope.remove = function(Articles) {
     Articles.remove(Articles);
@@ -108,7 +112,7 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('RestaurantsCtrl', function($scope, restaurants) {
+.controller('RestaurantsCtrl', function($scope, restaurants, userData) {
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
   // To listen for when this page is active (for example, to refresh data),
@@ -116,6 +120,9 @@ angular.module('starter.controllers', [])
   //
   //$scope.$on('$ionicView.enter', function(e) {
   //});
+
+  //so Articles page has access to user data
+  $scope.user = userData.getUser();
 
   $scope.restaurants = restaurants.all();
   $scope.remove = function(restaurant) {

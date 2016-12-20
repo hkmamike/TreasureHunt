@@ -1,5 +1,17 @@
 angular.module('starter.services', [])
 
+.factory('userData', function() {
+  var user ={};
+  return {
+    getUser: function () {
+        return user;
+    },
+    setUser: function (userparameter) {
+        user = userparameter;
+    }
+  };
+})
+
 .factory('restaurants', function() {
   // Might use a resource here that returns a JSON array
 
@@ -62,13 +74,6 @@ angular.module('starter.services', [])
       return null;
     }
   };
-})
-
-.factory('longin', function() {
-
-  var account = user;
-  
-
 })
 
 .factory('Articles', function() {

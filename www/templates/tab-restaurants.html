@@ -2,6 +2,8 @@
   <ion-content>
     <ion-list>
 
+        <p>Hi {{user.displayName}}! Welcome back!</p>
+        
         <ion-item>Preference:</ion-item>
 
         <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="restaurant in restaurants| filter:{preference: 1} |limitTo: 1 " type="item-text-wrap" href="#/tab/restaurants/{{restaurant.id}}">
