@@ -38,11 +38,17 @@
 
       firebase.initializeApp(config);
 
+      //variables for firebase
       var db = firebase.database();
       var auth = firebase.auth();
 
+      //variables for auth
+      var user;
+      var token;
+
       //need a switch statement later if we use more federated logins
       var provider = new firebase.auth.FacebookAuthProvider();
+
     </script>
 
     <!-- ionic/angularjs js -->

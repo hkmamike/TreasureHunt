@@ -62,8 +62,11 @@ angular.module('starter.services', [])
       return null;
     }
   };
+})
 
-  
+.factory('longin', function() {
+
+  var account = user;
   
 
 })
@@ -84,7 +87,7 @@ angular.module('starter.services', [])
     age: 'Within 3 months',
     foodie: 'Mike',
     foodieimg: 'img/mike.png'
-  }, 
+  },
 
   {
     id: 1,
@@ -132,6 +135,4 @@ angular.module('starter.services', [])
       return null;
     }
   };
-})
-
-;
+});
