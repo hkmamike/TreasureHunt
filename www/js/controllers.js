@@ -74,11 +74,14 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('ProfileCtrl', function($scope, Articles) {
+.controller('ProfileCtrl', function($scope, Articles, userData) {
 
 //Foodie Profile
 
   $scope.Articles = Articles.all();
+
+  //so Articles page has access to user data
+  $scope.user = userData.getUser();
 
   $scope.remove = function(Articles) {
     Articles.remove(Articles);
