@@ -28,11 +28,12 @@
 
 <ion-list>
     <div class="button-bar">
-        <a class="button " ng-click="slide(0)">Info</a>
-        <a class="button " ng-click="slide(1)">Follows</a>
-        <a class="button " ng-click="slide(2)">Articles</a>
+        <a class="button ion-button" ng-click="slide(0)">Info</a>
+        <a class="button ion-button" ng-click="slide(1)">Follows</a>
+        <a class="button ion-button" ng-click="slide(2)">Articles</a>
     </div>
 </ion-list>
+
 
 <ion-slide-box class="delegate-handle" 
                on-slide-changed="activateTabs($index)"  
@@ -68,7 +69,6 @@
   </ion-slide>
   <ion-slide>
        <ion-scroll style="height:100vh; overflow:hidden;">
-       <!--div style="height:100vh;width:auto; overflow:auto; "-->
            <ion-item class="card item-text-wrap" 
                      ng-repeat="article in Articles| filter:searchText">
 
@@ -111,7 +111,7 @@
 
 
 
-<!--
+<!--//Tab arent able to be put in middle of the page using <div> due to ionic bug//
 <ion-view title="Tabs" style="position:absolute; left:0px; top:150px" has-header="false" class="no-header">
 
  <ion-tabs class="tabs-icon-top tabs-top tabs-striped position-relative no-header" 
