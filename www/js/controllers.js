@@ -74,7 +74,7 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('ProfileCtrl', function($scope, Articles, userData) {
+.controller('ProfileCtrl', function($scope, Articles, userData, $stateParams, $ionicSlideBoxDelegate) {
 
 //Foodie Profile
 
@@ -113,7 +113,13 @@ angular.module('starter.controllers', [])
     return $scope.shownGroup === group;
   };
 
+  $scope.slide = function(to) {
+        $scope.current = to;
+        $ionicSlideBoxDelegate.slide(to);
+  }
 })
+
+
 
 .controller('RestaurantsCtrl', function($scope, restaurants, userData) {
   // With the new view caching in Ionic, Controllers are only called
