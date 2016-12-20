@@ -1,4 +1,4 @@
-<ion-view view-title="Articles">
+<ion-view view-title="articles">
   <ion-content>
     <label>Search: <input ng-model="searchText"></label>
     <br>
@@ -39,7 +39,7 @@
     -->
     <ion-item 
       class="card item-text-wrap" 
-      ng-repeat="article in Articles| filter:searchText">
+      ng-repeat="article in articles| filter:searchText">
 
         <div 
           class="item item-divider" 

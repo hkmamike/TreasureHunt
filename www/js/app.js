@@ -53,7 +53,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     views: {
       'articles': {
         templateUrl: 'templates/articles.html',
-        controller: 'ArticlesCtrl'
+        controller: 'articlesCtrl'
       }
     }
   })

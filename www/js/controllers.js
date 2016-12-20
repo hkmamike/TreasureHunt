@@ -33,21 +33,21 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('ArticlesCtrl', function($scope, Articles, userData) {
+.controller('articlesCtrl', function($scope, articles, userData) {
 
-//Foodie Articles
+//Foodie articles
 
-  $scope.Articles = Articles.all();
+  $scope.articles = articles.all();
 
-  //so Articles page has access to user data
+  //so articles page has access to user data
   $scope.user = userData.getUser();
 
-  $scope.remove = function(Articles) {
-    Articles.remove(Articles);
+  $scope.remove = function(articles) {
+    articles.remove(articles);
   };
 
-  $scope.bookmark = function(Articles) {
-    Articles.bookmark(Articles);
+  $scope.bookmark = function(articles) {
+    articles.bookmark(articles);
   };
 
   $scope.groups = [];
@@ -74,21 +74,21 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('ProfileCtrl', function($scope, Articles, userData) {
+.controller('ProfileCtrl', function($scope, articles, userData) {
 
 //Foodie Profile
 
-  $scope.Articles = Articles.all();
+  $scope.articles = articles.all();
 
-  //so Articles page has access to user data
+  //so articles page has access to user data
   $scope.user = userData.getUser();
 
-  $scope.remove = function(Articles) {
-    Articles.remove(Articles);
+  $scope.remove = function(articles) {
+    articles.remove(articles);
   };
 
-  $scope.bookmark = function(Articles) {
-    Articles.bookmark(Articles);
+  $scope.bookmark = function(articles) {
+    articles.bookmark(articles);
   };
 
   $scope.groups = [];
@@ -124,7 +124,7 @@ angular.module('starter.controllers', [])
   //$scope.$on('$ionicView.enter', function(e) {
   //});
 
-  //so Articles page has access to user data
+  //so articles page has access to user data
   $scope.user = userData.getUser();
 
   $scope.restaurants = restaurants.all();

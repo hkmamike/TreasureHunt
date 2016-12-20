@@ -76,11 +76,11 @@ angular.module('starter.services', [])
   };
 })
 
-.factory('Articles', function() {
+.factory('articles', function() {
   // Might use a resource here that returns a JSON array
 
   // Some fake testing data
-  var Articles = [
+  var articles = [
   {
     id: 0,
     name: 'My lunch @ Healthy Cafe',
@@ -123,18 +123,18 @@ angular.module('starter.services', [])
 
   return {
     all: function() {
-      return Articles;
+      return articles;
     },
     remove: function(Article) {
-      Articles.splice(Articles.indexOf(Article), 1);
+      articles.splice(articles.indexOf(Article), 1);
     },
     bookmark: function(Article) {
-      Articles.splice(Articles.indexOf(Article), 1);
+      articles.splice(articles.indexOf(Article), 1);
     },
     get: function(ArticleId) {
-      for (var i = 0; i < Articles.length; i++) {
-        if (Articles[i].id === parseInt(ArticleId)) {
-          return Articles[i];
+      for (var i = 0; i < articles.length; i++) {
+        if (articles[i].id === parseInt(ArticleId)) {
+          return articles[i];
         }
       }
       return null;
