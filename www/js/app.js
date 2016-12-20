@@ -7,6 +7,7 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
+
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -57,15 +58,17 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     }
   })
 
-  .state('tab.foodie-profile', {
-    url: '/articles/:articleId',
+  .state('tab.profile', {
+    url: '/profile',
     views: {
-      'articles': {
-        templateUrl: 'templates/foodie-profile.html',
-        controller: 'ArticlesCtrl'
+      'profile': {
+        templateUrl: 'templates/profile.html',
+        controller: 'ProfileCtrl'
       }
     }
   })
+
+  // setup an abstract state for the tabs directive
 
   .state('tab.restaurants', {
       url: '/restaurants',
