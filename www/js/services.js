@@ -76,7 +76,7 @@ angular.module('starter.services', [])
   };
 })
 
-.factory('articles', function() {
+.factory('articles',['userData', function(userData) {
   // Might use a resource here that returns a JSON array
 
   // Some fake testing data
@@ -125,6 +125,25 @@ angular.module('starter.services', [])
     all: function() {
       return articles;
     },
+    saveArticle: function(article) {
+      console.log('will save this to the database', article);
+      var newArticle = {
+         name: article.name,
+         location: article.location,
+         type: article.type,
+         details: article.details,
+         rating: article.rating
+      };
+
+      var newPostKey = firebase.database().ref().child('posts').push().key;
+      console.log(newPostKey);
+      var updates = {};
+      var uid = userData.getUser().uid;
+      updates['/posts/' + newPostKey] = newArticle;
+      updates['/user-posts/' + uid + '/' + newPostKey] = newArticle;
+
+      return firebase.database().ref().update(updates);
+    },
     remove: function(Article) {
       articles.splice(articles.indexOf(Article), 1);
     },
@@ -140,4 +159,4 @@ angular.module('starter.services', [])
       return null;
     }
   };
-});
+}]);

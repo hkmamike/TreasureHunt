@@ -1,0 +1,34 @@
+<ion-view view-title="New Article">
+  <ion-content class="padding">
+
+    <form ng-submit="pushArticle(article)">
+
+      <div class="list">
+        <label class="item item-input item-floating-label">
+          <span class="input-label">Article Name</span>
+          <input type="text" ng-model="article.name" placeholder="Article Name">
+        </label>
+        <label class="item item-input item-floating-label">
+          <span class="input-label">Restaurant Location</span>
+          <input type="text" ng-model="article.location" placeholder="Restaurant Location">
+        </label>
+        <label class="item item-input item-floating-label">
+          <span class="input-label">Restaurant Type</span>
+          <input type="text" ng-model="article.type" placeholder="Restaurant Type">
+        </label>
+        <label class="item item-input item-floating-label">
+          <span class="input-label">Details</span>
+          <input type="text" ng-model="article.details" placeholder="Type here...">
+        </label>
+        <label class="item item-input item-floating-label">
+          <span class="input-label">Restaurant Rating</span>
+          <input type="text" ng-model="article.rating" placeholder="Restaurant Rating">
+        </label>
+      </div>
+
+      <br>
+
+      <button type="submit" class="button button-block button-balanced"> Submit </button>
+    </form>
+  </ion-content>
+</ion-view>

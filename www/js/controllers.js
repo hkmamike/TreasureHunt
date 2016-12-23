@@ -1,6 +1,14 @@
 angular.module('starter.controllers', [])
 
-//Login page controller to be added
+  // With the new view caching in Ionic, Controllers are only called
+  // when they are recreated or on app start, instead of every page change.
+  // To listen for when this page is active (for example, to refresh data),
+  // listen for the $ionicView.enter event:
+  //
+  //$scope.$on('$ionicView.enter', function(e) {
+  //});
+
+//Login page controller
 .controller('LoginCtrl', function($scope, $state, userData) {
 
   $scope.authPopup = function () {
@@ -14,9 +22,12 @@ angular.module('starter.controllers', [])
       //token = result.credential.accessToken;
     //}
 
-    // The signed-in user info
+    //register the signed-in user info
     userData.setUser(auth.currentUser);
-    console.log(userData.getUser().displayName);
+
+    //for testing only
+    console.log('uid is', userData.getUser().uid);
+
     //redirect back to home page
     $state.go('tab.restaurants');
 
@@ -33,10 +44,19 @@ angular.module('starter.controllers', [])
 
 })
 
+//New Article page controller
+.controller('newArticleCtrl', function($scope, $state, userData, articles) {
+
+  $scope.pushArticle = function (article) {
+    console.log('pushArticle was clicked', article);
+    articles.saveArticle(article);
+  };
+
+})
+
+//Articles page controller
 .controller('articlesCtrl', function($scope, articles, userData) {
 
-//Foodie articles
-
   $scope.articles = articles.all();
 
   //so articles page has access to user data
@@ -74,10 +94,10 @@ angular.module('starter.controllers', [])
 
 })
 
+
+//Profile page controller
 .controller('ProfileCtrl', function($scope, articles, userData) {
 
-//Foodie Profile
-
   $scope.articles = articles.all();
 
   //so articles page has access to user data
@@ -115,16 +135,10 @@ angular.module('starter.controllers', [])
 
 })
 
+//Restaurants page controller
 .controller('RestaurantsCtrl', function($scope, restaurants, userData) {
-  // With the new view caching in Ionic, Controllers are only called
-  // when they are recreated or on app start, instead of every page change.
-  // To listen for when this page is active (for example, to refresh data),
-  // listen for the $ionicView.enter event:
-  //
-  //$scope.$on('$ionicView.enter', function(e) {
-  //});
 
-  //so articles page has access to user data
+  //this gives articles page access to user data
   $scope.user = userData.getUser();
 
   $scope.restaurants = restaurants.all();

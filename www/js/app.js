@@ -39,6 +39,13 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     controller: 'LoginCtrl'
   })
 
+  //state for new article form
+  .state('new-article', {
+    url: '/new-article',
+    templateUrl: 'templates/new-article.html',
+    controller: 'newArticleCtrl'
+  })
+
   // setup an abstract state for the tabs directive
   .state('tab', {
     url: '/tab',
