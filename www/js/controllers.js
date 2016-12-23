@@ -95,6 +95,8 @@ angular.module('starter.controllers', [])
 })
 
 
+.controller('ProfileCtrl', function($scope, Articles, userData, $stateParams, $ionicSlideBoxDelegate) {
+
 //Profile page controller
 .controller('ProfileCtrl', function($scope, articles, userData) {
 
@@ -133,9 +135,14 @@ angular.module('starter.controllers', [])
     return $scope.shownGroup === group;
   };
 
+  $scope.slide = function(to) {
+        $scope.current = to;
+        $ionicSlideBoxDelegate.slide(to);
+  };
 })
 
 //Restaurants page controller
+
 .controller('RestaurantsCtrl', function($scope, restaurants, userData) {
 
   //this gives articles page access to user data
