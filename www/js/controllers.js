@@ -94,11 +94,8 @@ angular.module('starter.controllers', [])
 
 })
 
-
-.controller('ProfileCtrl', function($scope, Articles, userData, $stateParams, $ionicSlideBoxDelegate) {
-
 //Profile page controller
-.controller('ProfileCtrl', function($scope, articles, userData) {
+.controller('ProfileCtrl', function($scope, Articles, userData, $stateParams, $ionicSlideBoxDelegate) {
 
   $scope.articles = articles.all();
 
