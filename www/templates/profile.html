@@ -94,7 +94,7 @@
 
                 <ion-slide>
                 <ion-scroll style="height:auto; overflow:hidden;">
-                    <ion-item class="card item-text-wrap" ng-repeat="article in Articles| filter:searchText">
+                    <ion-item class="card item-text-wrap" ng-repeat="article in articles| filter:searchText">
                         <div class="item item-divider" ng-click="toggleGroup(article)">
                         <p>{{article.name}}</p>
                         </div>

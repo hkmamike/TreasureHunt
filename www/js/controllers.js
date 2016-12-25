@@ -87,7 +87,7 @@ angular.module('starter.controllers', [])
     };
 })
 
-.controller('LoginCtrl', function($scope, $timeout, $stateParams, ionicMaterialInk) {
+.controller('LoginCtrl', function($scope, $timeout, $stateParams, ionicMaterialInk, ionicMaterialMotion) {
     $scope.$parent.clearFabs();
     $timeout(function() {
         $scope.$parent.hideHeader();
@@ -137,7 +137,7 @@ angular.module('starter.controllers', [])
 
 })
 
-
+//Follower page Controllwe 
 .controller('FriendsCtrl', function($scope, $stateParams, $timeout, ionicMaterialInk, ionicMaterialMotion) {
     // Set Header
     $scope.$parent.showHeader();
@@ -162,6 +162,7 @@ angular.module('starter.controllers', [])
     ionicMaterialInk.displayEffect();
 })
 
+//Profile page Controllwe 
 .controller('ProfileCtrl', function($scope, $stateParams, $timeout, $ionicSlideBoxDelegate, ionicMaterialMotion, ionicMaterialInk) {
     // Set Header
     $scope.$parent.showHeader();
@@ -191,6 +192,11 @@ angular.module('starter.controllers', [])
         $scope.current = to;
         $ionicSlideBoxDelegate.slide(to);
     };
+
+    //restaurants
+    //$scope.restaurants = restaurants.all();
+    
+
 })
 
 .controller('ActivityCtrl', function($scope, $stateParams, $timeout, ionicMaterialMotion, ionicMaterialInk) {
