@@ -163,7 +163,7 @@ angular.module('starter.controllers', [])
 })
 
 //Profile page Controllwe 
-.controller('ProfileCtrl', function($scope, $stateParams, $timeout, $ionicSlideBoxDelegate, ionicMaterialMotion, ionicMaterialInk) {
+.controller('ProfileCtrl', function($scope, $stateParams, $timeout, $ionicSlideBoxDelegate, userData, articles, ionicMaterialMotion, ionicMaterialInk) {
     // Set Header
     $scope.$parent.showHeader();
     $scope.$parent.clearFabs();
@@ -193,9 +193,10 @@ angular.module('starter.controllers', [])
         $ionicSlideBoxDelegate.slide(to);
     };
 
-    //restaurants
-    //$scope.restaurants = restaurants.all();
-    
+    //Articles
+    $scope.articles = articles.all();
+    //so articles page has access to user data
+    $scope.user = userData.getUser();
 
 })
 
