@@ -227,6 +227,17 @@ angular.module('starter.controllers', [])
     ionicMaterialInk.displayEffect();
 })
 
+.controller('RestaurantsCtrl', function($scope, restaurants, userData,ionicMaterialInk, ionicMaterialMotion) {
+
+  //this gives articles page access to user data
+  $scope.user = userData.getUser();
+
+  $scope.restaurants = restaurants.all();
+  $scope.remove = function(restaurant) {
+    restaurants.remove(restaurant);
+  };
+})
+
 .controller('GalleryCtrl', function($scope, $stateParams, $timeout, ionicMaterialInk, ionicMaterialMotion) {
     $scope.$parent.showHeader();
     $scope.$parent.clearFabs();
