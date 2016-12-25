@@ -1,6 +1,6 @@
 <ion-view view-title="New Article">
-  <ion-content class="padding">
-
+  <ion-content class="padding" ng-class="{expanded:$scope.isExpanded}" scroll="false">
+    <div class="content has-header">
     <form ng-submit="pushArticle(article)">
 
       <div class="list">
@@ -30,5 +30,6 @@
 
       <button type="submit" class="button button-block button-balanced"> Submit </button>
     </form>
+  </div>
   </ion-content>
 </ion-view>

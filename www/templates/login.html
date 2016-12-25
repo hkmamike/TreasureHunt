@@ -1,31 +1,28 @@
-<ion-view view-title="Login">
-  <ion-content class="padding">
+<ion-view view-title="Login" align-title="left">
+    <ion-content style="background: url(img/login.jpg) center; background-size: cover;">
 
-    <!-- Login Card -->
-    <div class="login-box">
-        <div class="login-title">
-            <h1 class="text-center">Sponsar</h1>
-            <h4 class="text-center">promotes good things</h4>
+        <!-- Login Title -->
+        <div class="login-box">
+            <div class="login-title">
+                <h1 class="text-center">Sponsar</h1>
+                <h4 class="text-center">promotes good things</h4>
+            </div>
+            <img src="../img/login.png" class="login-image"></img>
         </div>
+        
+        <!-- Login Button -->
+        <button class="button button-block button-positive-900" ng-click="authPopup()">Facebook Login</button>
 
-        <img src="../img/login.png" class="login-image"></img>
+        <!-- Login Box -->    
+        <!--div class="list">
+            <ion-md-input placeholder="Username" highlight-color="balanced" type="text"></ion-md-input>
+            <ion-md-input placeholder="Password" highlight-color="energized" type="password"></ion-md-input>
+        </div-->
 
-        <!--Facebook Login-->
-        <button class="button button-block blue-fb button-login" ng-click="authPopup()">Facebook Login</button>
-    </div>
-     
-
-    <!--
-    <div class="list list-inset">
-        <label class="item item-input">
-            <input type="text" placeholder="Username" ng-model="data.username">
-        </label>
-        <label class="item item-input">
-            <input type="password" placeholder="Password" ng-model="data.password">
-        </label>
-    </div>
-    <button class="button button-block button-calm" ng-click="login()">Login</button>
-    -->
-
-  </ion-content>
+        <!-- Login Button -->
+        <!--div class="button-bar">
+            <button class="button button-block button-border icon-left button-assertive-900" ng-click="authPopup()">Sponsar Login</button>
+            <button class="button button-block button-border icon-left button-positive-900" ng-click="authPopup()">Facebook Login</button>
+        </div-->
+    </ion-content>
 </ion-view>

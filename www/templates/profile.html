@@ -1,183 +1,152 @@
-
 <ion-view view-title="Profile">
-<!--
-   <div style="background-image: url('img/ionic.png')">
-        <div class="item-avatar"> 
-            <img src= 'img/perry.png'>
+
+    <ion-content ng-class="{expanded:$scope.isExpanded}" scroll="false">
+
+        <div class="hero slide-up" style="background-image: url('img/profile-bg.jpg');">
+            <div class="content">
+                <div class="avatar" style="background-image: url('img/daenerys.jpg');"></div>
+                <h3><a class="light">{{user.displayName}} Name </a></h3>
+                <h4>{{user.ranking}} Ranking </h4>
+            </div>
         </div>
+
+        <!--div>
+            <ion-list>
+            <div class="button-bar bar-balanced">
+            <a class="button ion-button" ng-click="slide(0)">Info</a>
+            <a class="button ion-button" ng-click="slide(1)">Articles</a>
+            <a class="button ion-button" ng-click="slide(2)">Followers</a>
+            <a class="button ion-button" ng-click="slide(3)">Followings</a>
+            </div>
+            </ion-list>
+        </div-->
+
+        <div class="tabs tabs-dark tabs-icon-top static">
+            <a ng-click="slide(0)" class="tab-item">
+                <i class="icon ion-arrow-graph-up-right"></i> Info
+            </a>
+            <a ng-click="slide(1)" class="tab-item">
+                <i class="icon ion-android-people"></i> Followers
+            </a>
+            <!--a ng-click="slide(2)" class="tab-item">
+                <i class="icon ion-images"></i> Following
+            </a-->
+            <a ng-click="slide(2)" class="tab-item">
+                <i class="icon ion-images"></i> Articles
+            </a>
+        </div>
+
         <div>
-            <h3>Name Here</h3>
-        </div>
-    </div>  
-<ion-header class="bar bar-positive">
-  <div class="item-avatar"> 
-    <img src= 'img/perry.png'>
-    <h1 class="title">{{user.displayName}}</h1>
-  </div>
-</ion-header>
--->
+            <ion-slide-box class="delegate-handle" on-slide-changed="activateTabs($index)"  show-pager="false">
+                <ion-slide>
+                <ion-scroll style="height:auto; overflow:hidden;">
+                    <ion-item class="card item-text-wrap">
+                        Hello
+                    </ion-item>
+                    <ion-item class="card item-text-wrap">
+                        Here show some basic info of the user
+                    </ion-item>
+                    <ion-item class="card item-text-wrap">
+                        and the score of the user
+                    </ion-item>
+                </ion-scroll>     
+                </ion-slide>
+                
+                <ion-slide>
+                <ion-scroll style="height:auto; overflow:hidden;">   
+                    <ion-item class="card item-text-wrap" ng-repeat="article in Articles">
+                        <div class="item item-avatar-left">
+                        <img src= {{article.foodieimg}}>
+                        </div>      
+                    </ion-item>
+                    <ion-item class="card item-text-wrap">
+                        <div class="item item-avatar-left">
+                        <img src= 'img/daenerys.jpg'>
+                        </div>      
+                    </ion-item>
+                    <ion-item class="card item-text-wrap">
+                        <div class="item item-avatar-left">
+                        <img src= 'img/daenerys.jpg'>
+                        </div>      
+                    </ion-item>                                        
+                </ion-scroll>  
+                </ion-slide>
 
-<ion-list>
-    <div class="list" 
-     style="background-image: url('img/ionic.png')" 
-     has-header="false">
-     <img class="profile-badge" src="img/perry.png">
-     <h4 class="title text-center">{{user.displayName}} Name </h4>
-    </div>
-</ion-list>
+                <!--ion-slide>
+                <ion-scroll style="height:100vh; overflow:hidden;">   
+                    <ion-item class="card item-text-wrap" ng-repeat="article in Articles">
+                        <div class="item item-avatar-left">
+                        <img src= {{article.foodieimg}}>
+                        </div>      
+                    </ion-item>
+                    <ion-item class="card item-text-wrap">
+                        <div class="item item-avatar-left">
+                        <img src= 'img/daenerys.jpg'>
+                        </div>      
+                    </ion-item>
+                    <ion-item class="card item-text-wrap">
+                        <div class="item item-avatar-left">
+                        <img src= 'img/daenerys.jpg'>
+                        </div>      
+                    </ion-item>                                        
+                </ion-scroll>  
+                </ion-slide-->
 
-<ion-list>
-    <div class="button-bar">
-        <a class="button ion-button" ng-click="slide(0)">Info</a>
-        <a class="button ion-button" ng-click="slide(1)">Follows</a>
-        <a class="button ion-button" ng-click="slide(2)">Articles</a>
-    </div>
-</ion-list>
+                <ion-slide>
+                <ion-scroll style="height:auto; overflow:hidden;">
+                    <ion-item class="card item-text-wrap" ng-repeat="article in Articles| filter:searchText">
+                        <div class="item item-divider" ng-click="toggleGroup(article)">
+                        <p>{{article.name}}</p>
+                        </div>
+                        
+                        <div class="item item-image" ng-click="toggleGroup(article)" ng-class="{active: isGroupShown(article)}">
+                        <img src= {{article.cover}}>
+                        </div>
 
+                        <div class="item-accordion" ng-show="isGroupShown(article)">
+                        {{article.details}}<br>
+                        {{article.details}}<br>
+                        <button class="button icon-left button-assertive icon ion-heart button-clear">Wanna Try</button>
+                        <button class="button icon-left button-positive icon ion-thumbsup button-clear">Like!</button>
+                        <button class="button icon-left button-positive icon ion-thumbsdown button-clear">Inaccruate</button>
+                        </div>
 
-<ion-slide-box class="delegate-handle" 
-               on-slide-changed="activateTabs($index)"  
-               show-pager="false"
-               >
-  <ion-slide>
-       <ion-scroll style="height:100vh; overflow:hidden;">
-          <div>
-           <ion-item class="card item-text-wrap">
-           Hello
-           </ion-item>
-           <ion-item class="card item-text-wrap">
-           Here show some basic info of the user
-           </ion-item>
-           <ion-item class="card item-text-wrap">
-           and the score of the user
-           </ion-item>
-          </div>
-       </ion-scroll>     
-  </ion-slide>
-  <ion-slide>
-       <ion-scroll style="height:100vh; overflow:hidden;">   
-           <ion-item class="card item-text-wrap" 
-                     ng-repeat="article in Articles">
+                        <div class="item item-avatar-left">
+                        <img src= {{article.foodieimg}}>
+                        {{article.foodie}}<br>
+                        <i class="icon ion-clock"></i> {{article.age}}
+                        <i class="icon ion-stats-bars"></i> {{article.rating}} 
+                        </div>     
+                    </ion-item>
+                    <ion-item class="card item-text-wrap">
+                        <div class="item item-divider" ng-click="toggleGroup(article)">
+                        <p>{{article.name}}</p>
+                        </div>
+                        
+                        <div class="item item-image" ng-click="toggleGroup(article)" ng-class="{active: isGroupShown(article)}">
+                        <img src= {{article.cover}}>
+                        </div>
 
-                     <div 
-                       class="item item-avatar-left">
-                       <img src= {{article.foodieimg}}>
-                     </div>     
-    
-           </ion-item>
-       </ion-scroll>  
-  </ion-slide>
-  <ion-slide>
-       <ion-scroll style="height:100vh; overflow:hidden;">
-           <ion-item class="card item-text-wrap" 
-                     ng-repeat="article in Articles| filter:searchText">
+                        <div class="item-accordion" ng-show="isGroupShown(article)">
+                        {{article.details}}<br>
+                        {{article.details}}<br>
+                        <button class="button icon-left button-assertive icon ion-heart button-clear">Wanna Try</button>
+                        <button class="button icon-left button-positive icon ion-thumbsup button-clear">Like!</button>
+                        <button class="button icon-left button-positive icon ion-thumbsdown button-clear">Inaccruate</button>
+                        </div>
 
-                     <div 
-                       class="item item-divider" 
-                       ng-click="toggleGroup(article)">
-                       <p>{{article.name}}</p>
-                     </div>
+                        <div class="item item-avatar-left">
+                        <img src= {{article.foodieimg}}>
+                        {{article.foodie}}<br>
+                        <i class="icon ion-clock"></i> {{article.age}}
+                        <i class="icon ion-stats-bars"></i> {{article.rating}} 
+                        </div>     
+                    </ion-item>
 
-                     <div
-                       class="item item-image" 
-                       ng-click="toggleGroup(article)"
-                       ng-class="{active: isGroupShown(article)}">
-                       <img src= {{article.cover}}>
-                     </div>
-
-                     <div 
-                       class="item-accordion"
-                       ng-show="isGroupShown(article)">
-                       {{article.details}}<br>
-                       {{article.details}}<br>
-                       <button class="button icon-left button-assertive icon ion-heart button-clear">Wanna Try</button>
-                       <button class="button icon-left button-positive icon ion-thumbsup button-clear">Like!</button>
-                       <button class="button icon-left button-positive icon ion-thumbsdown button-clear">Inaccruate</button>
-                     </div>
-
-                     <div 
-                       class="item item-avatar-left">
-                       <img src= {{article.foodieimg}}>
-                       {{article.foodie}}<br>
-                       <i class="icon ion-clock"></i> {{article.age}}
-                       <i class="icon ion-stats-bars"></i> {{article.rating}} 
-                     </div>     
-           </ion-item>
-        </ion-scroll>
-
-  </ion-slide>
-</ion-slide-box>
-
-
-
-
-<!--//Tab arent able to be put in middle of the page using <div> due to ionic bug//
-<ion-view title="Tabs" style="position:absolute; left:0px; top:150px" has-header="false" class="no-header">
-
- <ion-tabs class="tabs-icon-top tabs-top tabs-striped position-relative no-header" 
-           has-header="false">
-
-  <ion-tab title="About" icon-off="ion-stats-bars" icon-on="ion-stats-bars">
-    <ion-nav-view name="articles"></ion-nav-view>
-
-    <ion-content>
-      <ion-item class="card item-text-wrap">
-      Hello
-      </ion-item>
-      <ion-item class="card item-text-wrap">
-      Here show some basic info of the user
-      </ion-item>
-      <ion-item class="card item-text-wrap">
-      and the score of the user
-      </ion-item>
-      </ion-content>  
-  </ion-tab>
-
-  <ion-tab title="Follows" icon-off="ion-stats-bars" icon-on="ion-stats-bars">
-    <ion-nav-view name="articles"></ion-nav-view>
-    <ion-content>
-      <ion-item class="card item-text-wrap" ng-repeat="article in articles">
-
-        <div class="item item-avatar-left">
-          <img src= {{article.foodieimg}}>
-        </div>     
-
-      </ion-item>
-    </ion-content>  
-  </ion-tab>
-
-  <ion-tab title="Articles" icon-off="ion-stats-bars" icon-on="ion-stats-bars">
-    <ion-nav-view name="articles"></ion-nav-view>
-
-    <ion-content>
-      <ion-item class="card item-text-wrap" ng-repeat="article in articles| filter:searchText">
-
-        <div class="item item-divider" ng-click="toggleGroup(article)">
-          <p>{{article.name}}</p>
+                </ion-scroll>
+                </ion-slide>
         </div>
 
-        <div class="item item-image" ng-click="toggleGroup(article)" ng-class="{active: isGroupShown(article)}">
-          <img src= {{article.cover}}>
-        </div>
 
-        <div class="item-accordion" ng-show="isGroupShown(article)">
-          {{article.details}}<br>
-          {{article.details}}<br>
-          <button class="button icon-left button-assertive icon ion-heart button-clear">Wanna Try</button>
-          <button class="button icon-left button-positive icon ion-thumbsup button-clear">Like!</button>
-          <button class="button icon-left button-positive icon ion-thumbsdown button-clear">Inaccruate</button>
-        </div>
-
-        <div class="item item-avatar-left">
-          <img src= {{article.foodieimg}}>
-            {{article.foodie}}<br>
-          <i class="icon ion-clock"></i> {{article.age}}
-          <i class="icon ion-stats-bars"></i> {{article.rating}} 
-        </div>     
-      </ion-item>
-    </ion-content>  
-    
-  </ion-tab>
- </ion-tabs>
+    </ion-content>
 </ion-view>
--->

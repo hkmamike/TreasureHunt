@@ -1,21 +1,104 @@
+/* global angular, document, window */
+'use strict';
+
 angular.module('starter.controllers', [])
 
-  // With the new view caching in Ionic, Controllers are only called
-  // when they are recreated or on app start, instead of every page change.
-  // To listen for when this page is active (for example, to refresh data),
-  // listen for the $ionicView.enter event:
-  //
-  //$scope.$on('$ionicView.enter', function(e) {
-  //});
+.controller('AppCtrl', function($scope, $ionicModal, $ionicPopover, $timeout) {
+    // Form data for the login modal
+    $scope.loginData = {};
+    $scope.isExpanded = false;
+    $scope.hasHeaderFabLeft = false;
+    $scope.hasHeaderFabRight = false;
 
-//Login page controller
-.controller('LoginCtrl', function($scope, $state, userData) {
+    var navIcons = document.getElementsByClassName('ion-navicon');
+    for (var i = 0; i < navIcons.length; i++) {
+        navIcons.addEventListener('click', function() {
+            this.classList.toggle('active');
+        });
+    }
 
-  $scope.authPopup = function () {
+    ////////////////////////////////////////
+    // Layout Methods
+    ////////////////////////////////////////
+
+    $scope.hideNavBar = function() {
+        document.getElementsByTagName('ion-nav-bar')[0].style.display = 'none';
+    };
+
+    $scope.showNavBar = function() {
+        document.getElementsByTagName('ion-nav-bar')[0].style.display = 'block';
+    };
+
+    $scope.noHeader = function() {
+        var content = document.getElementsByTagName('ion-content');
+        for (var i = 0; i < content.length; i++) {
+            if (content[i].classList.contains('has-header')) {
+                content[i].classList.toggle('has-header');
+            }
+        }
+    };
+
+    $scope.setExpanded = function(bool) {
+        $scope.isExpanded = bool;
+    };
+
+    $scope.setHeaderFab = function(location) {
+        var hasHeaderFabLeft = false;
+        var hasHeaderFabRight = false;
+
+        switch (location) {
+            case 'left':
+                hasHeaderFabLeft = true;
+                break;
+            case 'right':
+                hasHeaderFabRight = true;
+                break;
+        }
+
+        $scope.hasHeaderFabLeft = hasHeaderFabLeft;
+        $scope.hasHeaderFabRight = hasHeaderFabRight;
+    };
+
+    $scope.hasHeader = function() {
+        var content = document.getElementsByTagName('ion-content');
+        for (var i = 0; i < content.length; i++) {
+            if (!content[i].classList.contains('has-header')) {
+                content[i].classList.toggle('has-header');
+            }
+        }
+
+    };
+
+    $scope.hideHeader = function() {
+        $scope.hideNavBar();
+        $scope.noHeader();
+    };
+
+    $scope.showHeader = function() {
+        $scope.showNavBar();
+        $scope.hasHeader();
+    };
+
+    $scope.clearFabs = function() {
+        var fabs = document.getElementsByClassName('button-fab');
+        if (fabs.length && fabs.length > 1) {
+            fabs[0].remove();
+        }
+    };
+})
+
+.controller('LoginCtrl', function($scope, $timeout, $stateParams, ionicMaterialInk) {
+    $scope.$parent.clearFabs();
+    $timeout(function() {
+        $scope.$parent.hideHeader();
+    }, 0);
+    ionicMaterialInk.displayEffect();
+    
+    $scope.authPopup = function () {
     auth.signInWithRedirect(provider);
-  };
+    };
 
-  firebase.auth().getRedirectResult().then(function(result) {
+    firebase.auth().getRedirectResult().then(function(result) {
     //if (result.credential) {
       // This gives you a Facebook Access Token. You can use it to access the Facebook API.
       //this firebase code doesn't work
@@ -31,7 +114,7 @@ angular.module('starter.controllers', [])
     //redirect back to home page
     $state.go('tab.restaurants');
 
-  }).catch(function(error) {
+    }).catch(function(error) {
     // Handle Errors here.
     var errorCode = error.code;
     var errorMessage = error.message;
@@ -40,12 +123,12 @@ angular.module('starter.controllers', [])
     // The firebase.auth.AuthCredential type that was used.
     var credential = error.credential;
     // ...
-  });
-
+    });
 })
 
+
 //New Article page controller
-.controller('newArticleCtrl', function($scope, $state, userData, articles) {
+.controller('newArticleCtrl', function($scope, $state, userData, articles, ionicMaterialInk, ionicMaterialMotion) {
 
   $scope.pushArticle = function (article) {
     console.log('pushArticle was clicked', article);
@@ -54,109 +137,91 @@ angular.module('starter.controllers', [])
 
 })
 
-//Articles page controller
-.controller('articlesCtrl', function($scope, articles, userData) {
 
-  $scope.articles = articles.all();
+.controller('FriendsCtrl', function($scope, $stateParams, $timeout, ionicMaterialInk, ionicMaterialMotion) {
+    // Set Header
+    $scope.$parent.showHeader();
+    $scope.$parent.clearFabs();
+    $scope.$parent.setHeaderFab('left');
 
-  //so articles page has access to user data
-  $scope.user = userData.getUser();
+    // Delay expansion
+    $timeout(function() {
+        $scope.isExpanded = true;
+        $scope.$parent.setExpanded(true);
+    }, 300);
 
-  $scope.remove = function(articles) {
-    articles.remove(articles);
-  };
+    // Set Motion
+    ionicMaterialMotion.fadeSlideInRight();
 
-  $scope.bookmark = function(articles) {
-    articles.bookmark(articles);
-  };
-
-  $scope.groups = [];
-  for (var i=0; i<10; i++) {
-    $scope.groups[i] = {
-      name: i,
-      items: []
-    };
-    for (var j=0; j<3; j++) {
-      $scope.groups[i].items.push(i + '-' + j);
-    }
-  }
-
-  $scope.toggleGroup = function(group) {
-    if ($scope.isGroupShown(group)) {
-      $scope.shownGroup = null;
-    } else {
-      $scope.shownGroup = group;
-    }
-  };
-  $scope.isGroupShown = function(group) {
-    return $scope.shownGroup === group;
-  };
-
+    // Set Ink
+    ionicMaterialInk.displayEffect();
 })
 
-//Profile page controller
-.controller('ProfileCtrl', function($scope, Articles, userData, $stateParams, $ionicSlideBoxDelegate) {
+.controller('ProfileCtrl', function($scope, $stateParams, $timeout, $ionicSlideBoxDelegate, ionicMaterialMotion, ionicMaterialInk) {
+    // Set Header
+    $scope.$parent.showHeader();
+    $scope.$parent.clearFabs();
+    $scope.isExpanded = false;
+    $scope.$parent.setExpanded(false);
+    $scope.$parent.setHeaderFab(false);
 
-  $scope.articles = articles.all();
+    // Set Motion
+    $timeout(function() {
+        ionicMaterialMotion.slideUp({
+            selector: '.slide-up'
+        });
+    }, 300);
 
-  //so articles page has access to user data
-  $scope.user = userData.getUser();
+    $timeout(function() {
+        ionicMaterialMotion.fadeSlideInRight({
+            startVelocity: 3000
+        });
+    }, 700);
 
-  $scope.remove = function(articles) {
-    articles.remove(articles);
-  };
+    // Set Ink
+    ionicMaterialInk.displayEffect();
 
-  $scope.bookmark = function(articles) {
-    articles.bookmark(articles);
-  };
-
-  $scope.groups = [];
-  for (var i=0; i<10; i++) {
-    $scope.groups[i] = {
-      name: i,
-      items: []
-    };
-    for (var j=0; j<3; j++) {
-      $scope.groups[i].items.push(i + '-' + j);
-    }
-  }
-
-  $scope.toggleGroup = function(group) {
-    if ($scope.isGroupShown(group)) {
-      $scope.shownGroup = null;
-    } else {
-      $scope.shownGroup = group;
-    }
-  };
-  $scope.isGroupShown = function(group) {
-    return $scope.shownGroup === group;
-  };
-
-  $scope.slide = function(to) {
+    // Slide
+    $scope.slide = function(to) {
         $scope.current = to;
         $ionicSlideBoxDelegate.slide(to);
-  };
+    };
 })
 
-//Restaurants page controller
+.controller('ActivityCtrl', function($scope, $stateParams, $timeout, ionicMaterialMotion, ionicMaterialInk) {
+    $scope.$parent.showHeader();
+    $scope.$parent.clearFabs();
+    $scope.isExpanded = true;
+    $scope.$parent.setExpanded(true);
+    $scope.$parent.setHeaderFab('right');
 
-.controller('RestaurantsCtrl', function($scope, restaurants, userData) {
+    $timeout(function() {
+        ionicMaterialMotion.fadeSlideIn({
+            selector: '.animate-fade-slide-in .item'
+        });
+    }, 200);
 
-  //this gives articles page access to user data
-  $scope.user = userData.getUser();
-
-  $scope.restaurants = restaurants.all();
-  $scope.remove = function(restaurant) {
-    restaurants.remove(restaurant);
-  };
+    // Activate ink for controller
+    ionicMaterialInk.displayEffect();
 })
 
-.controller('RestaurantDetailCtrl', function($scope, $stateParams, restaurants) {
-  $scope.restaurant = restaurants.get($stateParams.restaurantId);
+.controller('GalleryCtrl', function($scope, $stateParams, $timeout, ionicMaterialInk, ionicMaterialMotion) {
+    $scope.$parent.showHeader();
+    $scope.$parent.clearFabs();
+    $scope.isExpanded = true;
+    $scope.$parent.setExpanded(true);
+    $scope.$parent.setHeaderFab(false);
+
+    // Activate ink for controller
+    ionicMaterialInk.displayEffect();
+
+    ionicMaterialMotion.pushDown({
+        selector: '.push-down'
+    });
+    ionicMaterialMotion.fadeSlideInRight({
+        selector: '.animate-fade-slide-in .item'
+    });
+
 })
 
-.controller('FavouritesCtrl', function($scope) {
-  $scope.settings = {
-    enableFriends: true
-  };
-});
+;
