@@ -66,7 +66,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ionic-material', 'io
                 template: '<button id="fab-friends" class="button button-fab button-fab-top-left expanded button-energized-900 spin"><i class="icon ion-chatbubbles"></i></button>',
                 controller: function ($timeout) {
                     $timeout(function () {
-                        document.getElementById('fab-friends').classList.toggle('on');
+                        document.getElementById('fab-friends').classList.toggle('off');
                     }, 900);
                 }
             }
@@ -149,3 +149,21 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ionic-material', 'io
     $urlRouterProvider.otherwise('/app/login');
 
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
