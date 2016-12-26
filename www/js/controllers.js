@@ -163,7 +163,7 @@ angular.module('starter.controllers', [])
 })
 
 //Profile page Controllwe 
-.controller('ProfileCtrl', function($scope, $stateParams, $timeout, $ionicSlideBoxDelegate, userData, articles, ionicMaterialMotion, ionicMaterialInk) {
+.controller('ProfileCtrl', function($scope, $stateParams, $timeout, $ionicSlideBoxDelegate, $ionicScrollDelegate, userData, articles, ionicMaterialMotion, ionicMaterialInk) {
     // Set Header
     $scope.$parent.showHeader();
     $scope.$parent.clearFabs();
@@ -191,6 +191,11 @@ angular.module('starter.controllers', [])
     $scope.slide = function(to) {
         $scope.current = to;
         $ionicSlideBoxDelegate.slide(to);
+    };
+
+    //Scroll
+    $scope.scrollTop = function() {
+        $ionicScrollDelegate.scrollTop();
     };
 
     //Articles

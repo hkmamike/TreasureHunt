@@ -38,7 +38,7 @@
         </div>
 
         <div>
-            <ion-slide-box class="delegate-handle" on-slide-changed="activateTabs($index)"  show-pager="false">
+            <ion-slide-box class="delegate-handle" on-slide-changed="scrollTop()" on-slide-changed="activateTabs($index)"  show-pager="false" >
                 <ion-slide>
                 <!--ion-scroll style="height:auto; overflow:hidden;"-->
                     <ion-item class="card item-text-wrap">
@@ -115,8 +115,7 @@
                 </ion-slide>
             </ion-slide-box>
         </div>
-        
-        </div>
 
+        </div>
     </ion-content>
 </ion-view>
