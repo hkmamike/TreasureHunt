@@ -146,7 +146,7 @@ angular.module('starter.controllers', [])
     $scope.isExpanded = false;
     $scope.$parent.setExpanded(false);
     $scope.$parent.setHeaderFab(false);
-    $scope.$parent.setHeaderFab('left');
+    $scope.$parent.setHeaderFab(false);
     //=======================================
 
     // Delay expansion
@@ -207,9 +207,9 @@ angular.module('starter.controllers', [])
 .controller('ActivityCtrl', function($scope, $stateParams, $timeout, ionicMaterialMotion, ionicMaterialInk) {
     $scope.$parent.showHeader();
     $scope.$parent.clearFabs();
-    $scope.isExpanded = true;
-    $scope.$parent.setExpanded(true);
-    $scope.$parent.setHeaderFab('right');
+    $scope.isExpanded = false;
+    $scope.$parent.setExpanded(false);
+    $scope.$parent.setHeaderFab(false);
 
     $timeout(function() {
         ionicMaterialMotion.fadeSlideIn({
@@ -226,7 +226,7 @@ angular.module('starter.controllers', [])
     $scope.$parent.clearFabs();
     $scope.isExpanded = false;
     $scope.$parent.setExpanded(false);
-    $scope.$parent.setHeaderFab('right');
+    $scope.$parent.setHeaderFab(false);
 
     $timeout(function() {
         ionicMaterialMotion.fadeSlideIn({
@@ -252,8 +252,8 @@ angular.module('starter.controllers', [])
 .controller('GalleryCtrl', function($scope, $stateParams, $timeout, ionicMaterialInk, ionicMaterialMotion) {
     $scope.$parent.showHeader();
     $scope.$parent.clearFabs();
-    $scope.isExpanded = true;
-    $scope.$parent.setExpanded(true);
+    $scope.isExpanded = false;
+    $scope.$parent.setExpanded(false);
     $scope.$parent.setHeaderFab(false);
 
     // Activate ink for controller
