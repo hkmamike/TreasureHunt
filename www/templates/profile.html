@@ -1,6 +1,6 @@
 <ion-view view-title="Profile">
 
-    <ion-content ng-class="{expanded:$scope.isExpanded}" scroll="false">
+    <ion-content ng-class="{expanded:$scope.isExpanded}" scroll="true">
 
         <div class="hero slide-up" style="background-image: url('img/profile-bg.jpg');">
             <div class="content">
@@ -20,6 +20,10 @@
             </div>
             </ion-list>
         </div-->
+
+        <div class="item-divider">
+        <div>This is a sticky header</div>
+        </div>
 
         <div class="tabs tabs-dark tabs-icon-top static">
             <a ng-click="slide(0)" class="tab-item">

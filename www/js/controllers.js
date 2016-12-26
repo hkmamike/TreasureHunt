@@ -195,7 +195,6 @@ angular.module('starter.controllers', [])
 
     //Articles
     $scope.articles = articles.all();
-    //so articles page has access to user data
     $scope.user = userData.getUser();
 
 })
