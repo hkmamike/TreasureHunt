@@ -20,12 +20,9 @@
             </div>
             </ion-list>
         </div-->
+        <div class="group">
 
-        <div class="item-divider">
-        <div>This is a sticky header</div>
-        </div>
-
-        <div class="tabs tabs-dark tabs-icon-top static">
+        <div class="tabs tabs-dark tabs-icon-top static" ion-affix data-affix-within-parent-with-class="group">
             <a ng-click="slide(0)" class="tab-item">
                 <i class="icon ion-arrow-graph-up-right"></i> Info
             </a>
@@ -116,8 +113,10 @@
                     </ion-item>
                 <!--/ion-scroll-->
                 </ion-slide>
+            </ion-slide-box>
         </div>
-
+        
+        </div>
 
     </ion-content>
 </ion-view>
