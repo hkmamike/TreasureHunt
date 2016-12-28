@@ -85,6 +85,59 @@ angular.module('starter.controllers', [])
             fabs[0].remove();
         }
     };
+
+    // Popover========================================
+    $ionicPopover.fromTemplateUrl('templates/recommendation_modal.html', {
+    scope: $scope
+    }).then(function(popover) {
+    $scope.popover = popover;
+    });
+    $scope.openPopover = function($event) {
+    $scope.popover.show($event);
+    };
+    $scope.closePopover = function() {
+    $scope.popover.hide();
+    };
+    //Cleanup the popover when we're done with it!
+    $scope.$on('$destroy', function() {
+    $scope.popover.remove();
+    });
+    // Execute action on hidden popover
+    $scope.$on('popover.hidden', function() {
+    // Execute action
+    });
+    // Execute action on remove popover
+    $scope.$on('popover.removed', function() {
+    // Execute action
+    });
+
+    // Modal========================================
+    $ionicModal.fromTemplateUrl('templates/recommendation_modal.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+    }).then(function(modal) {
+    $scope.modal = modal;
+    });
+    $scope.openModal = function() {
+    $scope.modal.show();
+    };
+    $scope.closeModal = function() {
+    $scope.modal.hide();
+    };
+    // Cleanup the modal when we're done with it!
+    $scope.$on('$destroy', function() {
+    $scope.modal.remove();
+    });
+    // Execute action on hide modal
+    $scope.$on('modal.hidden', function() {
+    // Execute action
+    });
+    // Execute action on remove modal
+    $scope.$on('modal.removed', function() {
+    // Execute action
+    });
+
+
 })
 
 .controller('LoginCtrl', function($scope, $timeout, $stateParams, ionicMaterialInk, ionicMaterialMotion) {
@@ -218,7 +271,7 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('ActivityCtrl', function($scope, $stateParams, $timeout, ionicMaterialMotion, ionicMaterialInk) {
+.controller('ActivityCtrl', function($scope, $stateParams, $ionicPopover, $timeout, ionicMaterialMotion, ionicMaterialInk) {
     $scope.$parent.showHeader();
     $scope.$parent.clearFabs();
     $scope.isExpanded = false;
@@ -233,6 +286,31 @@ angular.module('starter.controllers', [])
 
     // Activate ink for controller
     //ionicMaterialInk.displayEffect();
+
+    // Popover========================================
+    $ionicPopover.fromTemplateUrl('templates/article.html', {
+    scope: $scope
+    }).then(function(popover) {
+    $scope.popover = popover;
+    });
+    $scope.openPopover = function($event) {
+    $scope.popover.show($event);
+    };
+    $scope.closePopover = function() {
+    $scope.popover.hide();
+    };
+    //Cleanup the popover when we're done with it!
+    $scope.$on('$destroy', function() {
+    $scope.popover.remove();
+    });
+    // Execute action on hidden popover
+    $scope.$on('popover.hidden', function() {
+    // Execute action
+    });
+    // Execute action on remove popover
+    $scope.$on('popover.removed', function() {
+    // Execute action
+    });
 })
 
 .controller('RecommendationCtrl', function($scope, $stateParams, $timeout, ionicMaterialMotion, ionicMaterialInk) {
@@ -286,4 +364,3 @@ angular.module('starter.controllers', [])
 
 })
 
-;

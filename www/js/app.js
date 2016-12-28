@@ -73,6 +73,12 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ionic-material', 'io
         }
     })
 
+    .state('recommendation_modal', {
+        url: '/recommendation_modal',
+        templateUrl: 'templates/recommendation_modal.html',
+        controller: 'RecommendationCtrl'
+    })
+
     .state('app.friends', {
         url: '/friends',
         views: {

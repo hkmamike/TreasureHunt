@@ -1,46 +1,10 @@
-<ion-view view-title="Activity">
-    <ion-content ng-class="{expanded:isExpanded}"> <!-- class="animate-fade-slide-in" -->
-
-        <!--Articles Suggestion-->
-        <div class="item card-item">
-        Popular Articles:
-            <ion-slide-box class="delegate-handle" on-slide-changed="activateTabs($index)"  show-pager="true">
-                <ion-slide>
-                    <div ng-click="openPopover($event)" class="card stable-bg"> <!-- ink ink-dark"-->
-                        <div class="item item-avatar item-text-wrap">
-                        <span class="avatar" style="background-image: url('img/sansa.jpg');"></span>
-                        <strong>Sansa Stark</strong> added a gallery <strong>Pretending to be Anna from Frozen</strong> ...
-                        <div class="card-footer text-right">
-                            <i class="icon ion-chatbubble positive"></i> 2
-                            <i class="icon ion-heart assertive"></i> 4
-                            <div class="pull-left">
-                            <i class="icon ion-clock"></i> 3 hrs ago
-                        </div>
-                        </div>
-                        </div>
-                    </div>
-                </ion-slide>
-                <ion-slide>
-                    <div ng-click="openPopover($event)" class="card stable-bg"> <!-- ink ink-dark"-->"
-                        <div class="item item-avatar item-text-wrap">
-                        <span class="avatar" style="background-image: url('img/sansa.jpg');"></span>
-                        <strong>Sansa Stark</strong> added a gallery <strong>Pretending to be Anna from Frozen</strong> ...
-                        <div class="card-footer text-right">
-                            <i class="icon ion-chatbubble positive"></i> 2
-                            <i class="icon ion-heart assertive"></i> 4
-                            <div class="pull-left">
-                            <i class="icon ion-clock"></i> 3 hrs ago
-                        </div>
-                        </div>
-                        </div>
-                    </div>
-                </ion-slide>
-            </ion-slide-box>
-        </div>
+<ion-modal-view view-title="Recommendation" style="width: 80vh; height: 80%; position:top:10px;" ng-click="closePopover($event)">
+    <ion-content ng-class="{expanded:isExpanded}" class="dark-bg"> <!-- class="animate-fade-slide-in" -->
+        <button ng-click="closePopover($event)">CLOSE</button>
 
         <div class="item card-item">
-        Article feeds:
-            <div ng-click="openPopover($event)" class="card stable-bg"> <!-- ink ink-dark"-->
+        Choice A:
+            <div ui-sref="app.restaurant" class="card stable-bg ink ink-dark">
                 <div class="item item-avatar item-text-wrap">
                     <span class="avatar" style="background-image: url('img/jon-snow.jpg');"></span>
                     <strong>Jon Snow</strong> knows nothing.
@@ -55,7 +19,8 @@
             </div>
         </div>
         <div class="item card-item">
-            <div ng-click="openPopover($event)" class="card stable-bg"> <!-- ink ink-dark"-->
+        Choice B:
+            <div ui-sref="app.restaurant" class="card stable-bg ink ink-dark">
                 <div class="item item-avatar item-text-wrap">
                     <span class="avatar" style="background-image: url('img/tyrion.jpg');"></span>
                     <strong>Tyrion Lannister</strong> says "Perhaps that is the secret. It is not what we do, so much as why we do it."
@@ -70,7 +35,8 @@
             </div>
         </div>
         <div class="item card-item">
-            <div ng-click="openPopover($event)" class="card stable-bg"> <!-- ink ink-dark"-->
+        Choice C:
+            <div ui-sref="app.restaurant" class="card stable-bg ink ink-dark">
                 <div class="item item-avatar item-text-wrap">
                     <span class="avatar" style="background-image: url('img/sansa.jpg');"></span>
                     <strong>Sansa Stark</strong> added a gallery <strong>Pretending to be Anna from Frozen</strong> ...
@@ -91,4 +57,4 @@
             </div>
         </div>
     </ion-content>
-</ion-view>
+</ion-modal-view>
