@@ -253,12 +253,16 @@ angular.module('starter.controllers', [])
 })
 
 .controller('RestaurantsCtrl', function($scope, restaurants, userData,ionicMaterialInk, ionicMaterialMotion) {
+    $scope.$parent.clearFabs();
+    $scope.isExpanded = false;
+    $scope.$parent.setExpanded(false);
+    $scope.$parent.setHeaderFab(false);
 
-  //this gives articles page access to user data
-  $scope.user = userData.getUser();
+    //this gives articles page access to user data
+    $scope.user = userData.getUser();
 
-  $scope.restaurants = restaurants.all();
-  $scope.remove = function(restaurant) {
+    $scope.restaurants = restaurants.all();
+    $scope.remove = function(restaurant) {
     restaurants.remove(restaurant);
   };
 })
