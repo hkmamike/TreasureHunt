@@ -197,6 +197,9 @@ angular.module('starter.controllers', [])
     $scope.scrollTop = function() {
         $ionicScrollDelegate.scrollTop();
     };
+    $scope.scrollTopwithMin = function(min) {
+        $ionicScrollDelegate.scrollTop();
+    };
 
     //Articles
     $scope.articles = articles.all();
