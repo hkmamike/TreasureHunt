@@ -88,11 +88,22 @@ angular.module('starter.controllers', [])
 })
 
 .controller('LoginCtrl', function($scope, $timeout, $stateParams, ionicMaterialInk, ionicMaterialMotion) {
+
+    // Set Header
+    $scope.$parent.showHeader();
     $scope.$parent.clearFabs();
-    $timeout(function() {
-        $scope.$parent.hideHeader();
-    }, 0);
-    ionicMaterialInk.displayEffect();
+    //=======================================
+    $scope.isExpanded = false;
+    $scope.$parent.setExpanded(false);
+    $scope.$parent.setHeaderFab(false);
+    $scope.$parent.setHeaderFab(false);
+    //=======================================
+
+    //$scope.$parent.clearFabs();
+    //$timeout(function() {
+    //    $scope.$parent.hideHeader();
+    //}, 0);
+    //ionicMaterialInk.displayEffect();
     
     $scope.authPopup = function () {
     auth.signInWithRedirect(provider);
@@ -156,10 +167,10 @@ angular.module('starter.controllers', [])
     //}, 300);
 
     // Set Motion
-    ionicMaterialMotion.fadeSlideInRight();
+    //ionicMaterialMotion.fadeSlideInRight();
 
     // Set Ink
-    ionicMaterialInk.displayEffect();
+    //ionicMaterialInk.displayEffect();
 })
 
 //Profile page Controllwe 
@@ -172,20 +183,20 @@ angular.module('starter.controllers', [])
     $scope.$parent.setHeaderFab(false);
 
     // Set Motion
-    $timeout(function() {
-        ionicMaterialMotion.slideUp({
-            selector: '.slide-up'
-        });
-    }, 300);
+    //$timeout(function() {
+    //    ionicMaterialMotion.slideUp({
+    //        selector: '.slide-up'
+    //    });
+    //}, 300);
 
-    $timeout(function() {
-        ionicMaterialMotion.fadeSlideInRight({
-            startVelocity: 3000
-        });
-    }, 700);
+    //$timeout(function() {
+    //    ionicMaterialMotion.fadeSlideInRight({
+    //        startVelocity: 3000
+    //    });
+    //}, 700);
 
     // Set Ink
-    ionicMaterialInk.displayEffect();
+    //ionicMaterialInk.displayEffect();
 
     // Slide
     $scope.slide = function(to) {
@@ -198,7 +209,7 @@ angular.module('starter.controllers', [])
         $ionicScrollDelegate.scrollTop();
     };
     $scope.scrollTopwithMin = function(min) {
-        $ionicScrollDelegate.scrollTop();
+        $ionicScrollDelegate.scrollTo(getScrollPosition());
     };
 
     //Articles
@@ -214,14 +225,14 @@ angular.module('starter.controllers', [])
     $scope.$parent.setExpanded(false);
     $scope.$parent.setHeaderFab(false);
 
-    $timeout(function() {
-        ionicMaterialMotion.fadeSlideIn({
-            selector: '.animate-fade-slide-in .item'
-        });
-    }, 200);
+    //$timeout(function() {
+    //    ionicMaterialMotion.fadeSlideIn({
+    //        selector: '.animate-fade-slide-in .item'
+    //    });
+    //}, 200);
 
     // Activate ink for controller
-    ionicMaterialInk.displayEffect();
+    //ionicMaterialInk.displayEffect();
 })
 
 .controller('RecommendationCtrl', function($scope, $stateParams, $timeout, ionicMaterialMotion, ionicMaterialInk) {
@@ -231,14 +242,14 @@ angular.module('starter.controllers', [])
     $scope.$parent.setExpanded(false);
     $scope.$parent.setHeaderFab(false);
 
-    $timeout(function() {
-        ionicMaterialMotion.fadeSlideIn({
-            selector: '.animate-fade-slide-in .item'
-        });
-    }, 200);
+    //$timeout(function() {
+    //    ionicMaterialMotion.fadeSlideIn({
+    //        selector: '.animate-fade-slide-in .item'
+    //    });
+    //}, 200);
 
     // Activate ink for controller
-    ionicMaterialInk.displayEffect();
+    //ionicMaterialInk.displayEffect();
 })
 
 .controller('RestaurantsCtrl', function($scope, restaurants, userData,ionicMaterialInk, ionicMaterialMotion) {
@@ -260,14 +271,14 @@ angular.module('starter.controllers', [])
     $scope.$parent.setHeaderFab(false);
 
     // Activate ink for controller
-    ionicMaterialInk.displayEffect();
+    //ionicMaterialInk.displayEffect();
 
-    ionicMaterialMotion.pushDown({
-        selector: '.push-down'
-    });
-    ionicMaterialMotion.fadeSlideInRight({
-        selector: '.animate-fade-slide-in .item'
-    });
+    //ionicMaterialMotion.pushDown({
+    //    selector: '.push-down'
+    //});
+    //ionicMaterialMotion.fadeSlideInRight({
+    //    selector: '.animate-fade-slide-in .item'
+    //});
 
 })
 
