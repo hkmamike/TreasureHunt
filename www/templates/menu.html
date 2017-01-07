@@ -1,45 +1,60 @@
 <ion-side-menus enable-menu-with-back-views="true">
 
-    <ion-side-menu-content>
-        <ion-nav-bar class="bar-assertive-900" ng-class="{expanded: isExpanded, 'has-header-fab-left': hasHeaderFabLeft, 'has-header-fab-right': hasHeaderFabRight}" align-title="left">
-            <ion-nav-back-button class="no-text">
-            </ion-nav-back-button>
-            <ion-nav-buttons side="right">
-                <button class="button button-icon button-clear ion-android-more-vertical" menu-toggle="right">
-                </button>
-            </ion-nav-buttons>
-        </ion-nav-bar>
-        <ion-nav-view name="fabContent"></ion-nav-view>
-        <ion-nav-view name="menuContent" ng-class="{expanded: isExpanded}" ></ion-nav-view>
-    </ion-side-menu-content>
+  <ion-side-menu-content>
 
-    <ion-side-menu side="right">
-        <ion-header-bar class="dark-bg expanded">
-            <span class="avatar" style="background: url('img/max.png'); background-size: cover;" nav-clear menu-close ui-sref="app.profile"></span>
-            <h2 nav-clear menu-close ui-sref="app.profile">{{user.displayName}} User Name</h2>
-        </ion-header-bar>
-        <ion-content class="stable-bg has-expanded-header">
-            <ion-list>
-                <ion-item nav-clear menu-close ui-sref="app.recommendation">
-                    Today's Recommendation
-                </ion-item>
-                <ion-item nav-clear menu-close ng-click="openPopover($event)">
-                    (Temp)Testing for Popup
-                </ion-item>
-                <ion-item nav-clear menu-close ui-sref="app.activity">
-                    Latest Articles
-                </ion-item>
-                <ion-item nav-clear menu-close ui-sref="app.friends">
-                    My Followings
-                </ion-item>
-                <ion-item nav-clear menu-close ui-sref="app.gallery">
-                    My Bookmarks
-                </ion-item>
-                <ion-item nav-clear menu-close ui-sref="app.new-article">
-                    Recommend a Restaurant
-                </ion-item>
-            </ion-list>
-        </ion-content>
-    </ion-side-menu>
+    <ion-nav-bar class="bar-stable">
+
+      <ion-nav-back-button>
+      </ion-nav-back-button>
+
+      <ion-nav-buttons>
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="right"></button>
+      </ion-nav-buttons>
+
+    </ion-nav-bar>
+
+
+<!-- TABS ===========================================================================================-->
+    <ion-tabs class="tabs-icon-top tabs-color-active-energized tabs-light">
+
+      <ion-tab title="Status" icon-off="ion-ios-pulse" icon-on="ion-ios-pulse-strong" ui-sref="app.activities">
+          <ion-nav-view name="tab_activities"></ion-nav-view>
+      </ion-tab>
+
+      <ion-tab title="Status" icon-off="ion-ios-pulse" icon-on="ion-ios-pulse-strong" ui-sref="app.selections">
+        <ion-nav-view name="tab_selections"></ion-nav-view>
+      </ion-tab>
+
+      <ion-tab title="Status" icon-off="ion-ios-pulse" icon-on="ion-ios-pulse-strong" ui-sref="app.favourites">
+        <ion-nav-view name="tab_favourites"></ion-nav-view>
+      </ion-tab>
+
+      <ion-tab title="Status" icon-off="ion-ios-pulse" icon-on="ion-ios-pulse-strong" ui-sref="app.profile">
+        <ion-nav-view name="tab_profile"></ion-nav-view>
+      </ion-tab>
+    </ion-tabs>
+<!-- TABS ===========================================================================================-->
+
+  </ion-side-menu-content>
+
+<!-- SIDEMENU =======================================================================================-->
+  <ion-side-menu side="right">
+
+    <ion-header-bar class="dark-bg expanded">
+        <span class="profile-image" style="background: url('img/max.png'); background-size: cover;" nav-clear menu-close ui-sref="app.profile"></span>
+        <h2 nav-clear menu-close ui-sref="app.profile">{{user.displayName}} User Name</h2>
+    </ion-header-bar>
+
+    <ion-content>
+      <ion-list>
+        <ion-item menu-close ui-sref="app.activities">Activites</ion-item>
+        <ion-item menu-close ui-sref="app.selections">Editor's Selections</ion-item>
+        <ion-item menu-close ui-sref="app.favourites">Saved Articles</ion-item>
+      </ion-list>
+    </ion-content>
+
+  </ion-side-menu>
+<!-- SIDEMENU =======================================================================================-->
 
 </ion-side-menus>
+

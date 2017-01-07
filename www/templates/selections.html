@@ -1,0 +1,146 @@
+<ion-view view-title="Editor's Selections"  hide-nav-bar="true">
+  	<ion-content style="background-color: #ffc">
+
+    <div class="button-bar bar-energized">
+       	<a class="button ion-clock" ui-sref="app.activities">Activites</a>
+       	<a class="button ion-button" ui-sref="app.selections">Selecions</a>
+       	<a class="button ion-button" ui-sref="app.favourites">Favourites</a>
+       	<a class="button ion-navicon" menu-toggle="right">Me</a>
+  	</div>
+
+
+  	Choice A:
+	<div class="list card item-text-wrap" ng-repeat="article in articles| filter:searchText | limitTo: 1">
+
+		<div>
+			<ion-item class="item-avatar no-padding">
+			<img src= {{article.foodieimg}}>
+			{{article.foodie}}
+			<br>
+			<i class="icon ion-stats-bars"></i> 100% (foodie rating)
+			</ion-item>
+		</div>
+
+		<div class="item item-borderless no-padding">
+			<div>
+				<h2>{{article.name}}</h2>
+			</div>
+
+			<div class="item-image" ng-click="toggleGroup(article)">
+				<img src= {{article.cover}}>
+			</div>
+
+        	<div class="item-accordion" ng-show="isGroupShown(article)">
+        		<div>
+            	details{{article.details}}
+            	</div>
+            	<div>
+            	{{article.detailpics}}
+            	</div>
+            	<div>
+            	<button class="button icon-left button-assertive icon ion-heart button-clear">Save It</button>
+            	<button class="button icon-left button-positive icon ion-thumbsup button-clear">Like!</button>
+            	<button class="button icon-left button-positive icon ion-thumbsdown button-clear">Inaccruate</button>
+            	</div>
+        	</div>
+
+	        <div>
+				<i class="icon ion-stats-bars "></i> 99%
+				<i class="icon ion-clock "></i> 3 hrs ago
+        	</div>
+
+        </div>
+
+    </div>
+
+	Choice B:
+	<div class="list card item-text-wrap" ng-repeat="article in articles| filter:searchText | limitTo: 1">
+
+		<div>
+			<ion-item class="item-avatar no-padding">
+			<img src= {{article.foodieimg}}>
+			{{article.foodie}}
+			<br>
+			<i class="icon ion-stats-bars"></i> 100% (foodie rating)
+			</ion-item>
+		</div>
+
+		<div class="item item-borderless no-padding">
+			<div>
+				<h2>{{article.name}}</h2>
+			</div>
+
+			<div class="item-image" ng-click="toggleGroup(article)">
+				<img src= {{article.cover}}>
+			</div>
+
+        	<div class="item-accordion" ng-show="isGroupShown(article)">
+        		<div>
+            	details{{article.details}}
+            	</div>
+            	<div>
+            	{{article.detailpics}}
+            	</div>
+            	<div>
+            	<button class="button icon-left button-assertive icon ion-heart button-clear">Save It</button>
+            	<button class="button icon-left button-positive icon ion-thumbsup button-clear">Like!</button>
+            	<button class="button icon-left button-positive icon ion-thumbsdown button-clear">Inaccruate</button>
+            	</div>
+        	</div>
+
+	        <div>
+				<i class="icon ion-stats-bars "></i> 99%
+				<i class="icon ion-clock "></i> 3 hrs ago
+        	</div>
+
+        </div>
+
+    </div>
+
+
+    Choice C:
+	<div class="list card item-text-wrap" ng-repeat="article in articles| filter:searchText | limitTo: 1">
+
+		<div>
+			<ion-item class="item-avatar no-padding">
+			<img src= {{article.foodieimg}}>
+			{{article.foodie}}
+			<br>
+			<i class="icon ion-stats-bars"></i> 100% (foodie rating)
+			</ion-item>
+		</div>
+
+		<div class="item item-borderless no-padding">
+			<div>
+				<h2>{{article.name}}</h2>
+			</div>
+
+			<div class="item-image" ng-click="toggleGroup(article)">
+				<img src= {{article.cover}}>
+			</div>
+
+        	<div class="item-accordion" ng-show="isGroupShown(article)">
+        		<div>
+            	details{{article.details}}
+            	</div>
+            	<div>
+            	{{article.detailpics}}
+            	</div>
+            	<div>
+            	<button class="button icon-left button-assertive icon ion-heart button-clear">Save It</button>
+            	<button class="button icon-left button-positive icon ion-thumbsup button-clear">Like!</button>
+            	<button class="button icon-left button-positive icon ion-thumbsdown button-clear">Inaccruate</button>
+            	</div>
+        	</div>
+
+	        <div>
+				<i class="icon ion-stats-bars "></i> 99%
+				<i class="icon ion-clock "></i> 3 hrs ago
+        	</div>
+
+        </div>
+
+    </div>
+
+    </ion-content>
+</ion-view>

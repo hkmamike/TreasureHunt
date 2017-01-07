@@ -1,171 +1,135 @@
-/* global angular, document, window */
-'use strict';
+angular.module('starter.controllers', [])
 
-angular.module('starter.controllers', ['firebase'])
+.controller('AppCtrl', function($scope, $ionicModal, $timeout,articles, userData) {
 
-.controller('AppCtrl', function($scope, $ionicModal, $ionicPopover, $timeout) {
-    // Form data for the login modal
-    $scope.loginData = {};
-    $scope.isExpanded = false;
-    $scope.hasHeaderFabLeft = false;
-    $scope.hasHeaderFabRight = false;
+  $scope.user = userData.getUser();
+  $scope.articles = articles.all();
 
-    var navIcons = document.getElementsByClassName('ion-navicon');
-    for (var i = 0; i < navIcons.length; i++) {
-        navIcons.addEventListener('click', function() {
-            this.classList.toggle('active');
-        });
+  // Expand Card ---------------------------------------------------------------------
+  $scope.toggleGroup = function(group) {
+    if ($scope.isGroupShown(group)) {
+      $scope.shownGroup = null;
+    } else {
+      $scope.shownGroup = group;
     }
+  };
+  $scope.isGroupShown = function(group) {
+    return $scope.shownGroup === group;
+  };
+  // ---------------------------------------------------------------------------------
 
-    ////////////////////////////////////////
-    // Layout Methods
-    ////////////////////////////////////////
 
-    $scope.hideNavBar = function() {
-        document.getElementsByTagName('ion-nav-bar')[0].style.display = 'none';
-    };
+  // ---------------------------------------------------------------------------------
+  // Form data for the login modal
+  $scope.loginData = {};
 
-    $scope.showNavBar = function() {
-        document.getElementsByTagName('ion-nav-bar')[0].style.display = 'block';
-    };
-
-    $scope.noHeader = function() {
-        var content = document.getElementsByTagName('ion-content');
-        for (var i = 0; i < content.length; i++) {
-            if (content[i].classList.contains('has-header')) {
-                content[i].classList.toggle('has-header');
-            }
-        }
-    };
-
-    $scope.setExpanded = function(bool) {
-        $scope.isExpanded = bool;
-    };
-
-    $scope.setHeaderFab = function(location) {
-        var hasHeaderFabLeft = false;
-        var hasHeaderFabRight = false;
-
-        switch (location) {
-            case 'left':
-                hasHeaderFabLeft = true;
-                break;
-            case 'right':
-                hasHeaderFabRight = true;
-                break;
-        }
-
-        $scope.hasHeaderFabLeft = hasHeaderFabLeft;
-        $scope.hasHeaderFabRight = hasHeaderFabRight;
-    };
-
-    $scope.hasHeader = function() {
-        var content = document.getElementsByTagName('ion-content');
-        for (var i = 0; i < content.length; i++) {
-            if (!content[i].classList.contains('has-header')) {
-                content[i].classList.toggle('has-header');
-            }
-        }
-
-    };
-
-    $scope.hideHeader = function() {
-        $scope.hideNavBar();
-        $scope.noHeader();
-    };
-
-    $scope.showHeader = function() {
-        $scope.showNavBar();
-        $scope.hasHeader();
-    };
-
-    $scope.clearFabs = function() {
-        var fabs = document.getElementsByClassName('button-fab');
-        if (fabs.length && fabs.length > 1) {
-            fabs[0].remove();
-        }
-    };
-
-    // Popover========================================
-    $ionicPopover.fromTemplateUrl('templates/recommendation_modal.html', {
+  // Create the login modal that we will use later
+  $ionicModal.fromTemplateUrl('templates/login.html', {
     scope: $scope
-    }).then(function(popover) {
-    $scope.popover = popover;
-    });
-    $scope.openPopover = function($event) {
-    $scope.popover.show($event);
-    };
-    $scope.closePopover = function() {
-    $scope.popover.hide();
-    };
-    //Cleanup the popover when we're done with it!
-    $scope.$on('$destroy', function() {
-    $scope.popover.remove();
-    });
-    // Execute action on hidden popover
-    $scope.$on('popover.hidden', function() {
-    // Execute action
-    });
-    // Execute action on remove popover
-    $scope.$on('popover.removed', function() {
-    // Execute action
-    });
+  }).then(function(modal) {
+    $scope.login = modal;
+  });
 
-    // Modal========================================
-    $ionicModal.fromTemplateUrl('templates/recommendation_modal.html', {
-    scope: $scope,
-    animation: 'slide-in-up'
-    }).then(function(modal) {
-    $scope.modal = modal;
-    });
-    $scope.openModal = function() {
-    $scope.modal.show();
-    };
-    $scope.closeModal = function() {
-    $scope.modal.hide();
-    };
-    // Cleanup the modal when we're done with it!
-    $scope.$on('$destroy', function() {
-    $scope.modal.remove();
-    });
-    // Execute action on hide modal
-    $scope.$on('modal.hidden', function() {
-    // Execute action
-    });
-    // Execute action on remove modal
-    $scope.$on('modal.removed', function() {
-    // Execute action
-    });
+  // Triggered in the login modal to close it
+  $scope.closeLogin = function() {
+    $scope.login.hide();
+  };
+
+  // Open the login modal
+  $scope.openlogin = function() {
+    $scope.login.show();
+  };
+
+  // Perform the login action when the user submits the login form
+  $scope.doLogin = function() {
+    console.log('Doing login', $scope.loginData);
+
+    // Simulate a login delay. Remove this and replace with your login
+    // code if using a login system
+    $timeout(function() {
+      $scope.closeLogin();
+    }, 1000);
+  };
+  // ---------------------------------------------------------------------------------
+
+  // ---------------------------------------------------------------------------------
+  // Form data for the login modal
+  //$scope.loginData = {};
+
+  // Create the login modal that we will use later
+  $ionicModal.fromTemplateUrl('templates/newarticle.html', {
+    scope: $scope
+  }).then(function(modal) {
+    $scope.newarticle = modal;
+  });
+
+  // Triggered in the login modal to close it
+  $scope.closenewarticle = function() {
+    $scope.newarticle.hide();
+  };
+
+  // Open the login modal
+  $scope.opennewarticle = function() {
+    $scope.newarticle.show();
+  };
+
+  // Perform the login action when the user submits the login form
+  //$scope.submitnewarticle = function() {
+  // console.log('Doing login', $scope.loginData);
+  //
+    // Simulate a login delay. Remove this and replace with your login
+    // code if using a login system
+  //  $timeout(function() {
+  //    $scope.closeLogin();
+  //  }, 1000);
+  //};
+  // ---------------------------------------------------------------------------------
 
 
 })
 
-.controller('LoginCtrl', function($scope, $timeout, $stateParams, ionicMaterialInk, ionicMaterialMotion) {
+.controller('PlaylistsCtrl', function($scope) {
+  $scope.playlists = [
+    { title: 'Reggae', id: 1 },
+    { title: 'Chill', id: 2 },
+    { title: 'Dubstep', id: 3 },
+    { title: 'Indie', id: 4 },
+    { title: 'Rap', id: 5 },
+    { title: 'Cowbell', id: 6 }
+  ];
+})
 
-    // Set Header
-    $scope.$parent.showHeader();
-    $scope.$parent.clearFabs();
-    //=======================================
-    $scope.isExpanded = false;
-    $scope.$parent.setExpanded(false);
-    $scope.$parent.setHeaderFab(false);
-    $scope.$parent.setHeaderFab(false);
-    //=======================================
+.controller('PlaylistCtrl', function($scope, $stateParams) {
+})
 
-    //$scope.$parent.clearFabs();
-    //$timeout(function() {
-    //    $scope.$parent.hideHeader();
-    //}, 0);
-    //ionicMaterialInk.displayEffect();
-    
+
+//Favourite page controller
+.controller('favouriteCtrl', function($scope, articles, userData) {
+
+})
+
+
+//Selections page controller
+.controller('selectionsCtrl', function($scope, articles, userData) {
+
+})
+
+//Activities page controller
+.controller('activitiesCtrl', function($scope, articles, userData) {
+
+
+})
+
+
+//Login page controller
+.controller('loginCtrl', function($scope, articles, userData) {
+
     $scope.authPopup = function () {
     auth.signInWithRedirect(provider);
     };
 
     firebase.auth().getRedirectResult().then(function(result) {
     //if (result.credential) {
-      // This gives you a Facebook Access Token. You can use it to access the Facebook API.
-      //this firebase code doesn't work
       //token = result.credential.accessToken;
     //}
 
@@ -191,68 +155,10 @@ angular.module('starter.controllers', ['firebase'])
 })
 
 
-//New Article page controller
-.controller('newArticleCtrl', function($scope, $state, userData, articles, ionicMaterialInk, ionicMaterialMotion) {
+//Profile page controller
+.controller('profileCtrl', function($scope, articles, userData, $ionicSlideBoxDelegate, $ionicScrollDelegate) {
 
-  $scope.pushArticle = function (article) {
-    console.log('pushArticle was clicked', article);
-    articles.saveArticle(article);
-  };
-
-})
-
-//Follower page Controllwe 
-.controller('FriendsCtrl', function($scope, $stateParams, $timeout, ionicMaterialInk, ionicMaterialMotion) {
-    // Set Header
-    $scope.$parent.showHeader();
-    $scope.$parent.clearFabs();
-    //=======================================
-    $scope.isExpanded = false;
-    $scope.$parent.setExpanded(false);
-    $scope.$parent.setHeaderFab(false);
-    $scope.$parent.setHeaderFab(false);
-    //=======================================
-
-    // Delay expansion
-    //$timeout(function() {
-    //    $scope.isExpanded = true;
-    //    $scope.$parent.setExpanded(true);
-    //}, 300);
-
-    // Set Motion
-    //ionicMaterialMotion.fadeSlideInRight();
-
-    // Set Ink
-    //ionicMaterialInk.displayEffect();
-})
-
-//Profile page Controllwe 
-.controller('ProfileCtrl', function($scope, $stateParams, $timeout, $ionicSlideBoxDelegate, $ionicScrollDelegate, userData, articles, ionicMaterialMotion, ionicMaterialInk) {
-
-    // Set Header
-    $scope.$parent.showHeader();
-    $scope.$parent.clearFabs();
-    $scope.isExpanded = false;
-    $scope.$parent.setExpanded(false);
-    $scope.$parent.setHeaderFab(false);
-
-    // Set Motion
-    //$timeout(function() {
-    //    ionicMaterialMotion.slideUp({
-    //        selector: '.slide-up'
-    //    });
-    //}, 300);
-
-    //$timeout(function() {
-    //    ionicMaterialMotion.fadeSlideInRight({
-    //        startVelocity: 3000
-    //    });
-    //}, 700);
-
-    // Set Ink
-    //ionicMaterialInk.displayEffect();
-
-    // Slide
+    //Slide
     $scope.slide = function(to) {
         $scope.current = to;
         $ionicSlideBoxDelegate.slide(to);
@@ -262,106 +168,7 @@ angular.module('starter.controllers', ['firebase'])
     $scope.scrollTop = function() {
         $ionicScrollDelegate.scrollTop();
     };
-    $scope.scrollTopwithMin = function(min) {
-        $ionicScrollDelegate.scrollTo(getScrollPosition());
-    };
-
-    //Articles
-    $scope.articles = articles.all();
-    $scope.user = userData.getUser();
 
 })
 
-.controller('ActivityCtrl', function($scope, $stateParams, $ionicPopover, $timeout, ionicMaterialMotion, ionicMaterialInk) {
-    $scope.$parent.showHeader();
-    $scope.$parent.clearFabs();
-    $scope.isExpanded = false;
-    $scope.$parent.setExpanded(false);
-    $scope.$parent.setHeaderFab(false);
-
-    //$timeout(function() {
-    //    ionicMaterialMotion.fadeSlideIn({
-    //        selector: '.animate-fade-slide-in .item'
-    //    });
-    //}, 200);
-
-    // Activate ink for controller
-    //ionicMaterialInk.displayEffect();
-
-    // Popover========================================
-    $ionicPopover.fromTemplateUrl('templates/article.html', {
-    scope: $scope
-    }).then(function(popover) {
-    $scope.popover = popover;
-    });
-    $scope.openPopover = function($event) {
-    $scope.popover.show($event);
-    };
-    $scope.closePopover = function() {
-    $scope.popover.hide();
-    };
-    //Cleanup the popover when we're done with it!
-    $scope.$on('$destroy', function() {
-    $scope.popover.remove();
-    });
-    // Execute action on hidden popover
-    $scope.$on('popover.hidden', function() {
-    // Execute action
-    });
-    // Execute action on remove popover
-    $scope.$on('popover.removed', function() {
-    // Execute action
-    });
-})
-
-.controller('RecommendationCtrl', function($scope, $stateParams, $timeout, ionicMaterialMotion, ionicMaterialInk) {
-    $scope.$parent.showHeader();
-    $scope.$parent.clearFabs();
-    $scope.isExpanded = false;
-    $scope.$parent.setExpanded(false);
-    $scope.$parent.setHeaderFab(false);
-
-    //$timeout(function() {
-    //    ionicMaterialMotion.fadeSlideIn({
-    //        selector: '.animate-fade-slide-in .item'
-    //    });
-    //}, 200);
-
-    // Activate ink for controller
-    //ionicMaterialInk.displayEffect();
-})
-
-.controller('RestaurantsCtrl', function($scope, restaurants, userData,ionicMaterialInk, ionicMaterialMotion) {
-    $scope.$parent.clearFabs();
-    $scope.isExpanded = false;
-    $scope.$parent.setExpanded(false);
-    $scope.$parent.setHeaderFab(false);
-
-    //this gives articles page access to user data
-    $scope.user = userData.getUser();
-
-    $scope.restaurants = restaurants.all();
-    $scope.remove = function(restaurant) {
-    restaurants.remove(restaurant);
-  };
-})
-
-.controller('GalleryCtrl', function($scope, $stateParams, $timeout, ionicMaterialInk, ionicMaterialMotion) {
-    $scope.$parent.showHeader();
-    $scope.$parent.clearFabs();
-    $scope.isExpanded = false;
-    $scope.$parent.setExpanded(false);
-    $scope.$parent.setHeaderFab(false);
-
-    // Activate ink for controller
-    //ionicMaterialInk.displayEffect();
-
-    //ionicMaterialMotion.pushDown({
-    //    selector: '.push-down'
-    //});
-    //ionicMaterialMotion.fadeSlideInRight({
-    //    selector: '.animate-fade-slide-in .item'
-    //});
-
-})
-
+;

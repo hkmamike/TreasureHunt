@@ -4,209 +4,93 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'firebase','ionic-material', 'ionMdInput', 'starter.services','ion-affix'])
+angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
 .run(function($ionicPlatform) {
-    $ionicPlatform.ready(function() {
-        // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
-        // for form inputs)
-        if (window.cordova && window.cordova.plugins.Keyboard) {
-            cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-        }
-        if (window.StatusBar) {
-            // org.apache.cordova.statusbar required
-            StatusBar.styleDefault();
-        }
-    });
+  $ionicPlatform.ready(function() {
+    // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
+    // for form inputs)
+    if (window.cordova && window.cordova.plugins.Keyboard) {
+      cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+      cordova.plugins.Keyboard.disableScroll(true);
+
+    }
+    if (window.StatusBar) {
+      // org.apache.cordova.statusbar required
+      StatusBar.styleDefault();
+    }
+  });
 })
 
-.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
+.config(function($stateProvider, $urlRouterProvider) {
+  $stateProvider
 
-    // Turn off caching for demo simplicity's sake
-    $ionicConfigProvider.views.maxCache(0);
+  .state('app', {
+    url: '/app',
+    abstract: true,
+    templateUrl: 'templates/menu.html',
+    controller: 'AppCtrl'
+  })
 
-    /*
-    // Turn off back button text
-    $ionicConfigProvider.backButton.previousTitleText(false);
-    */
+  .state('app.activities', {
+    url: '/activities',
+    views: {
+      'tab_activities': {
+        templateUrl: 'templates/activities.html',
+        controller: 'activitiesCtrl'
+      }
+    }
+  })
 
-    $stateProvider.state('app', {
-        url: '/app',
-        abstract: true,
-        templateUrl: 'templates/menu.html',
-        controller: 'AppCtrl'
-    })
+  .state('app.selections', {
+    url: '/selections',
+    views: {
+      'tab_selections': {
+        templateUrl: 'templates/selections.html',
+        controller: 'selectionsCtrl'
+      }
+    }
+  })
 
-    .state('app.activity', {
-        url: '/activity',
-        views: {
-            'menuContent': {
-                templateUrl: 'templates/activity.html',
-                controller: 'ActivityCtrl'
-            },
-            'fabContent': {
-                template: '<button id="fab-activity" class="button button-fab button-fab-bottom-right button-energized-900 spin"><i class="icon ion-plus"></i></button>',
-                controller: function ($timeout) {
-                    $timeout(function () {
-                        document.getElementById('fab-activity').classList.toggle('on');
-                    }, 200);
-                }
-            }
+  .state('app.favourites', {
+    url: '/favourites',
+    views: {
+      'tab_favourites': {
+        templateUrl: 'templates/favourites.html',
+        //controller: 'selectionsCtrl'
+      }
+    }
+  })
+
+  .state('app.profile', {
+    url: '/profile',
+    views: {
+      'tab_profile': {
+        templateUrl: 'templates/profile.html',
+        controller: 'profileCtrl'
+      }
+    }
+  })
+
+  .state('app.playlists', {
+      url: '/playlists',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/playlists.html',
+          controller: 'PlaylistsCtrl'
         }
-    })
+      }
+  })
 
-    .state('app.recommendation', {
-        url: '/recommendation',
-        views: {
-            'menuContent': {
-                templateUrl: 'templates/recommendation.html',
-                controller: 'RecommendationCtrl'
-            },
-            'fabContent': {
-                template: '<button id="fab-activity" class="button button-fab button-fab-buttom-right button-energized-900 flap"><i class="icon ion-paper-airplane"></i></button>',
-                controller: function ($timeout) {
-                    $timeout(function () {
-                        document.getElementById('fab-activity').classList.toggle('off');
-                    }, 200);
-                }
-            }
-        }
-    })
-
-    .state('recommendation_modal', {
-        url: '/recommendation_modal',
-        templateUrl: 'templates/recommendation_modal.html',
-        controller: 'RecommendationCtrl'
-    })
-
-    .state('app.friends', {
-        url: '/friends',
-        views: {
-            'menuContent': {
-                templateUrl: 'templates/friends.html',
-                controller: 'FriendsCtrl'
-            },
-            'fabContent': {
-                template: '<button id="fab-friends" class="button button-fab button-fab-bottom-right button-energized-900 spin"><i class="icon ion-edit"></i></button>',
-                controller: function ($timeout) {
-                    $timeout(function () {
-                        document.getElementById('fab-friends').classList.toggle('on');
-                    }, 900);
-                }
-            }
-        }
-    })
-
-    .state('app.gallery', {
-        url: '/gallery',
-        views: {
-            'menuContent': {
-                templateUrl: 'templates/gallery.html',
-                controller: 'GalleryCtrl'
-            },
-            'fabContent': {
-                template: '<button id="fab-gallery" class="button button-fab button-fab-bottom-right button-energized-900 spin"><i class="icon ion-edit"></i></button>',
-                controller: function ($timeout) {
-                    $timeout(function () {
-                        document.getElementById('fab-gallery').classList.toggle('on');
-                    }, 600);
-                }
-            }
-        }
-    })
-
-    .state('app.login', {
-        url: '/login',
-        views: {
-            'menuContent': {
-                templateUrl: 'templates/login.html',
-                controller: 'LoginCtrl'
-            },
-            'fabContent': {
-                template: ''
-            }
-        }
-    })
-
-//    .state('login', {
-//        url: '/login',
-//        templateUrl: 'templates/login.html',
-//       controller: 'LoginCtrl'
-//    })
-
-
-    .state('app.new-article', {
-        url: '/new-article',
-        views: {
-            'menuContent': {
-                templateUrl: 'templates/new-article.html',
-                controller: 'newArticleCtrl'
-                //controller: 'LoginCtrl'
-            },
-            'fabContent': {
-                template: ''
-            }
-        }
-    })
-
-    .state('app.profile', {
-        url: '/profile',
-        views: {
-            'menuContent': {
-                templateUrl: 'templates/profile.html',
-                controller: 'ProfileCtrl'
-            },
-            'fabContent': {
-                template: '<button id="fab-profile" class="button button-fab button-fab-bottom-right button-energized-900 spin"><i class="icon ion-edit"></i></button>',
-                controller: function ($timeout) {
-                    $timeout(function () {
-                        document.getElementById('fab-profile').classList.toggle('on');
-                    }, 800);
-                }
-            }
-        }
-    })
-    
-
-    .state('app.restaurant', {
-        url: '/restaurant',
-        views: {
-            'menuContent': {
-                templateUrl: 'templates/restaurant.html',
-                controller: 'ProfileCtrl'
-            },
-            'fabContent': {
-                template: '<button id="fab-profile" class="button button-fab button-fab-bottom-right button-energized-900 spin"><i class="icon ion-edit"></i></button>',
-                controller: function ($timeout) {
-                    $timeout(function () {
-                        document.getElementById('fab-profile').classList.toggle('on');
-                    }, 800);
-                }
-            }
-        }
-    })
-    ;
-
-    // if none of the above states are matched, use this as the fallback
-    //$urlRouterProvider.otherwise('/login');
-    $urlRouterProvider.otherwise('/app/login');
-
+  .state('app.single', {
+    url: '/playlists/:playlistId',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/playlist.html',
+        controller: 'PlaylistCtrl'
+      }
+    }
+  });
+  // if none of the above states are matched, use this as the fallback
+  $urlRouterProvider.otherwise('/app/activities');
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
