@@ -54,64 +54,34 @@
                     </ion-item>
                 <!--/ion-scroll-->     
                 </ion-slide>
-                
-                <ion-slide>
-                <!--ion-scroll style="height:100vh; overflow:hidden;"-->   
-                    <ion-item class="card item-text-wrap" ng-repeat="article in articles">
-                        <div class="item item-avatar-left">
-                        <img src= {{article.foodieimg}}>
-                        <p>{{article.foodie}}</p>
-                        <p>This is a follower</p>
-                        </div>      
-                    </ion-item>
-                <!--/ion-scroll-->  
-                </ion-slide>
 
-                <!--ion-slide>
-                <ion-scroll style="height:100vh; overflow:hidden;">   
-                    <ion-item class="card item-text-wrap" ng-repeat="article in Articles">
-                        <div class="item item-avatar-left">
-                        <img src= {{article.foodieimg}}>
-                        </div>      
+                <ion-slide>
+                <!--ion-scroll style="height:auto; overflow:hidden;"-->
+                    <ion-item class="card item-text-wrap">
+                        Hello
                     </ion-item>
                     <ion-item class="card item-text-wrap">
-                        <div class="item item-avatar-left">
-                        <img src= 'img/daenerys.jpg'>
-                        </div>      
+                        Here show some basic info of the user
                     </ion-item>
                     <ion-item class="card item-text-wrap">
-                        <div class="item item-avatar-left">
-                        <img src= 'img/daenerys.jpg'>
-                        </div>      
-                    </ion-item>                                        
-                </ion-scroll>  
-                </ion-slide-->
+                        and the score of the user
+                    </ion-item>
+                <!--/ion-scroll-->     
+                </ion-slide>
 
                 <ion-slide>
                 <!--ion-scroll style="height:100vh; overflow:hidden;"-->
-                    <ion-item class="card item-text-wrap" ng-repeat="article in articles| filter:searchText">
+                    <ion-item class="card item-text-wrap" ng-repeat="article in articles">
+                   <!--      <p>{{articles}}</p>
+                        <p>{{article.name}}</p> -->
                         <div class="item item-divider" ng-click="toggleGroup(article)">
-                        <p>{{article.name}}</p>
-                        </div>
-                        
-                        <div class="item item-image" ng-click="toggleGroup(article)" ng-class="{active: isGroupShown(article)}">
-                        <img src= {{article.cover}}>
-                        </div>
+                   
+                            <p>{{article.name}}</p>
+                        </div> 
+                    </ion-item>
 
-                        <div class="item-accordion" ng-show="isGroupShown(article)">
-                        {{article.details}}<br>
-                        {{article.details}}<br>
-                        <button class="button icon-left button-assertive icon ion-heart button-clear">Wanna Try</button>
-                        <button class="button icon-left button-positive icon ion-thumbsup button-clear">Like!</button>
-                        <button class="button icon-left button-positive icon ion-thumbsdown button-clear">Inaccruate</button>
-                        </div>
-
-                        <div class="item item-avatar-left">
-                        <img src= {{article.foodieimg}}>
-                        {{article.foodie}}<br>
-                        <i class="icon ion-clock"></i> {{article.age}}
-                        <i class="icon ion-stats-bars"></i> {{article.rating}} 
-                        </div>     
+                    <ion-item class="card item-text-wrap">
+                        <p>Hello</p>
                     </ion-item>
                 <!--/ion-scroll-->
                 </ion-slide>

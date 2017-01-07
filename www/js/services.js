@@ -1,4 +1,4 @@
-angular.module('starter.services', [])
+angular.module('starter.services', ['firebase'])
 
 .factory('userData', function() {
   var user ={};
@@ -76,50 +76,53 @@ angular.module('starter.services', [])
   };
 })
 
-.factory('articles',['userData', function(userData) {
+.factory('articles',['userData', '$firebaseObject', function(userData, $firebaseObject) {
   // Might use a resource here that returns a JSON array
 
   // Some fake testing data
-  var articles = [
-  {
-    id: 0,
-    name: 'My lunch @ Healthy Cafe',
-    location: 'HK',
-    type: 'Chinese',
-    details: 'This is a Healthy Lunch, Healthy Lunch, HealthyHealthyHealthy Lunch',
-    rating: '90%',
-    cover: 'img/food3.jpg',
-    age: 'Within 3 months',
-    foodie: 'Mike',
-    foodieimg: 'img/mike.png'
-  },
+  // var articles = [
+  // {
+  //   //id: 0,
+  //   name: 'My lunch @ Healthy Cafe',
+  //   location: 'HK',
+  //   type: 'Chinese',
+  //   details: 'This is a Healthy Lunch, Healthy Lunch, HealthyHealthyHealthy Lunch',
+  //   rating: '90%',
+  //   cover: 'img/food3.jpg',
+  //   age: 'Within 3 months',
+  //   foodie: 'Mike',
+  //   foodieimg: 'img/mike.png'
+  // },
 
-  {
-    id: 1,
-    name: 'My Dinner @ Double Cafe',
-    location: 'Kowloon',
-    type: 'Westen',
-    cover: 'img/food1.jpg',
-    details: ' it is very good  it is very good  it is very good  it is very good  it is very good  it is very good  it is very good ',
-    rating: '100%',
-    age: 'Within 6 months',
-    foodie: 'Mike',
-    foodieimg: 'img/mike.png'
-  },
+  // {
+  //   //id: 1,
+  //   name: 'My Dinner @ Double Cafe',
+  //   location: 'Kowloon',
+  //   type: 'Westen',
+  //   cover: 'img/food1.jpg',
+  //   details: ' it is very good  it is very good  it is very good  it is very good  it is very good  it is very good  it is very good ',
+  //   rating: '100%',
+  //   age: 'Within 6 months',
+  //   foodie: 'Mike',
+  //   foodieimg: 'img/mike.png'
+  // },
 
-  {
-    id: 2,
-    name: 'Great experience ever in HAHA Restuarant',
-    location: 'HK',
-    type: 'Westen',
-    details: 'bahbahbahb...ahb...habahabahabhabhabhabhahbbabaha<br>bahbhabhbabahabaha...........bbahbahbaha',
-    rating: '20%',
-    cover: 'img/food2.jpg',
-    age: 'Within 3 months',
-    foodie: 'Perry',
-    foodieimg: 'img/perry.png'
-  }
-  ];
+  // {
+  //   //id: 2,
+  //   name: 'Great experience ever in HAHA Restuarant',
+  //   location: 'HK',
+  //   type: 'Westen',
+  //   details: 'bahbahbahb...ahb...habahabahabhabhabhabhahbbabaha<br>bahbhabhbabahabaha...........bbahbahbaha',
+  //   rating: '20%',
+  //   cover: 'img/food2.jpg',
+  //   age: 'Within 3 months',
+  //   foodie: 'Perry',
+  //   foodieimg: 'img/perry.png'
+  // }
+  // ];
+
+  var ref = firebase.database().ref().child('posts');
+  var articles = $firebaseObject(ref);
 
   return {
     all: function() {

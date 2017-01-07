@@ -1,0 +1,82 @@
+<ion-view view-title="articles">
+  <ion-content>
+    <label>Search: <input ng-model="searchText"></label>
+    <br>
+    
+    <label class="toggle">
+     <input type="checkbox">
+     <div class="track">
+         <div class="handle"></div>
+     </div>
+    </label>
+
+    <label class = "item item-input item-select">
+     <div class = "input-label">
+      Location
+      </div>
+  
+      <select>
+        <option>All</option>
+        <option>HK</option>
+        <option>KL</option>
+        <option>NT</option>
+      </select>
+    </label>
+
+    <label class = "item item-input item-select">
+     <div class = "input-label">
+      Type
+      </div>
+  
+      <select>
+        <option>All</option>
+        <option>Chinese</option>
+        <option>Westen</option>
+        <option>Japanese</option>
+        <option>Korean</option> 
+        <option>South East</option> 
+      </select>
+    </label>
+
+    <ion-item 
+      class="card item-text-wrap" 
+      ng-repeat="article in articles| filter:searchText">
+
+        <div 
+          class="item item-divider" 
+          ng-click="toggleGroup(article)">
+            <p>{{article.name}}</p>
+            <p>hello</p>
+        </div>
+
+        <div
+          class="item item-image" 
+          ng-click="toggleGroup(article)"
+          ng-class="{active: isGroupShown(article)}">
+            <img src= {{article.cover}}>
+        </div>
+
+        <div 
+          class="item-accordion"
+          ng-show="isGroupShown(article)">
+            {{article.details}}<br>
+            {{article.details}}<br>
+            <button class="button icon-left button-assertive icon ion-heart button-clear">Wanna Try</button>
+            <button class="button icon-left button-positive icon ion-thumbsup button-clear">Like!</button>
+            <button class="button icon-left button-positive icon ion-thumbsdown button-clear">Inaccruate</button>
+        </div>
+
+        <a 
+          class="item item-avatar-left"
+          href="#/tab/profile">
+            <img src= {{article.foodieimg}}>
+              {{article.foodie}}<br>
+            <i class="icon ion-clock"></i> {{article.age}}
+            <i class="icon ion-stats-bars"></i> {{article.rating}} 
+        </a> 
+    </ion-item>
+
+
+
+  </ion-content>
+</ion-view>

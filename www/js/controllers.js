@@ -1,7 +1,7 @@
 /* global angular, document, window */
 'use strict';
 
-angular.module('starter.controllers', [])
+angular.module('starter.controllers', ['firebase'])
 
 .controller('AppCtrl', function($scope, $ionicModal, $ionicPopover, $timeout) {
     // Form data for the login modal
@@ -228,6 +228,7 @@ angular.module('starter.controllers', [])
 
 //Profile page Controllwe 
 .controller('ProfileCtrl', function($scope, $stateParams, $timeout, $ionicSlideBoxDelegate, $ionicScrollDelegate, userData, articles, ionicMaterialMotion, ionicMaterialInk) {
+
     // Set Header
     $scope.$parent.showHeader();
     $scope.$parent.clearFabs();
