@@ -27,8 +27,16 @@ angular.module('starter.controllers', [])
   $ionicPopover.fromTemplateUrl('templates/vote.html', {
     scope: $scope,
   }).then(function(popover) {
-    $scope.popover = popover;
+    $scope.vote = popover;
   });
+
+  $scope.closevote = function() {
+    $scope.vote.hide();
+  };
+
+  $scope.openevote = function() {
+    $scope.vote.show();
+  };
   // ---------------------------------------------------------------------------------
 
 
