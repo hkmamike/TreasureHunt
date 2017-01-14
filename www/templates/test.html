@@ -1,16 +1,16 @@
-<ion-view view-title="Activities" hide-nav-bar="false">
+<ion-view view-title="Test">
 
-<ion-nav-title>
+
   <div class="bar bar-header item-input-inset">
     <label class="item-input-wrapper">
       <i class="icon ion-ios-search placeholder-icon"></i>
       <input ng-model="search_text" type="text" placeholder="Search..." focus-me my-enter="search_model(search_text)" autofocus>
     </label>
   </div>
-</ion-nav-title>
 
 
-<ion-content style="background-color: #ffc">
+
+<ion-content style="background-color: #ffc" header-shrink scroll-event-interval="5">
 
     <!--div class="button-bar bar-energized">
         <a class="button ion-clock" ui-sref="app.activities">Activites</a>
@@ -29,57 +29,6 @@
       	</ion-item>
 	</div>
 
-
-
-	<div class="cardflat item-text-wrap" ng-repeat="article in articles">
-
-		<div ui-sref="app.profile">
-			<ion-item class="item-avatar no-padding">
-			<img src= {{article.foodieimg}}>
-			{{article.foodie}}
-			<br>
-			<i class="icon ion-stats-bars"></i> 100% (foodie rating)
-			</ion-item>
-		</div>
-
-		<div class="item item-borderless noTopPadding">
-			<div>
-				<h2>{{article.name}}</h2>
-			</div>
-
-			<div class="item-image" ng-click="toggleGroup(article)">
-				<img src= {{article.cover}}>
-			</div>
-
-        	<div class="item-accordion" ng-show="isGroupShown(article)">
-        		<div>
-            	details{{article.details}}
-            	</div>
-            	<div>
-            	{{article.detailpics}}
-            	</div>
-            	<div>
-            	<button class="button icon-left button-assertive icon ion-heart button-clear">Save It</button>
-            	<button class="button icon-left button-positive icon ion-thumbsup button-clear">Like!</button>
-            	<button class="button icon-left button-positive icon ion-thumbsdown button-clear">Inaccruate</button>
-            	</div>
-        	</div>
-
-	        <div>
-				<i class="icon ion-stats-bars "></i> 99%
-				<i class="icon ion-clock "></i> 3 hrs ago
-        	</div>
-
-        </div>
-
-        <div class="button-bar no-padding">
-			<a class="button" ng-click="openlogin()">Save</a>
-			<a class="button" ng-click="opennewarticle()">Share</a>
-			<a class="button" ui-sref="app.activities">Rate</a>
-        </div>
-
-    </div>
-
 <!-- Copy format for ref-->
        <div class="list card">
 
@@ -96,6 +45,19 @@
               the content is from a card-body consisting of an image and paragraph text. The footer
               consists of tabs, icons aligned left, within the card-footer.
             </p>
+            <p>nextline<br>nextline</p>
+            <p>nextline<br>nextline</p>
+            <p>nextline<br>nextline</p>
+            <p>nextline<br>nextline</p>
+            <p>nextline<br>nextline</p>
+            <p>nextline<br>nextline</p>
+            <p>nextline<br>nextline</p>
+            <p>nextline<br>nextline</p>
+            <p>nextline<br>nextline</p>
+            <p>nextline<br>nextline</p>
+            <p>nextline<br>nextline</p>
+            <p>nextline<br>nextline</p>
+
             <p>
               <a href="#" class="subdued">1 Like</a>
               <a href="#" class="subdued">5 Comments</a>

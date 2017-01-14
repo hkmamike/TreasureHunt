@@ -31,6 +31,35 @@
 
 /* ---------------------------------------------------------*/
 
+/* SideMenu Page--------------------------------------------------*/
+
+.sidemenu-content {
+  position: relative;
+  width: 100%;
+  padding-top: 10px;
+  text-align: center;
+}
+
+.sidemenu-avatar,
+.sidemenu-avatar .item-content {
+  padding-left: 60px;
+  height: 60px; }
+  .sidemenu-avatar > img:first-child,
+  .sidemenu-avatar .item-image,
+  .sidemenu-avatar .item-content > img:first-child,
+  .sidemenu-avatar .item-content .item-image {
+    position: absolute;
+    border: 1px solid #fff;
+    top: 16px;
+    left: 16px;
+    max-width: 60px;
+    max-height: 60px;
+    width: 100%;
+    height: 100%;
+    border-radius: 100%; }
+
+/* ---------------------------------------------------------*/
+
 
 /* article -------------------------------------------------*/
 .cardflat {
@@ -45,7 +74,7 @@
 
 
 
-/* Bookmark Page--------------------------------------------*/
+/* Favourite Page--------------------------------------------*/
 
 .list.half {
   display: inline-block;
@@ -58,17 +87,19 @@
 /* ---------------------------------------------------------*/
 
 
-.relative2{
-
-  .tabs,
-  .scroll-content{
-    position: relative; 
-    top:auto;
-  }
-}
-
+/* General -------------------------------------------------*/
 
 .tabs {
   height: 30px;
   line-height: 30px; 
-}                    
+}     
+
+.noTopPadding { 
+  padding-top: 0px;
+}
+
+.noButtomPadding { 
+  padding-bottom: 0px;
+}
+
+/* ---------------------------------------------------------*/

@@ -1,12 +1,23 @@
-<ion-view view-title="Profile" hide-nav-bar="true">
-  <ion-content style="background-color: #ffc">
+<ion-view view-title="Profile" hide-nav-bar="false">
 
-    <div class="button-bar bar-energized">
+<ion-nav-title>
+  <div class="bar bar-header item-input-inset">
+    <label class="item-input-wrapper">
+      <i class="icon ion-ios-search placeholder-icon"></i>
+      <input ng-model="search_text" type="text" placeholder="Profile Name" focus-me my-enter="search_model(search_text)" autofocus style="text-align: center;">
+    </label>
+  </div>
+</ion-nav-title>
+
+
+  <ion-content header-shrink scroll-event-interval="5" style="background-color: #ffc">
+
+    <!--div class="button-bar bar-energized">
         <a class="button ion-clock" ui-sref="app.activities">Activites</a>
         <a class="button ion-button" ui-sref="app.selections">Selecions</a>
         <a class="button ion-button" ui-sref="app.favourites">Favourites</a>
         <a class="button ion-navicon" menu-toggle="right">Me</a>
-    </div>
+    </div-->
 
   <div class="profile-background" style="background-image: url('img/profile-bg.jpg');">
   </div>
