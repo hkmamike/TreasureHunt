@@ -1,21 +1,15 @@
-<ion-view view-title="Activities" hide-nav-bar="true">
+<ion-view view-title="Activities" hide-nav-bar="false">
 
-    <ion-content style="background-color: #ffc">
+<ion-nav-title>
+  <div class="bar bar-header item-input-inset">
+    <label class="item-input-wrapper">
+      <i class="icon ion-ios-search placeholder-icon"></i>
+      <input ng-model="search_text" type="text" placeholder="Search..." focus-me my-enter="search_model(search_text)" autofocus>
+    </label>
+  </div>
+</ion-nav-title>
 
-     <ion-nav-buttons side="left" >
-        <div class="bar bar-header item-input-inset" ng-if="hasFilters">
-            <label class="item-input-wrapper textbox-search">
-                <i class="icon ion-ios7-search placeholder-icon"></i>
-                <input type="search" placeholder="Search">
-            </label>
-        </div>
-    </ion-nav-buttons>
-
-
-    <ion-nav-title ng-show="!hasFilters">
-        Users
-    </ion-nav-title>
-
+<ion-content style="background-color: #ffc">
 
     <!--div class="button-bar bar-energized">
        	<a class="button ion-clock" ui-sref="app.activities">Activites</a>
@@ -23,7 +17,6 @@
        	<a class="button ion-button" ui-sref="app.favourites">Favourites</a>
        	<a class="button ion-navicon" menu-toggle="right">Me</a>
   	</div-->
-
 
 	<div class="cardflat">
 		<ion-item class="item-avatar">     
@@ -80,8 +73,8 @@
 
         <div class="button-bar no-padding">
 			<a class="button" ng-click="openlogin()">Save</a>
-			<a class="button" ng-click="opennewarticle()">Like</a>
-			<a class="button" ui-sref="app.activities">Dislike</a>
+			<a class="button" ng-click="opennewarticle()">Share</a>
+			<a class="button" ui-sref="app.activities">Rate</a>
         </div>
 
     </div>

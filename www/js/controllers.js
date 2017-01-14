@@ -1,9 +1,13 @@
 angular.module('starter.controllers', [])
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout,articles, userData) {
+.controller('AppCtrl', function($scope, $ionicModal, $timeout,articles, $ionicSideMenuDelegate, userData) {
 
   $scope.user = userData.getUser();
   $scope.articles = articles.all();
+
+  $scope.toggleRightSideMenu = function() {
+    $ionicSideMenuDelegate.toggleRight();
+  };
 
   // Expand Card ---------------------------------------------------------------------
   $scope.toggleGroup = function(group) {
