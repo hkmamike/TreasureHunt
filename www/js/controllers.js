@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout,articles, $ionicSideMenuDelegate, userData) {
+.controller('AppCtrl', function($scope, $ionicModal, $ionicPopover, $timeout,articles, $ionicSideMenuDelegate, userData) {
 
   $scope.user = userData.getUser();
   $scope.articles = articles.all();
@@ -20,6 +20,15 @@ angular.module('starter.controllers', [])
   $scope.isGroupShown = function(group) {
     return $scope.shownGroup === group;
   };
+  // ---------------------------------------------------------------------------------
+
+  
+  // PopOver -------------------------------------------------------------------------
+  $ionicPopover.fromTemplateUrl('templates/vote.html', {
+    scope: $scope,
+  }).then(function(popover) {
+    $scope.popover = popover;
+  });
   // ---------------------------------------------------------------------------------
 
 
@@ -204,7 +213,7 @@ angular.module('starter.controllers', [])
         // Re-position the sub-header
         subHeader.style[ionic.CSS.TRANSFORM] = 'translate3d(0,-' + amt + 'px, 0)';
         // Re-position the tabs
-        tabs.style[ionic.CSS.TRANSFORM] = 'translate3d(0,' + tabs_amt + 'px, 0)';
+        //tabs.style[ionic.CSS.TRANSFORM] = 'translate3d(0,' + tabs_amt + 'px, 0)';
       });
     };
 
