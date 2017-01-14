@@ -175,7 +175,6 @@ angular.module('starter.controllers', [])
 })
 
 
-
 //Shrink
 .directive('headerShrink', function($document) {
     var fadeAmt;
@@ -183,7 +182,7 @@ angular.module('starter.controllers', [])
     var shrink = function(tabs, tabs_amt, subHeader, header, amt, dir) {
       ionic.requestAnimationFrame(function() { 
         // Threshold is equal to bar-height
-        var threshold = 44;
+        var threshold = 88;
         // Scrolling down
         if(dir === 1) {
           var _amt = Math.min(threshold, amt - threshold);
@@ -216,11 +215,11 @@ angular.module('starter.controllers', [])
         var shrinkAmt;
         var tabs_amt;
         // Threshold is equal to bar-height + create-post height;
-        var threshold = 88;
+        var threshold = 176;
         // header
         var header = $document[0].body.querySelector('.bar-header');
         // sub-header
-        var subHeader = $document[0].body.querySelector('.bar-subheader');
+        var subHeader = $document[0].body.querySelector('.shrinkableSubheader');
         var headerHeight = header.offsetHeight;
         var subHeaderHeight = subHeader.offsetHeight;
         // tabs
