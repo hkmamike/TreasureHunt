@@ -91,7 +91,7 @@ angular.module('starter.controllers', [])
   };
 
   // Open the login modal
-  $scope.opennewarticle = function() {
+  $scope.openNewArticle = function() {
     $scope.newarticle.show();
   };
 
@@ -158,6 +158,10 @@ angular.module('starter.controllers', [])
 
 //Activities page controller
 .controller('activitiesCtrl', function($scope, articles, userData) {
+})
+
+//Restaurant page controller
+.controller('restaurantCtrl', function($scope, articles, userData) {
 })
 
 //Test page controller
