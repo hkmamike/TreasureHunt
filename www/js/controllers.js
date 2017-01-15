@@ -23,7 +23,7 @@ angular.module('starter.controllers', [])
   // ---------------------------------------------------------------------------------
 
   
-  // PopOver -------------------------------------------------------------------------
+  // PopOver vote---------------------------------------------------------------------
   $ionicPopover.fromTemplateUrl('templates/vote.html', {
     scope: $scope,
   }).then(function(popover) {
@@ -73,6 +73,7 @@ angular.module('starter.controllers', [])
   };
   // ---------------------------------------------------------------------------------
 
+
   // ---------------------------------------------------------------------------------
   // Form data for the login modal
   //$scope.loginData = {};
@@ -104,6 +105,28 @@ angular.module('starter.controllers', [])
   //    $scope.closeLogin();
   //  }, 1000);
   //};
+  // ---------------------------------------------------------------------------------
+
+
+  // ---------------------------------------------------------------------------------
+  // Popup for article page ----------------------------------------------------------
+
+  // Create the article modal that we will use later
+  $ionicModal.fromTemplateUrl('templates/article.html', {
+    scope: $scope
+  }).then(function(modal) {
+    $scope.article = modal;
+  });
+
+  // Triggered in the article modal to close it
+  $scope.closearticle = function() {
+    $scope.article.hide();
+  };
+
+  // Open the article modal
+  $scope.openarticle = function() {
+    $scope.article.show();
+  };
   // ---------------------------------------------------------------------------------
 
 
