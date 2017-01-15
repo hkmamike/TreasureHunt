@@ -16,7 +16,7 @@ wqe<br>111<br>111<br>
 
 <div class="bar shrinkableSubheader baritem-avatar">
 <img src="http://ionicframework.com/img/docs/mcfly.jpg">
-<Div class="baritem-content noTopPadding" ng-click="openNewArticle()">Recommand a Restaurant <br> <p>Share your happyness</p></div>  
+<Div class="baritem-content noTopPadding" ng-click="openNewArticle()">Recommand a Restaurant <br> <p>[show when user scroll down]</p></div>  
 </div>
     
 
@@ -27,13 +27,14 @@ wqe<br>111<br>111<br>
 <div style="height:88px"></div>
 
        <div class="list half card">
-          <div class="item item-avatar" ui-sref="app.restaurant">
+          <div class="item item-avatar" ui-sref="app.profile">
             <img src="http://ionicframework.com/img/docs/mcfly.jpg">
             <h2>Marty McFly</h2>
-            <p>November 05, 1955</p>
+            <p>testing</p>
           </div>
 
           <div class="item item-body" ng-click="openarticle()">
+            <div>[click here open a popup for whole article]</div>
             <img class="full-image" src="http://ionicframework.com/img/docs/delorean.jpg">
             <!--p>
               This is a "Facebook" styled Card. The header is created from a Thumbnail List item,
@@ -61,13 +62,14 @@ wqe<br>111<br>111<br>
        </div>
 
        <div class="list half card">
-          <div class="item item-avatar">
+          <div class="item item-avatar" ui-sref="app.profile">
             <img src="http://ionicframework.com/img/docs/mcfly.jpg">
             <h2>Marty McFly</h2>
             <p>November 05, 1955</p>
           </div>
 
-          <div class="item item-body" ng-click="openarticle()">
+          <div class="item item-body" ui-sref="app.restaurant">
+          <div>[Click here link to restaurant page]</div>
             <img class="full-image" src="http://ionicframework.com/img/docs/delorean.jpg">
             <!--p>
               This is a "Facebook" styled Card. The header is created from a Thumbnail List item,
