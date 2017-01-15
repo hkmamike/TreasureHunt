@@ -48,9 +48,9 @@
   padding-left: 60px;
   height: 60px; }
   .sidemenu-avatar > img:first-child,
-  .sidemenu-avatar .item-image,
-  .sidemenu-avatar .item-content > img:first-child,
-  .sidemenu-avatar .item-content .item-image {
+  .sidemenu-avatar .sidemenu-image,
+  .sidemenu-avatar .sidemenu-content > img:first-child,
+  .sidemenu-avatar .sidemenu-content .sidemenu-image {
     position: absolute;
     border: 1px solid #fff;
     top: 16px;
@@ -116,6 +116,13 @@
   padding-bottom: 0px;
 }
 
+/* ---------------------------------------------------------*/
+
+
+
+
+/* Testing--------------------------------------------------*/
+
 .shrinkableSubheader {
   top: 44px;
   height: 44px; }
@@ -123,9 +130,6 @@
 
 .shrinkableHeader {
 }
-
-/* ---------------------------------------------------------*/
-
 
 .bar2 {
   display: -webkit-box;
@@ -159,3 +163,30 @@
   /* this nifty trick sets an actual 1px border on hi-res displays */
   background-size: 0; 
 }
+
+.baritem-content {
+  
+  width: 100%;
+  padding-top: 0px;
+  padding-left: 16px;
+}
+
+.baritem-avatar,
+.baritem-avatar .baritem-content {
+  padding-left: 44px;
+  height: 44px; }
+  .baritem-avatar > img:first-child,
+  .baritem-avatar .baritem-image,
+  .baritem-avatar .baritem-content > img:first-child,
+  .baritem-avatar .baritem-content .baritem-image {
+    position: absolute;
+    border: 1px solid #fff;
+    top: 0px;
+    left: 16px;
+    max-width: 44px;
+    max-height: 44px;
+    width: 100%;
+    height: 100%;
+    border-radius: 100%; }
+
+/* ---------------------------------------------------------*/
