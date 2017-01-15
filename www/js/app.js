@@ -82,7 +82,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     }
   })
 
-
+//-----------------------------------------------------------------------------
 
   .state('app.playlists', {
       url: '/playlists',
