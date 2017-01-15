@@ -14,40 +14,17 @@ http://varun.ca/shrinking-header-footer/
 wqe<br>111<br>111<br>
 </div-->
 
-<div class="bar2 cardflat shrinkableSubheader item-avatar">
-Recommand a Restaurant
-<img src= {{user.img}} ui-sref="app.profile">
-<label class="item-input" ng-click="opennewarticle()">
-  <input type="text" ng-model="article.RestaurantName" placeholder="Share your happyness">
-</label>
+<div class="bar shrinkableSubheader bar-assertive">
+        <h2 class="title">Sub Header</h2>  
 </div>
+    
 
-<ion-view view-title="Test" hide-nav-bar="false">
-<ion-nav-title></ion-nav-title>
+<ion-nav-view view-title="Activities" hide-nav-bar="true"></ion-nav-view>
 
 <ion-content style="background-color: #ffc" header-shrink scroll-event-interval="3" has-bouncing="false">
 
 <div style="height:88px"></div>
-    <!--div class="button-bar bar-energized">
-        <a class="button ion-clock" ui-sref="app.activities">Activites</a>
-        <a class="button ion-button" ui-sref="app.selections">Selecions</a>
-        <a class="button ion-button" ui-sref="app.favourites">Favourites</a>
-        <a class="button ion-navicon" menu-toggle="right">Me</a>
-    </div-->
-<!--
-	<div class="cardflat shrinkableSubheader">
-		<ion-item class="item-avatar">     
-  			Recommand a Restaurant
-			<img src= {{user.img}} ui-sref="app.profile">
-			<label class="item-input" ng-click="opennewarticle()">
-				<input type="text" ng-model="article.RestaurantName" placeholder="Share your happyness">
-			</label>
-    </ion-item>
-	</div>
--->
 
-
-<!-- Copy format for ref-->
        <div class="list card">
 
           <div class="item item-avatar">
@@ -102,8 +79,5 @@ Recommand a Restaurant
           </div>
 
         </div>
-<!-- Copy FB format --> 
-
-
     </ion-content>
 </ion-view>

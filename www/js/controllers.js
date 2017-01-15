@@ -199,7 +199,7 @@ angular.module('starter.controllers', [])
     var shrink = function(tabs, tabs_amt, subHeader, header, amt, dir) {
       ionic.requestAnimationFrame(function() { 
         // Threshold is equal to bar-height
-        var threshold = 88;
+        var threshold = 44;
         // Scrolling down
         if(dir === 1) {
           var _amt = Math.min(threshold, amt - threshold);
@@ -232,7 +232,7 @@ angular.module('starter.controllers', [])
         var shrinkAmt;
         var tabs_amt;
         // Threshold is equal to bar-height + create-post height;
-        var threshold = 176;
+        var threshold = 88;
         // header
         var header = $document[0].body.querySelector('.bar-header');
         // sub-header
