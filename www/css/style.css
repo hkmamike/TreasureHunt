@@ -208,6 +208,11 @@
     height: 100%;
     border-radius: 100%; }
 
+.slider .slider-pager {
+  bottom: 0px;
+  font-size: 10px;
+} 
+
 /* ---------------------------------------------------------*/
 
 

@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('AppCtrl', function($scope, $ionicModal, $ionicPopover, $timeout,articles, $ionicSideMenuDelegate, userData) {
+.controller('AppCtrl', function($scope, $ionicModal, $ionicPopover, $ionicScrollDelegate, $timeout,articles, $ionicSideMenuDelegate, userData) {
 
   $scope.user = userData.getUser();
   $scope.articles = articles.all();
@@ -75,36 +75,21 @@ angular.module('starter.controllers', [])
 
 
   // ---------------------------------------------------------------------------------
-  // Form data for the login modal
-  //$scope.loginData = {};
+  // Form data for the newArticle modal
 
-  // Create the login modal that we will use later
   $ionicModal.fromTemplateUrl('templates/newarticle.html', {
     scope: $scope
   }).then(function(modal) {
     $scope.newarticle = modal;
   });
 
-  // Triggered in the login modal to close it
   $scope.closenewarticle = function() {
     $scope.newarticle.hide();
   };
 
-  // Open the login modal
   $scope.openNewArticle = function() {
     $scope.newarticle.show();
   };
-
-  // Perform the login action when the user submits the login form
-  //$scope.submitnewarticle = function() {
-  // console.log('Doing login', $scope.loginData);
-  //
-    // Simulate a login delay. Remove this and replace with your login
-    // code if using a login system
-  //  $timeout(function() {
-  //    $scope.closeLogin();
-  //  }, 1000);
-  //};
   // ---------------------------------------------------------------------------------
 
 
@@ -130,6 +115,19 @@ angular.module('starter.controllers', [])
   // ---------------------------------------------------------------------------------
 
 
+  // ScrollCheck ---------------------------------------------------------------------
+  $scope.checkScroll = function () {
+ 
+        var currentTop = $ionicScrollDelegate.$getByHandle('scroller').getScrollPosition().top;
+        var maxScrollableDistanceFromTop = $ionicScrollDelegate.$getByHandle('scroller').getScrollView().__maxScrollTop;
+ 
+        if (currentTop >= maxScrollableDistanceFromTop)
+        {
+          closearticle();
+        }
+    };
+  // ---------------------------------------------------------------------------------
+  
 })
 
 .controller('PlaylistsCtrl', function($scope) {
