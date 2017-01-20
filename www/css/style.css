@@ -75,7 +75,7 @@
   padding-top: 1px;
   padding-bottom: 1px;
   margin-bottom: 20px; 
-  /*box-shadow: 0 0px 0px rgba(0, 0, 0, 0.3);*/ 
+  box-shadow: 0 0.5px 0px rgba(0, 0, 0, 0.3);
 }
 
 /* ---------------------------------------------------------*/
@@ -119,6 +119,21 @@
     width: 100%;
     height: 100%;
     border-radius: 100%; }
+
+.avatarCircle2 {
+    position: relative;
+    border: 1px solid #fff;
+    max-width: 45px;
+    max-height: 45px;
+    width: 100%;
+    height: 100%;
+    border-radius: 100%; }
+
+.vcenter {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 
 /* ---------------------------------------------------------*/
 
@@ -194,3 +209,38 @@
     border-radius: 100%; }
 
 /* ---------------------------------------------------------*/
+
+
+
+/* Cover Image with overlay ---------------------------------*/
+.PictureFrame {
+  position: relative;
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: auto;
+  height: auto;
+}
+
+.BackgroundGradient {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  bottom: 0;
+  background-image: linear-gradient(to bottom, rgba(0,0,0,0) 70%, rgba(0,0,0,0.6));
+}
+
+.TextShadow {
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  position: absolute;
+  text-align: right;
+  color: white;
+  /* text-shadow: 1px 1px 2px black, 0 0 10px black; */
+  font-size: 2em;
+  font-weight: 600;
+  bottom: 16px;
+  left: 16px;
+  text-shadow: 1px 1px 2px black, 0 0 10px black;
+}
+
+/* ---------------------------------------------------------*/
+

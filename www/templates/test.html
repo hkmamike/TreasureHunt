@@ -1,4 +1,4 @@
-<!--
+  <!--
 http://varun.ca/shrinking-header-footer/
 -->
 
@@ -34,6 +34,118 @@ wqe<br>111<br>111<br>
   <a href="http://varun.ca/shrinking-header-footer/">SHrink Header</a>
 
   </div>
+<br>
+
+
+<div class="cardflat">
+
+  <div class="bar baritem-avatar">
+    <img src="img/perry.png">
+    <Div class="baritem-content noTopPadding">
+      Alex <br> <i class="icon ion-stats-bars"></i> 100% (foodie rating)
+    </div>  
+  </div>
+
+  <div class="PictureFrame" style="background-image: url('img/food1.jpg');" ng-click="openarticle()">
+    <img src="img/food1.jpg" style="visibility: hidden; width: 100%">
+    <div class="BackgroundGradient"></div>
+    <div class="TextShadow">
+      This is Great!
+    </div>
+  </div>
+
+  <div class="item" style="height:100%; padding: 0px">
+  <span style="font-size: 14px">bah bahbahbah jghgkjhdjk hfjhfkashk <a>see more...</a></span>
+  <br>
+  <span style="float: right; font-size: 12px">50 favoirites, 98% positive</span>
+  </div>
+
+  <div class="button-bar no-padding">
+        <button class="button ion-thumbsup">Save</button>
+        <button class="button ion-share">Share</button>
+        <button class="button ion-ionic">Rate</button>
+  </div>
+
+</div>
+
+
+<div class="cardflat">
+
+  <div ui-sref="app.profile">
+      <ion-item class="item-avatar no-padding">
+      <img src="img/mike.png">
+      Mike
+      <br>
+      <i class="icon ion-stats-bars"></i> 100% (foodie rating)
+      </ion-item>
+  </div>
+
+  <div class="PictureFrame" style="background-image: url('img/food2.jpg');" ng-click="openarticle()">
+    <img src="img/food2.jpg" style="visibility: hidden; width: 100%">
+    <div class="BackgroundGradient"></div>
+    <div class="TextShadow">
+      This is My Lunch!
+    </div>
+  </div>
+
+  <div class="item" style="height:100%; padding: 0px">
+  <span style="font-size: 14px">bah bahbahbah jghgkjhdjk hfjhfkashk <a>see more...</a></span>
+  <br>
+  <span style="float: right; font-size: 12px">50 favoirites, 98% positive</span>
+  </div>
+
+  <div class="button-bar no-padding">
+        <button class="button ion-thumbsup">Save</button>
+        <button class="button ion-share">Share</button>
+        <button class="button ion-ionic">Rate</button>
+  </div>
+
+</div>
+
+<div class="cardflat">
+
+  <div ui-sref="app.profile">
+      <ion-item class="item-avatar no-padding">
+      <img src= {{article.foodieimg}}>
+      Trump
+      <br>
+      <i class="icon ion-stats-bars"></i> 100% (foodie rating)
+      </ion-item>
+  </div>
+
+  <div class="PictureFrame" style="background-image: url('img/food1.jpg');" ng-click="openarticle()">
+    <img src="img/food1.jpg" style="visibility: hidden; width: 100%">
+    <div class="BackgroundGradient"></div>
+    <div class="TextShadow">
+      This is Great!
+    </div>
+  </div>
+
+  <div class="item" style="height:100%; padding: 0px">
+  <span style="font-size: 14px">bah bahbahbah jghgkjhdjk hfjhfkashk <a>see more...</a></span>
+  <br>
+  <span style="float: right; font-size: 12px">50 favoirites, 98% positive</span>
+  </div>
+
+  <div class="button-bar no-padding">
+        <button class="button ion-thumbsup">Save</button>
+        <button class="button ion-share">Share</button>
+        <button class="button ion-ionic">Rate</button>
+  </div>
+
+</div>
+
+
+  <!--div class="item tabs tabs-secondary tabs-icon-left" style="height:49px; line-height:49px">
+    <a class="tab-item" href="#"><i class="icon ion-thumbsup"></i>Like</a>
+    <a class="tab-item" href="#"><i class="icon ion-chatbox"></i>Comment</a>
+    <a class="tab-item" href="#"><i class="icon ion-share"></i>Share</a>
+  </div-->
+
+</div>
+
+
+
        <div class="list half card">
           <div class="item item-avatar" ui-sref="app.profile">
             <img src="http://ionicframework.com/img/docs/mcfly.jpg">
@@ -42,7 +154,7 @@ wqe<br>111<br>111<br>
           </div>
 
           <div class="item item-body" ng-click="openarticle()">
-            <div>[click here open a popup for whole article]</div>
+            <div class="ShadowText">[click here open a popup for whole article]</div>
             <img class="full-image" src="http://ionicframework.com/img/docs/delorean.jpg">
             <!--p>
               This is a "Facebook" styled Card. The header is created from a Thumbnail List item,
@@ -54,18 +166,9 @@ wqe<br>111<br>111<br>
           </div>
 
           <div class="item tabs tabs-secondary tabs-icon-left" style="height:49px; line-height:49px">
-            <a class="tab-item" href="#">
-              <i class="icon ion-thumbsup"></i>
-              Like
-            </a>
-            <a class="tab-item" href="#">
-              <i class="icon ion-chatbox"></i>
-              Comment
-            </a>
-            <a class="tab-item" href="#">
-              <i class="icon ion-share"></i>
-              Share
-            </a>
+            <a class="tab-item" href="#"><i class="icon ion-thumbsup"></i>Like</a>
+            <a class="tab-item" href="#"><i class="icon ion-chatbox"></i>Comment</a>
+            <a class="tab-item" href="#"><i class="icon ion-share"></i>Share</a>
           </div>
        </div>
 
@@ -138,39 +241,9 @@ wqe<br>111<br>111<br>
           </div>
        </div>
 
-       <div class="list half card">
-          <div class="item item-avatar">
-            <img src="http://ionicframework.com/img/docs/mcfly.jpg">
-            <h2>Marty McFly</h2>
-            <p>November 05, 1955</p>
-          </div>
+       <!--div class="list half card"-->
 
-          <div class="item item-body" ng-click="openarticle()">
-            <img class="full-image" src="http://ionicframework.com/img/docs/delorean.jpg">
-            <!--p>
-              This is a "Facebook" styled Card. The header is created from a Thumbnail List item,
-              the content is from a card-body consisting of an image and paragraph text. The footer
-              consists of tabs, icons aligned left, within the card-footer.
-              <a href="#" class="subdued">1 Like</a>
-              <a href="#" class="subdued">5 Comments</a>
-            </p-->
-          </div>
-
-          <div class="item tabs tabs-secondary tabs-icon-left" style="height:49px; line-height:49px">
-            <a class="tab-item" href="#">
-              <i class="icon ion-thumbsup"></i>
-              Like
-            </a>
-            <a class="tab-item" href="#">
-              <i class="icon ion-chatbox"></i>
-              Comment
-            </a>
-            <a class="tab-item" href="#">
-              <i class="icon ion-share"></i>
-              Share
-            </a>
-          </div>
-       </div>
+       <!--/div-->
 
        <div class="list half card">
           <div class="item item-avatar">

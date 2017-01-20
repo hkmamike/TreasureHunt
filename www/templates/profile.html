@@ -45,6 +45,18 @@
                         Predictive power: 100% <br>
                         50 Recommendations <br>
                     </ion-item>
+
+                    <div class="card chart-card">
+                    <div class="item item-text-wrap">
+                        <canvas id="line" class="chart chart-line" data="lineData" labels="lineLabels" legend="true" series="lineSeries" options="{showTooltips: false}"></canvas>
+                    </div>
+                    
+                    <div class="item item-text-wrap">   
+                       <canvas id="doughnut" data="pieData" labels="pieLabels" class="chart chart-doughnut" legend="true"  series="series" options="{showTooltips: false}">
+                       </canvas>
+                    </div>
+                    </div>
+
                 <!--/ion-scroll-->     
                 </ion-slide>
                 
