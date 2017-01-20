@@ -39,11 +39,16 @@ wqe<br>111<br>111<br>
 
 <div class="cardflat">
 
-  <div class="bar baritem-avatar">
+  <div class="list bar baritem-avatar noborder" style="margin-bottom: 0px; height:50px: border-bottom:0; border-top: 0;">
     <img src="img/perry.png">
-    <Div class="baritem-content noTopPadding">
-      Alex <br> <i class="icon ion-stats-bars"></i> 100% (foodie rating)
+    <Div class="baritem-content noTopPadding" style="border-bottom:0; border-top: 0;">
+      Alex <i class="icon ion-stats-bars"></i> 100% (foodie rating) <br>
+      3 hr ago
     </div>  
+  </div>
+
+  <div class="item" style="height:100%; padding: 0px; border-bottom:0; border-top: 0;">
+  <span style="font-size: 14px">bah bahbahbah jghgkjhdjk hfjhfkashk<br> hhhjhh rwyewyewy yrrr <a>see more...</a></span>
   </div>
 
   <div class="PictureFrame" style="background-image: url('img/food1.jpg');" ng-click="openarticle()">
@@ -55,8 +60,6 @@ wqe<br>111<br>111<br>
   </div>
 
   <div class="item" style="height:100%; padding: 0px">
-  <span style="font-size: 14px">bah bahbahbah jghgkjhdjk hfjhfkashk <a>see more...</a></span>
-  <br>
   <span style="float: right; font-size: 12px">50 favoirites, 98% positive</span>
   </div>
 
@@ -104,15 +107,20 @@ wqe<br>111<br>111<br>
 
 <div class="cardflat">
 
-  <div ui-sref="app.profile">
-      <ion-item class="item-avatar no-padding">
-      <img src= {{article.foodieimg}}>
+  <div ui-sref="app.profile" style="border-bottom:0; border-top: 0;">
+      <ion-item class="item-avatar no-padding " style="border-bottom:0; border-top: 0;">
+      <img src= "img/daenerys.jpg">
       Trump
       <br>
       <i class="icon ion-stats-bars"></i> 100% (foodie rating)
       </ion-item>
   </div>
-  
+
+  <div class="item" style="height:100%; padding: 0px;  margin-bottom: 0px; border-bottom:0; border-top: 0;">
+  <span style="font-size: 14px; padding-left: 15px">  bah bahbahbah jghgkjhdjk hfjhfkashk <a>see more...</a></span>
+  </div>
+
+
   <div class="PictureFrame" style="background-image: url('img/food3.jpg');" ng-click="openarticle()">
     <img src="img/food3.jpg" style="visibility: hidden; width: 100%">
     <div class="BackgroundGradient"></div>
@@ -123,8 +131,8 @@ wqe<br>111<br>111<br>
   
 
   <div class="item" style="height:100%; padding: 0px">
-  <span style="font-size: 14px">bah bahbahbah jghgkjhdjk hfjhfkashk <a>see more...</a></span>
-  <br>
+  <!--span style="font-size: 14px">bah bahbahbah jghgkjhdjk hfjhfkashk <a>see more...</a></span>
+  <br-->
   <span style="float: right; font-size: 12px">50 favoirites, 98% positive</span>
   </div>
 
@@ -174,7 +182,7 @@ wqe<br>111<br>111<br>
        </div>
 
        <div class="list half card">
-          <div class="item item-avatar" ui-sref="app.profile">
+          <div class="item item-avatar" ui-sref="app.profile">  
             <img src="http://ionicframework.com/img/docs/mcfly.jpg">
             <h2>Marty McFly</h2>
             <p>November 05, 1955</p>
