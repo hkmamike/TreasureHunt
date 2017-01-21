@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout,articles, userData) {
+.controller('AppCtrl', function($scope, $ionicModal, $timeout, articles, userData) {
 
   $scope.user = userData.getUser();
   $scope.articles = articles.all();
@@ -53,24 +53,35 @@ angular.module('starter.controllers', [])
   // ---------------------------------------------------------------------------------
 
   // ---------------------------------------------------------------------------------
-  // Form data for the login modal
-  //$scope.loginData = {};
+  // Form data for the New Article modal
 
-  // Create the login modal that we will use later
-  $ionicModal.fromTemplateUrl('templates/newarticle.html', {
+  // Create the New Article modal that we will use later
+  $ionicModal.fromTemplateUrl('templates/newArticle.html', {
     scope: $scope
   }).then(function(modal) {
-    $scope.newarticle = modal;
+    $scope.newArticle = modal;
   });
 
   // Triggered in the login modal to close it
-  $scope.closenewarticle = function() {
-    $scope.newarticle.hide();
+  $scope.closeNewArticle = function() {
+    $scope.newArticle.hide();
   };
 
   // Open the login modal
-  $scope.opennewarticle = function() {
-    $scope.newarticle.show();
+  $scope.openNewArticle = function() {
+    $scope.newArticle.show();
+  };
+
+  $scope.pushArticle = function (article) {
+    console.log('new article posted', article);
+    articles.saveArticle(article);
+
+    //clearing ng-model values after submit
+    article.name = "";
+    article.location = "";
+    article.type = "";
+    article.details = "";
+    article.rating = "";
   };
 
   // Perform the login action when the user submits the login form
@@ -84,8 +95,6 @@ angular.module('starter.controllers', [])
   //  }, 1000);
   //};
   // ---------------------------------------------------------------------------------
-
-
 })
 
 .controller('PlaylistsCtrl', function($scope) {
