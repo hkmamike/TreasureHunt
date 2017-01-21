@@ -103,6 +103,14 @@ angular.module('starter', ['ionic', 'chart.js', 'starter.controllers', 'starter.
     }
   })
 
+  .state('app.article', {
+    url: '/:articleId',
+    views: {
+      }
+    }
+  })
+
+
 //-----------------------------------------------------------------------------
 
   .state('app.playlists', {
@@ -123,7 +131,8 @@ angular.module('starter', ['ionic', 'chart.js', 'starter.controllers', 'starter.
         controller: 'PlaylistCtrl'
       }
     }
-  });
+  })
+  ;
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/activities');
 });
