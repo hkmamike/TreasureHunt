@@ -1,7 +1,13 @@
 angular.module('starter.services', [])
 
 .factory('userData', function() {
-  var user ={};
+
+  var user = {};
+  firebase.auth().onAuthStateChanged(function () {
+    user = firebase.auth().currentUser;
+    console.log('user is: ', user);
+  });
+
   return {
     getUser: function () {
         return user;
@@ -76,7 +82,7 @@ angular.module('starter.services', [])
   };
 })
 
-.factory('articles',['userData', '$firebaseObject', function(userData, $firebaseObject) {
+.factory('articles',['userData', '$firebaseObject', '$firebaseArray', function(userData, $firebaseObject, $firebaseArray) {
   // Might use a resource here that returns a JSON array
 
   // Some fake testing data
@@ -122,26 +128,33 @@ angular.module('starter.services', [])
   // ];
 
   var ref = firebase.database().ref().child('posts');
+  // var storageRef = firebase.storage.ref();
   var articles = $firebaseObject(ref);
 
+  console.log(articles);
   return {
     all: function() {
       return articles;
     },
     saveArticle: function(article) {
       console.log('will save this to the database', article);
-      var newArticle = {
-         name: article.name,
-         location: article.location,
-         type: article.type,
-         details: article.details,
-         rating: article.rating
-      };
-
+      var uid = userData.getUser().uid;
+      console.log(uid);
       var newPostKey = firebase.database().ref().child('posts').push().key;
       console.log(newPostKey);
+      var newArticle = {
+        name: article.name,
+        restaurantName: article.restaurantName,
+        location: article.location,
+        type: article.type,
+        contents: article.contents,
+        timestamp: Math.floor(Date.now()/1000),
+        author: uid,
+        key: newPostKey
+      };
+
       var updates = {};
-      var uid = userData.getUser().uid;
+
       updates['/posts/' + newPostKey] = newArticle;
       updates['/user-posts/' + uid + '/' + newPostKey] = newArticle;
 
@@ -163,5 +176,3 @@ angular.module('starter.services', [])
     }
   };
 }]);
-
-

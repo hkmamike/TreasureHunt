@@ -103,10 +103,11 @@ angular.module('starter.controllers', [])
 
     //clearing ng-model values after submit
     article.name = "";
+    article.restaurantName = "";
     article.location = "";
     article.type = "";
-    article.details = "";
-    article.rating = "";
+    article.contents = "";
+
   };
   // ---------------------------------------------------------------------------------
 
@@ -242,7 +243,6 @@ angular.module('starter.controllers', [])
     [65, 59, 80, 81, 56, 55, 40],
     [28, 48, 40, 19, 86, 27, 90]
   ];
-
 
 })
 
