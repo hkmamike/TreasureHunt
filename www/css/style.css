@@ -66,6 +66,34 @@
 
 
 
+/* listitem Page--------------------------------------------*/
+
+.listitem-content {
+  position: relative;
+  width: 100%;
+  padding-top: 10px;
+  text-align: center;
+}
+
+.listitem-avatar,
+.listitem-avatar .item-content {
+  padding-left: 60px;
+  height: 60px; }
+  .listitem-avatar > img:first-child,
+  .listitem-avatar .listitem-image,
+  .listitem-avatar .listitem-content > img:first-child,
+  .listitem-avatar .listitem-content .sidemenu-image {
+    position: absolute;
+    border: 1px solid #fff;
+    top: 16px;
+    left: 16px;
+    max-width: 60px;
+    max-height: 60px;
+    width: 100%;
+    height: 100%;
+    border-radius: 100%; }
+
+/* ---------------------------------------------------------*/
 
 
 
