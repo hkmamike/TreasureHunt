@@ -93,6 +93,16 @@ angular.module('starter', ['ionic', 'chart.js', 'starter.controllers', 'starter.
     }
   })
 
+  .state('app.test2', {
+    url: '/test2',
+    views: {
+      'tab_test2': {
+        templateUrl: 'templates/test2.html',
+        controller: 'testCtrl'
+      }
+    }
+  })
+
 //-----------------------------------------------------------------------------
 
   .state('app.playlists', {
