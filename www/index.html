@@ -35,6 +35,7 @@
     <script src="https://cdn.firebase.com/libs/angularfire/2.2.0/angularfire.min.js"></script>
     
     <script>
+
       // Initialize Firebase
       var config = {
         apiKey: "AIzaSyAohPYbXHNacKk3WZSZHrdGfTZtJuyfO48",
@@ -45,11 +46,14 @@
       };
 
       firebase.initializeApp(config);
+
       //variables for firebase
       var db = firebase.database();
       var auth = firebase.auth();
+
       //need a switch statement later if we use more federated logins
       var provider = new firebase.auth.FacebookAuthProvider();
+      
     </script>
 
   </head>
