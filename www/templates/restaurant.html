@@ -1,10 +1,10 @@
-<ion-view view-title="Profile" hide-nav-bar="false">
+<ion-view view-title="Restaurant" hide-nav-bar="false">
 
 <ion-nav-title>
   <div class="bar bar-header item-input-inset">
     <label class="item-input-wrapper">
       <i class="icon ion-ios-search placeholder-icon"></i>
-      <input ng-model="search_text" type="text" placeholder="Profile Name" focus-me my-enter="search_model(search_text)" autofocus style="text-align: center;">
+      <input ng-model="search_text" type="text" placeholder="Restaurant Name" focus-me my-enter="search_model(search_text)" autofocus style="text-align: center;">
     </label>
   </div>
 </ion-nav-title>
@@ -19,59 +19,50 @@
         <a class="button ion-navicon" menu-toggle="right">Me</a>
     </div-->
 
-  <div class="profile-background" style="background-image: url('img/profile-bg.jpg');">
+  <div class="profile-background" style="background-image: url('img/food2.jpg');">
   </div>
 
   <div class="profile-content">
       
-      <img class="profile-img" src= 'img/daenerys.jpg'>
-    <h3>Foodie Name</h3>
-    <p>bahbahbah</p>
+      <img class="profile-img" src= 'img/impin-bg.jpg'>
+    <h3>Restautant Name</h3>
+    <p>Location/Tel</p>
 
       <div class="button-bar bar-balanced">
             <a class="button ion-button" ng-click="slide(0)">Info</a>
             <a class="button ion-button" ng-click="slide(1)">Articles</a>
-            <a class="button ion-button" ng-click="slide(2)">Followers</a>
-            <a class="button ion-button" ng-click="slide(3)">Followings</a>
-        </div>
+      </div>
 
         <div>
             <ion-slide-box class="delegate-handle" on-slide-changed="scrollTop()" on-slide-changed="activateTabs($index)"  show-pager="false" >
                 <ion-slide>
                 <!--ion-scroll style="height:auto; overflow:hidden;"-->
-                    <ion-item class="card item-text-wrap">
-                        Foodie Ranking: 5 Stars<br>
-                        Total 80 Followers<br>
-                        Predictive power: 100% <br>
-                        50 Recommendations <br>
+                    <ion-item class="card item-text-wrap" style="text-align: left;">
+                        Tel: 2800-0000 <br>
+                        Location: 1QRC, Central, Hong Kong <br>
+                        Type: Western <br>
+                        Spending: High 
                     </ion-item>
-
-                    <div class="card chart-card">
-                    <div class="item item-text-wrap">
-                        <canvas id="line" class="chart chart-line" data="lineData" labels="lineLabels" legend="true" series="lineSeries" options="{showTooltips: false}"></canvas>
-                    </div>
-                    
-                    <div class="item item-text-wrap">   
-                       <canvas id="doughnut" data="pieData" labels="pieLabels" class="chart chart-doughnut" legend="true"  series="series" options="{showTooltips: false}">
-                       </canvas>
-                    </div>
-                    </div>
-
+                    <ion-item class="card item-text-wrap" style="text-align: left;">
+                        Ranking: <br>
+                        95% Up vs Down for articles recommened this restaurant<br>
+                        Total 18 Foodies recommended this restaurant <br>
+                        <img src= 'img/jon-snow.jpg' class="avatarCircle">
+                        <img src= 'img/tyrion.jpg' class="avatarCircle">
+                        <img src= 'img/sansa.jpg' class="avatarCircle">
+                        <img src= 'img/daenerys.jpg' class="avatarCircle">
+                        <img src= 'img/arya.jpg' class="avatarCircle">
+                        and more ...
+                    </ion-item>
+                    <ion-item class="card item-text-wrap">
+                        <img src= 'img/login.png'>
+                        <img src= 'img/food2.jpg'>
+                        <img src= 'img/food3.jpg'>
+                        <img src= 'img/food1.jpg'>
+                    </ion-item>
                 <!--/ion-scroll-->     
                 </ion-slide>
                 
-                <ion-slide>
-                <!--ion-scroll style="height:100vh; overflow:hidden;"-->   
-                    <ion-item class="card item-text-wrap" ng-repeat="article in articles">
-                        <div class="item item-avatar-left">
-                        <img src= {{article.foodieimg}}>
-                        <p>{{article.foodie}}</p>
-                        <p>This is a follower</p>
-                        </div>      
-                    </ion-item>
-                <!--/ion-scroll-->  
-                </ion-slide>
-
                 <ion-slide>
                 <!--ion-scroll style="height:100vh; overflow:hidden;"-->
                     <ion-item class="card item-text-wrap" ng-repeat="article in articles| filter:searchText">

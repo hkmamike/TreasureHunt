@@ -1,0 +1,127 @@
+<ion-modal-view>
+
+  <ion-header-bar>
+    <h1 class="title">(Article Title)</h1>
+    <div class="buttons">
+      <button class="button button-cross" ng-click="closearticle()">Close</button>
+    </div>
+  </ion-header-bar>
+
+  <ion-content>
+  
+
+       <div class="list">
+          <div class="item item-avatar">
+            <img src="http://ionicframework.com/img/docs/mcfly.jpg">
+            <h2>Marty McFly</h2>
+            <p>November 05, 1955</p>
+          </div>
+
+          <div class="item item-body">
+          <div>
+            <ion-slide-box does-continue="true" auto-play="true" style="padding-bottom: 15px">
+            <ion-slide>
+              <img class="full-image" src="img/food2.jpg" >
+            </ion-slide>
+            <ion-slide>
+              <img class="full-image" src="img/food1.jpg" >
+            </ion-slide>
+            <ion-slide>
+              <img class="full-image" src="img/food3.jpg" >
+            </ion-slide>
+            <ion-slide>
+              <img class="full-image" src="http://ionicframework.com/img/docs/delorean.jpg">
+            </ion-slide>
+            </ion-slide-box>
+          </div>  
+            <p>
+              This is a "Facebook" styled Card. The header is created from a Thumbnail List item,
+              the content is from a card-body consisting of an image and paragraph text. The footer
+              consists of tabs, icons aligned left, within the card-footer. <br>
+              This is a "Facebook" styled Card. The header is created from a Thumbnail List item,
+              the content is from a card-body consisting of an image and paragraph text. The footer
+              consists of tabs, icons aligned left, within the card-footer. <br>
+              This is a "Facebook" styled Card. The header is created from a Thumbnail List item,
+              the content is from a card-body consisting of an image and paragraph text. The footer
+              consists of tabs, icons aligned left, within the card-footer. <br>
+              adsad<br>qweeee<br>eeeee<br>
+              <a href="#" class="subdued">1 Like</a>
+              <a href="#" class="subdued">5 Comments</a>
+            </p>
+          </div>
+
+          <div class="item tabs tabs-secondary tabs-icon-left" style="height:49px; line-height:49px">
+            <a class="tab-item" href="#">
+              <i class="icon ion-thumbsup"></i>
+              Like
+            </a>
+            <a class="tab-item" href="#">
+              <i class="icon ion-chatbox"></i>
+              Comment
+            </a>
+            <a class="tab-item" href="#">
+              <i class="icon ion-share"></i>
+              Share
+            </a>
+          </div>
+       </div>
+
+  
+  </ion-content>
+
+  <!--ion-footer-bar class="button-bar">
+          <a class="button" ng-click="openlogin()">Save</a>
+          <a class="button" ng-click="opennewarticle()">Share</a>
+          <a class="button" on-touch="vote.show($event)">Rate</a>
+  </ion-footer-bar-->
+
+  <!--div class="cardflat item-text-wrap">
+
+    <div ui-sref="app.profile">
+      <ion-item class="item-avatar no-padding">
+      <img src= {{article.foodieimg}}>
+      {{article.foodie}}
+      <br>
+      <i class="icon ion-stats-bars"></i> 100% (foodie rating)
+      </ion-item>
+    </div>
+
+    <div class="item item-borderless noTopPadding">
+      <div>
+        <h2>{{article.name}}</h2>
+      </div>
+
+      <div class="item-image" ng-click="toggleGroup(article)">
+        <img src= {{article.cover}}>
+      </div>
+
+          <div class="item-accordion" ng-show="isGroupShown(article)">
+            <div>
+              details{{article.details}}
+              </div>
+              <div>
+              {{article.detailpics}}
+              </div>
+              <div>
+              <button class="button icon-left button-assertive icon ion-heart button-clear">Save It</button>
+              <button class="button icon-left button-positive icon ion-thumbsup button-clear">Like!</button>
+              <button class="button icon-left button-positive icon ion-thumbsdown button-clear">Inaccruate</button>
+              </div>
+          </div>
+
+          <div>
+            <i class="icon ion-stats-bars "></i> 99%
+            <i class="icon ion-clock "></i> 3 hrs ago
+          </div>
+
+        </div>
+
+        <div class="button-bar no-padding">
+          <a class="button" ng-click="openlogin()">Save</a>
+          <a class="button" ng-click="opennewarticle()">Share</a>
+          <a class="button" on-touch="vote.show($event)">Rate</a>
+        </div>
+
+    </div>
+  </ion-content>
+</ion-modal-view>

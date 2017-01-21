@@ -1,6 +1,5 @@
-<ion-view view-title="Activities" hide-nav-bar="true">
 
-    <ion-content style="background-color: #ffc">
+<ion-view view-title="Activities" hide-nav-bar="false">
 
 <!--      <ion-nav-buttons side="left" >
         <div class="bar bar-header item-input-inset" ng-if="hasFilters">
@@ -16,14 +15,14 @@
         Users
     </ion-nav-title> -->
 
+<ion-content style="background-color: #ffc">
 
     <!--div class="button-bar bar-energized">
-       	<a class="button ion-clock" ui-sref="app.activities">Activites</a>
-       	<a class="button ion-button" ui-sref="app.selections">Selecions</a>
-       	<a class="button ion-button" ui-sref="app.favourites">Favourites</a>
-       	<a class="button ion-navicon" menu-toggle="right">Me</a>
-  	</div-->
-
+        <a class="button ion-clock" ui-sref="app.activities">Activites</a>
+        <a class="button ion-button" ui-sref="app.selections">Selecions</a>
+        <a class="button ion-button" ui-sref="app.favourites">Favourites</a>
+        <a class="button ion-navicon" menu-toggle="right">Me</a>
+    </div-->
 
 	<div class="cardflat">
 		<ion-item class="item-avatar">     
@@ -48,7 +47,7 @@
 			</ion-item>
 		</div>
 
-		<div class="item item-borderless no-padding">
+		<div class="item item-borderless noTopPadding">
 			<div>
 				<h2>{{article.name}}</h2>
 			</div>
@@ -72,20 +71,19 @@
         	</div>
 
 	        <div>
-				<i class="icon ion-stats-bars "></i> 99%
-				<i class="icon ion-clock "></i> 3 hrs ago
+				    <i class="icon ion-stats-bars "></i> 99%
+				    <i class="icon ion-clock "></i> 3 hrs ago
         	</div>
 
         </div>
 
         <div class="button-bar no-padding">
-			<a class="button" ng-click="openlogin()">Save</a>
-			<a class="button" ng-click="opennewarticle()">Like</a>
-			<a class="button" ui-sref="app.activities">Dislike</a>
+			    <a class="button" ng-click="openlogin()">Save</a>
+			    <a class="button" ng-click="openNewArticle()">Share</a>
+			    <a class="button" on-touch="vote.show($event)">Rate</a>
         </div>
 
     </div>
-
 
     </ion-content>
 </ion-view>
