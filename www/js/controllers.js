@@ -71,6 +71,38 @@ angular.module('starter.controllers', [])
     $timeout(function() {
       $scope.closeLogin();
     }, 1000);
+
+  $scope.authPopup = function () {
+    auth.signInWithRedirect(provider);
+  };
+
+  firebase.auth().getRedirectResult().then(function(result) {
+    //if (result.credential) {
+      // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+      //this firebase code doesn't work
+      //token = result.credential.accessToken;
+    //}
+
+    //register the signed-in user info
+    userData.setUser(auth.currentUser);
+
+    //for testing only
+    console.log('uid is', userData.getUser().uid);
+
+    //redirect back to home page
+    $state.go('tab.restaurants');
+
+  }).catch(function(error) {
+    // Handle Errors here.
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    // The email of the user's account used.
+    var email = error.email;
+    // The firebase.auth.AuthCredential type that was used.
+    var credential = error.credential;
+    // ...
+  });
+
   };
   // ---------------------------------------------------------------------------------
 
@@ -182,6 +214,10 @@ angular.module('starter.controllers', [])
 
 //Test page controller
 .controller('testCtrl', function($scope, articles, userData) {
+})
+
+//Test2 page controller
+.controller('test2Ctrl', function($scope, articles, userData) {
 })
 
 //Login page controller

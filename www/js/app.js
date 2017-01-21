@@ -93,6 +93,27 @@ angular.module('starter', ['ionic', 'chart.js', 'starter.controllers', 'starter.
     }
   })
 
+  .state('app.test2', {
+    url: '/test2',
+    views: {
+      'tab_test2': {
+        templateUrl: 'templates/test2.html',
+        controller: 'testCtrl'
+      }
+    }
+  })
+
+  .state('app.article', {
+    url: '/:articleId',
+    views: {
+      'page_article': {
+        templateUrl: 'templates/article.html',
+        controller: 'articleCtrl'
+      }
+    }
+  })
+
+
 //-----------------------------------------------------------------------------
 
   .state('app.playlists', {
@@ -113,7 +134,8 @@ angular.module('starter', ['ionic', 'chart.js', 'starter.controllers', 'starter.
         controller: 'PlaylistCtrl'
       }
     }
-  });
+  })
+  ;
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/activities');
 });

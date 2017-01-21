@@ -1,0 +1,64 @@
+<ion-view view-title="Activities" hide-nav-bar="false">
+
+  <ion-nav-title>
+    <div class="bar bar-header item-input-inset">
+      <label class="item-input-wrapper">
+        <i class="icon ion-ios-search placeholder-icon"></i>
+        <input ng-model="search_text" type="text" placeholder="Search..." focus-me my-enter="search_model(search_text)" autofocus>
+      </label>
+    </div>
+  </ion-nav-title>
+
+
+  <ion-content>
+
+    <div class="cardflat">
+
+      <ion-item class="item-avatar">     
+        <span> Recommand a Restaurant<br></span> 
+        <span style="color: grey"> Share your happyness </span>
+        <img src= {{user.img}} ui-sref="app.profile">
+      </ion-item>
+
+    </div>
+
+
+    <div class="cardflat item-text-wrap" ng-repeat="article in articles">
+
+      <div ui-sref="app.profile" style="border-bottom:0px ; margin-bottom: 0px">
+        <ion-item class="item-avatar no-padding" style="border-bottom:0;">
+          <img src= "img/daenerys.jpg">
+          <span>{{article.author}} [Lv 3]</span>
+          <i class="icon ion-stats-bars"></i> 86% <br>
+          <i class="icon ion-clock "></i> 3 hrs ago
+        </ion-item>
+      </div>
+
+      <div class="item articlesDetailsAbstract">
+        <span>{{article.details}}<br>{{article.key}}</span> 
+        <a ng-click="openarticle()">see more ...</a>
+      </div>
+
+      <div class="pictureFrame" style="background-image: url('img/squareFood1.jpg');" href="#/app/{{playlist.id}}">
+        <img src="img/squareFood1.jpg" style="visibility: hidden; width: 100%">
+        <div class="backgroundGradient"></div>
+        <div class="textShadow">
+        {{article.name}}
+        </div>
+      </div>
+
+      <div class="item" style="height:100%; padding: 0px">
+        <span style="float: right; font-size: 12px">50 favoirites, 98% positive</span>
+      </div>
+
+      <div class="button-bar no-padding">
+        <button class="button ion-thumbsup">Save</button>
+        <button class="button ion-share">Share</button>
+        <button class="button ion-ionic">Rate</button>
+      </div>
+
+    </div>
+
+  </ion-content>
+
+</ion-view>
