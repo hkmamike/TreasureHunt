@@ -28,16 +28,16 @@
       <div ui-sref="app.profile" style="border-bottom:0px ; margin-bottom: 0px">
         <ion-item class="item-avatar no-padding" style="border-bottom:0;">
           <img src= "img/daenerys.jpg">
-          <span>Trump [Lv 3]</span>
+          <span>{{article.author}} [Lv 3]</span>
           <i class="icon ion-stats-bars"></i> 86% <br>
           <i class="icon ion-clock "></i> 3 hrs ago
         </ion-item>
       </div>
 
-      <!--div class="item articlesDetailsAbstract">
-        <span>{{article.details}}<br></span> 
+      <div class="item articlesDetailsAbstract">
+        <span>{{article.details}}<br>{{article.key}}</span> 
         <a ng-click="openarticle()">see more ...</a>
-      </div-->
+      </div>
 
       <div class="pictureFrame" style="background-image: url('img/squareFood1.jpg');" href="#/app/{{playlist.id}}">
         <img src="img/squareFood1.jpg" style="visibility: hidden; width: 100%">
