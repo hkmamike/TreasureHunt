@@ -127,15 +127,21 @@ angular.module('starter.services', [])
   // }
   // ];
 
+
   var ref = firebase.database().ref().child('posts');
   // var storageRef = firebase.storage.ref();
   var articles = $firebaseObject(ref);
-
   console.log(articles);
+
   return {
     all: function() {
       return articles;
     },
+
+    getArticle: function(articleKey) {
+      return $firebaseObject(ref.child(articleKey));
+    },
+
     saveArticle: function(article) {
       console.log('will save this to the database', article);
       var uid = userData.getUser().uid;
@@ -166,9 +172,10 @@ angular.module('starter.services', [])
     bookmark: function(Article) {
       articles.splice(articles.indexOf(Article), 1);
     },
+    // This code searching for article ID???
     get: function(ArticleId) {
       for (var i = 0; i < articles.length; i++) {
-        if (articles[i].id === parseInt(ArticleId)) {
+        if (articles[i].key === parseInt(ArticleId)) {
           return articles[i];
         }
       }

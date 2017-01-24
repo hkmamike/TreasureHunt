@@ -1,13 +1,13 @@
 <ion-view view-title="Activities" hide-nav-bar="false">
 
-  <ion-nav-title>
+<!--   <ion-nav-title>
     <div class="bar bar-header item-input-inset">
       <label class="item-input-wrapper">
         <i class="icon ion-ios-search placeholder-icon"></i>
         <input ng-model="search_text" type="text" placeholder="Search..." focus-me my-enter="search_model(search_text)" autofocus>
       </label>
     </div>
-  </ion-nav-title>
+  </ion-nav-title> -->
 
 
   <ion-content>
@@ -16,13 +16,13 @@
 
       <ion-item class="item-avatar">     
         <span> Recommand a Restaurant<br></span> 
-        <span style="color: grey"> Share your happyness </span>
+        <span style="color: grey"> Share your happyness !!</span>
         <img src= {{user.img}} ui-sref="app.profile">
       </ion-item>
 
     </div>
 
-
+    <!-- <div class="cardflat item-text-wrap" ng-repeat="article in selectedArticle"> -->
     <div class="cardflat item-text-wrap" ng-repeat="article in articles">
 
       <div ui-sref="app.profile" style="border-bottom:0px ; margin-bottom: 0px">
@@ -34,27 +34,29 @@
         </ion-item>
       </div>
 
-      <div class="item articlesDetailsAbstract">
-        <span>{{article.details}}<br>{{article.key}}</span> 
+<!--       <div class="item articlesDetailsAbstract">
+        <span>{{article.key}}<br>{{article.contents}}</span> 
         <a ng-click="openarticle()">see more ...</a>
       </div>
-
-      <div class="pictureFrame" style="background-image: url('img/squareFood1.jpg');" href="#/app/{{playlist.id}}">
+ -->
+      <!-- <div class="item"> -->
+      <div class="pictureFrame" style="background-image: url('img/squareFood2.jpg');" ui-sref="app.article({'articleKey':article.key})">
         <img src="img/squareFood1.jpg" style="visibility: hidden; width: 100%">
         <div class="backgroundGradient"></div>
         <div class="textShadow">
         {{article.name}}
         </div>
       </div>
+      <!-- </div> -->
 
       <div class="item" style="height:100%; padding: 0px">
         <span style="float: right; font-size: 12px">50 favoirites, 98% positive</span>
       </div>
 
       <div class="button-bar no-padding">
-        <button class="button ion-thumbsup">Save</button>
-        <button class="button ion-share">Share</button>
-        <button class="button ion-ionic">Rate</button>
+        <button class="button ion-thumbsup" href="#/app/favourites">Save</button>
+        <button class="button ion-share" ui-sref="app.favourites">Share</button>
+        <button class="button ion-ionic" href="#/app/activities/{{article.key}}">Rate</button>
       </div>
 
     </div>

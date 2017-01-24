@@ -104,7 +104,8 @@ angular.module('starter', ['ionic', 'chart.js', 'starter.controllers', 'starter.
   })
 
   .state('app.article', {
-    url: '/:articleId',
+    //url: '/1',
+    url: '/article/:articleKey',
     views: {
       'page_article': {
         templateUrl: 'templates/article.html',

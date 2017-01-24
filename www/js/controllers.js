@@ -6,6 +6,8 @@ angular.module('starter.controllers', [])
   $scope.user = userData.getUser();
   $scope.articles = articles.all();
 
+
+
   $scope.toggleRightSideMenu = function() {
     $ionicSideMenuDelegate.toggleRight();
   };
@@ -209,7 +211,14 @@ angular.module('starter.controllers', [])
 })
 
 //Restaurant page controller
-.controller('restaurantCtrl', function($scope, articles, userData) {
+.controller('restaurantCtrl', function($scope,articles, userData) {
+})
+
+//Article page Controller
+.controller('articleCtrl', function($scope, $stateParams, articles, userData) {
+  //$scope.articleKey = $stateParams.articleKey;
+  $scope.selectedArticle = articles.getArticle($stateParams.articleKey);
+  console.log($scope.selectedArticle);
 })
 
 //Test page controller
