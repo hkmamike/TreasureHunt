@@ -125,11 +125,11 @@
 
 /* General -------------------------------------------------*/
 
-.tabs {
+/*.tabs {
   height: 30px;
   line-height: 30px; 
 }     
-
+*/
 .noTopPadding { 
   padding-top: 0px;
 }
@@ -292,4 +292,23 @@
 
 
 
+/* ---------------------------------------------------------*/
+
+/* Restaurant Page------------------------------------------*/
+.half {
+  display: inline-block;
+  float: left;
+  margin: 1%;
+  padding: 0;
+  width: 48%;
+}
+.quarter {
+  display: inline-block;
+  float: left;
+  margin: 0.5%;
+  margin-top: 0%;
+  margin-bottom: 0.2%;
+  padding: 0;
+  width: 24%;
+}
 /* ---------------------------------------------------------*/

@@ -64,7 +64,7 @@ angular.module('starter', ['ionic', 'chart.js', 'starter.controllers', 'starter.
   })
 
   .state('app.profile', {
-    url: '/profile',
+    url: '/profile/:userKey',
     views: {
       'tab_profile': {
         templateUrl: 'templates/profile.html',
@@ -104,7 +104,6 @@ angular.module('starter', ['ionic', 'chart.js', 'starter.controllers', 'starter.
   })
 
   .state('app.article', {
-    //url: '/1',
     url: '/article/:articleKey',
     views: {
       'page_article': {
@@ -114,28 +113,6 @@ angular.module('starter', ['ionic', 'chart.js', 'starter.controllers', 'starter.
     }
   })
 
-
-//-----------------------------------------------------------------------------
-
-  .state('app.playlists', {
-      url: '/playlists',
-      views: {
-        'menuContent': {
-          templateUrl: 'templates/playlists.html',
-          controller: 'PlaylistsCtrl'
-        }
-      }
-  })
-
-  .state('app.single', {
-    url: '/playlists/:playlistId',
-    views: {
-      'menuContent': {
-        templateUrl: 'templates/playlist.html',
-        controller: 'PlaylistCtrl'
-      }
-    }
-  })
   ;
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/activities');
