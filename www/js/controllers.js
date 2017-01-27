@@ -6,8 +6,6 @@ angular.module('starter.controllers', [])
   $scope.user = userData.getUser();
   $scope.articles = articles.all();
 
-
-
   $scope.toggleRightSideMenu = function() {
     $ionicSideMenuDelegate.toggleRight();
   };
@@ -182,21 +180,6 @@ angular.module('starter.controllers', [])
   
 })
 
-.controller('PlaylistsCtrl', function($scope) {
-  $scope.playlists = [
-    { title: 'Reggae', id: 1 },
-    { title: 'Chill', id: 2 },
-    { title: 'Dubstep', id: 3 },
-    { title: 'Indie', id: 4 },
-    { title: 'Rap', id: 5 },
-    { title: 'Cowbell', id: 6 }
-  ];
-})
-
-.controller('PlaylistCtrl', function($scope, $stateParams) {
-})
-
-
 //Favourite page controller
 .controller('favouriteCtrl', function($scope, articles, userData) {
 })
@@ -216,7 +199,6 @@ angular.module('starter.controllers', [])
 
 //Article page Controller
 .controller('articleCtrl', function($scope, $stateParams, articles, userData) {
-  //$scope.articleKey = $stateParams.articleKey;
   $scope.selectedArticle = articles.getArticle($stateParams.articleKey);
   console.log($scope.selectedArticle);
 })
@@ -264,7 +246,10 @@ angular.module('starter.controllers', [])
 
 
 //Profile page controller
-.controller('profileCtrl', function($scope, articles, userData, $ionicSlideBoxDelegate, $ionicScrollDelegate) {
+.controller('profileCtrl', function($scope, articles, userData, foodies, $ionicSlideBoxDelegate, $ionicScrollDelegate) {
+      
+    $scope.selectedFoodie = foodies.getFoodie($stateParams.foodieKey);
+    console.log($scope.selectedFoodie);
 
     //Slide
     $scope.slide = function(to) {

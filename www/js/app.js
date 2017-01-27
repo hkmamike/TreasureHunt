@@ -64,7 +64,7 @@ angular.module('starter', ['ionic', 'chart.js', 'starter.controllers', 'starter.
   })
 
   .state('app.profile', {
-    url: '/profile/:userKey',
+    url: '/profile/:foodieKey',
     views: {
       'tab_profile': {
         templateUrl: 'templates/profile.html',

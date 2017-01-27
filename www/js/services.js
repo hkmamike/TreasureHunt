@@ -18,6 +18,30 @@ angular.module('starter.services', [])
   };
 })
 
+
+.factory('foodies', ['userData', '$firebaseObject', '$firebaseArray', function(userData, $firebaseObject, $firebaseArray) {
+  
+  var foodies = $firebaseObject(firebase.database().ref().child('posts'));
+
+  return {
+
+    allFoodie: function() {
+      return foodies;
+    },
+
+    getFoodie: function(foodieKey) {
+      return $firebaseObject(ref.child(foodieKey));
+    },
+
+    bookmarkFoodie: function(foodieKey) {
+    },
+
+  }
+
+}])
+
+
+
 .factory('restaurants', function() {
   // Might use a resource here that returns a JSON array
 
@@ -83,50 +107,6 @@ angular.module('starter.services', [])
 })
 
 .factory('articles',['userData', '$firebaseObject', '$firebaseArray', function(userData, $firebaseObject, $firebaseArray) {
-  // Might use a resource here that returns a JSON array
-
-  // Some fake testing data
-  // var articles = [
-  // {
-  //   //id: 0,
-  //   name: 'My lunch @ Healthy Cafe',
-  //   location: 'HK',
-  //   type: 'Chinese',
-  //   details: 'This is a Healthy Lunch, Healthy Lunch, HealthyHealthyHealthy Lunch',
-  //   rating: '90%',
-  //   cover: 'img/food3.jpg',
-  //   age: 'Within 3 months',
-  //   foodie: 'Mike',
-  //   foodieimg: 'img/mike.png'
-  // },
-
-  // {
-  //   //id: 1,
-  //   name: 'My Dinner @ Double Cafe',
-  //   location: 'Kowloon',
-  //   type: 'Westen',
-  //   cover: 'img/food1.jpg',
-  //   details: ' it is very good  it is very good  it is very good  it is very good  it is very good  it is very good  it is very good ',
-  //   rating: '100%',
-  //   age: 'Within 6 months',
-  //   foodie: 'Mike',
-  //   foodieimg: 'img/mike.png'
-  // },
-
-  // {
-  //   //id: 2,
-  //   name: 'Great experience ever in HAHA Restuarant',
-  //   location: 'HK',
-  //   type: 'Westen',
-  //   details: 'bahbahbahb...ahb...habahabahabhabhabhabhahbbabaha<br>bahbhabhbabahabaha...........bbahbahbaha',
-  //   rating: '20%',
-  //   cover: 'img/food2.jpg',
-  //   age: 'Within 3 months',
-  //   foodie: 'Perry',
-  //   foodieimg: 'img/perry.png'
-  // }
-  // ];
-
 
   var ref = firebase.database().ref().child('posts');
   // var storageRef = firebase.storage.ref();
@@ -134,6 +114,7 @@ angular.module('starter.services', [])
   console.log(articles);
 
   return {
+
     all: function() {
       return articles;
     },
@@ -166,13 +147,21 @@ angular.module('starter.services', [])
 
       return firebase.database().ref().update(updates);
     },
-    remove: function(Article) {
-      articles.splice(articles.indexOf(Article), 1);
+
+    // remove: function(Article) {
+    //   articles.splice(articles.indexOf(Article), 1);
+    // },
+
+    bookmarkArticle: function(articleKey) {
     },
-    bookmark: function(Article) {
-      articles.splice(articles.indexOf(Article), 1);
+
+    upVoteArticle: function(articleKey) {
     },
-    // This code searching for article ID???
+
+    downVoteArticle: function(articleKey) {
+    },
+    
+/*    // This code searching for article ID???
     get: function(ArticleId) {
       for (var i = 0; i < articles.length; i++) {
         if (articles[i].key === parseInt(ArticleId)) {
@@ -180,6 +169,7 @@ angular.module('starter.services', [])
         }
       }
       return null;
-    }
+    }*/
   };
+
 }]);
