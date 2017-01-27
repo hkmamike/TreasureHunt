@@ -249,8 +249,8 @@ angular.module('starter.controllers', [])
 .controller('profileCtrl', function($scope, articles, userData, $stateParams, foodies, $ionicSlideBoxDelegate, $ionicScrollDelegate) {
       
     $scope.selectedFoodie = foodies.getFoodie($stateParams.foodieKey);
-    console.log($scope.selectedFoodie);
-    console.log('test');
+    console.log('Selected Foodie: ', $scope.selectedFoodie);
+
     //Slide
     $scope.slide = function(to) {
         $scope.current = to;
