@@ -1,0 +1,2 @@
+1) User Database: store user info and user posts ('user-post' under hierarchy of 'user')
+2) Restaurant Database
