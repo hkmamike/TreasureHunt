@@ -200,7 +200,7 @@ angular.module('starter.controllers', [])
 //Article page Controller
 .controller('articleCtrl', function($scope, $stateParams, articles, userData) {
   $scope.selectedArticle = articles.getArticle($stateParams.articleKey);
-  console.log($scope.selectedArticle);
+  console.log('Selected Article: ', $scope.selectedArticle);
 })
 
 //Test page controller
@@ -246,11 +246,11 @@ angular.module('starter.controllers', [])
 
 
 //Profile page controller
-.controller('profileCtrl', function($scope, articles, userData, foodies, $ionicSlideBoxDelegate, $ionicScrollDelegate) {
+.controller('profileCtrl', function($scope, articles, userData, $stateParams, foodies, $ionicSlideBoxDelegate, $ionicScrollDelegate) {
       
     $scope.selectedFoodie = foodies.getFoodie($stateParams.foodieKey);
     console.log($scope.selectedFoodie);
-
+    console.log('test');
     //Slide
     $scope.slide = function(to) {
         $scope.current = to;

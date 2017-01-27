@@ -6,7 +6,7 @@
     Author ID:  {{selectedArticle.author}} <br> -->
 
        <div class="list">
-          <div class="item item-avatar">
+          <div class="item item-avatar" ui-sref="app.profile({'foodieKey':selectedArticle.author})" >
             <img src="http://ionicframework.com/img/docs/mcfly.jpg">
             <h2>{{selectedArticle.author}}</h2>
             <p>November 05, 1955</p>

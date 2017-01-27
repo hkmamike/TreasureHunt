@@ -25,7 +25,7 @@
     <!-- <div class="cardflat item-text-wrap" ng-repeat="article in selectedArticle"> -->
     <div class="cardflat item-text-wrap" ng-repeat="article in articles">
 
-      <div ui-sref="app.profile" style="border-bottom:0px ; margin-bottom: 0px">
+      <div ui-sref="app.profile({'foodieKey':article.author})" style="border-bottom:0px ; margin-bottom: 0px" >
         <ion-item class="item-avatar no-padding" style="border-bottom:0;">
           <img src= "img/daenerys.jpg">
           <span>{{article.author}} [Lv 3]</span>

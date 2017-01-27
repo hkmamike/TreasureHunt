@@ -5,7 +5,7 @@ angular.module('starter.services', [])
   var user = {};
   firebase.auth().onAuthStateChanged(function () {
     user = firebase.auth().currentUser;
-    console.log('user is: ', user);
+    console.log('Current User: ', user);
   });
 
   return {
@@ -21,7 +21,9 @@ angular.module('starter.services', [])
 
 .factory('foodies', ['userData', '$firebaseObject', '$firebaseArray', function(userData, $firebaseObject, $firebaseArray) {
   
-  var foodies = $firebaseObject(firebase.database().ref().child('posts'));
+  var ref = firebase.database().ref().child('user-posts');
+  var foodies = $firebaseObject(ref);
+  console.log('All Foodies: ', foodies);
 
   return {
 
@@ -111,7 +113,7 @@ angular.module('starter.services', [])
   var ref = firebase.database().ref().child('posts');
   // var storageRef = firebase.storage.ref();
   var articles = $firebaseObject(ref);
-  console.log(articles);
+  console.log('All Articles: ', articles);
 
   return {
 
