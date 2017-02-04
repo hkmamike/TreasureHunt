@@ -8,6 +8,8 @@ angular.module('starter.services', [])
     console.log('Current User: ', user);
   });
 
+    console.log('Current User call: ', user);
+
   return {
     getUser: function () {
         return user;
@@ -21,7 +23,7 @@ angular.module('starter.services', [])
 
 .factory('foodies', ['userData', '$firebaseObject', '$firebaseArray', function(userData, $firebaseObject, $firebaseArray) {
   
-  var ref = firebase.database().ref().child('user-posts');
+  var ref = firebase.database().ref().child('users');
   var foodies = $firebaseObject(ref);
   console.log('All Foodies: ', foodies);
 
@@ -33,6 +35,23 @@ angular.module('starter.services', [])
 
     getFoodie: function(foodieKey) {
       return $firebaseObject(ref.child(foodieKey));
+    },
+
+    createFoodie: function(foodieKey) {
+
+      var foodieInfo = {
+        name: 'TestUser',
+        score: '100',
+        website: 'dddd',
+        image: 'ddddd',
+        uid: uid
+      };
+
+      console.log('foodieInfo', foodieInfo);
+      var updates = {};
+        updates['/users/' + uid + '/info/'] = foodieInfo;
+      return firebase.database().ref().update(updates);
+      console.log('userInfo', foodieInfo);
     },
 
     bookmarkFoodie: function(foodieKey) {
@@ -139,6 +158,9 @@ angular.module('starter.services', [])
         contents: article.contents,
         timestamp: Math.floor(Date.now()/1000),
         author: uid,
+        upVote: 1,
+        downVote: 0,
+        totalRating: 1,
         key: newPostKey
       };
 
@@ -146,6 +168,9 @@ angular.module('starter.services', [])
 
       updates['/posts/' + newPostKey] = newArticle;
       updates['/user-posts/' + uid + '/' + newPostKey] = newArticle;
+
+      //Testing
+      updates['/users/' + uid + '/posts/'] = newPostKey;
 
       return firebase.database().ref().update(updates);
     },
@@ -162,16 +187,8 @@ angular.module('starter.services', [])
 
     downVoteArticle: function(articleKey) {
     },
-    
-/*    // This code searching for article ID???
-    get: function(ArticleId) {
-      for (var i = 0; i < articles.length; i++) {
-        if (articles[i].key === parseInt(ArticleId)) {
-          return articles[i];
-        }
-      }
-      return null;
-    }*/
+  
   };
 
 }]);
+

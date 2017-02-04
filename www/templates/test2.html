@@ -15,9 +15,11 @@
     <div class="cardflat">
 
       <ion-item class="item-avatar">     
-        <span> Recommand a Restaurant<br></span> 
-        <span style="color: grey"> Share your happyness !!</span>
         <img src= {{user.img}} ui-sref="app.profile">
+        <div ng-click="openNewArticle()">
+          <span> Recommand a Restaurant<br></span> 
+          <span style="color: grey"> Share your happyness !!</span>
+        </div>
       </ion-item>
 
     </div>
@@ -49,15 +51,28 @@
       </div>
       <!-- </div> -->
 
-      <div class="item" style="height:100%; padding: 0px">
-        <span style="float: right; font-size: 12px">50 favoirites, 98% positive</span>
+      <div style="height:50px; padding: 0px">
+
+      <div class="half" style="padding: 0px">
+        <button class="button icon ion-heart" ui-sref="app.favourites"></button>
+        <button class="button icon ion-share" ui-sref="app.favourites"></button>
+      </div>
+
+      <div class="half" style="padding: 0px">
+        <span style="float: right; font-size: 12px">alex, mike, and 12 others like it<br></span>
+        <span style="float: right; font-size: 12px">{{article.upVote}} favoirites, {{article.articleRating}} positive</span>
+      </div>
+
+      </div>
+<!--       <div class="item" style="height:100%; padding: 0px">
+        <span style="float: right; font-size: 12px">{{article.upVote}} favoirites, {{article.articleRating}} positive</span>
       </div>
 
       <div class="button-bar no-padding">
         <button class="button ion-thumbsup" href="#/app/favourites">Save</button>
         <button class="button ion-share" ui-sref="app.favourites">Share</button>
         <button class="button ion-ionic" href="#/app/activities/{{article.key}}">Rate</button>
-      </div>
+      </div> -->
 
     </div>
 

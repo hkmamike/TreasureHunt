@@ -1,7 +1,7 @@
 angular.module('starter.controllers', [])
 
 
-.controller('AppCtrl', function($scope, $ionicModal, $ionicPopover, $ionicScrollDelegate, $timeout, articles, $ionicSideMenuDelegate, userData) {
+.controller('AppCtrl', function($scope, $ionicModal, $ionicPopover, $ionicScrollDelegate, $timeout, foodies, articles, $ionicSideMenuDelegate, userData) {
 
   $scope.user = userData.getUser();
   $scope.articles = articles.all();
@@ -87,10 +87,8 @@ angular.module('starter.controllers', [])
     userData.setUser(auth.currentUser);
 
     //for testing only
-    console.log('uid is', userData.getUser().uid);
-
-    //redirect back to home page
-    $state.go('tab.restaurants');
+    var uid = userData.getUser().uid;
+    console.log('uid is', uid);
 
   }).catch(function(error) {
     // Handle Errors here.
@@ -102,6 +100,8 @@ angular.module('starter.controllers', [])
     var credential = error.credential;
     // ...
   });
+
+
 
   };
   // ---------------------------------------------------------------------------------

@@ -3,32 +3,61 @@
 
 /* Profile Page--------------------------------------------------*/
 .profile-background {
-    position: fixed;
-    left: 0;
+  position: fixed;
+  left: 0;
 	top: auto;
-    width: 100%;
+  width: 100%;
 	height: 150px;
 	background-size: 100%;
-    background-position: 50% 20%;
+  background-position: 50% 20%;
 	text-align: center;
 }
 
 .profile-content {
 	position: relative;
-    width: 100%;
+  width: 100%;
 	padding-top: 75px;
-	text-align: center;
 }
 
 .profile-img {
 	display: block;
-    border-radius: 100px;
+  border-radius: 100px;
 	border: 2px solid #fff;
-    width: 128px;
+  width: 128px;
 	height: 128px;
-    margin: 0px auto 0;
+  margin: 0px auto 0;
 }
 
+.profile-contentLeft {
+  position: relative;
+  width: 100%;
+  height:230px;
+  padding-top: 80px;
+  text-align: left;
+}
+
+.profile-imgLeft {
+  position: absolute;
+  left: 15px;
+  display: block;
+  border-radius: 100px;
+  border: 2px solid #fff;
+  width: 128px;
+  height: 128px;
+  margin: 0px auto 0;
+}
+
+.profile-textLeft {
+  position: absolute;
+  left: 150px;
+  top: 150px;
+}
+
+
+.profile-tab{
+  position: absolute;
+  top:400px;
+}
 /* ---------------------------------------------------------*/
 
 
@@ -241,6 +270,15 @@
   font-size: 10px;
 } 
 
+
+.relative {
+  .pane,
+  .tabs,
+  .scroll-content{
+    position: relative; 
+    top:auto;
+  }
+}
 /* ---------------------------------------------------------*/
 
 
@@ -310,5 +348,15 @@
   margin-bottom: 0.2%;
   padding: 0;
   width: 24%;
+}
+
+.oneThird {
+  display: inline-block;
+  float: left;
+  margin: 0.66%;
+  margin-top: 0%;
+  margin-bottom: 0%;
+  padding: 0;
+  width: 32%;
 }
 /* ---------------------------------------------------------*/
