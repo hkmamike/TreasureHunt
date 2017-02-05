@@ -205,10 +205,10 @@ angular.module('starter.controllers', [])
 
 //Activities page controller
 .controller('activitiesCtrl', function($scope, articles, foodies, userData) {
-    $scope.getSelectedArticleFoodieInfo = function(foodieID){
+  $scope.getSelectedArticleFoodieInfo = function(foodieID){
     foodieInfo = foodies.getFoodieInfo(foodieID);
     console.log(foodieInfo);
-    return foodieInfo
+    return foodieInfo;
   };
 })
 

@@ -63,12 +63,12 @@ angular.module('starter.services', [])
     getFoodieInfo: function(foodieKey) {
       console.log('foodieKey', foodieKey);
       foodieInfo = $firebaseObject(ref.child(foodieKey).child('info'));
-      console.log('foodieInfo', foodieInfo)
+      console.log('foodieInfo', foodieInfo);
       return foodieInfo;
     },
 
     createFoodie: function() {
-      var currentUserInfo = userData.getUser()
+      var currentUserInfo = userData.getUser();
       var uid = currentUserInfo.uid;
       var userName = currentUserInfo.displayName;
       var userEmail = currentUserInfo.email;
@@ -94,7 +94,7 @@ angular.module('starter.services', [])
     bookmarkFoodie: function(foodieKey) {
     },
 
-  }
+  };
 
 }])
 
