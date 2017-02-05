@@ -8,15 +8,37 @@ angular.module('starter.services', [])
     console.log('Current User: ', user);
   });
 
-    console.log('Current User call: ', user);
 
   return {
+    
     getUser: function () {
-        return user;
+        console.log('getUser ', firebase.auth().currentUser);
+        return firebase.auth().currentUser;
     },
+    
     setUser: function (userparameter) {
         user = userparameter;
-    }
+    },
+
+    createUser: function() {
+      var foodieInformation = {
+        foodieName: userData.getUser().displayName,
+        foodieID: userData.getUser().uid,
+        foodieScore: 100,
+        foodieEmail: userData.getUser().email,
+        foodieImg: userData.getUser().photoURL
+      };
+
+      console.log('foodieInfo', foodieInformation);
+      var updates = {};
+      updates['/users/' + uid + '/info/'] = foodieInformation;
+      return firebase.database().ref().update(updates);
+
+      // return foodies;
+      
+      // // return foodieInfo;
+    },
+
   };
 })
 
@@ -34,24 +56,39 @@ angular.module('starter.services', [])
     },
 
     getFoodie: function(foodieKey) {
+      console.log('foodieKey', foodieKey);
       return $firebaseObject(ref.child(foodieKey));
     },
 
-    createFoodie: function(foodieKey) {
+    getFoodieInfo: function(foodieKey) {
+      console.log('foodieKey', foodieKey);
+      foodieInfo = $firebaseObject(ref.child(foodieKey).child('info'));
+      console.log('foodieInfo', foodieInfo)
+      return foodieInfo;
+    },
 
-      var foodieInfo = {
-        name: 'TestUser',
-        score: '100',
-        website: 'dddd',
-        image: 'ddddd',
-        uid: uid
+    createFoodie: function() {
+      var currentUserInfo = userData.getUser()
+      var uid = currentUserInfo.uid;
+      var userName = currentUserInfo.displayName;
+      var userEmail = currentUserInfo.email;
+      var userImg = currentUserInfo.photoURL;
+      var foodieInformation = {
+        foodieName: userName,
+        foodieID: uid,
+        foodieScore: 100,
+        foodieLv: 1,
+        foodieEmail: userEmail,
+        foodieImg: userImg
       };
-
-      console.log('foodieInfo', foodieInfo);
+      console.log('foodieInfo', foodieInformation);
       var updates = {};
-        updates['/users/' + uid + '/info/'] = foodieInfo;
+      updates['/users/' + uid + '/info/'] = foodieInformation;
       return firebase.database().ref().update(updates);
-      console.log('userInfo', foodieInfo);
+
+      // return foodies;
+      
+      // // return foodieInfo;
     },
 
     bookmarkFoodie: function(foodieKey) {
@@ -127,12 +164,11 @@ angular.module('starter.services', [])
   };
 })
 
-.factory('articles',['userData', '$firebaseObject', '$firebaseArray', function(userData, $firebaseObject, $firebaseArray) {
+.factory('articles',['userData', '$firebaseObject', '$firebaseArray', function( userData, $firebaseObject, $firebaseArray) {
 
   var ref = firebase.database().ref().child('posts');
-  // var storageRef = firebase.storage.ref();
   var articles = $firebaseObject(ref);
-  console.log('All Articles: ', articles);
+  console.log('All articles: ', articles);
 
   return {
 
@@ -142,6 +178,74 @@ angular.module('starter.services', [])
 
     getArticle: function(articleKey) {
       return $firebaseObject(ref.child(articleKey));
+    },
+
+    getArticleAuthor: function(articleKey) {
+
+      // var foodieIDArray = $firebaseObject(firebase.database().ref().child('posts').child(articleKey + '/author'));
+      // var foodieIDArray2 = $firebaseArray(firebase.database().ref().child('posts').child(articleKey + '/author'));
+
+      // var adaRef = firebase.database().ref("posts/-Kbi0l6vDUo3_j7JZesa/author");
+      // var key = adaRef.$value;  // key === "ada"
+      // console.log('KEYYYY : ',key,adaRef);
+ 
+      // console.log('foodieIDArray : ',foodieIDArray, foodieIDArray2);
+
+
+      // var foodieInfo = $firebaseObject(firebase.database().ref().child('users').child(foodieID).child('info'));
+      // console.log('foodieInfo: ', foodieInfo);
+      // return foodieInfo;  
+
+      var firebaseRef = firebase.database().ref('/posts/' + articleKey);
+
+
+      return firebaseRef.once('value').then(function(snapshot) {
+        // return snapshot.val().author;
+        return $firebaseObject(firebase.database().ref().child('users').child(snapshot.val().author).child('info'));
+        // return foodies.getFoodie(snapshot.val().author);
+      });
+
+      // articles.getArticleAuthor($stateParams.articleKey).then(function(value){
+      //   $scope.selectedArticleFoodie2 = console.log(value);
+      // })
+
+      // return firebaseRef.once('value').then(
+      //   firebaseRef.once('value', function(snapshot) {
+      //     $timeout(function() {
+      //       var foodieID = snapshot.val().author;
+      //       console.log('foodieID: ', foodieID);
+      //       var foodieInfo = $firebaseObject(firebase.database().ref().child('users').child(foodieID).child('info'));
+      //       console.log('foodieInfo: ', foodieInfo);
+      //       return foodieInfo; 
+      //     }); 
+      //   });
+      //   )
+
+
+      // firebase.database().ref('/posts/' + articleKey).once('value', function(snapshot) {
+      //   $timeout(function() {
+      //     var foodieID = snapshot.val().author;
+      //     console.log('foodieID: ', foodieID);
+      //     var foodieInfo = $firebaseObject(firebase.database().ref().child('users').child(foodieID).child('info'));
+      //     console.log('foodieInfo: ', foodieInfo);
+      //     return foodieInfo; 
+      //   });         
+      // });
+
+
+      
+
+
+      // firebase.database().ref('/posts/' + articleKey).once('value').then(function(snapshot) {
+      //   $timeout(function() {
+      //     var foodieID = snapshot.val().author;
+      //     console.log('foodieID: ', foodieID);
+      //     var foodieInfo = $firebaseObject(firebase.database().ref().child('users').child(foodieID).child('info'));
+      //     console.log('foodieInfo: ', foodieInfo);
+      //     return foodieInfo; 
+      //   });         
+      // });
+
     },
 
     saveArticle: function(article) {
@@ -170,7 +274,7 @@ angular.module('starter.services', [])
       updates['/user-posts/' + uid + '/' + newPostKey] = newArticle;
 
       //Testing
-      updates['/users/' + uid + '/posts/'] = newPostKey;
+      updates['/users/' + uid + '/posts/' + newPostKey] = newPostKey;
 
       return firebase.database().ref().update(updates);
     },

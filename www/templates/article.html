@@ -5,20 +5,22 @@
 <!--     Article ID:  {{selectedArticle.key}} <br>
     Author ID:  {{selectedArticle.author}} <br> -->
 
+
        <div class="list">
           <div class="item item-avatar" ui-sref="app.profile({'foodieKey':selectedArticle.author})" >
-            <img src="http://ionicframework.com/img/docs/mcfly.jpg">
-            <h2>{{selectedArticle.author}}</h2>
+            <img src="{{selectedArticleFoodie.foodieImg}}">
+            <h2>{{selectedArticleFoodie.foodieName}}</h2>
+            <script type="text/javascript" scr="services.js"> foodies.getFoodieInfo(foodieID)</script>
+
+
             <p>November 05, 1955</p>
           </div>
-
-
 
           <div class="item item-body" style="padding: 0px">
           
             <ion-slide-box does-continue="true" auto-play="true" style="padding-bottom: 15px" >
             <ion-slide>
-              <img class="full-image" src="img/squareFood1.jpg" >
+              <img class="full-image" src={{selectedArticleFoodie.foodieImg}} >
             </ion-slide>
             <ion-slide>
               <img class="full-image" src="img/squareFood2.jpg" >

@@ -1,88 +1,81 @@
-
 <ion-view view-title="Activities" hide-nav-bar="false">
 
-<!--      <ion-nav-buttons side="left" >
-        <div class="bar bar-header item-input-inset" ng-if="hasFilters">
-            <label class="item-input-wrapper textbox-search">
-                <i class="icon ion-ios7-search placeholder-icon"></i>
-                <input type="search" placeholder="Search">
-            </label>
+<!--   <ion-nav-title>
+    <div class="bar bar-header item-input-inset">
+      <label class="item-input-wrapper">
+        <i class="icon ion-ios-search placeholder-icon"></i>
+        <input ng-model="search_text" type="text" placeholder="Search..." focus-me my-enter="search_model(search_text)" autofocus>
+      </label>
+    </div>
+  </ion-nav-title> -->
+
+
+  <ion-content>
+
+    <div class="cardflat">
+
+      <ion-item class="item-avatar">     
+        <img src= {{user.info.foodieImg}} ui-sref="app.profile({'foodieKey':user.info.foodieID})">
+        <div ng-click="openNewArticle()">
+          <span> Recommand a Restaurant<br></span> 
+          <span style="color: grey"> Share your happyness !!</span>
         </div>
-    </ion-nav-buttons>
-
-
-    <ion-nav-title ng-show="!hasFilters">
-        Users
-    </ion-nav-title> -->
-
-<ion-content style="background-color: #ffc">
-
-    <!--div class="button-bar bar-energized">
-        <a class="button ion-clock" ui-sref="app.activities">Activites</a>
-        <a class="button ion-button" ui-sref="app.selections">Selecions</a>
-        <a class="button ion-button" ui-sref="app.favourites">Favourites</a>
-        <a class="button ion-navicon" menu-toggle="right">Me</a>
-    </div-->
-
-	<div class="cardflat">
-		<ion-item class="item-avatar">     
-  			Recommand a Restaurant
-			<img src= {{user.img}} ui-sref="app.profile">
-			<label class="item-input" ng-click="openNewArticle()">
-				<input type="text" ng-model="article.RestaurantName" placeholder="Share your happyness">
-			</label>
-      	</ion-item>
-	</div>
-
-
-	<div class="cardflat item-text-wrap" ng-repeat="article in articles">
-
-		<div ui-sref="app.profile">
-			<ion-item class="item-avatar no-padding">
-			<img src= {{article.foodieimg}}>
-			{{article.foodie}}
-			<br>
-			<i class="icon ion-stats-bars"></i> 100% (foodie rating)
-			</ion-item>
-		</div>
-
-		<div class="item item-borderless noTopPadding">
-			<div>
-				<h2>{{article.name}}</h2>
-			</div>
-
-			<div class="item-image" ng-click="toggleGroup(article)">
-				<img src= {{article.cover}}>
-			</div>
-
-        	<div class="item-accordion" ng-show="isGroupShown(article)">
-        		<div>
-            	details{{article.details}}
-            	</div>
-            	<div>
-            	{{article.detailpics}}
-            	</div>
-            	<div>
-            	<button class="button icon-left button-assertive icon ion-heart button-clear">Save It</button>
-            	<button class="button icon-left button-positive icon ion-thumbsup button-clear">Like!</button>
-            	<button class="button icon-left button-positive icon ion-thumbsdown button-clear">Inaccruate</button>
-            	</div>
-        	</div>
-
-	        <div>
-				    <i class="icon ion-stats-bars "></i> 99%
-				    <i class="icon ion-clock "></i> 3 hrs ago
-        	</div>
-
-        </div>
-
-        <div class="button-bar no-padding">
-			    <a class="button" ng-click="openlogin()">Save</a>
-			    <a class="button" ng-click="openNewArticle()">Share</a>
-			    <a class="button" on-touch="vote.show($event)">Rate</a>
-        </div>
+      </ion-item>
 
     </div>
 
-    </ion-content>
+    <!-- <div class="cardflat item-text-wrap" ng-repeat="article in selectedArticle"> -->
+    <div class="cardflat item-text-wrap" ng-repeat="article in articles" ng-init='foodieInfo=getSelectedArticleFoodieInfo(article.author)'>
+
+      <div ui-sref="app.profile({'foodieKey':article.author})" style="border-bottom:0px ; margin-bottom: 0px" >
+        <ion-item class="item-avatar no-padding" style="border-bottom:0;">
+          <img src= {{foodieInfo.foodieImg}}>
+          <span>{{foodieInfo.foodieName}} [Lv {{foodieInfo.foodieLv}}]</span>
+          <i class="icon ion-stats-bars"></i> {{foodieInfo.foodieScore}}% <br>
+          <i class="icon ion-clock "></i> 3 hrs ago
+        </ion-item>
+      </div>
+
+<!--       <div class="item articlesDetailsAbstract">
+        <span>{{article.key}}<br>{{article.contents}}</span> 
+        <a ng-click="openarticle()">see more ...</a>
+      </div>
+ -->
+      <!-- <div class="item"> -->
+      <div class="pictureFrame" style="background-image: url('img/squareFood2.jpg');" ui-sref="app.article({'articleKey':article.key})">
+        <img src="img/squareFood1.jpg" style="visibility: hidden; width: 100%">
+        <div class="backgroundGradient"></div>
+        <div class="textShadow">
+        {{article.name}}
+        </div>
+      </div>
+      <!-- </div> -->
+
+      <div style="height:50px; padding: 0px">
+
+      <div class="half" style="padding: 0px">
+        <button class="button icon ion-heart" ui-sref="app.favourites"></button>
+        <button class="button icon ion-share" ui-sref="app.favourites"></button>
+      </div>
+
+      <div class="half" style="padding: 0px">
+        <span style="float: right; font-size: 12px">alex, mike, and 12 others like it<br></span>
+        <span style="float: right; font-size: 12px">{{article.upVote}} favoirites, {{article.articleRating}} positive</span>
+      </div>
+
+      </div>
+<!--       <div class="item" style="height:100%; padding: 0px">
+        <span style="float: right; font-size: 12px">{{article.upVote}} favoirites, {{article.articleRating}} positive</span>
+      </div>
+
+      <div class="button-bar no-padding">
+        <button class="button ion-thumbsup" href="#/app/favourites">Save</button>
+        <button class="button ion-share" ui-sref="app.favourites">Share</button>
+        <button class="button ion-ionic" href="#/app/activities/{{article.key}}">Rate</button>
+      </div> -->
+
+    </div>
+
+  </ion-content>
+
 </ion-view>

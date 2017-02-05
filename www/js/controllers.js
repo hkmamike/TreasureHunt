@@ -3,8 +3,13 @@ angular.module('starter.controllers', [])
 
 .controller('AppCtrl', function($scope, $ionicModal, $ionicPopover, $ionicScrollDelegate, $timeout, foodies, articles, $ionicSideMenuDelegate, userData) {
 
-  $scope.user = userData.getUser();
+  currentUserID = userData.getUser().uid;
+  console.log('currentUserID: ', currentUserID);
+
+  $scope.user = foodies.getFoodie(currentUserID);
   $scope.articles = articles.all();
+
+  console.log($scope.user);
 
   $scope.toggleRightSideMenu = function() {
     $ionicSideMenuDelegate.toggleRight();
@@ -86,9 +91,16 @@ angular.module('starter.controllers', [])
     //register the signed-in user info
     userData.setUser(auth.currentUser);
 
-    //for testing only
+    //for testing only    
     var uid = userData.getUser().uid;
+    var userName = userData.getUser().displayName;
     console.log('uid is', uid);
+    console.log('userName', userName);
+    foodies.createFoodie();
+    // console.log('CREATEFoodie: ', foodies.createFoodie());
+
+
+
 
   }).catch(function(error) {
     // Handle Errors here.
@@ -190,7 +202,12 @@ angular.module('starter.controllers', [])
 })
 
 //Activities page controller
-.controller('activitiesCtrl', function($scope, articles, userData) {
+.controller('activitiesCtrl', function($scope, articles, foodies, userData) {
+    $scope.getSelectedArticleFoodieInfo = function(foodieID){
+    foodieInfo = foodies.getFoodieInfo(foodieID);
+    console.log(foodieInfo);
+    return foodieInfo
+  };
 })
 
 //Restaurant page controller
@@ -198,9 +215,40 @@ angular.module('starter.controllers', [])
 })
 
 //Article page Controller
-.controller('articleCtrl', function($scope, $stateParams, articles, userData) {
-  $scope.selectedArticle = articles.getArticle($stateParams.articleKey);
-  console.log('Selected Article: ', $scope.selectedArticle);
+.controller('articleCtrl', function($scope, $timeout, $stateParams, articles, userData, foodies, $firebaseObject, $firebaseArray) {
+
+  $scope.selectedArticle = articles.getArticle($stateParams.articleKey);  
+  console.log('selectedArticle: ', $scope.selectedArticle);
+  // $scope.selectedArticleFoodie2 = articles.getArticleAuthor($stateParams.articleKey)
+  // console.log('selectedArticleFoodie2: ', $scope.selectedArticleFoodie2);
+
+  articles.getArticleAuthor($stateParams.articleKey).then(function(value){
+     $scope.selectedArticleFoodie = value;
+     console.log('selectedArticleFoodie: ', $scope.selectedArticleFoodie);
+  });
+
+
+  $scope.getSelectedArticleFoodieInfo = function(foodieID){
+    foodies.getFoodieInfo(foodieID);
+  };
+
+  // var articleKey = $stateParams.articleKey;
+
+  // firebase.database().ref('/posts/' + articleKey).on('value', function(snapshot) {
+  // // $timeout(){
+  //   var foodieID = snapshot.val().author;
+  //   console.log('foodieID: ', foodieID);
+  //   var foodieInfo = $firebaseObject(firebase.database().ref().child('users').child(foodieID).child('info'));
+  //   console.log('foodieInfo: ', foodieInfo); 
+  //   $scope.selectedArticleFoodie3 = foodieInfo;
+  //   // $scope.$apply();
+  //   console.log('selectedArticleFoodie: ', $scope.selectedArticleFoodie3);
+  // // }
+  // });
+
+
+
+
 })
 
 //Test page controller
@@ -208,40 +256,40 @@ angular.module('starter.controllers', [])
 })
 
 //Test2 page controller
-.controller('test2Ctrl', function($scope, articles, userData) {
+.controller('test2Ctrl', function($scope, articles, foodies, userData) {
+  $scope.allFoodies = foodies.allFoodie();
 })
 
 //Login page controller
-.controller('loginCtrl', function($scope, articles, userData) {
+.controller('loginCtrl', function($scope, articles, userData, foodies) {
 
-    $scope.authPopup = function () {
-    auth.signInWithRedirect(provider);
-    };
+    // $scope.authPopup = function () {
+    // auth.signInWithRedirect(provider);
+    // };
 
-    firebase.auth().getRedirectResult().then(function(result) {
-    //if (result.credential) {
-      //token = result.credential.accessToken;
-    //}
+    // firebase.auth().getRedirectResult().then(function(result) {
+    // //if (result.credential) {
+    //   //token = result.credential.accessToken;
+    // //}
 
-    //register the signed-in user info
-    userData.setUser(auth.currentUser);
+    // //register the signed-in user info
+    // userData.setUser(auth.currentUser);
+    // //for testing only
+    // console.log('uid is', userData.getUser().uid);
 
-    //for testing only
-    console.log('uid is', userData.getUser().uid);
+    // //redirect back to home page
+    // $state.go('tab.restaurants');
 
-    //redirect back to home page
-    $state.go('tab.restaurants');
-
-    }).catch(function(error) {
-    // Handle Errors here.
-    var errorCode = error.code;
-    var errorMessage = error.message;
-    // The email of the user's account used.
-    var email = error.email;
-    // The firebase.auth.AuthCredential type that was used.
-    var credential = error.credential;
-    // ...
-    });
+    // }).catch(function(error) {
+    // // Handle Errors here.
+    // var errorCode = error.code;
+    // var errorMessage = error.message;
+    // // The email of the user's account used.
+    // var email = error.email;
+    // // The firebase.auth.AuthCredential type that was used.
+    // var credential = error.credential;
+    // // ...
+    // });
 })
 
 
