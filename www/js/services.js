@@ -254,12 +254,18 @@ angular.module('starter.services', [])
       console.log(uid);
       var newPostKey = firebase.database().ref().child('posts').push().key;
       console.log(newPostKey);
+      var newArticleImg = {
+        1: 'https://firebasestorage.googleapis.com/v0/b/sponsar-4497d.appspot.com/o/squareFood3.jpg?alt=media&token=1dd9a04c-3452-4732-91b2-68abdfa1cf2b',
+        2: 'https://firebasestorage.googleapis.com/v0/b/sponsar-4497d.appspot.com/o/squareFood3.jpg?alt=media&token=1dd9a04c-3452-4732-91b2-68abdfa1cf2b',
+        3: 'https://firebasestorage.googleapis.com/v0/b/sponsar-4497d.appspot.com/o/squareFood3.jpg?alt=media&token=1dd9a04c-3452-4732-91b2-68abdfa1cf2b',
+      };
       var newArticle = {
         name: article.name,
         restaurantName: article.restaurantName,
         location: article.location,
         type: article.type,
         contents: article.contents,
+        articleImgs: newArticleImg,
         timestamp: Math.floor(Date.now()/1000),
         coverImage: 'https://firebasestorage.googleapis.com/v0/b/sponsar-4497d.appspot.com/o/squareFood3.jpg?alt=media&token=1dd9a04c-3452-4732-91b2-68abdfa1cf2b',
         author: uid,
@@ -274,6 +280,8 @@ angular.module('starter.services', [])
       updates['/posts/' + newPostKey] = newArticle;
       updates['/user-posts/' + uid + '/' + newPostKey] = newArticle;
 
+      // updates['/posts/' + newPostKey + '/articleImgs/'] = newArticleImg;
+      // updates['/user-posts/' + uid + '/' + newPostKey + '/articleImgs/'] = newArticleImg;
       //Testing
       updates['/users/' + uid + '/posts/' + newPostKey] = newPostKey;
 
