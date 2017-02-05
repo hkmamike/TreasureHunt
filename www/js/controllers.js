@@ -3,13 +3,15 @@ angular.module('starter.controllers', [])
 
 .controller('AppCtrl', function($scope, $ionicModal, $ionicPopover, $ionicScrollDelegate, $timeout, foodies, articles, $ionicSideMenuDelegate, userData) {
 
-  currentUserID = userData.getUser().uid;
-  console.log('currentUserID: ', currentUserID);
+  firebase.auth().onAuthStateChanged(function () {
+    currentUserID = userData.getUser().uid;
+    console.log('currentUserID: ', currentUserID);
 
-  $scope.user = foodies.getFoodie(currentUserID);
-  $scope.articles = articles.all();
+    $scope.user = foodies.getFoodie(currentUserID);
+    $scope.articles = articles.all();
 
-  console.log($scope.user);
+    console.log($scope.user);
+  });
 
   $scope.toggleRightSideMenu = function() {
     $ionicSideMenuDelegate.toggleRight();
