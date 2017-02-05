@@ -261,6 +261,7 @@ angular.module('starter.services', [])
         type: article.type,
         contents: article.contents,
         timestamp: Math.floor(Date.now()/1000),
+        coverImage: 'https://firebasestorage.googleapis.com/v0/b/sponsar-4497d.appspot.com/o/squareFood3.jpg?alt=media&token=1dd9a04c-3452-4732-91b2-68abdfa1cf2b',
         author: uid,
         upVote: 1,
         downVote: 0,

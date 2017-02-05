@@ -42,8 +42,8 @@
       </div>
  -->
       <!-- <div class="item"> -->
-      <div class="pictureFrame" style="background-image: url('img/squareFood2.jpg');" ui-sref="app.article({'articleKey':article.key})">
-        <img src="img/squareFood1.jpg" style="visibility: hidden; width: 100%">
+      <div class="pictureFrame" style="background-image: url({{article.coverImage}});" ui-sref="app.article({'articleKey':article.key})">
+        <img src={{article.coverImage}} style="visibility: hidden; width: 100%">
         <div class="backgroundGradient"></div>
         <div class="textShadow">
         {{article.name}}
