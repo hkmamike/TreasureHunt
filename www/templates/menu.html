@@ -66,12 +66,15 @@
 
     <ion-content>
 
-      <div class="sidemenu-content" ui-sref="app.profile" ng-click="openlogin()" menu-close>
+      <div class="sidemenu-content" ui-sref="app.profile({'foodieKey':user.info.foodieID})" menu-close>
         <div class="sidemenu-avatar" >
-          <img src= 'img/daenerys.jpg'>
-          <h3>{{userData.uid}}</h3>
+          <img src= "{{user.info.foodieImg}}">
+          <h3>{{user.info.foodieName}}</h3>
         </div>
       </div>
+
+      <button class="button button-block " ng-click="openlogin()" menu-close>Login</button>
+
 
       <ion-list>
         <ion-item menu-close ui-sref="app.activities">Activites</ion-item>
