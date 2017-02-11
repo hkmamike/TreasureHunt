@@ -303,10 +303,11 @@ angular.module('starter.services', [])
     bookmarkArticle: function(articleKey) {
       var uid = userData.getUser().uid;
         console.log(uid);
-        articleSnap = ref.child(articleKey);
+        articleSnap = $firebaseObject(ref.child(articleKey));
         console.log(articleSnap);
       var updates = {};
-      updates['/users/' + uid + '/bookmark/' + articleKey] = articleKey;
+      updates['/users/' + uid + '/bookmark/' + articleKey] =  articleKey;
+      // updates['/users/' + uid + '/bookmark/' + articleKey] =  $firebaseObject(ref.child(articleKey));
 
       return firebase.database().ref().update(updates);
 
