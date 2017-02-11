@@ -20,6 +20,12 @@ angular.module('starter.services', [])
         user = userparameter;
     },
 
+
+    dataPath: function(path) {
+      return $firebaseObject(firebaseRef.ref('/user/' + path));
+    },
+
+
     createUser: function() {
       var foodieInformation = {
         foodieName: userData.getUser().displayName,
@@ -166,6 +172,7 @@ angular.module('starter.services', [])
 
 .factory('articles',['userData', '$firebaseObject', '$firebaseArray', function( userData, $firebaseObject, $firebaseArray) {
 
+  var firebaseRef = firebase.database();
   var ref = firebase.database().ref().child('posts');
   var articles = $firebaseObject(ref);
   console.log('All articles: ', articles);
@@ -178,6 +185,10 @@ angular.module('starter.services', [])
 
     getArticle: function(articleKey) {
       return $firebaseObject(ref.child(articleKey));
+    },
+
+    dataPath: function(path) {
+      return $firebaseObject(firebaseRef.ref('/posts/' + path));
     },
 
     getArticleAuthor: function(articleKey) {
@@ -231,9 +242,6 @@ angular.module('starter.services', [])
       //     return foodieInfo; 
       //   });         
       // });
-
-
-      
 
 
       // firebase.database().ref('/posts/' + articleKey).once('value').then(function(snapshot) {
@@ -293,6 +301,21 @@ angular.module('starter.services', [])
     // },
 
     bookmarkArticle: function(articleKey) {
+      var uid = userData.getUser().uid;
+        console.log(uid);
+        articleSnap = ref.child(articleKey);
+        console.log(articleSnap);
+      var updates = {};
+      updates['/users/' + uid + '/bookmark/' + articleKey] = articleKey;
+
+      return firebase.database().ref().update(updates);
+
+      // var updateRef = firebase.database().ref().child('/users/' + uid + '/bookmarks/' ).push();
+      // updateRef.set({
+      // name: "bookmark",
+      // "articleID": "12345",
+      // });
+
     },
 
     upVoteArticle: function(articleKey) {
