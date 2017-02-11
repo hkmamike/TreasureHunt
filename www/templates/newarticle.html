@@ -33,6 +33,12 @@
           <span class="input-label">Contents</span>
           <input type="text" ng-model="article.contents" placeholder="Type here...">
         </label>
+
+        <label class="item item-input item-floating-label">
+          <span class="input-label">Image</span>
+          <input type="file" ng-model="article.image" accept="image/*" app-filereader>
+        </label>
+
       </div>
 
       <br>
