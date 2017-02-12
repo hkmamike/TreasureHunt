@@ -146,7 +146,8 @@ angular.module('starter.controllers', [])
   $scope.pushArticle = function (article) {
     console.log('new article posted', article);
 
-    articles.saveImage(article);
+    articles.saveArticleWithImage(article);
+    // articles.saveArticle(article);
 
     //clearing ng-model values after submit
     article.name = "";
