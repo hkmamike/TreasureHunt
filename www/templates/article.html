@@ -5,6 +5,24 @@
 <!--     Article ID:  {{selectedArticle.key}} <br>
     Author ID:  {{selectedArticle.author}} <br> -->
 
+<!-- 
+          <div ng-repeat="selectedArticleInfo in selectedArticle">
+          selectedArticleInfo -->
+<!--           <div ng-repeat="img in selectedArticleImgs"><img src="{{img}}"></div>
+          </div> -->
+
+
+       <!--    <div ng-repeat="img in selectedArticle">
+            <div ng-repeat="im in img">
+              {{im}}<div ng-repeat="k in im"><img src="{{k}}"></div>
+            </div> 
+          </div> -->
+          
+          
+
+          <!-- <div ng-init='foodieInfo=getSelectedArticleFoodieInfo(selectedArticle.author)'>
+          {{foodieInfo.foodieName}}1
+          </div> -->
 
        <div class="list">
           <div class="item item-avatar" ui-sref="app.profile({'foodieKey':selectedArticle.author})" >
@@ -16,18 +34,23 @@
             <p>November 05, 1955</p>
           </div>
 
+
           <div class="item item-body" style="padding: 0px">
-          
-            <ion-slide-box does-continue="true" auto-play="true" style="padding-bottom: 15px" >
-            <ion-slide>
-              <img class="full-image" src={{selectedArticleFoodie.foodieImg}} >
+            
+            <ion-slide-box does-continue="true" auto-play="true" style="padding-bottom: 15px">
+            
+            <ion-slide >
+              <img class="full-image" src="img/squareFood2.jpg">
             </ion-slide>
-            <ion-slide>
-              <img class="full-image" src="img/squareFood2.jpg" >
+            <ion-slide >
+              <img class="full-image" src="img/squareFood2.jpg">
             </ion-slide>
-            <ion-slide>
-              <img class="full-image" src="img/squareFood3.jpg" >
+      
+      <!--       <ion-slide ng-repeat="img in selectedArticleImgs">
+              <img class="full-image" src="{{img}}">
             </ion-slide>
+ -->
+
             </ion-slide-box>
            
             <p>

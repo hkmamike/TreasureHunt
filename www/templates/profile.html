@@ -56,14 +56,43 @@
                 
                 <ion-slide>
                 <!--ion-scroll style="height:100vh; overflow:hidden;"-->   
-                    <ion-item class="card item-text-wrap" ng-repeat="article in articles">
-                        <div class="item item-avatar-left">
-                        <img src= {{article.foodieimg}}>
-                        <p>{{article.foodie}}</p>
-                        <p>This is a follower</p>
-                        </div>      
-                    </ion-item>
-                <!--/ion-scroll-->  
+    <!-- <div class="cardflat item-text-wrap" ng-repeat="article in selectedArticle"> -->
+    <div class="cardflat item-text-wrap" ng-repeat="article in articles" ng-init='foodieInfo=getSelectedArticleFoodieInfo(article.author)'>
+
+      <div class="pictureFrame" style="background-image: url({{article.coverImage}});" ui-sref="app.article({'articleKey':article.key})">
+        <img src={{article.coverImage}} style="visibility: hidden; width: 100%">
+        <div class="backgroundGradient"></div>
+        <div class="textShadow">
+        {{article.name}}
+        </div>
+      </div>
+      <!-- </div> -->
+
+      <div style="height:50px; padding: 0px">
+
+      <div class="half" style="padding: 0px">
+        <button class="button icon ion-heart" ng-click="bookmarkArticle(article.key)"></button>
+        <button class="button icon ion-share" ui-sref="app.favourites"></button>
+      </div>
+
+      <div class="half" style="padding: 0px">
+        <span style="float: right; font-size: 12px">2 days ago<br></span>
+        <span style="float: right; font-size: 12px">{{article.upVote}} favoirites, {{article.articleRating}} positive</span>
+      </div>
+
+      </div>
+<!--       <div class="item" style="height:100%; padding: 0px">
+        <span style="float: right; font-size: 12px">{{article.upVote}} favoirites, {{article.articleRating}} positive</span>
+      </div>
+
+      <div class="button-bar no-padding">
+        <button class="button ion-thumbsup" href="#/app/favourites">Save</button>
+        <button class="button ion-share" ui-sref="app.favourites">Share</button>
+        <button class="button ion-ionic" href="#/app/activities/{{article.key}}">Rate</button>
+      </div> -->
+
+    </div>
+
                 </ion-slide>
 
                 <ion-slide>

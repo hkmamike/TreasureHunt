@@ -18,16 +18,16 @@ angular.module('starter.controllers', [])
   };
 
   // Expand Card ---------------------------------------------------------------------
-  $scope.toggleGroup = function(group) {
-    if ($scope.isGroupShown(group)) {
-      $scope.shownGroup = null;
-    } else {
-      $scope.shownGroup = group;
-    }
-  };
-  $scope.isGroupShown = function(group) {
-    return $scope.shownGroup === group;
-  };
+  // $scope.toggleGroup = function(group) {
+  //   if ($scope.isGroupShown(group)) {
+  //     $scope.shownGroup = null;
+  //   } else {
+  //     $scope.shownGroup = group;
+  //   }
+  // };
+  // $scope.isGroupShown = function(group) {
+  //   return $scope.shownGroup === group;
+  // };
   // ---------------------------------------------------------------------------------
 
   
@@ -146,7 +146,8 @@ angular.module('starter.controllers', [])
   $scope.pushArticle = function (article) {
     console.log('new article posted', article);
 
-    articles.saveImage(article);
+    articles.saveArticleWithImage(article);
+    // articles.saveArticle(article);
 
     //clearing ng-model values after submit
     article.name = "";
@@ -193,6 +194,16 @@ angular.module('starter.controllers', [])
     };
   // ---------------------------------------------------------------------------------
   
+
+     $scope.shareViaFacebook = function() {
+        $cordovaSocialSharing.canShareVia("facebook", message, logo, url).then(function(result) {
+             $cordovaSocialSharing.shareViaFacebook(message, logo, url);
+         }, function(error) {
+              alert(error)
+         });
+     }
+
+
 })
 
 //Favourite page controller
@@ -209,8 +220,13 @@ angular.module('starter.controllers', [])
   $scope.getSelectedArticleFoodieInfo = function(foodieID){
     foodieInfo = foodies.getFoodieInfo(foodieID);
     console.log(foodieInfo);
-    return foodieInfo;
-  };
+    return foodieInfo
+    };
+
+    $scope.bookmarkArticle = function(articleKey){
+    articles.bookmarkArticle(articleKey);
+    };
+
 })
 
 //Restaurant page controller
@@ -222,6 +238,11 @@ angular.module('starter.controllers', [])
 
   $scope.selectedArticle = articles.getArticle($stateParams.articleKey);  
   console.log('selectedArticle: ', $scope.selectedArticle);
+
+
+  $scope.selectedArticleImgs = articles.dataPath($stateParams.articleKey + '/articleImgs');  
+  console.log('selectedArticleImgs: ', $scope.selectedArticleImgs);
+
   // $scope.selectedArticleFoodie2 = articles.getArticleAuthor($stateParams.articleKey)
   // console.log('selectedArticleFoodie2: ', $scope.selectedArticleFoodie2);
 
@@ -230,9 +251,10 @@ angular.module('starter.controllers', [])
      console.log('selectedArticleFoodie: ', $scope.selectedArticleFoodie);
   });
 
-
   $scope.getSelectedArticleFoodieInfo = function(foodieID){
-    foodies.getFoodieInfo(foodieID);
+    foodieInfo = foodies.getFoodieInfo(foodieID);
+    console.log(foodieInfo);
+    return foodieInfo
   };
 
   // var articleKey = $stateParams.articleKey;
