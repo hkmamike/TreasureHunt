@@ -166,6 +166,7 @@ angular.module('starter.services', [])
 
 .factory('articles',['userData', '$firebaseObject', '$firebaseArray', function( userData, $firebaseObject, $firebaseArray) {
 
+  var self = this;
   var ref = firebase.database().ref().child('posts');
   var articles = $firebaseObject(ref);
   console.log('All articles: ', articles);
@@ -361,32 +362,9 @@ angular.module('starter.services', [])
           var downloadURL = uploadTask.snapshot.downloadURL;
 
           console.log('download URL is:', downloadURL);
-          return articles.saveArticle(downloadURL,article);
+          console.log('self is: ', self.saveArticle());
+          return this.saveArticle(downloadURL,article);
         });
-    },
-
-    b64ToBlob: function(b64Data, contentType, sliceSize) {
-      contentType = contentType || '';
-      sliceSize = sliceSize || 512;
-
-      var byteCharacters = atob(b64Data);
-      var byteArrays = [];
-
-      for (var offset = 0; offset < byteCharacters.length; offset += sliceSize) {
-        var slice = byteCharacters.slice(offset, offset + sliceSize);
-
-        var byteNumbers = new Array(slice.length);
-        for (var i = 0; i < slice.length; i++) {
-          byteNumbers[i] = slice.charCodeAt(i);
-        }
-
-        var byteArray = new Uint8Array(byteNumbers);
-
-        byteArrays.push(byteArray);
-      }
-
-      var blob = new Blob(byteArrays, {type: contentType});
-      return blob;
     },
 
     // remove: function(Article) {
