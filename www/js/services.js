@@ -286,13 +286,37 @@ angular.module('starter.services', [])
       updates['/users/' + uid + '/posts/' + newPostKey] = newPostKey;
 
       return firebase.database().ref().update(updates);
+
     },
 
     saveImage: function(article) {
       // File or Blob named mountains.jpg
-      var file = article.image;
 
-      console.log('file is : ', article);
+      function b64ToBlob(b64Data, contentType, sliceSize) {
+        contentType = contentType || '';
+        sliceSize = sliceSize || 512;
+        var byteCharacters = atob(b64Data);
+        var byteArrays = [];
+
+        for (var offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+          var slice = byteCharacters.slice(offset, offset + sliceSize);
+          var byteNumbers = new Array(slice.length);
+          for (var i = 0; i < slice.length; i++) {
+            byteNumbers[i] = slice.charCodeAt(i);
+          }
+          var byteArray = new Uint8Array(byteNumbers);
+          byteArrays.push(byteArray);
+        }
+
+        var blob = new Blob(byteArrays, {type: contentType});
+        return blob;
+      }
+      
+      var base64Image = article.image.split(',')[1];
+      console.log('base64Image is: ', base64Image);
+
+      var file = b64ToBlob (base64Image, 'image/jpeg');
+      console.log('file is : ', file);
 
       // Create the file metadata
       var metadata = {
@@ -335,8 +359,34 @@ angular.module('starter.services', [])
         }, function() {
           // Upload completed successfully, now we can get the download URL
           var downloadURL = uploadTask.snapshot.downloadURL;
-          return saveArticle(downloadURL,article);
+
+          console.log('download URL is:', downloadURL);
+          return articles.saveArticle(downloadURL,article);
         });
+    },
+
+    b64ToBlob: function(b64Data, contentType, sliceSize) {
+      contentType = contentType || '';
+      sliceSize = sliceSize || 512;
+
+      var byteCharacters = atob(b64Data);
+      var byteArrays = [];
+
+      for (var offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+        var slice = byteCharacters.slice(offset, offset + sliceSize);
+
+        var byteNumbers = new Array(slice.length);
+        for (var i = 0; i < slice.length; i++) {
+          byteNumbers[i] = slice.charCodeAt(i);
+        }
+
+        var byteArray = new Uint8Array(byteNumbers);
+
+        byteArrays.push(byteArray);
+      }
+
+      var blob = new Blob(byteArrays, {type: contentType});
+      return blob;
     },
 
     // remove: function(Article) {

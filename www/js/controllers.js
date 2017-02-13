@@ -363,7 +363,7 @@ angular.module('starter.controllers', [])
             return deferred.promise;
         }
 
-      }); //change
+      });
 
     }
   };
