@@ -66,6 +66,10 @@ angular.module('starter.services', [])
       return $firebaseObject(ref.child(foodieKey));
     },
 
+    dataPath: function(path) {
+      return $firebaseObject(firebaseRef.ref('/users/' + path));
+    },
+
     getFoodieInfo: function(foodieKey) {
       console.log('foodieKey', foodieKey);
       foodieInfo = $firebaseObject(ref.child(foodieKey).child('info'));
