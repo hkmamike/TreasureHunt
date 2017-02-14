@@ -160,26 +160,7 @@ angular.module('starter.controllers', [])
   // ---------------------------------------------------------------------------------
 
 
-  // ---------------------------------------------------------------------------------
-  // Popup for article page ----------------------------------------------------------
 
-  // Create the article modal that we will use later
-  $ionicModal.fromTemplateUrl('templates/article.html', {
-    scope: $scope
-  }).then(function(modal) {
-    $scope.article = modal;
-  });
-
-  // Triggered in the article modal to close it
-  $scope.closearticle = function() {
-    $scope.article.hide();
-  };
-
-  // Open the article modal
-  $scope.openarticle = function() {
-    $scope.article.show();
-  };
-  // ---------------------------------------------------------------------------------
 
   // ScrollCheck ---------------------------------------------------------------------
   $scope.checkScroll = function () {
