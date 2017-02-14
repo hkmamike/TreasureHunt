@@ -287,34 +287,6 @@ angular.module('starter.controllers', [])
 
 //Login page controller
 .controller('loginCtrl', function($scope, articles, userData, foodies) {
-
-    // $scope.authPopup = function () {
-    // auth.signInWithRedirect(provider);
-    // };
-
-    // firebase.auth().getRedirectResult().then(function(result) {
-    // //if (result.credential) {
-    //   //token = result.credential.accessToken;
-    // //}
-
-    // //register the signed-in user info
-    // userData.setUser(auth.currentUser);
-    // //for testing only
-    // console.log('uid is', userData.getUser().uid);
-
-    // //redirect back to home page
-    // $state.go('tab.restaurants');
-
-    // }).catch(function(error) {
-    // // Handle Errors here.
-    // var errorCode = error.code;
-    // var errorMessage = error.message;
-    // // The email of the user's account used.
-    // var email = error.email;
-    // // The firebase.auth.AuthCredential type that was used.
-    // var credential = error.credential;
-    // // ...
-    // });
 })
 
 
