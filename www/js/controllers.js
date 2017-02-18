@@ -174,9 +174,9 @@ angular.module('starter.controllers', [])
         $cordovaSocialSharing.canShareVia("facebook", message, logo, url).then(function(result) {
              $cordovaSocialSharing.shareViaFacebook(message, logo, url);
          }, function(error) {
-              alert(error)
+              alert(error);
          });
-     }
+     };
 
 
 })
@@ -194,7 +194,7 @@ angular.module('starter.controllers', [])
 .controller('activitiesCtrl', function($scope, articles, foodies, userData) {
   $scope.getSelectedArticleFoodieInfo = function(foodieID){
     foodieInfo = foodies.getFoodieInfo(foodieID);
-    return foodieInfo
+    return foodieInfo;
     };
 
     $scope.bookmarkArticle = function(articleKey){
@@ -210,11 +210,11 @@ angular.module('starter.controllers', [])
 //Article page Controller
 .controller('articleCtrl', function($scope, $timeout, $stateParams, articles, userData, foodies, $firebaseObject, $firebaseArray) {
 
-  $scope.selectedArticle = articles.getArticle($stateParams.articleKey);  
+  $scope.selectedArticle = articles.getArticle($stateParams.articleKey);
   console.log('selectedArticle: ', $scope.selectedArticle);
 
 
-  $scope.selectedArticleImgs = articles.dataPath($stateParams.articleKey + '/articleImgs');  
+  $scope.selectedArticleImgs = articles.dataPath($stateParams.articleKey + '/articleImgs');
   console.log('selectedArticleImgs: ', $scope.selectedArticleImgs);
 
   // $scope.selectedArticleFoodie2 = articles.getArticleAuthor($stateParams.articleKey)
@@ -227,7 +227,7 @@ angular.module('starter.controllers', [])
 
   $scope.getSelectedArticleFoodieInfo = function(foodieID){
     foodieInfo = foodies.dataPath(foodieID +'/Info/');
-    return foodieInfo
+    return foodieInfo;
   };
 
 
