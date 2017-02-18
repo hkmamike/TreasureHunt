@@ -408,7 +408,7 @@ angular.module('starter.services', [])
 
       // Upload file and metadata to the object 'images/mountains.jpg'
       // var uploadTask = storageRef.child('images/' + file.name).putString(file);
-      filebase64 = file.replace(/^data:image\/(png|jpeg);base64,/, ""); 
+      filebase64 = file.replace(/^data:image\/(png|jpeg);base64,/, "");
       // var uploadTask = storageRef.child('images/' + file.name).putString(filebase64, 'base64', {contentType:'image/jpg'});
 
       var uploadTask = storageRef.child('images/' + newPostKey + '/' + file.name).putString(file, 'data_url', {contentType:'image/jpg'});
@@ -443,10 +443,14 @@ angular.module('starter.services', [])
           }
         }, function() {
           // Upload completed successfully, now we can get the download URL
+
             var downloadURL = uploadTask.snapshot.downloadURL;
-            console.log('img url downloadURL')
+            console.log('img url downloadURL');
             console.log('will save this to the database', article);
             console.log(newPostKey);
+
+            console.log ('article name is:', article.name);
+
             var newArticle = {
                 name: article.name,
                 restaurantName: article.restaurantName,
@@ -468,6 +472,7 @@ angular.module('starter.services', [])
             updates['/posts/' + newPostKey] = newArticle;
             updates['/user-posts/' + uid + '/' + newPostKey] = newArticle;
             updates['/users/' + uid + '/posts/' + newPostKey] = newPostKey;
+            console.log('service line 471');
             return firebase.database().ref().update(updates);
 
         });

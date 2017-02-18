@@ -139,22 +139,26 @@ angular.module('starter.controllers', [])
   };
 
   // Open the login modal
-  $scope.openNewArticle = function() {
+  $scope.openNewArticle = function(article) {
+
     $scope.newArticle.show();
+
+    if (article) {
+      //clearing ng-model values after submit
+      article.name = "";
+      article.restaurantName = "";
+      article.location = "";
+      article.type = "";
+      article.contents = "";
+      article.image = null;
+    }
+
   };
 
   $scope.pushArticle = function (article) {
     console.log('new article posted', article);
-
     articles.saveArticleWithImage(article);
     // articles.saveArticle(article);
-
-    //clearing ng-model values after submit
-    article.name = "";
-    article.restaurantName = "";
-    article.location = "";
-    article.type = "";
-    article.contents = "";
 
   };
   // ---------------------------------------------------------------------------------
