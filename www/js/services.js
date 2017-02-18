@@ -12,7 +12,7 @@ angular.module('starter.services', [])
   return {
     
     getUser: function () {
-        console.log('getUser ', firebase.auth().currentUser);
+        // console.log('getUser ', firebase.auth().currentUser);
         return firebase.auth().currentUser;
     },
     
@@ -401,22 +401,32 @@ angular.module('starter.services', [])
 
     bookmarkArticle: function(articleKey) {
       var uid = userData.getUser().uid;
-        console.log(uid);
         articleSnap = $firebaseObject(ref.child(articleKey));
         console.log('article detail:' , articleSnap);
       var updates = {};
       updates['/users/' + uid + '/bookmark/' + articleKey] =  articleKey;
       // updates['/users/' + uid + '/bookmark/' + articleKey] =  $firebaseObject(ref.child(articleKey));
-
       return firebase.database().ref().update(updates);
-
-      // var updateRef = firebase.database().ref().child('/users/' + uid + '/bookmarks/' ).push();
-      // updateRef.set({
-      // name: "bookmark",
-      // "articleID": "12345",
-      // });
-
     },
+
+    isBookmarkArticle: function(articleKey) {
+      var uid = userData.getUser().uid;
+      var firebaseRef = firebase.database().ref('/users/' + uid + '/bookmark/');
+      firebaseRef.once("value", function(snapshot) {
+        var isBookmarked = snapshot.child(articleKey).exists();
+        console.log('isBookmarked', isBookmarked);
+        return isBookmarked;
+      });
+
+
+      // console.log('firebaseRef' , firebaseRef);
+      // isBookmarkArticle = "";
+      // if (firebaseRef.childExists(articleKey)) {
+      //   isBookmarkArticle = 1;
+      //   return isBookmarkArticle;
+      // };
+    },
+
 
     upVoteArticle: function(articleKey) {
     },
