@@ -244,7 +244,6 @@ angular.module('starter.controllers', [])
 
 
 
-
   $scope.isBookmarkArticlePromise = function(articleKey){
       var uid = userData.getUser().uid;
       var firebaseRef = firebase.database().ref('/users/' + uid + '/bookmark/');
