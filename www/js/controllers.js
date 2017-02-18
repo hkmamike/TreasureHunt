@@ -69,16 +69,6 @@ angular.module('starter.controllers', [])
     $scope.login.show();
   };
 
-  // Perform the login action when the user submits the login form
-  $scope.doLogin = function() {
-    console.log('Doing login', $scope.loginData);
-
-    // Simulate a login delay. Remove this and replace with your login
-    // code if using a login system
-    $timeout(function() {
-      $scope.closeLogin();
-    }, 1000);
-
   $scope.authPopup = function () {
     auth.signInWithRedirect(provider);
   };
@@ -117,7 +107,7 @@ angular.module('starter.controllers', [])
 
 
 
-  };
+  
   // ---------------------------------------------------------------------------------
 
 
@@ -162,7 +152,7 @@ angular.module('starter.controllers', [])
 
 
 
-  // ScrollCheck ---------------------------------------------------------------------
+  // ScrollCheck (for function to auto close article after overscroll)---------------------------------------------------------------------
   $scope.checkScroll = function () {
  
         var currentTop = $ionicScrollDelegate.$getByHandle('scroller').getScrollPosition().top;
@@ -173,7 +163,7 @@ angular.module('starter.controllers', [])
           closearticle();
         }
     };
-  // ---------------------------------------------------------------------------------
+  // For Sharing (to develop---------------------------------------------------------------------------------
   
 
      $scope.shareViaFacebook = function() {
@@ -200,7 +190,6 @@ angular.module('starter.controllers', [])
 .controller('activitiesCtrl', function($scope, articles, foodies, userData) {
   $scope.getSelectedArticleFoodieInfo = function(foodieID){
     foodieInfo = foodies.getFoodieInfo(foodieID);
-    console.log(foodieInfo);
     return foodieInfo
     };
 
@@ -274,7 +263,7 @@ angular.module('starter.controllers', [])
     };
 
   // --------------------- Pie Chart Configuration -----------------------------
-  $scope.pieLabels = ["FB", "Twitter", "Instagram"];
+  $scope.pieLabels = ["Western Food", "Chinese Food", "Healthy Food"];
   $scope.pieData = [300, 500, 100];
 
   // --------------------- Line Chart Configuration ----------------------------

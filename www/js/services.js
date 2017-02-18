@@ -62,7 +62,6 @@ angular.module('starter.services', [])
     },
 
     getFoodie: function(foodieKey) {
-      console.log('foodieKey', foodieKey);
       return $firebaseObject(ref.child(foodieKey));
     },
 
@@ -71,9 +70,7 @@ angular.module('starter.services', [])
     },
 
     getFoodieInfo: function(foodieKey) {
-      console.log('foodieKey', foodieKey);
       foodieInfo = $firebaseObject(ref.child(foodieKey).child('info'));
-      console.log('foodieInfo', foodieInfo);
       return foodieInfo;
     },
 
@@ -96,9 +93,7 @@ angular.module('starter.services', [])
       updates['/users/' + uid + '/info/'] = foodieInformation;
       return firebase.database().ref().update(updates);
 
-      // return foodies;
-      
-      // // return foodieInfo;
+
     },
 
     bookmarkFoodie: function(foodieKey) {
@@ -393,7 +388,7 @@ angular.module('starter.services', [])
 
             updates['/posts/' + newPostKey] = newArticle;
             updates['/user-posts/' + uid + '/' + newPostKey] = newArticle;
-            updates['/users/' + uid + '/posts/' + newPostKey] = newPostKey;
+            updates['/users/' + uid + '/posts/' + newPostKey] = newArticle;
             return firebase.database().ref().update(updates);
 
         });
@@ -408,7 +403,7 @@ angular.module('starter.services', [])
       var uid = userData.getUser().uid;
         console.log(uid);
         articleSnap = $firebaseObject(ref.child(articleKey));
-        console.log(articleSnap);
+        console.log('article detail:' , articleSnap);
       var updates = {};
       updates['/users/' + uid + '/bookmark/' + articleKey] =  articleKey;
       // updates['/users/' + uid + '/bookmark/' + articleKey] =  $firebaseObject(ref.child(articleKey));

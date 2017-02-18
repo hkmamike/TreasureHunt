@@ -93,26 +93,6 @@ angular.module('starter', ['ionic', 'chart.js', 'starter.controllers', 'starter.
     }
   })
 
-  .state('app.test2', {
-    url: '/test2',
-    views: {
-      'tab_test2': {
-        templateUrl: 'templates/test2.html',
-        controller: 'testCtrl'
-      }
-    }
-  })
-
-  .state('app.test3', {
-    url: '/test3',
-    views: {
-      'tab_test3': {
-        templateUrl: 'templates/test3.html',
-        controller: 'testCtrl'
-      }
-    }
-  })
-
   .state('app.article', {
     url: '/article/:articleKey',
     views: {
