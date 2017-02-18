@@ -412,11 +412,15 @@ angular.module('starter.services', [])
     isBookmarkArticle: function(articleKey) {
       var uid = userData.getUser().uid;
       var firebaseRef = firebase.database().ref('/users/' + uid + '/bookmark/');
-      firebaseRef.once("value", function(snapshot) {
-        var isBookmarked = snapshot.child(articleKey).exists();
-        console.log('isBookmarked', isBookmarked);
-        return isBookmarked;
-      });
+      var bookmarkedArticle = $firebaseObject(ref.child(articleKey));
+
+      return bookmarkedArticle;
+
+      // firebaseRef.once("value", function(snapshot) {
+      //   var isBookmarked = snapshot.child(articleKey).exists();
+      //   console.log('isBookmarked', isBookmarked);
+      //   return isBookmarked;
+      // });
 
 
       // console.log('firebaseRef' , firebaseRef);

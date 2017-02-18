@@ -254,9 +254,6 @@ angular.module('starter.controllers', [])
         console.log('isExistArticle', isExistArticle);
         return isExistArticle;
       });
-
-      console.log('promise', )
-      return promise;
   };
 
 
