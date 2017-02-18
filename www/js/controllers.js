@@ -196,72 +196,14 @@ angular.module('starter.controllers', [])
     return foodies.getFoodieInfo(foodieID);
   };
 
-  $scope.bookmarkArticle = function(articleKey){
-    articles.bookmarkArticle(articleKey);
+  $scope.bookmarkArticle = function(articleKey, bookmark){
+      articles.bookmarkArticle(articleKey, bookmark);
   };
 
   $scope.isBookmarkArticle = function(articleKey){
-    isBookmarked = articles.isBookmarkArticle(articleKey);
-    console.log('scope isBookmarked' , isBookmarked);
-    return isBookmarked; 
+    return articles.isBookmarkArticle(articleKey);
+    // console.log('scope isBookmarked' , isBookmarked); 
   };
-
-  $scope.isBookmarkArticle2 = function(articleKey){
-      var uid = userData.getUser().uid;
-      var firebaseRef = firebase.database().ref('/users/' + uid + '/bookmark/');
-      console.log('firebaseRef', '/users/' + uid + '/bookmark/');
-
-      var isBookmarked = firebaseRef.once("value", function(snapshot) {
-        var isExistArticle = snapshot.child(articleKey).exists();
-        console.log('isExistArticle', isExistArticle);
-        return isExistArticle;
-      });
-
-      var promise = new Promise(function(resolve, reject){
-
-        var k = firebaseRef.once("value", function(snapshot) {
-          var isExistArticle = snapshot.child(articleKey).exists();
-          console.log('isExistArticle', isExistArticle);
-          return isExistArticle;
-        });
-
-        if(k){
-          resolve(k)
-          console.log(k);
-        }
-        else{
-          reject(error("broken"));
-        }
-
-      });
-
-      promise.then(function(result){
-        console.log('promise' , result);
-        console.log('promise k ' , k);
-      });
-
-
-
-
-      console.log('isBookmarked 2', isBookmarked);
-  };
-
-
-
-  $scope.isBookmarkArticlePromise = function(articleKey){
-      var uid = userData.getUser().uid;
-      var firebaseRef = firebase.database().ref('/users/' + uid + '/bookmark/');
-      console.log('firebaseRef', '/users/' + uid + '/bookmark/');
-
-      return firebaseRef.once("value", function(snapshot) {
-        var isExistArticle = snapshot.child(articleKey).exists();
-        console.log('isExistArticle', isExistArticle);
-        return isExistArticle;
-      });
-  };
-
-
-
 
 })
 

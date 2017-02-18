@@ -27,7 +27,6 @@
     <div class="cardflat item-text-wrap" ng-repeat="article in articles" ng-init='foodieInfo=getSelectedArticleFoodieInfo(article.author); isBookmarked=isBookmarkArticle(article.key)'>
 
       <div ui-sref="app.profile({'foodieKey':article.author})" style="border-bottom:0px ; margin-bottom: 0px" >
-      {{isBookmarked}}
         <ion-item class="item-avatar no-padding" style="border-bottom:0;">
           <img src= {{foodieInfo.foodieImg}}>
           <span>{{foodieInfo.foodieName}} [Lv {{foodieInfo.foodieLv}}]</span>
@@ -48,7 +47,7 @@
       <div style="height:50px; padding: 0px">
 
       <div class="half" style="padding: 0px">
-        <button class="button icon ion-heart" ng-class="{true: 'assertive', false: ''}[true]" ng-click="bookmarkArticle(article.key)"></button>
+        <button class="button icon ion-heart" ng-class="{true: 'assertive'}[isBookmarked.$value!==null]" ng-click="bookmarkArticle(article.key,isBookmarked.$value==null)"></button>
         <button class="button icon ion-share" ui-sref="app.favourites"></button>
       </div>
 

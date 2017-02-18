@@ -262,36 +262,34 @@ angular.module('starter.services', [])
     //   articles.splice(articles.indexOf(Article), 1);
     // },
 
-    bookmarkArticle: function(articleKey) {
+    // bookmarkArticle: function(articleKey) {
+    //   var uid = userData.getUser().uid;
+    //   var updates = {};
+    //   updates['/users/' + uid + '/bookmark/' + articleKey] =  articleKey;
+    //   return firebase.database().ref().update(updates);
+    // },
+
+    bookmarkArticle: function(articleKey,bookmark) {
       var uid = userData.getUser().uid;
-        articleSnap = $firebaseObject(ref.child(articleKey));
-        console.log('article detail:' , articleSnap);
-      var updates = {};
-      updates['/users/' + uid + '/bookmark/' + articleKey] =  articleKey;
-      // updates['/users/' + uid + '/bookmark/' + articleKey] =  $firebaseObject(ref.child(articleKey));
-      return firebase.database().ref().update(updates);
+
+      if (bookmark){
+        var updates = {};
+        updates['/users/' + uid + '/bookmark/' + articleKey] =  articleKey;
+        return firebase.database().ref().update(updates);
+      }
+
+      else {
+        console.log ('remove')
+        firebase.database().ref('/users/' + uid + '/bookmark/'+ articleKey).remove();
+      }
+      
     },
 
     isBookmarkArticle: function(articleKey) {
       var uid = userData.getUser().uid;
-      var firebaseRef = firebase.database().ref('/users/' + uid + '/bookmark/');
-      var bookmarkedArticle = $firebaseObject(ref.child(articleKey));
-
+      var firebaseRef = firebase.database().ref('/users/' + uid + '/bookmark/'+ articleKey);
+      var bookmarkedArticle = $firebaseObject(firebaseRef); 
       return bookmarkedArticle;
-
-      // firebaseRef.once("value", function(snapshot) {
-      //   var isBookmarked = snapshot.child(articleKey).exists();
-      //   console.log('isBookmarked', isBookmarked);
-      //   return isBookmarked;
-      // });
-
-
-      // console.log('firebaseRef' , firebaseRef);
-      // isBookmarkArticle = "";
-      // if (firebaseRef.childExists(articleKey)) {
-      //   isBookmarkArticle = 1;
-      //   return isBookmarkArticle;
-      // };
     },
 
 
