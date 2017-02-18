@@ -1,4 +1,4 @@
-<ion-view view-title="Favourites"  hide-nav-bar="true">
+<ion-view view-title="Favourites"  hide-nav-bar="false">
   	<ion-content style="background-color: #ffc">
 
     <!--div class="button-bar bar-energized">
@@ -9,43 +9,41 @@
   	</div-->
 
 <!--div class="col-50 col-offset-50"-->
-  <div class="list half card item-text-wrap" ng-repeat="article in articles| filter:searchText">
 
 
-		<div class="item item-borderless no-padding">
-			<div>
-				<h2>{{article.name}}</h2>
-			</div>
+  <div>
+    <ion-item class="item-text-wrap">
+    <div class="oneThird"><img src="img/food1.jpg" class="full-image"></div>
+          Hidden Gems in Central<br><p>#Western #FollowedFoodie #Central #Japanese #Cheap</p>
+    </ion-item>
 
-			<div class="item-image" ng-click="toggleGroup(article)">
-				<img src= {{article.cover}}>
-			</div>
+    <ion-item class="item">
+    <div class="oneThird"><img src="img/food2.jpg" class="full-image"></div>
+          article.name<br>article.tags
+    </ion-item>
 
-        	<div class="item-accordion" ng-show="isGroupShown(article)">
-        		<div>
-            	details{{article.details}}
-            	</div>
-            	<div>
-            	{{article.detailpics}}
-            	</div>
-            	<div>
-            	<button class="button icon-left button-assertive icon ion-heart button-clear">Save It</button>
-            	<button class="button icon-left button-positive icon ion-thumbsup button-clear">Like!</button>
-            	<button class="button icon-left button-positive icon ion-thumbsdown button-clear">Inaccruate</button>
-            	</div>
-        	</div>
+    <ion-item class="item">
+    <div class="oneThird"><img src="img/food3.jpg" class="full-image"></div>
+          article.name<br>article.tags
+    </ion-item>
 
-    </div>
-          <div>
-            <ion-item class="item-avatar no-padding">
-            <img src= {{article.foodieimg}}>
-            <i class="icon ion-stats-bars "></i> 99% <br>
-            {{article.foodie}}
-            </ion-item>
-          </div>
+    <ion-item class="item">
+    <div class="oneThird"><img src="img/food3.jpg" class="full-image"></div>
+          article.name<br>article.tags
+    </ion-item>
 
+    <ion-item class="item">
+    <div class="oneThird"><img src="img/food1.jpg" class="full-image"></div>
+          article.name<br>article.tags
+    </ion-item>
+
+    <ion-item class="item">
+    <div class="oneThird"><img src="img/food1.jpg" class="full-image"></div>
+          article.name<br>article.tags
+    </ion-item>
 
   </div>
+
 
 
     </ion-content>
