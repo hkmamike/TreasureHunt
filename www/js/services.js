@@ -62,14 +62,15 @@ angular.module('starter.services', [])
     },
 
     getFoodie: function(foodieKey) {
-      console.log('foodieKey', foodieKey);
       return $firebaseObject(ref.child(foodieKey));
     },
 
+    dataPath: function(path) {
+      return $firebaseObject(firebaseRef.ref('/users/' + path));
+    },
+
     getFoodieInfo: function(foodieKey) {
-      console.log('foodieKey', foodieKey);
       foodieInfo = $firebaseObject(ref.child(foodieKey).child('info'));
-      console.log('foodieInfo', foodieInfo);
       return foodieInfo;
     },
 
@@ -92,9 +93,7 @@ angular.module('starter.services', [])
       updates['/users/' + uid + '/info/'] = foodieInformation;
       return firebase.database().ref().update(updates);
 
-      // return foodies;
-      
-      // // return foodieInfo;
+
     },
 
     bookmarkFoodie: function(foodieKey) {
@@ -117,30 +116,6 @@ angular.module('starter.services', [])
     face: 'img/ben.png',
     preference: 0,
     deals: 1,
-    recommended: 1
-  }, {
-    id: 1,
-    name: 'Cheap Cafe',
-    lastText: 'Hey, it\'s me',
-    face: 'img/max.png',
-    preference: 0,
-    deals: 1,
-    recommended: 0
-  }, {
-    id: 2,
-    name: 'Preferred Cafe',
-    lastText: 'I should buy a boat',
-    face: 'img/adam.jpg',
-    preference: 1,
-    deals: 0,
-    recommended: 0
-  }, {
-    id: 3,
-    name: 'Recommended Cafe',
-    lastText: 'Look at my mukluks!',
-    face: 'img/perry.png',
-    preference: 0,
-    deals: 0,
     recommended: 1
   }, {
     id: 4,
@@ -176,6 +151,7 @@ angular.module('starter.services', [])
   var self = this;
   var firebaseRef = firebase.database();
   var ref = firebase.database().ref().child('posts');
+  
   var articles = $firebaseObject(ref);
   console.log('All articles: ', articles);
 
@@ -195,66 +171,11 @@ angular.module('starter.services', [])
 
     getArticleAuthor: function(articleKey) {
 
-      // var foodieIDArray = $firebaseObject(firebase.database().ref().child('posts').child(articleKey + '/author'));
-      // var foodieIDArray2 = $firebaseArray(firebase.database().ref().child('posts').child(articleKey + '/author'));
-
-      // var adaRef = firebase.database().ref("posts/-Kbi0l6vDUo3_j7JZesa/author");
-      // var key = adaRef.$value;  // key === "ada"
-      // console.log('KEYYYY : ',key,adaRef);
- 
-      // console.log('foodieIDArray : ',foodieIDArray, foodieIDArray2);
-
-
-      // var foodieInfo = $firebaseObject(firebase.database().ref().child('users').child(foodieID).child('info'));
-      // console.log('foodieInfo: ', foodieInfo);
-      // return foodieInfo;  
-
       var firebaseRef = firebase.database().ref('/posts/' + articleKey);
 
-
       return firebaseRef.once('value').then(function(snapshot) {
-        // return snapshot.val().author;
         return $firebaseObject(firebase.database().ref().child('users').child(snapshot.val().author).child('info'));
-        // return foodies.getFoodie(snapshot.val().author);
       });
-
-      // articles.getArticleAuthor($stateParams.articleKey).then(function(value){
-      //   $scope.selectedArticleFoodie2 = console.log(value);
-      // })
-
-      // return firebaseRef.once('value').then(
-      //   firebaseRef.once('value', function(snapshot) {
-      //     $timeout(function() {
-      //       var foodieID = snapshot.val().author;
-      //       console.log('foodieID: ', foodieID);
-      //       var foodieInfo = $firebaseObject(firebase.database().ref().child('users').child(foodieID).child('info'));
-      //       console.log('foodieInfo: ', foodieInfo);
-      //       return foodieInfo; 
-      //     }); 
-      //   });
-      //   )
-
-
-      // firebase.database().ref('/posts/' + articleKey).once('value', function(snapshot) {
-      //   $timeout(function() {
-      //     var foodieID = snapshot.val().author;
-      //     console.log('foodieID: ', foodieID);
-      //     var foodieInfo = $firebaseObject(firebase.database().ref().child('users').child(foodieID).child('info'));
-      //     console.log('foodieInfo: ', foodieInfo);
-      //     return foodieInfo; 
-      //   });         
-      // });
-
-
-      // firebase.database().ref('/posts/' + articleKey).once('value').then(function(snapshot) {
-      //   $timeout(function() {
-      //     var foodieID = snapshot.val().author;
-      //     console.log('foodieID: ', foodieID);
-      //     var foodieInfo = $firebaseObject(firebase.database().ref().child('users').child(foodieID).child('info'));
-      //     console.log('foodieInfo: ', foodieInfo);
-      //     return foodieInfo; 
-      //   });         
-      // });
 
     },
 
@@ -471,8 +392,12 @@ angular.module('starter.services', [])
 
             updates['/posts/' + newPostKey] = newArticle;
             updates['/user-posts/' + uid + '/' + newPostKey] = newArticle;
+<<<<<<< HEAD
             updates['/users/' + uid + '/posts/' + newPostKey] = newPostKey;
             console.log('service line 471');
+=======
+            updates['/users/' + uid + '/posts/' + newPostKey] = newArticle;
+>>>>>>> 93a578f9d4e070d07874f5b7cd6ea5e20a580dc5
             return firebase.database().ref().update(updates);
 
         });
@@ -487,7 +412,7 @@ angular.module('starter.services', [])
       var uid = userData.getUser().uid;
         console.log(uid);
         articleSnap = $firebaseObject(ref.child(articleKey));
-        console.log(articleSnap);
+        console.log('article detail:' , articleSnap);
       var updates = {};
       updates['/users/' + uid + '/bookmark/' + articleKey] =  articleKey;
       // updates['/users/' + uid + '/bookmark/' + articleKey] =  $firebaseObject(ref.child(articleKey));
