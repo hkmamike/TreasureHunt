@@ -8,49 +8,47 @@
   </ion-header-bar>
 
 
-  <ion-content class="padding">
-
-    <!-- <form ng-submit="pushArticle(article)"> -->
+  <ion-content>
     <form>
-
       <div class="list">
         <label class="item item-input item-floating-label">
           <span class="input-label">Article Name</span>
-          <input type="text" ng-model="article.name" placeholder="Article Name">
+          <input type="text" ng-model="articleInput.name" placeholder="Article Name">
         </label>
         <label class="item item-input item-floating-label">
           <span class="input-label">Restaurant Name</span>
-          <input type="text" ng-model="article.restaurantName" placeholder="Restaurant Name">
+          <input type="text" ng-model="articleInput.restaurantName" placeholder="Restaurant Name">
         </label>
         <label class="item item-input item-floating-label">
           <span class="input-label">Restaurant Location</span>
-          <input type="text" ng-model="article.location" placeholder="Restaurant Location">
+          <input type="text" ng-model="articleInput.location" placeholder="Restaurant Location">
         </label>
         <label class="item item-input item-floating-label">
           <span class="input-label">Restaurant Type</span>
-          <input type="text" ng-model="article.type" placeholder="Restaurant Type">
+          <input type="text" ng-model="articleInput.type" placeholder="Restaurant Type">
         </label>
         <label class="item item-input item-floating-label">
           <span class="input-label">Contents</span>
-          <input type="text" ng-model="article.contents" placeholder="Type here...">
+          <input type="text" ng-model="articleInput.contents" placeholder="Type here...">
         </label>
 
         <label class="item item-input item-floating-label">
           <span class="input-label">Image</span>
-          <input type="file" ng-model="article.image" accept="image/*" app-filereader>
+          <input type="file" ng-model="articleInput.image" accept="image/*" app-filereader>
         </label>
 
         <div>
-        <button type="preview" ng-click="tempImg=tempImage(article)">PREVIEW</button>
+        <button type="preview" ng-click="tempImg=tempImage(articleInput)">PREVIEW</button>
         {{tempImg}}
         </div>
       </div>
 
       <br>
 
-      <button type="submit" class="button button-block button-balanced" ng-click="pushArticle(article); closeNewArticle()"> Submit </button>
+      <button type="submit" class="button button-block button-balanced" ng-click="pushArticle(articleInput); closeNewArticle()"> Submit </button>
 
     </form>
 
   </ion-content>
+
 </ion-modal-view>

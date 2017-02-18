@@ -49,22 +49,17 @@ angular.module('starter.controllers', [])
 
 
   // ---------------------------------------------------------------------------------
-  // Form data for the login modal
   $scope.loginData = {};
-
-  // Create the login modal that we will use later
   $ionicModal.fromTemplateUrl('templates/login.html', {
     scope: $scope
   }).then(function(modal) {
     $scope.login = modal;
   });
 
-  // Triggered in the login modal to close it
   $scope.closeLogin = function() {
     $scope.login.hide();
   };
 
-  // Open the login modal
   $scope.openlogin = function() {
     $scope.login.show();
   };
@@ -105,36 +100,19 @@ angular.module('starter.controllers', [])
   // ---------------------------------------------------------------------------------
 
   // ---------------------------------------------------------------------------------
-
-  // Form data for the New Article modal
-
-  // Create the New Article modal that we will use later
+  $scope.articleInput = {};
   $ionicModal.fromTemplateUrl('templates/newArticle.html', {
     scope: $scope
   }).then(function(modal) {
     $scope.newArticle = modal;
   });
 
-  // Triggered in the login modal to close it
   $scope.closeNewArticle = function() {
     $scope.newArticle.hide();
   };
 
-  // Open the login modal
   $scope.openNewArticle = function(article) {
-
-    $scope.article = {};
     $scope.newArticle.show();
-    // if (article) {
-    //   //clearing ng-model values after submit
-    //   article.name = "";
-    //   article.restaurantName = "";
-    //   article.location = "";
-    //   article.type = "";
-    //   article.contents = "";
-    //   article.image = null;
-    // }
-
   };
 
   $scope.pushArticle = function (article) {
