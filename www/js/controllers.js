@@ -132,7 +132,6 @@ angular.module('starter.controllers', [])
   $scope.openNewArticle = function(article) {
 
     $scope.newArticle.show();
-
     if (article) {
       //clearing ng-model values after submit
       article.name = "";
@@ -218,7 +217,7 @@ angular.module('starter.controllers', [])
   console.log('selectedArticle: ', $scope.selectedArticle);
 
 
-  $scope.selectedArticleImgs = articles.dataPath($stateParams.articleKey + '/articleImgs');
+  $scope.selectedArticleImgs = articles.dataPath($stateParams.articleKey + '/articleImgs/');
   console.log('selectedArticleImgs: ', $scope.selectedArticleImgs);
 
   // $scope.selectedArticleFoodie2 = articles.getArticleAuthor($stateParams.articleKey)
