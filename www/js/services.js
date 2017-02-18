@@ -231,13 +231,18 @@ angular.module('starter.services', [])
 
             console.log ('article name is:', article.name);
 
+            var newArticleImg = {
+              1:downloadURL,
+              2:downloadURL,
+              3:downloadURL};
+
             var newArticle = {
                 name: article.name,
                 restaurantName: article.restaurantName,
                 location: article.location,
                 type: article.type,
                 contents: article.contents,
-                // articleImgs: newArticleImg,
+                articleImgs: newArticleImg,
                 timestamp: Math.floor(Date.now()/1000),
                 coverImage: downloadURL,
                 author: uid,
