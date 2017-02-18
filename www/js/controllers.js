@@ -91,9 +91,6 @@ angular.module('starter.controllers', [])
     foodies.createFoodie();
     // console.log('CREATEFoodie: ', foodies.createFoodie());
 
-
-
-
   }).catch(function(error) {
     // Handle Errors here.
     var errorCode = error.code;
@@ -104,12 +101,8 @@ angular.module('starter.controllers', [])
     var credential = error.credential;
     // ...
   });
-
-
-
   
   // ---------------------------------------------------------------------------------
-
 
   // ---------------------------------------------------------------------------------
 
@@ -117,7 +110,6 @@ angular.module('starter.controllers', [])
 
   // Create the New Article modal that we will use later
   $ionicModal.fromTemplateUrl('templates/newArticle.html', {
-
     scope: $scope
   }).then(function(modal) {
     $scope.newArticle = modal;
@@ -131,16 +123,17 @@ angular.module('starter.controllers', [])
   // Open the login modal
   $scope.openNewArticle = function(article) {
 
+    $scope.article = {};
     $scope.newArticle.show();
-    if (article) {
-      //clearing ng-model values after submit
-      article.name = "";
-      article.restaurantName = "";
-      article.location = "";
-      article.type = "";
-      article.contents = "";
-      article.image = null;
-    }
+    // if (article) {
+    //   //clearing ng-model values after submit
+    //   article.name = "";
+    //   article.restaurantName = "";
+    //   article.location = "";
+    //   article.type = "";
+    //   article.contents = "";
+    //   article.image = null;
+    // }
 
   };
 
