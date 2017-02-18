@@ -138,10 +138,11 @@ angular.module('starter.controllers', [])
   };
 
   $scope.pushArticle = function (article) {
-    console.log('new article posted', article);
     articles.saveArticleWithImage(article);
-    // articles.saveArticle(article);
+  };
 
+  $scope.tempImage = function (article) {
+    articles.tempImage(article);
   };
   // ---------------------------------------------------------------------------------
 

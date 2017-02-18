@@ -10,7 +10,8 @@
 
   <ion-content class="padding">
 
-    <form ng-submit="pushArticle(article)">
+    <!-- <form ng-submit="pushArticle(article)"> -->
+    <form>
 
       <div class="list">
         <label class="item item-input item-floating-label">
@@ -39,11 +40,15 @@
           <input type="file" ng-model="article.image" accept="image/*" app-filereader>
         </label>
 
+        <div>
+        <button type="preview" ng-click="tempImg=tempImage(article)">PREVIEW</button>
+        {{tempImg}}
+        </div>
       </div>
 
       <br>
 
-      <button type="submit" class="button button-block button-balanced" ng-click="closeNewArticle()"> Submit </button>
+      <button type="submit" class="button button-block button-balanced" ng-click="pushArticle(article); closeNewArticle()"> Submit </button>
 
     </form>
 
