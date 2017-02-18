@@ -271,9 +271,6 @@ angular.module('starter.services', [])
       console.log(uid);
       var newPostKey = firebase.database().ref().child('posts').push().key;
 
-      console.log('img name is : ', file.name);
-      console.log('article is : ', article);
-      console.log('img is : ', article.image);
       // Create the file metadata
       var metadata = {
         contentType: 'image/jpeg'
@@ -288,7 +285,7 @@ angular.module('starter.services', [])
       filebase64 = file.replace(/^data:image\/(png|jpeg);base64,/, "");
       // var uploadTask = storageRef.child('images/' + file.name).putString(filebase64, 'base64', {contentType:'image/jpg'});
 
-      var uploadTask = storageRef.child('images/' + newPostKey + '/' + file.name).putString(file, 'data_url', {contentType:'image/jpg'});
+      var uploadTask = storageRef.child('images/' + 'Temp' + '/' + file.name).putString(file, 'data_url', {contentType:'image/jpg'});
 
       // Listen for state changes, errors, and completion of the upload.
       uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
@@ -320,43 +317,9 @@ angular.module('starter.services', [])
           }
         }, function() {
           // Upload completed successfully, now we can get the download URL
-
             var downloadURL = uploadTask.snapshot.downloadURL;
-            console.log('img url downloadURL');
-            console.log('will save this to the database', article);
-            console.log(newPostKey);
-
-            console.log ('article name is:', article.name);
-
-            var newArticleImg = {
-              1:downloadURL,
-              2:downloadURL,
-              3:downloadURL};
-
-            var newArticle = {
-                name: article.name,
-                restaurantName: article.restaurantName,
-                location: article.location,
-                type: article.type,
-                contents: article.contents,
-                articleImgs: newArticleImg,
-                timestamp: Math.floor(Date.now()/1000),
-                coverImage: downloadURL,
-                author: uid,
-                upVote: 1,
-                downVote: 0,
-                totalRating: 1,
-                key: newPostKey
-            };
-
-            var updates = {};
-
-            updates['/posts/' + newPostKey] = newArticle;
-            updates['/user-posts/' + uid + '/' + newPostKey] = newArticle;
-            updates['/users/' + uid + '/posts/' + newPostKey] = newArticle;
-
-            return firebase.database().ref().update(updates);
-
+            console.log('image path' , downloadURL)
+            return downloadURL;
         });
     },
 
