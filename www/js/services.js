@@ -1,6 +1,6 @@
 angular.module('starter.services', [])
 
-.factory('userData', function() {
+.factory('userData', function($firebaseObject, $firebaseArray) {
 
   var user = {};
   firebase.auth().onAuthStateChanged(function () {
@@ -20,8 +20,17 @@ angular.module('starter.services', [])
     },
 
     dataPath: function(path) {
-      return $firebaseObject(firebaseRef.ref('/user/' + path));
+      var uid=this.getUser().uid;
+      console.log ('uid',uid);
+      console.log('/users/' + uid +'/'+ path);
+      return $firebaseObject(firebase.database().ref('/users/' + uid +'/'+ path));
     },
+
+    // userFavourite: function() {
+    //   var uid=firebase.auth().currentUser.uid;
+    //   console.log($firebaseobject(firebase.database().ref('/users/')));
+    //   // return $firebaseObject(firebase.database().ref('/users/' + uid +'/'+ path));
+    // },
 
 
     createUser: function() {
@@ -154,6 +163,8 @@ angular.module('starter.services', [])
     },
 
     dataPath: function(path) {
+      console.log(path);
+      console.log($firebaseObject(firebaseRef.ref('/posts/' + path)));
       return $firebaseObject(firebaseRef.ref('/posts/' + path));
     },
 

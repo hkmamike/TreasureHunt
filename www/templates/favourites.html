@@ -1,50 +1,20 @@
 <ion-view view-title="Favourites"  hide-nav-bar="false">
-  	<ion-content style="background-color: #ffc">
+  <ion-content style="background-color: #ffc">
 
-    <!--div class="button-bar bar-energized">
-       	<a class="button ion-clock" ui-sref="app.activities">Activites</a>
-       	<a class="button ion-button" ui-sref="app.selections">Selecions</a>
-       	<a class="button ion-button" ui-sref="app.favourites">Favourites</a>
-       	<a class="button ion-navicon" menu-toggle="right">Me</a>
-  	</div-->
+<!--     <ion-item ng-repeat="articlekey in favouriteArticle" ng-init="article=getArticlebyKey(articlekey)" ui-sref="app.article({'articleKey':articleKey})">
+    <div class="item-text-wrap item-thumbnailLarge-left">
+      <img src={{article.coverImage}}>
+      <span>{{article.name}}<br><p>#{{article.type}} #{{article.location}} #FollowedFoodie</p></span>
+    </div>
+    <ion-option-button>123</ion-option-button>
+    </ion-item> -->
 
-<!--div class="col-50 col-offset-50"-->
-
-
-  <div>
-    <ion-item class="item-text-wrap">
-    <div class="oneThird"><img src="img/food1.jpg" class="full-image"></div>
-          Hidden Gems in Central<br><p>#Western #FollowedFoodie #Central #Japanese #Cheap</p>
+    <ion-item class="item-text-wrap item-thumbnailLarge-left" ng-repeat="articlekey in favouriteArticle" ng-init='article=getArticlebyKey(articlekey)' >
+    <!-- {{articlekey}} -->
+      <img src={{article.coverImage}} ui-sref="app.article({'articleKey':articlekey})">
+      <span>{{article.name}}  [95% upvote]<br><p>#{{article.type}} #{{article.location}} #FollowedFoodie</p></span>
     </ion-item>
 
-    <ion-item class="item">
-    <div class="oneThird"><img src="img/food2.jpg" class="full-image"></div>
-          article.name<br>article.tags
-    </ion-item>
 
-    <ion-item class="item">
-    <div class="oneThird"><img src="img/food3.jpg" class="full-image"></div>
-          article.name<br>article.tags
-    </ion-item>
-
-    <ion-item class="item">
-    <div class="oneThird"><img src="img/food3.jpg" class="full-image"></div>
-          article.name<br>article.tags
-    </ion-item>
-
-    <ion-item class="item">
-    <div class="oneThird"><img src="img/food1.jpg" class="full-image"></div>
-          article.name<br>article.tags
-    </ion-item>
-
-    <ion-item class="item">
-    <div class="oneThird"><img src="img/food1.jpg" class="full-image"></div>
-          article.name<br>article.tags
-    </ion-item>
-
-  </div>
-
-
-
-    </ion-content>
+  </ion-content>
 </ion-view>

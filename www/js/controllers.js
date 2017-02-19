@@ -100,7 +100,6 @@ angular.module('starter.controllers', [])
   // ---------------------------------------------------------------------------------
 
   // ---------------------------------------------------------------------------------
-  $scope.articleInput = {};
   $ionicModal.fromTemplateUrl('templates/newArticle.html', {
     scope: $scope
   }).then(function(modal) {
@@ -112,6 +111,7 @@ angular.module('starter.controllers', [])
   };
 
   $scope.openNewArticle = function(article) {
+    $scope.articleInput = {};
     $scope.newArticle.show();
   };
 
@@ -153,6 +153,15 @@ angular.module('starter.controllers', [])
 
 //Favourite page controller
 .controller('favouriteCtrl', function($scope, articles, userData) {
+
+  $scope.favouriteArticle = userData.dataPath('bookmark');
+  console.log('favouriteArticle: ', $scope.favouriteArticle);
+
+  $scope.getArticlebyKey = function(articleKey){
+    console.log('articleKey',articleKey)
+    return articles.dataPath(articleKey);
+  };  
+
 })
 
 
