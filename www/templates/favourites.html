@@ -12,7 +12,7 @@
     <ion-item class="item-text-wrap item-thumbnailLarge-left" ng-repeat="articlekey in favouriteArticle" ng-init='article=getArticlebyKey(articlekey)' >
     <!-- {{articlekey}} -->
       <img src={{article.coverImage}} ui-sref="app.article({'articleKey':articlekey})">
-      <span>{{article.name}}  [95% upvote]<br><p>#{{article.type}} #{{article.location}} #FollowedFoodie</p></span>
+      <span>{{article.name}}<br><p>#{{article.type}} #{{article.location}} #FollowedFoodie</p></span>
     </ion-item>
 
 
