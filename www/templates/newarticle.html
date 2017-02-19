@@ -37,17 +37,35 @@
           <input type="file" ng-model="articleInput.image" accept="image/*" app-filereader>
         </label>
 
-        <div>
-        <button type="preview" ng-click="tempImg=tempImage(articleInput)">PREVIEW</button>
-        {{tempImg}}
-        </div>
-      </div>
-
-      <br>
 
       <button type="submit" class="button button-block button-balanced" ng-click="pushArticle(articleInput); closeNewArticle()"> Submit </button>
 
     </form>
+
+        <div>PREVIEW</div>
+
+
+          <div class="item item-body" style="padding: 0px">
+            <ion-slide-box does-continue="true" auto-play="true" style="padding-bottom: 15px">
+            <ion-slide>
+              <img class="full-image" src="{{articleInput.image}}">
+              {{img}}
+            </ion-slide>
+            </ion-slide-box>
+            <p>
+              {{articleInput.name}}<br>
+              {{articleInput.contents}}
+              <br>
+              <a href="#" class="subdued">30 Like</a>
+              <a href="#" class="subdued">100 % Positive</a>
+            </p>
+          </div>
+          <div class="item" ui-sref="app.restaurant">
+            <h2>Name: {{articleInput.restaurantName}}</h2>
+            <p>Location: {{articleInput.location}}</p>
+            <p>Type: {{articleInput.type}}</p>
+          </div>
+
 
   </ion-content>
 

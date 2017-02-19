@@ -288,11 +288,6 @@ angular.module('starter.services', [])
       };
 
       var storageRef = firebase.storage().ref();
-
-      // console.log(file,  file.name);
-
-      // Upload file and metadata to the object 'images/mountains.jpg'
-      // var uploadTask = storageRef.child('images/' + file.name).putString(file);
       filebase64 = file.replace(/^data:image\/(png|jpeg);base64,/, "");
       // var uploadTask = storageRef.child('images/' + file.name).putString(filebase64, 'base64', {contentType:'image/jpg'});
 
