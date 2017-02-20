@@ -38,21 +38,20 @@
           <div class="item item-body" style="padding: 0px">
             
             <ion-slide-box does-continue="true" auto-play="true" style="padding-bottom: 15px">
-            
-            <ion-slide >
-              <img class="full-image" src="img/squareFood2.jpg">
-            </ion-slide>
-            <ion-slide >
-              <img class="full-image" src="img/squareFood2.jpg">
-            </ion-slide>
-      
-      <!--       <ion-slide ng-repeat="img in selectedArticleImgs">
+             <!-- {{selectedArticle.articleImgs}} -->
+             <!-- {{selectedArticle.articleImgs}} -->
+
+<!--             <ion-slide ng-repeat="img in selectedArticle.articleImgs">
               <img class="full-image" src="{{img}}">
             </ion-slide>
  -->
+            <ion-slide ng-repeat="img in selectedArticleImgs">
+              <img class="full-image" src="{{img}}">
+            </ion-slide>
 
             </ion-slide-box>
-           
+
+
             <p>
               {{selectedArticle.name}}<br>
               {{selectedArticle.contents}}

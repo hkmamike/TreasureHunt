@@ -1,6 +1,6 @@
 angular.module('starter.services', [])
 
-.factory('userData', function() {
+.factory('userData', function($firebaseObject, $firebaseArray) {
 
   var user = {};
   firebase.auth().onAuthStateChanged(function () {
@@ -20,8 +20,17 @@ angular.module('starter.services', [])
     },
 
     dataPath: function(path) {
-      return $firebaseObject(firebaseRef.ref('/user/' + path));
+      var uid=this.getUser().uid;
+      console.log ('uid',uid);
+      console.log('/users/' + uid +'/'+ path);
+      return $firebaseObject(firebase.database().ref('/users/' + uid +'/'+ path));
     },
+
+    // userFavourite: function() {
+    //   var uid=firebase.auth().currentUser.uid;
+    //   console.log($firebaseobject(firebase.database().ref('/users/')));
+    //   // return $firebaseObject(firebase.database().ref('/users/' + uid +'/'+ path));
+    // },
 
 
     createUser: function() {
@@ -154,6 +163,8 @@ angular.module('starter.services', [])
     },
 
     dataPath: function(path) {
+      console.log(path);
+      console.log($firebaseObject(firebaseRef.ref('/posts/' + path)));
       return $firebaseObject(firebaseRef.ref('/posts/' + path));
     },
 
@@ -168,7 +179,6 @@ angular.module('starter.services', [])
     },
 
     saveArticleWithImage: function(article) {
-
       return new Promise (function(resolve, reject) {
 
         // File or Blob named mountains.jpg
@@ -234,6 +244,11 @@ angular.module('starter.services', [])
 
               console.log ('article name is:', article.name);
 
+              var newArticleImg = {
+                1:downloadURL,
+                2:downloadURL,
+                3:downloadURL};
+
               var newArticle = {
                   name: article.name,
                   restaurantName: article.restaurantName,
@@ -267,41 +282,106 @@ angular.module('starter.services', [])
       });
     },
 
-    // remove: function(Article) {
-    //   articles.splice(articles.indexOf(Article), 1);
+
+    // tempImage: function(article) {
+    //   // File or Blob named mountains.jpg
+    //   var file = article.image;
+    //   var uid = userData.getUser().uid;
+    //   console.log(uid);
+    //   var newPostKey = firebase.database().ref().child('posts').push().key;
+
+    //   // Create the file metadata
+    //   var metadata = {
+    //     contentType: 'image/jpeg'
+    //   };
+
+    //   var storageRef = firebase.storage().ref();
+    //   filebase64 = file.replace(/^data:image\/(png|jpeg);base64,/, "");
+    //   // var uploadTask = storageRef.child('images/' + file.name).putString(filebase64, 'base64', {contentType:'image/jpg'});
+
+    //   var uploadTask = storageRef.child('images/' + 'Temp' + '/' + file.name).putString(file, 'data_url', {contentType:'image/jpg'});
+
+    //   // Listen for state changes, errors, and completion of the upload.
+    //   uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
+    //     function(snapshot) {
+    //       // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+    //       var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+    //       console.log('Upload is ' + progress + '% done');
+    //       switch (snapshot.state) {
+    //         case firebase.storage.TaskState.PAUSED: // or 'paused'
+    //           console.log('Upload is paused');
+    //           break;
+    //         case firebase.storage.TaskState.RUNNING: // or 'running'
+    //           console.log('Upload is running');
+    //           break;
+    //       }
+    //     }, function(error) {
+    //       switch (error.code) {
+    //         case 'storage/unauthorized':
+    //           // User doesn't have permission to access the object
+    //           break;
+
+    //         case 'storage/canceled':
+    //           // User canceled the upload
+    //           break;
+
+    //         case 'storage/unknown':
+    //           // Unknown error occurred, inspect error.serverResponse
+    //           break;
+    //       }
+    //     }, function() {
+    //       // Upload completed successfully, now we can get the download URL
+    //         var downloadURL = uploadTask.snapshot.downloadURL;
+    //         console.log('image path' , downloadURL)
+    //         return downloadURL;
+    //     });
     // },
 
-    bookmarkArticle: function(articleKey) {
+
+    bookmarkArticle: function(articleKey,bookmark) {
       var uid = userData.getUser().uid;
-        articleSnap = $firebaseObject(ref.child(articleKey));
-        console.log('article detail:' , articleSnap);
-      var updates = {};
-      updates['/users/' + uid + '/bookmark/' + articleKey] =  articleKey;
-      // updates['/users/' + uid + '/bookmark/' + articleKey] =  $firebaseObject(ref.child(articleKey));
-      return firebase.database().ref().update(updates);
+
+      if (bookmark){
+        var updates = {};
+        updates['/users/' + uid + '/bookmark/' + articleKey] =  articleKey;
+        return firebase.database().ref().update(updates);
+      }
+
+      else {
+        console.log ('remove');
+        firebase.database().ref('/users/' + uid + '/bookmark/'+ articleKey).remove();
+      }
+      
     },
 
     isBookmarkArticle: function(articleKey) {
       var uid = userData.getUser().uid;
-      var firebaseRef = firebase.database().ref('/users/' + uid + '/bookmark/');
-      var bookmarkedArticle = $firebaseObject(ref.child(articleKey));
-
+      var firebaseRef = firebase.database().ref('/users/' + uid + '/bookmark/'+ articleKey);
+      var bookmarkedArticle = $firebaseObject(firebaseRef);
       return bookmarkedArticle;
-
-      // firebaseRef.once("value", function(snapshot) {
-      //   var isBookmarked = snapshot.child(articleKey).exists();
-      //   console.log('isBookmarked', isBookmarked);
-      //   return isBookmarked;
-      // });
-
-
-      // console.log('firebaseRef' , firebaseRef);
-      // isBookmarkArticle = "";
-      // if (firebaseRef.childExists(articleKey)) {
-      //   isBookmarkArticle = 1;
-      //   return isBookmarkArticle;
-      // };
     },
+
+    rateArticle: function(articleKey,rate,currentRating) {
+      var uid = userData.getUser().uid;
+      var updates = {};
+      console.log(rate,currentRating);
+      if (currentRating==rate) {
+        firebase.database().ref('/users/' + uid + '/rate/'+ articleKey).remove();
+      }
+
+      else {
+        updates['/users/' + uid + '/rate/' + articleKey] =  rate;
+        return firebase.database().ref().update(updates);
+      }
+    },
+
+    isRateArticle: function(articleKey) {
+      var uid = userData.getUser().uid;
+      var firebaseRef = firebase.database().ref('/users/' + uid + '/rate/'+ articleKey);
+      var ratedArticle = $firebaseObject(firebaseRef);
+      return ratedArticle;
+    },
+
 
 
     upVoteArticle: function(articleKey) {

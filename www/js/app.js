@@ -58,7 +58,7 @@ angular.module('starter', ['ionic', 'chart.js', 'starter.controllers', 'starter.
     views: {
       'tab_favourites': {
         templateUrl: 'templates/favourites.html',
-        //controller: 'selectionsCtrl'
+        controller: 'favouriteCtrl'
       }
     }
   })

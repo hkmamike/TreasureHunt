@@ -49,22 +49,17 @@ angular.module('starter.controllers', [])
 
 
   // ---------------------------------------------------------------------------------
-  // Form data for the login modal
   $scope.loginData = {};
-
-  // Create the login modal that we will use later
   $ionicModal.fromTemplateUrl('templates/login.html', {
     scope: $scope
   }).then(function(modal) {
     $scope.login = modal;
   });
 
-  // Triggered in the login modal to close it
   $scope.closeLogin = function() {
     $scope.login.hide();
   };
 
-  // Open the login modal
   $scope.openlogin = function() {
     $scope.login.show();
   };
@@ -91,9 +86,6 @@ angular.module('starter.controllers', [])
     foodies.createFoodie();
     // console.log('CREATEFoodie: ', foodies.createFoodie());
 
-
-
-
   }).catch(function(error) {
     // Handle Errors here.
     var errorCode = error.code;
@@ -104,32 +96,22 @@ angular.module('starter.controllers', [])
     var credential = error.credential;
     // ...
   });
-
-
-
   
   // ---------------------------------------------------------------------------------
 
-
   // ---------------------------------------------------------------------------------
-
-  // Form data for the New Article modal
-
-  // Create the New Article modal that we will use later
   $ionicModal.fromTemplateUrl('templates/newArticle.html', {
-
     scope: $scope
   }).then(function(modal) {
     $scope.newArticle = modal;
   });
 
-  // Triggered in the login modal to close it
   $scope.closeNewArticle = function() {
     $scope.newArticle.hide();
   };
 
-  // Open the login modal
   $scope.openNewArticle = function(article) {
+<<<<<<< HEAD
     $scope.newArticle.show();
   };
 
@@ -150,6 +132,19 @@ angular.module('starter.controllers', [])
 
   };
 
+=======
+    $scope.articleInput = {};
+    $scope.newArticle.show();
+  };
+
+  $scope.pushArticle = function (article) {
+    articles.saveArticleWithImage(article);
+  };
+
+  $scope.tempImage = function (article) {
+    articles.tempImage(article);
+  };
+>>>>>>> 7713a165a06bf4612da7659291c037d7cf6d4c36
   // ---------------------------------------------------------------------------------
 
 
@@ -181,6 +176,15 @@ angular.module('starter.controllers', [])
 
 //Favourite page controller
 .controller('favouriteCtrl', function($scope, articles, userData) {
+
+  $scope.favouriteArticle = userData.dataPath('bookmark');
+  console.log('favouriteArticle: ', $scope.favouriteArticle);
+
+  $scope.getArticlebyKey = function(articleKey){
+    console.log('articleKey',articleKey)
+    return articles.dataPath(articleKey);
+  };  
+
 })
 
 
@@ -195,11 +199,12 @@ angular.module('starter.controllers', [])
     return foodies.getFoodieInfo(foodieID);
   };
 
-  $scope.bookmarkArticle = function(articleKey){
-    articles.bookmarkArticle(articleKey);
+  $scope.bookmarkArticle = function(articleKey, bookmark){
+      articles.bookmarkArticle(articleKey, bookmark);
   };
 
   $scope.isBookmarkArticle = function(articleKey){
+<<<<<<< HEAD
     isBookmarked = articles.isBookmarkArticle(articleKey);
     console.log('scope isBookmarked' , isBookmarked);
     return isBookmarked;
@@ -264,10 +269,21 @@ angular.module('starter.controllers', [])
         return 'hello';
       });
 
+=======
+    return articles.isBookmarkArticle(articleKey);
+    // console.log('scope isBookmarked' , isBookmarked); 
   };
 
+  $scope.rateArticle = function(articleKey, rate){
+    // console.log('scope isRated' , articleKey, rate)
+    articles.rateArticle(articleKey, rate);
+  };
 
-
+  $scope.isRateArticle = function(articleKey){
+    return articles.isRateArticle(articleKey);
+    console.log('scope isRated' , isRated); 
+>>>>>>> 7713a165a06bf4612da7659291c037d7cf6d4c36
+  };
 
 })
 
@@ -282,7 +298,7 @@ angular.module('starter.controllers', [])
   console.log('selectedArticle: ', $scope.selectedArticle);
 
 
-  $scope.selectedArticleImgs = articles.dataPath($stateParams.articleKey + '/articleImgs');
+  $scope.selectedArticleImgs = articles.dataPath($stateParams.articleKey + '/articleImgs/');
   console.log('selectedArticleImgs: ', $scope.selectedArticleImgs);
 
   // $scope.selectedArticleFoodie2 = articles.getArticleAuthor($stateParams.articleKey)

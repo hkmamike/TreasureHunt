@@ -1,52 +1,20 @@
-<ion-view view-title="Favourites"  hide-nav-bar="true">
-  	<ion-content style="background-color: #ffc">
+<ion-view view-title="Favourites"  hide-nav-bar="false">
+  <ion-content style="background-color: #ffc">
 
-    <!--div class="button-bar bar-energized">
-       	<a class="button ion-clock" ui-sref="app.activities">Activites</a>
-       	<a class="button ion-button" ui-sref="app.selections">Selecions</a>
-       	<a class="button ion-button" ui-sref="app.favourites">Favourites</a>
-       	<a class="button ion-navicon" menu-toggle="right">Me</a>
-  	</div-->
-
-<!--div class="col-50 col-offset-50"-->
-  <div class="list half card item-text-wrap" ng-repeat="article in articles| filter:searchText">
-
-
-		<div class="item item-borderless no-padding">
-			<div>
-				<h2>{{article.name}}</h2>
-			</div>
-
-			<div class="item-image" ng-click="toggleGroup(article)">
-				<img src= {{article.cover}}>
-			</div>
-
-        	<div class="item-accordion" ng-show="isGroupShown(article)">
-        		<div>
-            	details{{article.details}}
-            	</div>
-            	<div>
-            	{{article.detailpics}}
-            	</div>
-            	<div>
-            	<button class="button icon-left button-assertive icon ion-heart button-clear">Save It</button>
-            	<button class="button icon-left button-positive icon ion-thumbsup button-clear">Like!</button>
-            	<button class="button icon-left button-positive icon ion-thumbsdown button-clear">Inaccruate</button>
-            	</div>
-        	</div>
-
+<!--     <ion-item ng-repeat="articlekey in favouriteArticle" ng-init="article=getArticlebyKey(articlekey)" ui-sref="app.article({'articleKey':articleKey})">
+    <div class="item-text-wrap item-thumbnailLarge-left">
+      <img src={{article.coverImage}}>
+      <span>{{article.name}}<br><p>#{{article.type}} #{{article.location}} #FollowedFoodie</p></span>
     </div>
-          <div>
-            <ion-item class="item-avatar no-padding">
-            <img src= {{article.foodieimg}}>
-            <i class="icon ion-stats-bars "></i> 99% <br>
-            {{article.foodie}}
-            </ion-item>
-          </div>
+    <ion-option-button>123</ion-option-button>
+    </ion-item> -->
+
+    <ion-item class="item-text-wrap item-thumbnailLarge-left" ng-repeat="articlekey in favouriteArticle" ng-init='article=getArticlebyKey(articlekey)' >
+    <!-- {{articlekey}} -->
+      <img src={{article.coverImage}} ui-sref="app.article({'articleKey':articlekey})">
+      <span>{{article.name}}<br><p>#{{article.type}} #{{article.location}} #FollowedFoodie</p></span>
+    </ion-item>
 
 
-  </div>
-
-
-    </ion-content>
+  </ion-content>
 </ion-view>
