@@ -275,74 +275,93 @@ angular.module('starter.services', [])
     },
 
 
-    // tempImage: function(article) {
-    //   // File or Blob named mountains.jpg
-    //   var file = article.image;
-    //   var uid = userData.getUser().uid;
-    //   console.log(uid);
-    //   var newPostKey = firebase.database().ref().child('posts').push().key;
+    bookmarkCountXXX: function(articleKey){
+      var firebaseRef = firebase.database().ref('/posts/' + articleKey + '/bookmarkCount/');
+      console.log('firebaseRef',firebaseRef, $firebaseObject(firebaseRef));
 
-    //   // Create the file metadata
-    //   var metadata = {
-    //     contentType: 'image/jpeg'
-    //   };
+      return firebaseRef;
+      // return new Promise(function(resolve, reject){
+      
+      // firebaseRef.transaction(function(bookmarkCount) {
+      //       bookmarkCount = bookmarkCount + 1;
+      //       console.log(bookmarkCount);
+      //       return bookmarkCount;
+      // });
 
-    //   var storageRef = firebase.storage().ref();
-    //   filebase64 = file.replace(/^data:image\/(png|jpeg);base64,/, "");
-    //   // var uploadTask = storageRef.child('images/' + file.name).putString(filebase64, 'base64', {contentType:'image/jpg'});
+      //   }).done(function(result){
+      //       resolve(result);
+      //   })
 
-    //   var uploadTask = storageRef.child('images/' + 'Temp' + '/' + file.name).putString(file, 'data_url', {contentType:'image/jpg'});
+      // return firebaseRef.transaction(function(bookmarkCount) {
+      //       bookmarkCount = bookmarkCount + 1;
+      //       console.log(bookmarkCount);
+      //       return transaction.val();
+      // });
+      
+      // return
+      //   firebaseRef.once('value').then(function(snapshot) {
+      //     return snapshot.val();
+      //   })
+      // ;
 
-    //   // Listen for state changes, errors, and completion of the upload.
-    //   uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
-    //     function(snapshot) {
-    //       // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-    //       var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-    //       console.log('Upload is ' + progress + '% done');
-    //       switch (snapshot.state) {
-    //         case firebase.storage.TaskState.PAUSED: // or 'paused'
-    //           console.log('Upload is paused');
-    //           break;
-    //         case firebase.storage.TaskState.RUNNING: // or 'running'
-    //           console.log('Upload is running');
-    //           break;
-    //       }
-    //     }, function(error) {
-    //       switch (error.code) {
-    //         case 'storage/unauthorized':
-    //           // User doesn't have permission to access the object
-    //           break;
+      // return firebaseRef.once('value').then(function(snapshot) {
+      //   return snapshot.val();
+      // });
 
-    //         case 'storage/canceled':
-    //           // User canceled the upload
-    //           break;
-
-    //         case 'storage/unknown':
-    //           // Unknown error occurred, inspect error.serverResponse
-    //           break;
-    //       }
-    //     }, function() {
-    //       // Upload completed successfully, now we can get the download URL
-    //         var downloadURL = uploadTask.snapshot.downloadURL;
-    //         console.log('image path' , downloadURL)
-    //         return downloadURL;
-    //     });
-    // },
+      },
 
 
     bookmarkArticle: function(articleKey,bookmark) {
-      var uid = userData.getUser().uid;
+      var uid = userData.getUser().uid;   
+      var currentBookmarkCount = $firebaseObject(firebase.database().ref('/posts/' + articleKey + '/bookmarkCount/'));
+      currentBookmarkCount.$loaded().then(function () {
+      console.log(currentBookmarkCount.$value);
+      var bookmarkCount = currentBookmarkCount.$value
 
       if (bookmark){
         var updates = {};
+        var bookmarkCount = bookmarkCount + 1;
         updates['/users/' + uid + '/bookmark/' + articleKey] =  articleKey;
+        updates['/posts/' + articleKey + '/bookmarkCount/'] = bookmarkCount;
         return firebase.database().ref().update(updates);
       }
 
       else {
+
         console.log ('remove')
         firebase.database().ref('/users/' + uid + '/bookmark/'+ articleKey).remove();
+        var bookmarkCount = bookmarkCount - 1;
+        var updates = {};
+        updates['/posts/' + articleKey + '/bookmarkCount/'] = bookmarkCount;
+        return firebase.database().ref().update(updates);
+
       }
+
+
+      });
+
+      // console.log(bookmarkCount);
+      // var bookmarkCount = 0
+      // console.log('bookmarkCount', bookmarkCount);
+
+      // if (bookmark){
+      //   var updates = {};
+      //   var bookmarkCount = bookmarkCount + 1;
+      //   updates['/users/' + uid + '/bookmark/' + articleKey] =  articleKey;
+      //   updates['/posts/' + articleKey + '/bookmarkCount/'] = bookmarkCount;
+      //   return firebase.database().ref().update(updates);
+      // }
+
+      // else {
+
+      //   console.log ('remove')
+      //   firebase.database().ref('/users/' + uid + '/bookmark/'+ articleKey).remove();
+      //   var bookmarkCount = bookmarkCount - 1;
+      //   var updates = {};
+      //   updates['/posts/' + articleKey + '/bookmarkCount/'] = bookmarkCount;
+      //   return firebase.database().ref().update(updates);
+
+      // }
       
     },
 
@@ -352,6 +371,7 @@ angular.module('starter.services', [])
       var bookmarkedArticle = $firebaseObject(firebaseRef); 
       return bookmarkedArticle;
     },
+
 
     rateArticle: function(articleKey,rate,currentRating) {
       var uid = userData.getUser().uid;
@@ -375,12 +395,6 @@ angular.module('starter.services', [])
     },
 
 
-
-    upVoteArticle: function(articleKey) {
-    },
-
-    downVoteArticle: function(articleKey) {
-    },
   
   };
 
