@@ -134,21 +134,20 @@ angular.module('starter.controllers', [])
   };
 
   $scope.pushArticle = function (article) {
-    submitPromise = new Promise(function(resolve, reject){
-      console.log('new article posted', article);
-      articles.saveArticleWithImage(article);
-      resolve(article);
-    });
+    console.log('new article posted', article);
 
-    submitPromise.then(function(article){
+    var submitFinished = false;
+
+    articles.saveArticleWithImage(article).then(function(article){
       article.name = "";
       article.restaurantName = "";
       article.location = "";
       article.type = "";
       article.contents = "";
       article.image = null;
-      console.log('here');
+      console.log(Date.now());
     });
+
   };
 
   // ---------------------------------------------------------------------------------
