@@ -1,7 +1,7 @@
 angular.module('starter.controllers', [])
 
 
-.controller('AppCtrl', function($scope, $ionicModal, $ionicPopover, $ionicScrollDelegate, $timeout, foodies, articles, $ionicSideMenuDelegate, userData) {
+.controller('AppCtrl', function($q, $scope, $ionicModal, $ionicPopover, $ionicScrollDelegate, $timeout, foodies, articles, $ionicSideMenuDelegate, userData) {
 
   firebase.auth().onAuthStateChanged(function () {
     currentUserID = userData.getUser().uid;
@@ -130,27 +130,27 @@ angular.module('starter.controllers', [])
 
   // Open the login modal
   $scope.openNewArticle = function(article) {
-
     $scope.newArticle.show();
+  };
 
-    if (article) {
-      //clearing ng-model values after submit
+  $scope.pushArticle = function (article) {
+    submitPromise = new Promise(function(resolve, reject){
+      console.log('new article posted', article);
+      articles.saveArticleWithImage(article);
+      resolve(article);
+    });
+
+    submitPromise.then(function(article){
       article.name = "";
       article.restaurantName = "";
       article.location = "";
       article.type = "";
       article.contents = "";
       article.image = null;
-    }
-
+      console.log('here');
+    });
   };
 
-  $scope.pushArticle = function (article) {
-    console.log('new article posted', article);
-    articles.saveArticleWithImage(article);
-    // articles.saveArticle(article);
-
-  };
   // ---------------------------------------------------------------------------------
 
 
@@ -203,7 +203,7 @@ angular.module('starter.controllers', [])
   $scope.isBookmarkArticle = function(articleKey){
     isBookmarked = articles.isBookmarkArticle(articleKey);
     console.log('scope isBookmarked' , isBookmarked);
-    return isBookmarked; 
+    return isBookmarked;
   };
 
   $scope.isBookmarkArticle2 = function(articleKey){
@@ -239,10 +239,6 @@ angular.module('starter.controllers', [])
         console.log('promise' , result);
         console.log('promise k ' , k);
       });
-
-
-
-
       console.log('isBookmarked 2', isBookmarked);
   };
 
@@ -253,11 +249,22 @@ angular.module('starter.controllers', [])
       var firebaseRef = firebase.database().ref('/users/' + uid + '/bookmark/');
       console.log('firebaseRef', '/users/' + uid + '/bookmark/');
 
-      return firebaseRef.once("value", function(snapshot) {
+      var x;
+
+      conditional = firebaseRef.once("value").then(function(snapshot) {
         var isExistArticle = snapshot.child(articleKey).exists();
         console.log('isExistArticle', isExistArticle);
         return isExistArticle;
       });
+
+      conditional.then(function(value){
+        console.log('value is: ',value);
+        x = value.toString();
+        console.log('value is:',x);
+
+        return 'hello';
+      });
+
   };
 
 

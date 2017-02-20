@@ -24,13 +24,13 @@
 
     </div>
 
-    <div class="cardflat item-text-wrap" ng-repeat="article in articles" ng-init='foodieInfo=getSelectedArticleFoodieInfo(article.author); isBookmarked=isBookmarkArticle(article.key)'>
+    <div class="cardflat item-text-wrap" ng-repeat="article in articles" ng-init='foodieInfo=getSelectedArticleFoodieInfo(article.author); isBookmarked=isBookmarkArticlePromise(article.key)'>
 
       <div ui-sref="app.profile({'foodieKey':article.author})" style="border-bottom:0px ; margin-bottom: 0px" >
-      {{isBookmarked}}
+        
         <ion-item class="item-avatar no-padding" style="border-bottom:0;">
           <img src= {{foodieInfo.foodieImg}}>
-          <span>{{foodieInfo.foodieName}} [Lv {{foodieInfo.foodieLv}}]</span>
+          <span>{{foodieInfo.foodieName}} [Lv {{foodieInfo.foodieLv}}] {{isBookmarked}}</span>
           <i class="icon ion-stats-bars"></i> {{foodieInfo.foodieScore}}% <br>
           <i class="icon ion-clock "></i> 3 hrs ago
         </ion-item>
