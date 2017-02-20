@@ -275,59 +275,59 @@ angular.module('starter.services', [])
     },
 
 
-    tempImage: function(article) {
-      // File or Blob named mountains.jpg
-      var file = article.image;
-      var uid = userData.getUser().uid;
-      console.log(uid);
-      var newPostKey = firebase.database().ref().child('posts').push().key;
+    // tempImage: function(article) {
+    //   // File or Blob named mountains.jpg
+    //   var file = article.image;
+    //   var uid = userData.getUser().uid;
+    //   console.log(uid);
+    //   var newPostKey = firebase.database().ref().child('posts').push().key;
 
-      // Create the file metadata
-      var metadata = {
-        contentType: 'image/jpeg'
-      };
+    //   // Create the file metadata
+    //   var metadata = {
+    //     contentType: 'image/jpeg'
+    //   };
 
-      var storageRef = firebase.storage().ref();
-      filebase64 = file.replace(/^data:image\/(png|jpeg);base64,/, "");
-      // var uploadTask = storageRef.child('images/' + file.name).putString(filebase64, 'base64', {contentType:'image/jpg'});
+    //   var storageRef = firebase.storage().ref();
+    //   filebase64 = file.replace(/^data:image\/(png|jpeg);base64,/, "");
+    //   // var uploadTask = storageRef.child('images/' + file.name).putString(filebase64, 'base64', {contentType:'image/jpg'});
 
-      var uploadTask = storageRef.child('images/' + 'Temp' + '/' + file.name).putString(file, 'data_url', {contentType:'image/jpg'});
+    //   var uploadTask = storageRef.child('images/' + 'Temp' + '/' + file.name).putString(file, 'data_url', {contentType:'image/jpg'});
 
-      // Listen for state changes, errors, and completion of the upload.
-      uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
-        function(snapshot) {
-          // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-          var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-          console.log('Upload is ' + progress + '% done');
-          switch (snapshot.state) {
-            case firebase.storage.TaskState.PAUSED: // or 'paused'
-              console.log('Upload is paused');
-              break;
-            case firebase.storage.TaskState.RUNNING: // or 'running'
-              console.log('Upload is running');
-              break;
-          }
-        }, function(error) {
-          switch (error.code) {
-            case 'storage/unauthorized':
-              // User doesn't have permission to access the object
-              break;
+    //   // Listen for state changes, errors, and completion of the upload.
+    //   uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
+    //     function(snapshot) {
+    //       // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+    //       var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+    //       console.log('Upload is ' + progress + '% done');
+    //       switch (snapshot.state) {
+    //         case firebase.storage.TaskState.PAUSED: // or 'paused'
+    //           console.log('Upload is paused');
+    //           break;
+    //         case firebase.storage.TaskState.RUNNING: // or 'running'
+    //           console.log('Upload is running');
+    //           break;
+    //       }
+    //     }, function(error) {
+    //       switch (error.code) {
+    //         case 'storage/unauthorized':
+    //           // User doesn't have permission to access the object
+    //           break;
 
-            case 'storage/canceled':
-              // User canceled the upload
-              break;
+    //         case 'storage/canceled':
+    //           // User canceled the upload
+    //           break;
 
-            case 'storage/unknown':
-              // Unknown error occurred, inspect error.serverResponse
-              break;
-          }
-        }, function() {
-          // Upload completed successfully, now we can get the download URL
-            var downloadURL = uploadTask.snapshot.downloadURL;
-            console.log('image path' , downloadURL)
-            return downloadURL;
-        });
-    },
+    //         case 'storage/unknown':
+    //           // Unknown error occurred, inspect error.serverResponse
+    //           break;
+    //       }
+    //     }, function() {
+    //       // Upload completed successfully, now we can get the download URL
+    //         var downloadURL = uploadTask.snapshot.downloadURL;
+    //         console.log('image path' , downloadURL)
+    //         return downloadURL;
+    //     });
+    // },
 
 
     bookmarkArticle: function(articleKey,bookmark) {
@@ -352,6 +352,28 @@ angular.module('starter.services', [])
       var bookmarkedArticle = $firebaseObject(firebaseRef); 
       return bookmarkedArticle;
     },
+
+    rateArticle: function(articleKey,rate,currentRating) {
+      var uid = userData.getUser().uid;
+      var updates = {};
+      console.log(rate,currentRating);
+      if (currentRating==rate) {
+        firebase.database().ref('/users/' + uid + '/rate/'+ articleKey).remove()
+      }
+
+      else {
+        updates['/users/' + uid + '/rate/' + articleKey] =  rate;
+        return firebase.database().ref().update(updates);      
+      };
+    },
+
+    isRateArticle: function(articleKey) {
+      var uid = userData.getUser().uid;
+      var firebaseRef = firebase.database().ref('/users/' + uid + '/rate/'+ articleKey);
+      var ratedArticle = $firebaseObject(firebaseRef); 
+      return ratedArticle;
+    },
+
 
 
     upVoteArticle: function(articleKey) {
