@@ -1,7 +1,7 @@
 angular.module('starter.controllers', [])
 
 
-.controller('AppCtrl', function($scope, $ionicModal, $ionicPopover, $ionicScrollDelegate, $timeout, foodies, articles, $ionicSideMenuDelegate, userData) {
+.controller('AppCtrl', function($q, $scope, $ionicModal, $ionicPopover, $ionicScrollDelegate, $timeout, foodies, articles, $ionicSideMenuDelegate, userData) {
 
   firebase.auth().onAuthStateChanged(function () {
     currentUserID = userData.getUser().uid;
@@ -122,6 +122,24 @@ angular.module('starter.controllers', [])
   $scope.tempImage = function (article) {
     articles.tempImage(article);
   };
+
+  $scope.pushArticle = function (article) {
+    console.log('new article posted', article);
+
+    var submitFinished = false;
+
+    articles.saveArticleWithImage(article).then(function(article){
+      article.name = "";
+      article.restaurantName = "";
+      article.location = "";
+      article.type = "";
+      article.contents = "";
+      article.image = null;
+      console.log(Date.now());
+    });
+
+  };
+
   // ---------------------------------------------------------------------------------
 
 

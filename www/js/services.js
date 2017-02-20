@@ -179,99 +179,107 @@ angular.module('starter.services', [])
     },
 
     saveArticleWithImage: function(article) {
-      // File or Blob named mountains.jpg
-      var file = article.image;
-      var uid = userData.getUser().uid;
-      console.log(uid);
-      var newPostKey = firebase.database().ref().child('posts').push().key;
+      return new Promise (function(resolve, reject) {
 
-      console.log('img name is : ', file.name);
-      console.log('article is : ', article);
-      console.log('img is : ', article.image);
-      // Create the file metadata
-      var metadata = {
-        contentType: 'image/jpeg'
-      };
+        // File or Blob named mountains.jpg
+        var file = article.image;
+        var uid = userData.getUser().uid;
+        console.log(uid);
+        var newPostKey = firebase.database().ref().child('posts').push().key;
 
-      var storageRef = firebase.storage().ref();
+        // For checking image upload
+        //console.log('img is : ', article.image);
 
-      // console.log(file,  file.name);
+        // Create the file metadata
+        var metadata = {
+          contentType: 'image/jpeg'
+        };
 
-      // Upload file and metadata to the object 'images/mountains.jpg'
-      // var uploadTask = storageRef.child('images/' + file.name).putString(file);
-      filebase64 = file.replace(/^data:image\/(png|jpeg);base64,/, "");
-      // var uploadTask = storageRef.child('images/' + file.name).putString(filebase64, 'base64', {contentType:'image/jpg'});
+        var storageRef = firebase.storage().ref();
 
-      var uploadTask = storageRef.child('images/' + newPostKey + '/' + file.name).putString(file, 'data_url', {contentType:'image/jpg'});
+        // console.log(file,  file.name);
 
-      // Listen for state changes, errors, and completion of the upload.
-      uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
-        function(snapshot) {
-          // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-          var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-          console.log('Upload is ' + progress + '% done');
-          switch (snapshot.state) {
-            case firebase.storage.TaskState.PAUSED: // or 'paused'
-              console.log('Upload is paused');
-              break;
-            case firebase.storage.TaskState.RUNNING: // or 'running'
-              console.log('Upload is running');
-              break;
-          }
-        }, function(error) {
-          switch (error.code) {
-            case 'storage/unauthorized':
-              // User doesn't have permission to access the object
-              break;
+        // Upload file and metadata to the object 'images/mountains.jpg'
+        // var uploadTask = storageRef.child('images/' + file.name).putString(file);
+        filebase64 = file.replace(/^data:image\/(png|jpeg);base64,/, "");
+        // var uploadTask = storageRef.child('images/' + file.name).putString(filebase64, 'base64', {contentType:'image/jpg'});
 
-            case 'storage/canceled':
-              // User canceled the upload
-              break;
+        var uploadTask = storageRef.child('images/' + newPostKey + '/' + file.name).putString(file, 'data_url', {contentType:'image/jpg'});
 
-            case 'storage/unknown':
-              // Unknown error occurred, inspect error.serverResponse
-              break;
-          }
-        }, function() {
-          // Upload completed successfully, now we can get the download URL
+        // Listen for state changes, errors, and completion of the upload.
+        uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
+          function(snapshot) {
+            // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+            var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+            console.log('Upload is ' + progress + '% done');
+            switch (snapshot.state) {
+              case firebase.storage.TaskState.PAUSED: // or 'paused'
+                console.log('Upload is paused');
+                break;
+              case firebase.storage.TaskState.RUNNING: // or 'running'
+                console.log('Upload is running');
+                break;
+            }
+          }, function(error) {
+            switch (error.code) {
+              case 'storage/unauthorized':
+                // User doesn't have permission to access the object
+                break;
 
-            var downloadURL = uploadTask.snapshot.downloadURL;
-            console.log('img url downloadURL');
-            console.log('will save this to the database', article);
-            console.log(newPostKey);
+              case 'storage/canceled':
+                // User canceled the upload
+                break;
 
-            console.log ('article name is:', article.name);
+              case 'storage/unknown':
+                // Unknown error occurred, inspect error.serverResponse
+                break;
+            }
+          }, function() {
+            // Upload completed successfully, now we can get the download URL
 
-            var newArticleImg = {
-              1:downloadURL,
-              2:downloadURL,
-              3:downloadURL};
+              var downloadURL = uploadTask.snapshot.downloadURL;
+              console.log('img url downloadURL');
+              console.log('will save this to the database', article);
+              console.log(newPostKey);
 
-            var newArticle = {
-                name: article.name,
-                restaurantName: article.restaurantName,
-                location: article.location,
-                type: article.type,
-                contents: article.contents,
-                articleImgs: newArticleImg,
-                timestamp: Math.floor(Date.now()/1000),
-                coverImage: downloadURL,
-                author: uid,
-                upVote: 1,
-                downVote: 0,
-                totalRating: 1,
-                key: newPostKey
-            };
+              console.log ('article name is:', article.name);
 
-            var updates = {};
+              var newArticleImg = {
+                1:downloadURL,
+                2:downloadURL,
+                3:downloadURL};
 
-            updates['/posts/' + newPostKey] = newArticle;
-            updates['/user-posts/' + uid + '/' + newPostKey] = newArticle;
-            updates['/users/' + uid + '/posts/' + newPostKey] = newArticle;
+              var newArticle = {
+                  name: article.name,
+                  restaurantName: article.restaurantName,
+                  location: article.location,
+                  type: article.type,
+                  contents: article.contents,
+                  // articleImgs: newArticleImg,
+                  timestamp: Math.floor(Date.now()/1000),
+                  coverImage: downloadURL,
+                  author: uid,
+                  upVote: 1,
+                  downVote: 0,
+                  totalRating: 1,
+                  key: newPostKey
+              };
 
-            return firebase.database().ref().update(updates);
+              var updates = {};
 
-        });
+              updates['/posts/' + newPostKey] = newArticle;
+              updates['/user-posts/' + uid + '/' + newPostKey] = newArticle;
+              updates['/users/' + uid + '/posts/' + newPostKey] = newArticle;
+
+              firebase.database().ref().update(updates);
+              console.log(Date.now());
+
+              resolve(article);
+
+              //return firebase.database().ref().update(updates);
+            }
+          );
+      });
     },
 
 
@@ -329,7 +337,6 @@ angular.module('starter.services', [])
 
       else {
 
-        console.log ('remove')
         firebase.database().ref('/users/' + uid + '/bookmark/'+ articleKey).remove();
         var bookmarkCount = bookmarkCount - 1;
         var updates = {};
@@ -369,7 +376,7 @@ angular.module('starter.services', [])
     isBookmarkArticle: function(articleKey) {
       var uid = userData.getUser().uid;
       var firebaseRef = firebase.database().ref('/users/' + uid + '/bookmark/'+ articleKey);
-      var bookmarkedArticle = $firebaseObject(firebaseRef); 
+      var bookmarkedArticle = $firebaseObject(firebaseRef);
       return bookmarkedArticle;
     },
 
@@ -379,19 +386,19 @@ angular.module('starter.services', [])
       var updates = {};
       console.log(rate,currentRating);
       if (currentRating==rate) {
-        firebase.database().ref('/users/' + uid + '/rate/'+ articleKey).remove()
+        firebase.database().ref('/users/' + uid + '/rate/'+ articleKey).remove();
       }
 
       else {
         updates['/users/' + uid + '/rate/' + articleKey] =  rate;
-        return firebase.database().ref().update(updates);      
-      };
+        return firebase.database().ref().update(updates);
+      }
     },
 
     isRateArticle: function(articleKey) {
       var uid = userData.getUser().uid;
       var firebaseRef = firebase.database().ref('/users/' + uid + '/rate/'+ articleKey);
-      var ratedArticle = $firebaseObject(firebaseRef); 
+      var ratedArticle = $firebaseObject(firebaseRef);
       return ratedArticle;
     },
 
