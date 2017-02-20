@@ -314,6 +314,7 @@ angular.module('starter.services', [])
     bookmarkArticle: function(articleKey,bookmark) {
       var uid = userData.getUser().uid;   
       var currentBookmarkCount = $firebaseObject(firebase.database().ref('/posts/' + articleKey + '/bookmarkCount/'));
+      
       currentBookmarkCount.$loaded().then(function () {
       console.log(currentBookmarkCount.$value);
       var bookmarkCount = currentBookmarkCount.$value
