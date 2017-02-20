@@ -185,6 +185,16 @@ angular.module('starter.controllers', [])
     // console.log('scope isBookmarked' , isBookmarked); 
   };
 
+  $scope.rateArticle = function(articleKey, rate){
+    // console.log('scope isRated' , articleKey, rate)
+    articles.rateArticle(articleKey, rate);
+  };
+
+  $scope.isRateArticle = function(articleKey){
+    return articles.isRateArticle(articleKey);
+    console.log('scope isRated' , isRated); 
+  };
+
 })
 
 //Restaurant page controller
