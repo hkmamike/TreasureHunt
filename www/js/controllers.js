@@ -111,8 +111,16 @@ angular.module('starter.controllers', [])
   };
 
   $scope.openNewArticle = function(article) {
-<<<<<<< HEAD
+    $scope.articleInput = {};
     $scope.newArticle.show();
+  };
+
+  $scope.pushArticle = function (article) {
+    articles.saveArticleWithImage(article);
+  };
+
+  $scope.tempImage = function (article) {
+    articles.tempImage(article);
   };
 
   $scope.pushArticle = function (article) {
@@ -132,19 +140,6 @@ angular.module('starter.controllers', [])
 
   };
 
-=======
-    $scope.articleInput = {};
-    $scope.newArticle.show();
-  };
-
-  $scope.pushArticle = function (article) {
-    articles.saveArticleWithImage(article);
-  };
-
-  $scope.tempImage = function (article) {
-    articles.tempImage(article);
-  };
->>>>>>> 7713a165a06bf4612da7659291c037d7cf6d4c36
   // ---------------------------------------------------------------------------------
 
 
@@ -204,72 +199,6 @@ angular.module('starter.controllers', [])
   };
 
   $scope.isBookmarkArticle = function(articleKey){
-<<<<<<< HEAD
-    isBookmarked = articles.isBookmarkArticle(articleKey);
-    console.log('scope isBookmarked' , isBookmarked);
-    return isBookmarked;
-  };
-
-  $scope.isBookmarkArticle2 = function(articleKey){
-      var uid = userData.getUser().uid;
-      var firebaseRef = firebase.database().ref('/users/' + uid + '/bookmark/');
-      console.log('firebaseRef', '/users/' + uid + '/bookmark/');
-
-      var isBookmarked = firebaseRef.once("value", function(snapshot) {
-        var isExistArticle = snapshot.child(articleKey).exists();
-        console.log('isExistArticle', isExistArticle);
-        return isExistArticle;
-      });
-
-      var promise = new Promise(function(resolve, reject){
-
-        var k = firebaseRef.once("value", function(snapshot) {
-          var isExistArticle = snapshot.child(articleKey).exists();
-          console.log('isExistArticle', isExistArticle);
-          return isExistArticle;
-        });
-
-        if(k){
-          resolve(k)
-          console.log(k);
-        }
-        else{
-          reject(error("broken"));
-        }
-
-      });
-
-      promise.then(function(result){
-        console.log('promise' , result);
-        console.log('promise k ' , k);
-      });
-      console.log('isBookmarked 2', isBookmarked);
-  };
-
-
-
-  $scope.isBookmarkArticlePromise = function(articleKey){
-      var uid = userData.getUser().uid;
-      var firebaseRef = firebase.database().ref('/users/' + uid + '/bookmark/');
-      console.log('firebaseRef', '/users/' + uid + '/bookmark/');
-
-      var x;
-
-      conditional = firebaseRef.once("value").then(function(snapshot) {
-        var isExistArticle = snapshot.child(articleKey).exists();
-        console.log('isExistArticle', isExistArticle);
-        return isExistArticle;
-      });
-
-      conditional.then(function(value){
-        console.log('value is: ',value);
-        x = value.toString();
-        console.log('value is:',x);
-
-        return 'hello';
-      });
-
-=======
     return articles.isBookmarkArticle(articleKey);
     // console.log('scope isBookmarked' , isBookmarked); 
   };
@@ -282,7 +211,6 @@ angular.module('starter.controllers', [])
   $scope.isRateArticle = function(articleKey){
     return articles.isRateArticle(articleKey);
     console.log('scope isRated' , isRated); 
->>>>>>> 7713a165a06bf4612da7659291c037d7cf6d4c36
   };
 
 })
