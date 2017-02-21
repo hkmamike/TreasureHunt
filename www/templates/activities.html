@@ -26,7 +26,7 @@
 
     </div>
 
-    <div class="cardflat item-text-wrap" ng-repeat="article in articles" ng-init='foodieInfo=getSelectedArticleFoodieInfo(article.author); isBookmarked=isBookmarkArticle(article.key); isRated=isRateArticle(article.key); bookmarkCount=countChild(); rateScore=countChild();'>
+    <div class="cardflat item-text-wrap" ng-repeat="article in articles" ng-init='foodieInfo=getSelectedArticleFoodieInfo(article.author); isBookmarked=isBookmarkArticle(article.key); isRated=isRateArticle(article.key); bookmarkCount=countBookmark(article.key); rateScore=articleScole(article.key);'>
 
       <div ui-sref="app.profile({'foodieKey':article.author})" style="border-bottom:0px ; margin-bottom: 0px" >
         <ion-item class="item-avatar no-padding" style="border-bottom:0;">

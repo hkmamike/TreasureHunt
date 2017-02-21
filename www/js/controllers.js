@@ -238,12 +238,13 @@ angular.module('starter.controllers', [])
 
   };
 
-  $scope.countChild = function() {
-
+  $scope.countBookmark = function(articleKey) {
       return 56;
-
   };
 
+  $scope.articleScole = function(articleKey) {
+      return 99;
+  };
 
   // $scope.isRateUpArticle = function(articleKey){
   //   return articles.isRateUpArticle(articleKey);
