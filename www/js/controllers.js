@@ -213,6 +213,20 @@ angular.module('starter.controllers', [])
     console.log('scope isRated' , isRated); 
   };
 
+  $scope.countChild = function(path){
+ 
+  };
+
+  // $scope.isRateUpArticle = function(articleKey){
+  //   return articles.isRateUpArticle(articleKey);
+  //   console.log('scope isRated' , isRated); 
+  // };
+
+  // $scope.isRateDownArticle = function(articleKey){
+  //   return articles.isRateDownArticle(articleKey);
+  //   console.log('scope isRated' , isRated); 
+  // };
+
 })
 
 //Restaurant page controller

@@ -282,87 +282,25 @@ angular.module('starter.services', [])
       });
     },
 
-
-    bookmarkCountXXX: function(articleKey){
-      var firebaseRef = firebase.database().ref('/posts/' + articleKey + '/bookmarkCount/');
-      console.log('firebaseRef',firebaseRef, $firebaseObject(firebaseRef));
-
-      return firebaseRef;
-      // return new Promise(function(resolve, reject){
-      
-      // firebaseRef.transaction(function(bookmarkCount) {
-      //       bookmarkCount = bookmarkCount + 1;
-      //       console.log(bookmarkCount);
-      //       return bookmarkCount;
-      // });
-
-      //   }).done(function(result){
-      //       resolve(result);
-      //   })
-
-      // return firebaseRef.transaction(function(bookmarkCount) {
-      //       bookmarkCount = bookmarkCount + 1;
-      //       console.log(bookmarkCount);
-      //       return transaction.val();
-      // });
-      
-      // return
-      //   firebaseRef.once('value').then(function(snapshot) {
-      //     return snapshot.val();
-      //   })
-      // ;
-
-      // return firebaseRef.once('value').then(function(snapshot) {
-      //   return snapshot.val();
-      // });
-
-      },
-
-
     bookmarkArticle: function(articleKey,bookmark) {
       var uid = userData.getUser().uid;   
-      var currentBookmarkCount = $firebaseObject(firebase.database().ref('/posts/' + articleKey + '/bookmarkCount/'));
-      
-      currentBookmarkCount.$loaded().then(function () {
-      console.log(currentBookmarkCount.$value);
-      var bookmarkCount = currentBookmarkCount.$value
+      var bookmarkTime = Math.floor(Date.now()/1000);
+      // var currentBookmarkCount = $firebaseObject(firebase.database().ref('/posts/' + articleKey + '/bookmarkCount/'));
 
-      if (bookmark){
-        var updates = {};
-        var bookmarkCount = bookmarkCount + 1;
-        updates['/users/' + uid + '/bookmark/' + articleKey] =  articleKey;
-        updates['/posts/' + articleKey + '/bookmarkCount/'] = bookmarkCount;
-        return firebase.database().ref().update(updates);
-      }
-
-      else {
-
-        firebase.database().ref('/users/' + uid + '/bookmark/'+ articleKey).remove();
-        var bookmarkCount = bookmarkCount - 1;
-        var updates = {};
-        updates['/posts/' + articleKey + '/bookmarkCount/'] = bookmarkCount;
-        return firebase.database().ref().update(updates);
-
-      }
-
-
-      });
-
-      // console.log(bookmarkCount);
-      // var bookmarkCount = 0
-      // console.log('bookmarkCount', bookmarkCount);
+      // currentBookmarkCount.$loaded().then(function () {
+      // console.log(currentBookmarkCount.$value);
+      // var bookmarkCount = currentBookmarkCount.$value
 
       // if (bookmark){
       //   var updates = {};
       //   var bookmarkCount = bookmarkCount + 1;
-      //   updates['/users/' + uid + '/bookmark/' + articleKey] =  articleKey;
+      //   updates['/users/' + uid + '/bookmark/' + articleKey] =  1;
       //   updates['/posts/' + articleKey + '/bookmarkCount/'] = bookmarkCount;
       //   return firebase.database().ref().update(updates);
       // }
 
       // else {
 
-      //   console.log ('remove')
       //   firebase.database().ref('/users/' + uid + '/bookmark/'+ articleKey).remove();
       //   var bookmarkCount = bookmarkCount - 1;
       //   var updates = {};
@@ -370,6 +308,24 @@ angular.module('starter.services', [])
       //   return firebase.database().ref().update(updates);
 
       // }
+
+
+      // });
+
+
+      if (bookmark){
+        var updates = {};
+        updates['/users/' + uid + '/bookmark/' + articleKey] =  bookmarkTime;
+        updates['/posts/' + articleKey + '/bookmark/' + uid] = bookmarkTime;
+        return firebase.database().ref().update(updates);
+      }
+
+      else {
+
+        console.log ('remove')
+        firebase.database().ref('/users/' + uid + '/bookmark/'+ articleKey).remove();
+        firebase.database().ref('/posts/' + articleKey + '/bookmark/' + uid).remove();
+      }
       
     },
 
@@ -381,27 +337,75 @@ angular.module('starter.services', [])
     },
 
 
-    rateArticle: function(articleKey,rate,currentRating) {
+    rateArticle: function(articleKey,rate) {
       var uid = userData.getUser().uid;
       var updates = {};
-      console.log(rate,currentRating);
-      if (currentRating==rate) {
+      var rateTime = Math.floor(Date.now()/1000);
+      // var currentUserRating =0;
+      var currentRating = $firebaseObject(firebase.database().ref('/users/' + uid + '/rate/' + articleKey));
+
+      // var currentUserRating = $firebaseObject(firebase.database().ref('/users/' + uid + '/rate/'+ articleKey));
+      // var currentRating = 0;
+      // var currentUserRating = 0;
+
+      // currentRating.$loaded().then(function () {
+      //   console.log(currentRating.$value);
+      // });
+
+      currentRating.$loaded().then(function () {
+      var currentUserRating = currentRating.$value
+      console.log(articleKey,rate,currentUserRating); 
+
+        // firebase.database().ref('/users/' + uid + '/rate/'+ articleKey + '/up/').remove();
+        // firebase.database().ref('/users/' + uid + '/rate/'+ articleKey + '/down/').remove();
         firebase.database().ref('/users/' + uid + '/rate/'+ articleKey).remove();
+        firebase.database().ref('/posts/' + articleKey + '/rate/up/'+ uid).remove();
+        firebase.database().ref('/posts/' + articleKey + '/rate/down/'+ uid).remove();
+
+      if (currentUserRating==rate) {
+
       }
 
       else {
-        updates['/users/' + uid + '/rate/' + articleKey] =  rate;
+
+        updates['/users/' + uid + '/rate/' + articleKey] =  rate;        
+        
+        if(rate==1) {
+          // updates['/users/' + uid + '/rate/' + articleKey +'/up/'] =  rateTime;
+          updates['/posts/' + articleKey + '/rate/up/' + uid] = rateTime;
+        }
+
+        else {
+          // updates['/users/' + uid + '/rate/' + articleKey +'/down/'] =  rateTime;
+          updates['/posts/' + articleKey + '/rate/down/' + uid] = rateTime;
+        }
+
         return firebase.database().ref().update(updates);
       }
+    });
+      
     },
 
     isRateArticle: function(articleKey) {
       var uid = userData.getUser().uid;
-      var firebaseRef = firebase.database().ref('/users/' + uid + '/rate/'+ articleKey);
-      var ratedArticle = $firebaseObject(firebaseRef);
-      return ratedArticle;
+      var firebaseRef = firebase.database().ref('/users/' + uid + '/rate/' + articleKey);
+      var ratedUpArticle = $firebaseObject(firebaseRef);
+      return ratedUpArticle;
     },
 
+    // isRateUpArticle: function(articleKey) {
+    //   var uid = userData.getUser().uid;
+    //   var firebaseRef = firebase.database().ref('/posts/' + articleKey + '/rate/up/'+ uid);
+    //   var ratedUpArticle = $firebaseObject(firebaseRef);
+    //   return ratedUpArticle;
+    // },
+
+    // isRateDownArticle: function(articleKey) {
+    //   var uid = userData.getUser().uid;
+    //   var firebaseRef = firebase.database().ref('/posts/' + articleKey + '/rate/down/'+ uid);
+    //   var ratedDownArticle = $firebaseObject(firebaseRef);
+    //   return ratedDownArticle;
+    // },
 
   
   };

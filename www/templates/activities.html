@@ -52,13 +52,13 @@
 
         <button class="button icon ion-share" ui-sref="app.favourites"></button>
 
-        <button class="button icon ion-thumbsup" ng-class="{true: 'royal'}[isRated.$value==1]" ng-click="rateArticle(article.key,1,isRated.$value)"></button>
-        <button class="button icon ion-thumbsdown" ng-class="{true: 'royal'}[isRated.$value==-1]" ng-click="rateArticle(article.key,-1,isRated.$value)"></button>
+        <button class="button icon ion-thumbsup" ng-class="{true: 'royal'}[isRated.$value==1]" ng-click="rateArticle(article.key,1)"></button>
+        <button class="button icon ion-thumbsdown" ng-class="{true: 'royal'}[isRated.$value==-1]" ng-click="rateArticle(article.key,-1)"></button>
       </div>
 
       <div class="oneThird" style="padding: 0px">
         <span style="float: right; font-size: 12px"><i class="icon ion-clock "></i> 3 hrs ago</span>
-        <span style="float: right; font-size: 12px">{{article.bookmarkCount}} favoirites, {{article.articleRating}} positive</span>
+        <span style="float: right; font-size: 12px">{{article.bookmarkCountx}} favoirites, {{article.articleRating}} positive</span>
       </div>
 
       </div>
