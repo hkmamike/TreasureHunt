@@ -213,9 +213,37 @@ angular.module('starter.controllers', [])
     console.log('scope isRated' , isRated); 
   };
 
-  $scope.countChild = function(path){
- 
+
+
+  $scope.countChildd = function(path){
+
+
+  // var k = firebase.database().ref('/users/').once("value").then(function(snapshot) {
+  //   return snapshot.numChildren(); // 1 ("name")
+  // });
+
+  // return console.log(k);
+
+  // a.once("value").then(function () {
+  //   $scope.countChildren = a;
+  //   console.log(a);    
+  // });
+
+
+    // var getTotalCount = {};
+
+
+    // console.log(getTotalCount);
+    // return getTotalCount;
+
   };
+
+  $scope.countChild = function() {
+
+      return 56;
+
+  };
+
 
   // $scope.isRateUpArticle = function(articleKey){
   //   return articles.isRateUpArticle(articleKey);

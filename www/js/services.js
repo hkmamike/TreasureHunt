@@ -287,7 +287,7 @@ angular.module('starter.services', [])
       var bookmarkTime = Math.floor(Date.now()/1000);
       // var currentBookmarkCount = $firebaseObject(firebase.database().ref('/posts/' + articleKey + '/bookmarkCount/'));
 
-      // currentBookmarkCount.$loaded().then(function () {
+      // c
       // console.log(currentBookmarkCount.$value);
       // var bookmarkCount = currentBookmarkCount.$value
 
@@ -315,7 +315,7 @@ angular.module('starter.services', [])
 
       if (bookmark){
         var updates = {};
-        updates['/users/' + uid + '/bookmark/' + articleKey] =  bookmarkTime;
+        updates['/users/' + uid + '/bookmark/' + articleKey] =  articleKey;
         updates['/posts/' + articleKey + '/bookmark/' + uid] = bookmarkTime;
         return firebase.database().ref().update(updates);
       }
@@ -407,7 +407,37 @@ angular.module('starter.services', [])
     //   return ratedDownArticle;
     // },
 
-  
+    articleScole: function(articleKey) {
+
+    var totalUp = firebase.database().ref('/posts/'+ articleKey + '/rate/up/').once("value").then(function(snapshot) {
+            totalCount = snapshot.numChildren();
+            console.log('count',totalCount);
+            return(totalCount);
+    });
+
+
+    var totalDown = firebase.database().ref('/posts/'+ articleKey + '/rate/down/').once("value").then(function(snapshot) {
+            totalCount = snapshot.numChildren();
+            console.log('count',totalCount);
+            return(totalCount);
+    });
+
+      return (2*totalUp/(totalUp+totalDown) - 1 )*100
+    },
+
+    articleBookmark: function(articleKey) {
+
+    var k = firebase.database().ref('/posts/'+ articleKey + '/bookmark/').once("value").then(function(snapshot) {
+            totalCount = snapshot.numChildren();
+            console.log('count',totalCount);
+            return(totalCount);
+    });
+
+    return k
+
+    },
+
+
   };
 
 }]);

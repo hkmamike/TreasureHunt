@@ -26,7 +26,7 @@
 
     </div>
 
-    <div class="cardflat item-text-wrap" ng-repeat="article in articles" ng-init='foodieInfo=getSelectedArticleFoodieInfo(article.author); isBookmarked=isBookmarkArticle(article.key); isRated=isRateArticle(article.key)'>
+    <div class="cardflat item-text-wrap" ng-repeat="article in articles" ng-init='foodieInfo=getSelectedArticleFoodieInfo(article.author); isBookmarked=isBookmarkArticle(article.key); isRated=isRateArticle(article.key); bookmarkCount=countChild(); rateScore=countChild();'>
 
       <div ui-sref="app.profile({'foodieKey':article.author})" style="border-bottom:0px ; margin-bottom: 0px" >
         <ion-item class="item-avatar no-padding" style="border-bottom:0;">
@@ -58,7 +58,7 @@
 
       <div class="oneThird" style="padding: 0px">
         <span style="float: right; font-size: 12px"><i class="icon ion-clock "></i> 3 hrs ago</span>
-        <span style="float: right; font-size: 12px">{{article.bookmarkCountx}} favoirites, {{article.articleRating}} positive</span>
+        <span style="float: right; font-size: 12px">{{bookmarkCount}} favoirites, {{rateScore}} positive</span>
       </div>
 
       </div>
