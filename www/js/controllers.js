@@ -188,8 +188,38 @@ angular.module('starter.controllers', [])
 })
 
 //Activities page controller
-.controller('activitiesCtrl', function($scope, articles, foodies, userData) {
-  
+.controller('activitiesCtrl', function($q, $scope, articles, foodies, userData, getPromise) {
+
+
+  $scope.getBookmarkCount= function(articleKey) {
+   console.log('articleKey',articleKey);
+   var def = $q.defer();
+   firebase.database().ref('/posts/'+ articleKey + '/bookmark/').on('value', function(snapshot) {
+      var totalCount = snapshot.numChildren();
+      def.resolve(totalCount);
+   });
+   console.log('getBookmarkCount',def.promise, def.promise.$$state.value)
+   return def.promise.$$state.value;
+  }
+
+  $scope.getScore= function(articleKey) {
+   console.log('articleKey',articleKey);
+   var defup = $q.defer();
+   firebase.database().ref('/posts/'+ articleKey + '/rate/up/').once('value', function(snapshot) {
+      var totalCount = snapshot.numChildren();
+      defup.resolve(totalCount);
+   });
+   var defdown = $q.defer();
+   firebase.database().ref('/posts/'+ articleKey + '/rate/down/').once('value', function(snapshot) {
+      var totalCount = snapshot.numChildren();
+      defdown.resolve(totalCount);
+   });
+
+   var totalScole = defup.promise.$$state.value / (defup.promise.$$state.value + defdown.promise.$$state.value)
+   return totalScole;
+  }
+
+
   $scope.getSelectedArticleFoodieInfo = function(foodieID){
     return foodies.getFoodieInfo(foodieID);
   };
@@ -218,6 +248,7 @@ angular.module('starter.controllers', [])
   $scope.countChildd = function(path){
 
 
+
   // var k = firebase.database().ref('/users/').once("value").then(function(snapshot) {
   //   return snapshot.numChildren(); // 1 ("name")
   // });
@@ -243,7 +274,7 @@ angular.module('starter.controllers', [])
   };
 
   $scope.articleScole = function(articleKey) {
-      return 99;
+      return 99 ;
   };
 
   // $scope.isRateUpArticle = function(articleKey){

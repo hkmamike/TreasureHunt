@@ -55,6 +55,44 @@ angular.module('starter.services', [])
 })
 
 
+.factory('getPromise', function($q) {
+
+
+  var getMessages = function() {
+    var deferred = $q.defer(); 
+    var totalCount ={};
+    var k = firebase.database().ref('/posts/'+ '-KdKW9C-Cd6H3_UIwDFs' + '/bookmark/').once("value").then(function(snapshot) {
+            var totalCount = snapshot.numChildren();
+            console.log('count',totalCount);
+    });
+    deferred.resolve(k);
+    return deferred.promise;
+  };
+
+  return {
+    getMessages: getMessages
+  };
+
+
+
+
+  // var getIfBookmark = function() {
+  //   var deferred = $q.defer();
+  //   var promiseReturn = firebase.database().ref('/posts/'+ '-KdKW9C-Cd6H3_UIwDFs' + '/bookmark/').once("value").then(function(snapshot) {
+  //           totalCount = snapshot.numChildren();
+  //           console.log('count',totalCount);
+  //   });
+  //   deferred.resolve(promiseReturn);
+  //   return deferred.promise;
+  // },
+
+  // return {
+  //   getIfBookmark: getIfBookmark
+  // };
+
+})
+
+
 .factory('foodies', ['userData', '$firebaseObject', '$firebaseArray', function(userData, $firebaseObject, $firebaseArray) {
   
   var ref = firebase.database().ref().child('users');
@@ -282,6 +320,8 @@ angular.module('starter.services', [])
       });
     },
 
+
+
     bookmarkArticle: function(articleKey,bookmark) {
       var uid = userData.getUser().uid;   
       var bookmarkTime = Math.floor(Date.now()/1000);
@@ -436,6 +476,9 @@ angular.module('starter.services', [])
     return k
 
     },
+
+
+
 
 
   };
