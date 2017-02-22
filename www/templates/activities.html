@@ -49,12 +49,12 @@
       <div style="height:50px; padding: 0px">
 
       <div class="twoThird" style="padding: 0px">
-        <button class="button icon ion-heart" ng-class="{true: 'assertive'}[isBookmarked.$value!==null]" ng-click="bookmarkArticle(article.key,isBookmarked.$value==null)"></button>
+        <button class="button icon ion-heart" ng-class="{true: 'assertive'}[isBookmarked.$value!==null]" ng-click="bookmarkArticle(article.key,isBookmarked.$value==null); bookmarkCount=getBookmarkCount(article.key)"></button>
 
         <button class="button icon ion-share" ui-sref="app.favourites"></button>
 
-        <button class="button icon ion-thumbsup" ng-class="{true: 'royal'}[isRated.$value==1]" ng-click="rateArticle(article.key,1)"></button>
-        <button class="button icon ion-thumbsdown" ng-class="{true: 'royal'}[isRated.$value==-1]" ng-click="rateArticle(article.key,-1)"></button>
+        <button class="button icon ion-thumbsup" ng-class="{true: 'royal'}[isRated.$value==1]" ng-click="rateArticle(article.key,1); rateScore=getScore(article.key)"></button>
+        <button class="button icon ion-thumbsdown" ng-class="{true: 'royal'}[isRated.$value==-1]" ng-click="rateArticle(article.key,-1); rateScore=getScore(article.key)"></button>
       </div>
 
       <div class="oneThird" style="padding: 0px">

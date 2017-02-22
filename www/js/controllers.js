@@ -188,13 +188,13 @@ angular.module('starter.controllers', [])
 })
 
 //Activities page controller
-.controller('activitiesCtrl', function($q, $scope, articles, foodies, userData, getPromise) {
+.controller('activitiesCtrl', function($q, $scope, articles, foodies, userData) {
 
 
   $scope.getBookmarkCount= function(articleKey) {
    console.log('articleKey',articleKey);
    var def = $q.defer();
-   firebase.database().ref('/posts/'+ articleKey + '/bookmark/').on('value', function(snapshot) {
+   firebase.database().ref('/posts/'+ articleKey + '/bookmark/').once('value', function(snapshot) {
       var totalCount = snapshot.numChildren();
       def.resolve(totalCount);
    });
@@ -203,20 +203,27 @@ angular.module('starter.controllers', [])
   }
 
   $scope.getScore= function(articleKey) {
+
    console.log('articleKey',articleKey);
    var defup = $q.defer();
-   firebase.database().ref('/posts/'+ articleKey + '/rate/up/').once('value', function(snapshot) {
+   firebase.database().ref('/posts/'+ articleKey + '/rate/up/').on('value', function(snapshot) {
       var totalCount = snapshot.numChildren();
       defup.resolve(totalCount);
    });
    var defdown = $q.defer();
-   firebase.database().ref('/posts/'+ articleKey + '/rate/down/').once('value', function(snapshot) {
+   firebase.database().ref('/posts/'+ articleKey + '/rate/down/').on('value', function(snapshot) {
       var totalCount = snapshot.numChildren();
       defdown.resolve(totalCount);
    });
 
-   var totalScole = defup.promise.$$state.value / (defup.promise.$$state.value + defdown.promise.$$state.value)
-   return totalScole;
+  var upCount = defup.promise.$$state.value
+  var downCount = defdown.promise.$$state.value
+  if (upCount != upCount){upCount=0};
+  if (downCount != downCount){downCount=0};
+  var totalScole = upCount/(upCount+downCount)
+  if (totalScole != totalScole){totalScole=0};     
+
+  return totalScole;
   }
 
 
@@ -300,7 +307,7 @@ angular.module('starter.controllers', [])
   console.log('selectedArticle: ', $scope.selectedArticle);
 
 
-  $scope.selectedArticleImgs = articles.dataPath($stateParams.articleKey + '/articleImgs/');
+  $scope.selectedArticleImgs = articles.dataPath($stateParams.articleKey + '/coverImage/');
   console.log('selectedArticleImgs: ', $scope.selectedArticleImgs);
 
   // $scope.selectedArticleFoodie2 = articles.getArticleAuthor($stateParams.articleKey)

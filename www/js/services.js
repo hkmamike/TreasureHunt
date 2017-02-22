@@ -55,42 +55,41 @@ angular.module('starter.services', [])
 })
 
 
-.factory('getPromise', function($q) {
+// .factory('getPromise', function($q) {
+
+//   var getMessages = function() {
+//     var deferred = $q.defer(); 
+//     var totalCount ={};
+//     var k = firebase.database().ref('/posts/'+ '-KdKW9C-Cd6H3_UIwDFs' + '/bookmark/').once("value").then(function(snapshot) {
+//             var totalCount = snapshot.numChildren();
+//             console.log('count',totalCount);
+//     });
+//     deferred.resolve(k);
+//     return deferred.promise;
+//   };
+
+//   return {
+//     getMessages: getMessages
+//   };
 
 
-  var getMessages = function() {
-    var deferred = $q.defer(); 
-    var totalCount ={};
-    var k = firebase.database().ref('/posts/'+ '-KdKW9C-Cd6H3_UIwDFs' + '/bookmark/').once("value").then(function(snapshot) {
-            var totalCount = snapshot.numChildren();
-            console.log('count',totalCount);
-    });
-    deferred.resolve(k);
-    return deferred.promise;
-  };
-
-  return {
-    getMessages: getMessages
-  };
 
 
+//   // var getIfBookmark = function() {
+//   //   var deferred = $q.defer();
+//   //   var promiseReturn = firebase.database().ref('/posts/'+ '-KdKW9C-Cd6H3_UIwDFs' + '/bookmark/').once("value").then(function(snapshot) {
+//   //           totalCount = snapshot.numChildren();
+//   //           console.log('count',totalCount);
+//   //   });
+//   //   deferred.resolve(promiseReturn);
+//   //   return deferred.promise;
+//   // },
 
+//   // return {
+//   //   getIfBookmark: getIfBookmark
+//   // };
 
-  // var getIfBookmark = function() {
-  //   var deferred = $q.defer();
-  //   var promiseReturn = firebase.database().ref('/posts/'+ '-KdKW9C-Cd6H3_UIwDFs' + '/bookmark/').once("value").then(function(snapshot) {
-  //           totalCount = snapshot.numChildren();
-  //           console.log('count',totalCount);
-  //   });
-  //   deferred.resolve(promiseReturn);
-  //   return deferred.promise;
-  // },
-
-  // return {
-  //   getIfBookmark: getIfBookmark
-  // };
-
-})
+// })
 
 
 .factory('foodies', ['userData', '$firebaseObject', '$firebaseArray', function(userData, $firebaseObject, $firebaseArray) {
@@ -310,10 +309,10 @@ angular.module('starter.services', [])
               updates['/users/' + uid + '/posts/' + newPostKey] = newArticle;
 
               firebase.database().ref().update(updates);
+              // this.rateArticle(newPostKey,1) ;
               console.log(Date.now());
 
               resolve(article);
-
               //return firebase.database().ref().update(updates);
             }
           );
@@ -383,7 +382,7 @@ angular.module('starter.services', [])
       var rateTime = Math.floor(Date.now()/1000);
       // var currentUserRating =0;
       var currentRating = $firebaseObject(firebase.database().ref('/users/' + uid + '/rate/' + articleKey));
-
+      console.log(currentRating)
       // var currentUserRating = $firebaseObject(firebase.database().ref('/users/' + uid + '/rate/'+ articleKey));
       // var currentRating = 0;
       // var currentUserRating = 0;
@@ -392,12 +391,13 @@ angular.module('starter.services', [])
       //   console.log(currentRating.$value);
       // });
 
-      currentRating.$loaded().then(function () {
+      // currentRating.$loaded().then(function () {
       var currentUserRating = currentRating.$value
       console.log(articleKey,rate,currentUserRating); 
 
         // firebase.database().ref('/users/' + uid + '/rate/'+ articleKey + '/up/').remove();
         // firebase.database().ref('/users/' + uid + '/rate/'+ articleKey + '/down/').remove();
+        
         firebase.database().ref('/users/' + uid + '/rate/'+ articleKey).remove();
         firebase.database().ref('/posts/' + articleKey + '/rate/up/'+ uid).remove();
         firebase.database().ref('/posts/' + articleKey + '/rate/down/'+ uid).remove();
@@ -422,7 +422,7 @@ angular.module('starter.services', [])
 
         return firebase.database().ref().update(updates);
       }
-    });
+    // });
       
     },
 
