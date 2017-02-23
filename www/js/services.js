@@ -296,9 +296,6 @@ angular.module('starter.services', [])
                   timestamp: Math.floor(Date.now()/1000),
                   coverImage: downloadURL,
                   author: uid,
-                  upVote: 1,
-                  downVote: 0,
-                  totalRating: 1,
                   key: newPostKey
               };
 
@@ -415,27 +412,38 @@ angular.module('starter.services', [])
         firebase.database().ref('/posts/' + articleKey + '/rate/down/'+ uid).remove();
 
 
+
       if (currentUserRating==rate) {
 
-        if(rate==1) {
-          var counterRef = firebase.database().ref('/posts/' + articleKey + '/rate/counter')
+        if(rate==1) {   //cancel rate up
+          var counterRef = firebase.database().ref('/posts/' + articleKey + '/rate/up/counter')
             counterRef.transaction(function(currentCount) {
             console.log('currentCount',currentCount);
             return currentCount - 1;
           });
+          var counterRef = firebase.database().ref('/posts/' + articleKey + '/rate/counter')
+            counterRef.transaction(function(currentCount) {
+            console.log('currentCount',currentCount);
+            return currentCount - 1;
+          });            
         }
 
-        else {
+        else {  //cancel rate down
+          var counterRef = firebase.database().ref('/posts/' + articleKey + '/rate/down/counter')
+            counterRef.transaction(function(currentCount) {
+            console.log('currentCount',currentCount);
+            return currentCount - 1;
+          });
           var counterRef = firebase.database().ref('/posts/' + articleKey + '/rate/counter')
             counterRef.transaction(function(currentCount) {
             console.log('currentCount',currentCount);
             return currentCount + 1;
-          });
+          });  
         }
 
       }
 
-      else {
+      else if (currentUserRating==null) {
 
         updates['/users/' + uid + '/rate/' + articleKey] =  rate;        
         
@@ -443,26 +451,86 @@ angular.module('starter.services', [])
 
           updates['/posts/' + articleKey + '/rate/up/' + uid] = rateTime;
 
-          var counterRef = firebase.database().ref('/posts/' + articleKey + '/rate/counter')
+          var counterRef = firebase.database().ref('/posts/' + articleKey + '/rate/up/counter')
             counterRef.transaction(function(currentCount) {
             console.log('currentCount',currentCount);
             return currentCount + 1;
           });
+          var counterRef = firebase.database().ref('/posts/' + articleKey + '/rate/counter')
+            counterRef.transaction(function(currentCount) {
+            console.log('currentCount',currentCount);
+            return currentCount + 1;
+          });  
         }
 
         else {
           
           updates['/posts/' + articleKey + '/rate/down/' + uid] = rateTime;
 
+          var counterRef = firebase.database().ref('/posts/' + articleKey + '/rate/down/counter')
+            counterRef.transaction(function(currentCount) {
+            console.log('currentCount',currentCount);
+            return currentCount + 1;
+          });
           var counterRef = firebase.database().ref('/posts/' + articleKey + '/rate/counter')
             counterRef.transaction(function(currentCount) {
             console.log('currentCount',currentCount);
             return currentCount - 1;
-          });
+          });  
         }
 
-        return firebase.database().ref().update(updates);
       }
+
+      else if (currentUserRating !== null) {
+
+        updates['/users/' + uid + '/rate/' + articleKey] =  rate;        
+        
+        if(rate==1) { //from rate down to rate up
+
+          updates['/posts/' + articleKey + '/rate/up/' + uid] = rateTime;
+
+          var counterRef = firebase.database().ref('/posts/' + articleKey + '/rate/down/counter')
+            counterRef.transaction(function(currentCount) {
+            console.log('currentCount',currentCount);
+            return currentCount - 1;
+          });
+          var counterRef = firebase.database().ref('/posts/' + articleKey + '/rate/up/counter')
+            counterRef.transaction(function(currentCount) {
+            console.log('currentCount',currentCount);
+            return currentCount + 1;
+          });
+          var counterRef = firebase.database().ref('/posts/' + articleKey + '/rate/counter')
+            counterRef.transaction(function(currentCount) {
+            console.log('currentCount',currentCount);
+            return currentCount + 2;
+          });  
+        }
+
+        else {  //from rate up to rate down
+          
+          updates['/posts/' + articleKey + '/rate/down/' + uid] = rateTime;
+
+          var counterRef = firebase.database().ref('/posts/' + articleKey + '/rate/up/counter')
+            counterRef.transaction(function(currentCount) {
+            console.log('currentCount',currentCount);
+            return currentCount - 1;
+          });
+          var counterRef = firebase.database().ref('/posts/' + articleKey + '/rate/down/counter')
+            counterRef.transaction(function(currentCount) {
+            console.log('currentCount',currentCount);
+            return currentCount + 1;
+          });
+          var counterRef = firebase.database().ref('/posts/' + articleKey + '/rate/counter')
+            counterRef.transaction(function(currentCount) {
+            console.log('currentCount',currentCount);
+            return currentCount - 2;
+          });  
+        }
+
+      }
+
+        return firebase.database().ref().update(updates);
+      
     });
       
     },
