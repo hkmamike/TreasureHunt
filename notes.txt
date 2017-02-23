@@ -1,0 +1,5 @@
+explore 'like' counting method
+1) transaction (inst)
+2) count children when user upload rate, then update in database seperately (inst)
+3) robot 
+4) count children when call from html (non-inst)
