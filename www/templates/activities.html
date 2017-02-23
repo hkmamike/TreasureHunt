@@ -58,8 +58,15 @@
       </div>
 
       <div class="oneThird" style="padding: 0px">
-        <span style="float: right; font-size: 12px"><i class="icon ion-clock "></i> 3 hrs ago</span>
-        <span style="float: right; font-size: 12px">{{article.bookmark.counter}} favoirites, {{article.rate.counter}} positive</span>
+        <span style="float: right; font-size: 14px"><i class="icon ion-clock "></i> 3 hrs ago<br>
+
+
+          {{article.bookmark.counter}} 
+          <i class="icon ion-heart assertive"></i>
+          {{article.rate.counter}}
+          <i class="royal" ng-class="{true: 'ion-thumbsup', false: 'ion-thumbsdown'}[article.rate.counter > 0]"></i>
+        </span>
+
       </div>
 
       </div>
