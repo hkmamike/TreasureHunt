@@ -288,6 +288,8 @@ angular.module('starter.services', [])
 
               var newArticle = {
                   name: article.name,
+                  bookmark: {counter:0},
+                  rate: {counter:0},
                   restaurantName: article.restaurantName,
                   location: article.location,
                   type: article.type,
