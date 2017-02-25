@@ -1,12 +1,18 @@
 angular.module('starter.services', [])
 
-.factory('userData', function($firebaseObject, $firebaseArray) {
+.factory('userData', function($q, $firebaseObject, $firebaseArray) {
 
   var user = {};
+  var uid;
   firebase.auth().onAuthStateChanged(function () {
     user = firebase.auth().currentUser;
+    uid = firebase.auth().currentUser.uid;
+    console.log('position 2', Date.now(), uid);
     console.log('Current User: ', user);
+    console.log('Current User uid: ', uid);
   });
+
+  
 
   return {
     
@@ -20,9 +26,7 @@ angular.module('starter.services', [])
     },
 
     dataPath: function(path) {
-
-      var uid = this.getUser().uid;
-      console.log ('uid',uid);
+      //var uid = firebase.auth().currentUser.uid;
       console.log('/users/' + uid +'/'+ path);
       return $firebaseObject(firebase.database().ref('/users/' + uid +'/'+ path));
     },
