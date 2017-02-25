@@ -157,16 +157,13 @@ angular.module('starter.controllers', [])
     };
   // For Sharing (to develop---------------------------------------------------------------------------------
   
-
-     $scope.shareViaFacebook = function() {
-        $cordovaSocialSharing.canShareVia("facebook", message, logo, url).then(function(result) {
-             $cordovaSocialSharing.shareViaFacebook(message, logo, url);
-         }, function(error) {
-              alert(error);
-         });
-     };
-
-
+  $scope.shareViaFacebook = function() {
+    $cordovaSocialSharing.canShareVia("facebook", message, logo, url).then(function(result) {
+         $cordovaSocialSharing.shareViaFacebook(message, logo, url);
+     }, function(error) {
+          alert(error);
+     });
+  };
 })
 
 //Favourite page controller
@@ -176,9 +173,9 @@ angular.module('starter.controllers', [])
   console.log('favouriteArticle: ', $scope.favouriteArticle);
 
   $scope.getArticlebyKey = function(articleKey){
-    console.log('articleKey',articleKey)
+    console.log('articleKey',articleKey);
     return articles.dataPath(articleKey);
-  };  
+  };
 
 })
 
@@ -190,7 +187,6 @@ angular.module('starter.controllers', [])
 //Activities page controller
 .controller('activitiesCtrl', function($q, $scope, articles, foodies, userData) {
 
-
   $scope.getBookmarkCount= function(articleKey) {
    console.log('articleKey',articleKey);
    var def = $q.defer();
@@ -198,9 +194,9 @@ angular.module('starter.controllers', [])
       var totalCount = snapshot.numChildren();
       def.resolve(totalCount);
    });
-   console.log('getBookmarkCount',def.promise, def.promise.$$state.value)
+   console.log('getBookmarkCount',def.promise, def.promise.$$state.value);
    return def.promise.$$state.value;
-  }
+  };
 
   $scope.getScore= function(articleKey) {
 
@@ -216,15 +212,15 @@ angular.module('starter.controllers', [])
       defdown.resolve(totalCount);
    });
 
-  var upCount = defup.promise.$$state.value
-  var downCount = defdown.promise.$$state.value
-  if (upCount != upCount){upCount=0};
-  if (downCount != downCount){downCount=0};
-  var totalScole = upCount/(upCount+downCount)
-  if (totalScole != totalScole){totalScole=0};     
+  var upCount = defup.promise.$$state.value;
+  var downCount = defdown.promise.$$state.value;
+  if (upCount != upCount){upCount=0;}
+  if (downCount != downCount){downCount=0;}
+  var totalScole = upCount/(upCount+downCount);
+  if (totalScole != totalScole){totalScole=0;}
 
   return totalScole;
-  }
+  };
 
 
   $scope.getSelectedArticleFoodieInfo = function(foodieID){
@@ -247,7 +243,6 @@ angular.module('starter.controllers', [])
 
   $scope.isRateArticle = function(articleKey){
     return articles.isRateArticle(articleKey);
-    console.log('scope isRated' , isRated); 
   };
 
 
