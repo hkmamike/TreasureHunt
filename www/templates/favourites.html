@@ -15,11 +15,11 @@
  -->
 
     <ion-list>
-    <ion-item class="item-text-wrap item-thumbnailLarge-left" ng-repeat="articlekey in user.bookmark"  ng-init='article=getArticlebyKey(articlekey)' style="height: 110px">
-      <img src={{article.coverImage}} ui-sref="app.article({'articleKey':articlekey})">
-      <span>{{article.name}}<br><p>#{{article.type}} #{{article.location}} #FollowedFoodie</p></span>
-    </ion-item>
-    <ion-option-button>123</ion-option-button>
+      <ion-item class="item-text-wrap item-avatar" ng-repeat="articlekey in user.bookmark"  ng-init='article=getArticlebyKey(articlekey)' style="height: 110px">
+        <img src={{article.coverImage}} ui-sref="app.article({'articleKey':articlekey})">
+        <span>{{article.name}}<br><p>#{{article.type}} #{{article.location}} #FollowedFoodie</p></span>
+        <ion-option-button>123</ion-option-button>    
+      </ion-item>
     </ion-list>
 
 <!--         <ion-item class="item-text-wrap item-thumbnailLarge-left"
