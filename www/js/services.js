@@ -305,7 +305,7 @@ angular.module('starter.services', [])
 
               updates['/posts/' + newPostKey] = newArticle;
               updates['/user-posts/' + uid + '/' + newPostKey] = newArticle;
-              updates['/users/' + uid + '/posts/' + newPostKey] = newArticle;
+              updates['/users/' + uid + '/posts/' + newPostKey] = newPostKey;
 
               firebase.database().ref().update(updates);
               // this.rateArticle(newPostKey,1) ;
