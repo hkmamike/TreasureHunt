@@ -169,16 +169,16 @@ angular.module('starter.controllers', [])
 //Favourite page controller
 .controller('favouriteCtrl', function($scope, articles, userData) {
 
-  firebase.auth().onAuthStateChanged(function () {
-    $scope.favouriteArticle = userData.dataPath('bookmark');
-    console.log('favouriteArticle: ', $scope.favouriteArticle);
+  // firebase.auth().onAuthStateChanged(function () {
+  //   $scope.favouriteArticle = userData.dataPath('bookmark');
+  //   console.log('favouriteArticle: ', $scope.favouriteArticle);
+  // });
     
     $scope.getArticlebyKey = function(articleKey){
       console.log('articleKey',articleKey);
       return articles.dataPath(articleKey);
     };
 
-  });
 
 })
 
