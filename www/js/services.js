@@ -188,6 +188,20 @@ angular.module('starter.services', [])
   };
 })
 
+.factory('tokens',['userData', '$firebaseObject', '$firebaseArray', function( userData, $firebaseObject, $firebaseArray) {
+  var self = this;
+  var firebaseRef = firebase.database();
+  var ref = firebase.database().ref().child('tokens');
+  var articles = $firebaseObject(ref);
+
+  return {
+    getToken: function(token) {
+      return $firebaseObject(ref.child(token));
+    },
+  };
+
+}])
+
 .factory('articles',['userData', '$firebaseObject', '$firebaseArray', function( userData, $firebaseObject, $firebaseArray) {
   var self = this;
   var firebaseRef = firebase.database();

@@ -1,7 +1,7 @@
 angular.module('starter.controllers', [])
 
 
-.controller('AppCtrl', function($q, $scope, $ionicModal, $ionicPopover, $ionicScrollDelegate, $timeout, foodies, articles, $ionicSideMenuDelegate, userData) {
+.controller('AppCtrl', function($q, $scope, $ionicModal, $ionicPopover, $ionicScrollDelegate, $timeout, foodies, articles, tokens, $ionicSideMenuDelegate, userData) {
 
   firebase.auth().onAuthStateChanged(function () {
     currentUserID = userData.getUser().uid;
@@ -12,6 +12,17 @@ angular.module('starter.controllers', [])
 
     console.log($scope.user);
   });
+
+  // ---------------------------------------------------------------------------------
+  // Treasure Hunt Stuff
+
+
+  $scope.getToken = function (token) {
+    tokens.getToken(token);
+  };
+
+  // ---------------------------------------------------------------------------------
+
 
   $scope.toggleRightSideMenu = function() {
     $ionicSideMenuDelegate.toggleRight();
@@ -139,10 +150,6 @@ angular.module('starter.controllers', [])
     });
 
   };
-
-  // ---------------------------------------------------------------------------------
-
-
  
   // ScrollCheck (for function to auto close article after overscroll)---------------------------------------------------------------------
   $scope.checkScroll = function () {
