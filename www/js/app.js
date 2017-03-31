@@ -33,12 +33,12 @@ angular.module('starter', ['ionic', 'chart.js', 'starter.controllers', 'starter.
     controller: 'AppCtrl'
   })
 
-  .state('app.activities', {
-    url: '/activities',
+  .state('app.completedMissions', {
+    url: '/completedMissions',
     views: {
-      'tab_activities': {
-        templateUrl: 'templates/activities.html',
-        controller: 'activitiesCtrl'
+      'tab_completedMissions': {
+        templateUrl: 'templates/completedMissions.html',
+        // controller: 'completedMissionsCtrl'
       }
     }
   })
@@ -105,5 +105,5 @@ angular.module('starter', ['ionic', 'chart.js', 'starter.controllers', 'starter.
 
   ;
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/activities');
+  $urlRouterProvider.otherwise('/app/completedMissions');
 });
