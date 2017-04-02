@@ -1,7 +1,14 @@
 angular.module('starter.controllers', [])
 
+.controller('missionDetailsCtrl', function($scope, $stateParams, $firebaseObject, userData) {
 
-.controller('AppCtrl', function($q, $scope, $ionicModal, $ionicPopover, $ionicScrollDelegate, $timeout, foodies, articles, tokens, $ionicSideMenuDelegate, userData) {
+  $scope.missionLocation = $stateParams.location;
+  // $scope.missionInfo = $firebaseObject(firebase.database().ref('/location/' + $stateParams.location));
+
+})
+
+
+.controller('AppCtrl', function($q, $scope, $ionicModal, $firebaseObject, $ionicPopover, $ionicScrollDelegate, $timeout, foodies, articles, tokens, $ionicSideMenuDelegate, userData) {
 
   firebase.auth().onAuthStateChanged(function () {
     currentUserID = userData.getUser().uid;
@@ -13,6 +20,16 @@ angular.module('starter.controllers', [])
     console.log($scope.user);
   });
 
+
+  $scope.getMissionInfo = function (location) {
+    return $firebaseObject(firebase.database().ref('/location/' + location));
+  };
+  $scope.getMissionDetails = function (location) {
+    return $firebaseObject(firebase.database().ref('/users/' + currentUserID + '/completedMissions/' + location));
+  };
+
+
+  
   // ---------------------------------------------------------------------------------
   // Treasure Hunt Stuff
 
@@ -50,23 +67,6 @@ angular.module('starter.controllers', [])
   // $scope.isGroupShown = function(group) {
   //   return $scope.shownGroup === group;
   // };
-  // ---------------------------------------------------------------------------------
-
-  
-  // PopOver vote---------------------------------------------------------------------
-  $ionicPopover.fromTemplateUrl('templates/vote.html', {
-    scope: $scope,
-  }).then(function(popover) {
-    $scope.vote = popover;
-  });
-
-  $scope.closevote = function() {
-    $scope.vote.hide();
-  };
-
-  $scope.openevote = function() {
-    $scope.vote.show();
-  };
   // ---------------------------------------------------------------------------------
 
 

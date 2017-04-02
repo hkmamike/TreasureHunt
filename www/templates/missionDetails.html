@@ -1,0 +1,52 @@
+<!-- <ion-view view-title="Missions" hide-nav-bar="false">
+  
+  <ion-content>
+    
+    <div  class="cardflat item-text-wrap">
+
+      <div  class="pictureFrame" 
+            style="background-image: url({{missionInfo.img}});">
+
+        <img src={{missionInfo.img}} style="visibility: hidden; width: 100%">
+        <div class="backgroundGradient"></div>
+        <div class="textShadow">{{missionInfo.name}}</div>
+
+      </div>
+      {{missionLocation}}
+      <div>{{missionInfo.info}}</div> 
+
+    </div>
+
+  </ion-content>
+
+</ion-view>
+ -->
+
+<ion-view view-title="Completed Missions" hide-nav-bar="false">
+
+  <ion-content>
+    
+    <div  class="cardflat item-text-wrap"
+          ng-repeat="mission in user.completedMissions"
+          ng-if="mission.location === missionLocation"  
+          ng-init='missionInfo=getMissionInfo(mission.location)'>
+
+      <div  class="pictureFrame" 
+            style="background-image: url({{missionInfo.img}});" 
+            ui-sref="app.missionDetails({'location':missionInfo.$id})">
+
+        <img src={{missionInfo.img}} style="visibility: hidden; width: 100%">
+        <div class="backgroundGradient"></div>
+        <div class="textShadow">{{missionInfo.name}}</div>
+        
+      </div>
+
+      <div>Friends Saved: {{mission.friendsSaved}}</div> 
+      <div>{{missionInfo.info}}</div> 
+
+    </div>
+
+  </ion-content>
+
+</ion-view>
+
