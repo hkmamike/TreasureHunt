@@ -17,8 +17,19 @@ angular.module('starter.controllers', [])
   // Treasure Hunt Stuff
 
 
-  $scope.getToken = function (token) {
-    tokens.getToken(token);
+  $scope.claimToken = function (token) {
+
+    console.log ('token node to retrieve: ', token);
+
+
+      $scope.tokenLocation = tokens.getTokenLocation(token);
+      $scope.tokenMessage = tokens.getTokenMessage(token);
+      $scope.tokenPrize = tokens.getTokenPrize(token);
+
+    console.log ('location of token node: ', tokenLocation);
+    console.log ('message of token node: ', tokenMessage);
+    console.log ('prize of token node: ', tokenPrize);
+
   };
 
   // ---------------------------------------------------------------------------------

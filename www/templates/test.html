@@ -12,11 +12,11 @@
         <input type="text" ng-model="tokenInput.code" placeholder="Enter token scode...">
       </label>
 
-    <button type="submit" class="button button-block button-balanced" ng-click="claimToken(tokenInput)"> Claim Token </button>
+    <button type="submit" class="button button-block button-balanced" ng-click="claimToken(tokenInput.code)"> Claim Token </button>
 
   </form>
 
-  <div>PREVIEW</div>
+  <div>Token Info</div>
 
 
     <div class="item item-body" style="padding: 0px">
@@ -26,18 +26,12 @@
         {{img}}
       </ion-slide>
       </ion-slide-box>
-      <p>
-        {{articleInput.name}}<br>
-        {{articleInput.contents}}
-        <br>
-        <a href="#" class="subdued">30 Like</a>
-        <a href="#" class="subdued">100 % Positive</a>
-      </p>
     </div>
-    <div class="item" ui-sref="app.restaurant">
-      <h2>Name: {{articleInput.restaurantName}}</h2>
-      <p>Location: {{articleInput.location}}</p>
-      <p>Type: {{articleInput.type}}</p>
+
+    <div class="item">
+      <h2>Token Location: {{tokenLocation.$value}}</h2>
+      <h2>Token Message: {{tokenMessage.$value}}</h2>
+      <h2>Token Prize: {{tokenPrize.$value}}</h2>
     </div>
 
   </ion-content>

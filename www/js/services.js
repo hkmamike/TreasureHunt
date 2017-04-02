@@ -195,11 +195,22 @@ angular.module('starter.services', [])
   var articles = $firebaseObject(ref);
 
   return {
-    getToken: function(token) {
-      return $firebaseObject(ref.child(token));
+
+    getTokenLocation: function(token) {
+      tokenLocation = $firebaseObject(ref.child(token).child('location'));
+      return tokenLocation;
+    },
+
+    getTokenMessage: function(token) {
+      tokenMessage = $firebaseObject(ref.child(token).child('message'));
+      return tokenMessage;
+    },
+
+    getTokenPrize: function(token) {
+      tokenPrize = $firebaseObject(ref.child(token).child('prize'));
+      return tokenPrize;
     },
   };
-
 }])
 
 .factory('articles',['userData', '$firebaseObject', '$firebaseArray', function( userData, $firebaseObject, $firebaseArray) {
