@@ -38,10 +38,21 @@ angular.module('starter', ['ionic', 'chart.js', 'starter.controllers', 'starter.
     views: {
       'tab_completedMissions': {
         templateUrl: 'templates/completedMissions.html',
-        // controller: 'completedMissionsCtrl'
       }
     }
   })
+
+  .state('app.missionDetails', {
+    url: '/missionDetails/:location',
+    views: {
+      'tab_missionDetails': {
+        templateUrl: 'templates/missionDetails.html',
+        controller: 'missionDetailsCtrl'
+      }
+    }
+  })
+
+
 
   .state('app.selections', {
     url: '/selections',

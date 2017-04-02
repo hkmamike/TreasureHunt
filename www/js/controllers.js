@@ -1,5 +1,12 @@
 angular.module('starter.controllers', [])
 
+.controller('missionDetailsCtrl', function($scope, $stateParams, $firebaseObject, userData) {
+
+  $scope.missionLocation = $stateParams.location;
+  // $scope.missionInfo = $firebaseObject(firebase.database().ref('/location/' + $stateParams.location));
+
+})
+
 
 .controller('AppCtrl', function($q, $scope, $ionicModal, $firebaseObject, $ionicPopover, $ionicScrollDelegate, $timeout, foodies, articles, tokens, $ionicSideMenuDelegate, userData) {
 
@@ -16,6 +23,9 @@ angular.module('starter.controllers', [])
 
   $scope.getMissionInfo = function (location) {
     return $firebaseObject(firebase.database().ref('/location/' + location));
+  };
+  $scope.getMissionDetails = function (location) {
+    return $firebaseObject(firebase.database().ref('/users/' + currentUserID + '/completedMissions/' + location));
   };
 
 
