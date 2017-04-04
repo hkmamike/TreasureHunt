@@ -1,11 +1,12 @@
 
-<ion-view view-title="Treasure Hunt" hide-nav-bar="false">
+<ion-view view-title={{currentMission}} hide-nav-bar="false" ng-init="getCurrentMission()">
 
 
   <ion-content>
 
   <p></p>
   <form>
+    <h3>claim tokens for saving friends!</h3>
     <div class="list">
       <label class="item item-input item-floating-label">
         <span class="input-label">Token code</span>

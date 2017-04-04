@@ -16,6 +16,22 @@ angular.module('starter.controllers', [])
   // ---------------------------------------------------------------------------------
   // Treasure Hunt Stuff
 
+  $scope.getCurrentMission = function () {
+
+    firebase.auth().onAuthStateChanged(function() {
+      var currentUserInfo = userData.getUser();
+      var uid = currentUserInfo.uid;
+
+      return firebase.database().ref('/users/' + uid + '/currentMission/').once('value').then(function(snapshot) {
+        
+        //code reaches here if currentMission is not null
+        var currentMission = snapshot.val();
+        $scope.currentMission = currentMission;
+
+      });
+
+    });
+  };
 
   $scope.claimToken = function (token) {
 
