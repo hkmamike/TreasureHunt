@@ -195,11 +195,39 @@ angular.module('starter.services', [])
   var articles = $firebaseObject(ref);
 
   return {
-    getToken: function(token) {
-      return $firebaseObject(ref.child(token));
-    },
-  };
 
+    getTokenLocation: function(token) {
+      tokenLocation = $firebaseObject(ref.child(token).child('location'));
+      return tokenLocation;
+    },
+
+    getTokenMessage: function(token) {
+      tokenMessage = $firebaseObject(ref.child(token).child('message'));
+      return tokenMessage;
+    },
+
+    getTokenPrize: function(token) {
+      tokenPrize = $firebaseObject(ref.child(token).child('prize'));
+      return tokenPrize;
+    },
+
+    claimToken: function(token) {
+      var currentUserInfo = userData.getUser();
+      var uid = currentUserInfo.uid;
+
+      return firebase.database().ref('/tokens/' + token + '/missionCode/').once('value').then(function(snapshot) {
+       
+        //this checks the token against the valid token list automatically because a null result does not trigger 'then'
+        var tokenToClaim = snapshot.val();
+        var updates = {};
+
+        console.log('claiming this token : ', tokenToClaim);
+        updates['/users/' + uid + '/tokenClaimed/' + token] = tokenToClaim;
+        firebase.database().ref().update(updates);
+      });
+    },
+
+  };
 }])
 
 .factory('articles',['userData', '$firebaseObject', '$firebaseArray', function( userData, $firebaseObject, $firebaseArray) {

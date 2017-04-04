@@ -8,6 +8,7 @@ angular.module('starter.controllers', [])
 })
 
 
+
 .controller('AppCtrl', function($q, $scope, $ionicModal, $firebaseObject, $ionicPopover, $ionicScrollDelegate, $timeout, foodies, articles, tokens, $ionicSideMenuDelegate, userData) {
 
   firebase.auth().onAuthStateChanged(function () {
@@ -24,12 +25,30 @@ angular.module('starter.controllers', [])
   $scope.getMissionInfo = function (location) {
     return $firebaseObject(firebase.database().ref('/location/' + location));
   };
-  $scope.getMissionDetails = function (location) {
-    return $firebaseObject(firebase.database().ref('/users/' + currentUserID + '/completedMissions/' + location));
+  // $scope.getMissionDetails = function (location) {
+  //   return $firebaseObject(firebase.database().ref('/users/' + currentUserID + '/completedMissions/' + location));
+  // };
+
+
+  // ---------------------------------------------------------------------------------
+  // Treasure Hunt Stuff
+
+  $scope.getCurrentMission = function () {
+
+    firebase.auth().onAuthStateChanged(function() {
+      var currentUserInfo = userData.getUser();
+      var uid = currentUserInfo.uid;
+
+      return firebase.database().ref('/users/' + uid + '/currentMission/').once('value').then(function(snapshot) {
+        
+        //code reaches here if currentMission is not null
+        var currentMission = snapshot.val();
+        $scope.currentMission = currentMission;
+
+      });
+
+    });
   };
-
-
-
 
 
   // $scope.updateMissionList = function(updateMissionList) {
@@ -70,12 +89,20 @@ angular.module('starter.controllers', [])
 
 
 
+  $scope.claimToken = function (token) {
+
+
   // ---------------------------------------------------------------------------------
   // Treasure Hunt Stuff
+    //firebase data retrieval in services
+    $scope.tokenLocation = tokens.getTokenLocation(token);
+    $scope.tokenMessage = tokens.getTokenMessage(token);
+    $scope.tokenPrize = tokens.getTokenPrize(token);
 
+    //register token on user node
 
-  $scope.getToken = function (token) {
-    tokens.getToken(token);
+    tokens.claimToken(token);
+
   };
 
   // ---------------------------------------------------------------------------------
@@ -96,6 +123,23 @@ angular.module('starter.controllers', [])
   // $scope.isGroupShown = function(group) {
   //   return $scope.shownGroup === group;
   // };
+  // ---------------------------------------------------------------------------------
+
+  
+  // PopOver vote---------------------------------------------------------------------
+  $ionicPopover.fromTemplateUrl('templates/vote.html', {
+    scope: $scope,
+  }).then(function(popover) {
+    $scope.vote = popover;
+  });
+
+  $scope.closevote = function() {
+    $scope.vote.hide();
+  };
+
+  $scope.openevote = function() {
+    $scope.vote.show();
+  };
   // ---------------------------------------------------------------------------------
 
 
