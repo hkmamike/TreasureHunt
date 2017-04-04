@@ -29,7 +29,47 @@ angular.module('starter.controllers', [])
   };
 
 
-  
+
+
+
+  // $scope.updateMissionList = function(updateMissionList) {
+ 
+  //     var Token = {1:"AAA", 2:"BBB", 3:"CCC"};
+  //     var mission1 = {
+  //         missionID: 1001,
+  //         missionCover: "http://www.discoverhongkong.com/eng/images/see-do/highlight-attractions/large/1.1.1.2-Peak_03.jpg",
+  //         missionToken: Token,
+  //         missionLocation: "The Peak",
+  //         missionInfo: "This is The Peak, This is The Peak, This is The Peak",
+  //     };
+
+  //     var missionToken = {1:"DDD", 2:"EEE", 3:"FFF"};
+  //     var mission2 = {
+  //         missionID: 1002,
+  //         missionCover: "http://www.discoverhongkong.com/eng/images/see-do/highlight-attractions/large/1.1.1.2-Peak_03.jpg",
+  //         missionToken: Token,
+  //         missionLocation: "Avenue of Star",
+  //         missionInfo: "This is Avenue of Star, This is Avenue of Star, This is Avenue of Star",
+  //     };
+
+  //     var missionToken = {1:"GGG", 2:"HHH", 3:"III"};
+  //     var mission3 = {
+  //         missionID: 1003,
+  //         missionCover: "http://www.discoverhongkong.com/eng/images/see-do/highlight-attractions/large/1.1.1.2-Peak_03.jpg",
+  //         missionToken: Token,
+  //         missionLocation: "Temple Street",
+  //         missionInfo: "This is Temple Street, This is Temple Street, This is Temple Street",
+  //     };
+
+  //     var missions = {1001: mission1, 1002: mission2, 1003: mission3}
+
+  //     var updates = {};
+  //     updates['/missions/'] = missions;
+  //     return firebase.database().ref().update(updates);
+  // },
+
+
+
   // ---------------------------------------------------------------------------------
   // Treasure Hunt Stuff
 
