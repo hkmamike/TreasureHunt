@@ -210,6 +210,23 @@ angular.module('starter.services', [])
       tokenPrize = $firebaseObject(ref.child(token).child('prize'));
       return tokenPrize;
     },
+
+    claimToken: function(token) {
+      var currentUserInfo = userData.getUser();
+      var uid = currentUserInfo.uid;
+
+      return firebase.database().ref('/tokens/' + token + '/missionCode/').once('value').then(function(snapshot) {
+       
+        //this checks the token against the valid token list automatically because a null result does not trigger 'then'
+        var tokenToClaim = snapshot.val();
+        var updates = {};
+
+        console.log('claiming this token : ', tokenToClaim);
+        updates['/users/' + uid + '/tokenClaimed/' + token] = tokenToClaim;
+        firebase.database().ref().update(updates);
+      });
+    },
+
   };
 }])
 
