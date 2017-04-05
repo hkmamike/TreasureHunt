@@ -43,7 +43,7 @@ angular.module('starter', ['ionic', 'chart.js', 'starter.controllers', 'starter.
   })
 
   .state('app.missionDetails', {
-    url: '/missionDetails/:location',
+    url: '/missionDetails/:missionID',
     views: {
       'tab_missionDetails': {
         templateUrl: 'templates/missionDetails.html',
@@ -69,7 +69,7 @@ angular.module('starter', ['ionic', 'chart.js', 'starter.controllers', 'starter.
     views: {
       'tab_favourites': {
         templateUrl: 'templates/favourites.html',
-        controller: 'favouriteCtrl'
+        controller: 'TempCtrl'
       }
     }
   })

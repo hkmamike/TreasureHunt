@@ -1,52 +1,31 @@
-<!-- <ion-view view-title="Missions" hide-nav-bar="false">
+<ion-view view-title="Missions Details" hide-nav-bar="false">
   
   <ion-content>
     
-    <div  class="cardflat item-text-wrap">
-
-      <div  class="pictureFrame" 
-            style="background-image: url({{missionInfo.img}});">
-
-        <img src={{missionInfo.img}} style="visibility: hidden; width: 100%">
-        <div class="backgroundGradient"></div>
-        <div class="textShadow">{{missionInfo.name}}</div>
-
-      </div>
-      {{missionLocation}}
-      <div>{{missionInfo.info}}</div> 
-
-    </div>
-
-  </ion-content>
-
-</ion-view>
- -->
-
-<ion-view view-title="Completed Missions" hide-nav-bar="false">
-
-  <ion-content>
-    
     <div  class="cardflat item-text-wrap"
-          ng-repeat="mission in user.completedMissions"
-          ng-if="mission.location === missionLocation"  
-          ng-init='missionInfo=getMissionInfo(mission.location)'>
+          ng-repeat="mission in user.missionList"
+          ng-if="mission.missionID === missionID"
+          ng-init='missionInfo=getMissionInfo(mission.missionID)'>
 
       <div  class="pictureFrame" 
-            style="background-image: url({{missionInfo.img}});" 
-            ui-sref="app.missionDetails({'location':missionInfo.$id})">
+            style="background-image: url({{missionInfo.missionCover}});" 
+            ui-sref="app.missionDetails({'missionID':missionInfo.$id})">
 
-        <img src={{missionInfo.img}} style="visibility: hidden; width: 100%">
+        <img src={{missionInfo.missionCover}} style="visibility: hidden; width: 100%">
         <div class="backgroundGradient"></div>
-        <div class="textShadow">{{missionInfo.name}}</div>
-        
+        <div class="textShadow">{{missionInfo.missionLocation}}</div>
+
       </div>
 
-      <div>Friends Saved: {{mission.friendsSaved}}</div> 
-      <div>{{missionInfo.info}}</div> 
+    Friend Saved: {{mission.friendSaved}} <br>
+    Token Claimed: {{mission.tokenClaimed}} <br>
+    Completed Time: {{mission.endTime}} <br>  
+    
+    Location: {{missionInfo.missionLocation}} <br>
+    Info: {{missionInfo.missionInfo}} <br>
 
     </div>
 
   </ion-content>
 
 </ion-view>
-
