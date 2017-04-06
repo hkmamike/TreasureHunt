@@ -1,7 +1,115 @@
 angular.module('starter.controllers', [])
 
 
-.controller('AppCtrl', function($q, $scope, $ionicModal, $ionicPopover, $ionicScrollDelegate, $timeout, foodies, articles, tokens, $ionicSideMenuDelegate, userData) {
+.controller('TempCtrl', function($scope, $stateParams, $firebaseObject, userData) {
+
+    $scope.updateDatabase=function(){
+ 
+      var Token = {1:"AAA", 2:"BBB", 3:"CCC"};
+      var mission1 = {
+          missionID: "X1001ABC",
+          missionCover: "http://www.discoverhongkong.com/eng/images/see-do/highlight-attractions/large/1.1.1.2-Peak_03.jpg",
+          missionToken: Token,
+          missionLocation: "The Peak",
+          missionInfo: "This is The Peak, This is The Peak, This is The Peak",
+      };
+
+      var missionToken = {1:"DDD", 2:"EEE", 3:"FFF"};
+      var mission2 = {
+          missionID: "X1002DEF",
+          missionCover: "http://www.discoverhongkong.com/eng/images/see-do/highlight-attractions/large/1.1.1.2-Peak_03.jpg",
+          missionToken: Token,
+          missionLocation: "Avenue of Star",
+          missionInfo: "This is Avenue of Star, This is Avenue of Star, This is Avenue of Star",
+      };
+
+      var missionToken = {1:"GGG", 2:"HHH", 3:"III"};
+      var mission3 = {
+          missionID: "X1003GHI",
+          missionCover: "http://www.discoverhongkong.com/eng/images/see-do/highlight-attractions/large/1.1.1.2-Peak_03.jpg",
+          missionToken: Token,
+          missionLocation: "Temple Street",
+          missionInfo: "This is Temple Street, This is Temple Street, This is Temple Street",
+      };
+
+      var missionToken = {1:"JJJ", 2:"KKK", 3:"LLL"};
+      var mission4 = {
+          missionID: "X1004JKL",
+          missionCover: "http://www.discoverhongkong.com/eng/images/see-do/highlight-attractions/large/1.1.1.2-Peak_03.jpg",
+          missionToken: Token,
+          missionLocation: "History Museum",
+          missionInfo: "This is History Museum, This is History Museum, This is History Museum",
+      };
+
+      var missions = {
+          X1001ABC: mission1, 
+          X1002DEF: mission2, 
+          X1003GHI: mission3, 
+          X1004JKL: mission4}
+
+      var tokenClaimed = {1:"AAA"}
+      var userMission1 = {
+          missionStatus: "Completed",
+          missionID: "X1001ABC",
+          startTime: "09:30am",
+          endTime: "10:00am",
+          friendSaved: 3,
+          tokenClaimed: tokenClaimed
+      };      
+
+      var tokenClaimed = {1:"DDD",2:"FFF"};
+      var userMission2 = {
+          missionStatus: "Completed",
+          missionID: "X1002DEF",
+          startTime: "10:00am",
+          endTime: "11:15am",
+          friendSaved: 10,
+          tokenClaimed: tokenClaimed
+      };      
+
+      var tokenClaimed = {1:"GGG",2:"HHH"};;
+      var userMission3 = {
+          missionStatus: "Current",
+          missionID: "x1003GHI",
+          friendSaved: 2,
+          startTime: "11:15am",
+          endTime: 0,
+          tokenClaimed: tokenClaimed
+      };      
+
+      var tokenClaimed = null;
+      var userMission4 = {
+          missionStatus: "Pending",
+          missionID: "x1004JKL",
+          friendSaved: 0,
+          startTime: 0,
+          endTime: 0,
+          tokenClaimed: tokenClaimed
+      };     
+
+      var userMissions = {
+          X1001ABC: userMission1, 
+          X1002DEF: userMission2, 
+          X1003GHI: userMission3, 
+          X1004JKL: userMission4}
+
+      var updates = {};
+      updates['/missions/'] = missions;
+      updates['/users/' + currentUserID + '/missionList/' ] = userMissions;      
+      return firebase.database().ref().update(updates);
+      }
+})
+
+
+.controller('missionDetailsCtrl', function($scope, $stateParams, $firebaseObject, userData) {
+
+  $scope.missionID = $stateParams.missionID;
+  // $scope.missionInfo = $firebaseObject(firebase.database().ref('/location/' + $stateParams.location));
+})
+
+
+
+.controller('AppCtrl', function($q, $scope, $ionicModal, $firebaseObject, $ionicPopover, $ionicScrollDelegate, $timeout, foodies, articles, tokens, $ionicSideMenuDelegate, userData) {
 
   firebase.auth().onAuthStateChanged(function () {
     currentUserID = userData.getUser().uid;
@@ -12,6 +120,15 @@ angular.module('starter.controllers', [])
 
     console.log($scope.user);
   });
+
+
+  $scope.getMissionInfo = function (missionID) {
+    return $firebaseObject(firebase.database().ref('/missions/' + missionID));
+  };
+  // $scope.getMissionDetails = function (location) {
+  //   return $firebaseObject(firebase.database().ref('/users/' + currentUserID + '/completedMissions/' + location));
+  // };
+
 
   // ---------------------------------------------------------------------------------
   // Treasure Hunt Stuff
@@ -51,8 +168,16 @@ angular.module('starter.controllers', [])
     });
   };
 
+
+
+
+
+
   $scope.claimToken = function (token) {
 
+
+  // ---------------------------------------------------------------------------------
+  // Treasure Hunt Stuff
     //firebase data retrieval in services
     $scope.tokenLocation = tokens.getTokenLocation(token);
     $scope.tokenMessage = tokens.getTokenMessage(token);

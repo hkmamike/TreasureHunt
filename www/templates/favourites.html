@@ -14,6 +14,8 @@
     </ion-item>
  -->
 
+    <button class="button button-block " ng-click="updateDatabase()">Update</button>
+      
     <ion-list>
       <ion-item class="item-text-wrap item-avatar" ng-repeat="articlekey in user.bookmark"  ng-init='article=getArticlebyKey(articlekey)' style="height: 110px">
         <img src={{article.coverImage}} ui-sref="app.article({'articleKey':articlekey})">
