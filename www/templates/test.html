@@ -1,24 +1,38 @@
 
-<ion-view view-title={{currentMissionName}} hide-nav-bar="false" ng-init="getCurrentMission()">
+<ion-view hide-nav-bar="false" ng-init="getCurrentMission()">
 
+  <ion-nav-title>{{currentMission.name}}</ion-nav-title>
 
   <ion-content>
 
-  <p>{{currentMissionInfo}}</p>
 
-  <form>
-    <h3>claim tokens for saving friends!</h3>
-    <div class="list">
-      <label class="item item-input item-floating-label">
-        <span class="input-label">Token code</span>
-        <input type="text" ng-model="tokenInput.code" placeholder="Enter token scode...">
-      </label>
+    <!-- BUG: the ion card isn't grouping the text properly -->
+    <ion-card>
+      <ion-card-content>
+        <div ng-class="isInfoShown(currentMission) ? 'item-expand active' : 'item-expand inactive'">
+          <p>{{ currentMission.info }}</p>
+        </div>
+        <div ng-click="toggleInfo(currentMission)" class="item-expand-footer">
+          <i ng-class="isInfoShown(currentMission) ? 'ion-ios-minus-outline' : 'ion-ios-plus-outline'"></i>
+          {{ isInfoShown(currentMission) ? 'Less' : 'More' }}
+        </div>
+      </ion-card-content>
+    </ioin-card>
 
-    <button type="submit" class="button button-block button-balanced" ng-click="claimToken(tokenInput.code)"> Claim Token </button>
 
-  </form>
+    <form>
+      <h3>claim tokens for saving friends!</h3>
+      <div class="list">
+        <label class="item item-input item-floating-label">
+          <span class="input-label">Token code</span>
+          <input type="text" ng-model="tokenInput.code" placeholder="Enter token scode...">
+        </label>
 
-  <div>Token Info</div>
+      <button type="submit" class="button button-block button-balanced" ng-click="claimToken(tokenInput.code)"> Claim Token </button>
+
+    </form>
+
+    <div>Token Info</div>
 
 
     <div class="item item-body" style="padding: 0px">
