@@ -1,38 +1,53 @@
 <ion-view view-title="Favourites"  hide-nav-bar="false">
   <ion-content style="background-color: #ffc">
 
-<!--     <ion-item ng-repeat="articlekey in favouriteArticle" ng-init="article=getArticlebyKey(articlekey)" ui-sref="app.article({'articleKey':articleKey})">
-    <div class="item-text-wrap item-thumbnailLarge-left">
-      <img src={{article.coverImage}}>
-      <span>{{article.name}}<br><p>#{{article.type}} #{{article.location}} #FollowedFoodie</p></span>
+  <button class="button button-block " ng-click="updateDatabase()">Update_Database</button>
+  
+    <div  class="cardflat item-text-wrap"
+          ng-repeat="mission in user.missionList"
+          ng-if="mission.missionStatus === 'Current'"
+          ng-init='missionInfo=getMissionInfo(mission.missionID)'>
     </div>
-    </ion-item> -->
 
-<!--     <ion-item class="item-text-wrap item-thumbnailLarge-left" ng-repeat="articlekey in favouriteArticle" ng-init='article=getArticlebyKey(articlekey)' style="height: 110px">
-      <img src={{article.coverImage}} ui-sref="app.article({'articleKey':articlekey})">
-      <span>{{article.name}}<br><p>#{{article.type}} #{{article.location}} #FollowedFoodie</p></span>
-    </ion-item>
- -->
+   <form>
+    <h3>claim tokens for saving friends!</h3>
+    <div class="list">
+      <label class="item item-input item-floating-label">
+        <span class="input-label">Token code</span>
+        <input type="text" ng-model="tokenInput.code" placeholder="Enter token scode...">
+      </label>
 
-    <button class="button button-block " ng-click="updateDatabase()">Update</button>
+    <button type="submit" class="button button-block button-balanced" ng-click="claimToken(tokenInput.code)"> Claim Token </button>
+
+  </form>
+
+  <div>Token Info</div>
+
+
+    <div class="item item-body" style="padding: 0px">
+      <ion-slide-box does-continue="true" auto-play="true" style="padding-bottom: 15px">
+      <ion-slide>
+        <img class="full-image" src="{{articleInput.image}}">
+        {{img}}
+      </ion-slide>
+      </ion-slide-box>
+    </div>
+
+    <div class="item">
+      <h2>Token Location: {{tokenLocation.$value}}</h2>
+      <h2>Token Message: {{tokenMessage.$value}}</h2>
+      <h2>Token Prize: {{tokenPrize.$value}}</h2>
+    </div>
+
+
+
+
+
+
+
+
+
       
-    <ion-list>
-      <ion-item class="item-text-wrap item-avatar" ng-repeat="articlekey in user.bookmark"  ng-init='article=getArticlebyKey(articlekey)' style="height: 110px">
-        <img src={{article.coverImage}} ui-sref="app.article({'articleKey':articlekey})">
-        <span>{{article.name}}<br><p>#{{article.type}} #{{article.location}} #FollowedFoodie</p></span>
-        <ion-option-button>123</ion-option-button>    
-      </ion-item>
-    </ion-list>
-
-<!--         <ion-item class="item-text-wrap item-thumbnailLarge-left"
-                  ng-repeat="articlekey in favouriteArticle" 
-                  item="articlekey"
-                  ng-init='article=getArticlebyKey(articlekey)' 
-                  style="height: 110px">
-
-          <img src={{article.coverImage}} ui-sref="app.article({'articleKey':articlekey})">
-          <span>{{article.name}}<br><p>#{{article.type}} #{{article.location}} #FollowedFoodie</p></span>
-        </ion-item> -->
-
+  
   </ion-content>
 </ion-view>
