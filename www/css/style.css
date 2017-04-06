@@ -6,7 +6,7 @@
 .item-expand {
   position: relative;
   width: 100%;
-  max-height: 60px;
+  max-height: 40px;
   transition: max-height 0.1s ease-out;
   overflow: hidden;
 }
@@ -34,7 +34,7 @@
 }
 
 .item-expand.active {
-  max-height: 200px;
+  max-height: 300px;
   transition: max-height 0.3s ease-out;
 }
 
@@ -46,6 +46,7 @@
 .item-expand-footer i {
   margin-right: 10px;
 }
+
 /* ---------------------------------------------------------*/
 
 
