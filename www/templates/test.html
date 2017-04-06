@@ -1,8 +1,19 @@
 
 <ion-view view-title={{currentMission}} hide-nav-bar="false" ng-init="getCurrentMission()">
 
-
   <ion-content>
+
+
+    <div  class="cardflat item-text-wrap"
+          ng-repeat="mission in user.missionList"
+          ng-if="mission.missionStatus === 'Current'"
+          ng-init='missionInfo=getMissionInfo(mission.missionID)'>
+
+          {{missionInfo.missionLocation}}<br>
+          {{missionInfo.missionInfo}}
+
+
+    </div>
 
   <p></p>
   <form>
