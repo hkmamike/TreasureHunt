@@ -25,8 +25,13 @@ angular.module('starter.controllers', [])
       return firebase.database().ref('/users/' + uid + '/currentMission/').once('value').then(function(snapshot) {
         
         //code reaches here if currentMission is not null
-        var currentMission = snapshot.val();
-        $scope.currentMission = currentMission;
+
+        console.log('snapshot: ', snapshot.val());
+        var currentMissionName = snapshot.val().missionName;
+        var currentMissionInfo = snapshot.val().missionInfo;
+
+        $scope.currentMissionName = currentMissionName;
+        $scope.currentMissionInfo = currentMissionInfo;
 
       });
 
