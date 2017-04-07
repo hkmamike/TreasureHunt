@@ -140,17 +140,35 @@ angular.module('starter.controllers', [])
   // ---------------------------------------------------------------------------------
   // Treasure Hunt Stuff
 
+  $scope.toggleInfo = function(info) {
+    if ($scope.isInfoShown(info)) {
+      $scope.shownInfo = null;
+    } else {
+      $scope.shownInfo = info;
+    }
+  };
+
+  $scope.isInfoShown = function(info) {
+    return $scope.shownInfo === info;
+  };
+
   $scope.getCurrentMission = function () {
 
     firebase.auth().onAuthStateChanged(function() {
       var currentUserInfo = userData.getUser();
       var uid = currentUserInfo.uid;
+      $scope.currentMission = {};
 
       return firebase.database().ref('/users/' + uid + '/currentMission/').once('value').then(function(snapshot) {
         
         //code reaches here if currentMission is not null
-        var currentMission = snapshot.val();
-        $scope.currentMission = currentMission;
+
+        console.log('snapshot: ', snapshot.val());
+        var currentMissionName = snapshot.val().missionName;
+        var currentMissionInfo = snapshot.val().missionInfo;
+
+        $scope.currentMission.name = currentMissionName;
+        $scope.currentMission.info = currentMissionInfo;
 
       });
 

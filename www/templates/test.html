@@ -1,5 +1,7 @@
 
-<ion-view view-title={{currentMission}} hide-nav-bar="false" ng-init="getCurrentMission()">
+
+<ion-view hide-nav-bar="false" ng-init="getCurrentMission()">
+  <ion-nav-title>{{currentMission.name}}</ion-nav-title>
 
   <ion-content>
 
@@ -23,35 +25,56 @@
           --- "mission in user.missionList" ---
     </div>
 
-  <p></p>
-  <form>
-    <h3>claim tokens for saving friends!</h3>
-    <div class="list">
-      <label class="item item-input item-floating-label">
-        <span class="input-label">Token code</span>
-        <input type="text" ng-model="tokenInput.code" placeholder="Enter token scode...">
-      </label>
+    
+    <div class="card">
+      <div class="item item-text-wrap">
+        <div ng-class="isInfoShown(currentMission) ? 'item-expand active' : 'item-expand inactive'">
+          <p>{{ currentMission.info }}</p>
+        </div>
+        <div ng-click="toggleInfo(currentMission)" class="item-expand-footer">
+          <i ng-class="isInfoShown(currentMission) ? 'ion-ios-minus-outline' : 'ion-ios-plus-outline'"></i>
+          {{ isInfoShown(currentMission) ? 'Less' : 'More' }}
+        </div>
+      </div>
+    </div>
 
-    <button type="submit" class="button button-block button-balanced" ng-click="claimToken(tokenInput.code)"> Claim Token </button>
+    <div class="card">
+      <div class="item item-text-wrap">
+        <form>
 
-  </form>
+          <h3>claim tokens for saving friends!</h3>
+          <div class="list">
+              <label class="item item-input item-floating-label">
+                <span class="input-label">Token code</span>
+                <input type="text" ng-model="tokenInput.code" placeholder="enter token code...">
+              </label>
+              <button type="submit" class="button button-block button-balanced" ng-click="claimToken(tokenInput.code)"> Claim Token </button>
 
-  <div>Token Info</div>
+          </div>
 
+        </form>
+      </div>
+    </div>
 
-    <div class="item item-body" style="padding: 0px">
+<!--     <div class="item item-body" style="padding: 0px">
       <ion-slide-box does-continue="true" auto-play="true" style="padding-bottom: 15px">
       <ion-slide>
         <img class="full-image" src="{{articleInput.image}}">
         {{img}}
       </ion-slide>
       </ion-slide-box>
-    </div>
+    </div> -->
 
-    <div class="item">
-      <h2>Token Location: {{tokenLocation.$value}}</h2>
-      <h2>Token Message: {{tokenMessage.$value}}</h2>
-      <h2>Token Prize: {{tokenPrize.$value}}</h2>
+    <div class="card">
+      <div class="item item-text-wrap">
+
+        <div class="item">
+          <h4>Token Location: {{tokenLocation.$value}}</h4>
+          <h4>Token Message: {{tokenMessage.$value}}</h4>
+          <h4>Token Prize: {{tokenPrize.$value}}</h4>
+        </div>
+
+      </div>
     </div>
 
   </ion-content>
