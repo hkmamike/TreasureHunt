@@ -3,51 +3,7 @@
 
   <button class="button button-block " ng-click="updateDatabase()">Update_Database</button>
   
-   <div  class="cardflat item-text-wrap"
-          ng-repeat="mission in user.missionList"
-          ng-if="mission.missionStatus === 'Current'"
-          ng-init='missionInfo=getMissionInfo(mission.missionID)'>
-    </div>
 
-   <form>
-    <h3>claim tokens for saving friends!</h3>
-    <div class="list">
-      <label class="item item-input item-floating-label">
-        <span class="input-label">Token code</span>
-        <input type="text" ng-model="tokenInput.code" placeholder="Enter token scode...">
-      </label>
-
-    <button type="submit" class="button button-block button-balanced" ng-click="claimToken(tokenInput.code)"> Claim Token </button>
-
-  </form>
-
-  <div>Token Info</div>
-
-
-    <div class="item item-body" style="padding: 0px">
-      <ion-slide-box does-continue="true" auto-play="true" style="padding-bottom: 15px">
-      <ion-slide>
-        <img class="full-image" src="{{articleInput.image}}">
-        {{img}}
-      </ion-slide>
-      </ion-slide-box>
-    </div>
-
-    <div class="item">
-      <h2>Token Location: {{tokenLocation.$value}}</h2>
-      <h2>Token Message: {{tokenMessage.$value}}</h2>
-      <h2>Token Prize: {{tokenPrize.$value}}</h2>
-    </div>
-
-
-
-
-
-
-
-
-
-      
   
   </ion-content>
 </ion-view>

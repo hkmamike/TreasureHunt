@@ -59,7 +59,6 @@ angular.module('starter', ['ionic', 'chart.js', 'starter.controllers', 'starter.
     views: {
       'tab_selections': {
         templateUrl: 'templates/selections.html',
-        controller: 'selectionsCtrl'
       }
     }
   })
