@@ -110,6 +110,7 @@ angular.module('starter.controllers', [])
 .controller('AppCtrl', function($q, $scope, $ionicModal, $firebaseObject, $ionicPopover, $ionicScrollDelegate, $timeout, foodies, articles, tokens, $ionicSideMenuDelegate, userData) {
 
   firebase.auth().onAuthStateChanged(function () {
+    
     currentUserID = userData.getUser().uid;
     $scope.user = $firebaseObject(firebase.database().ref('/users/' + currentUserID));
 
@@ -132,9 +133,6 @@ angular.module('starter.controllers', [])
   };
 
 
-  // $scope.getMissionDetails = function (location) {
-  //   return $firebaseObject(firebase.database().ref('/users/' + currentUserID + '/completedMissions/' + location));
-  // };
 
 
   // ---------------------------------------------------------------------------------
