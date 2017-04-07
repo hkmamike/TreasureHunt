@@ -70,7 +70,7 @@ angular.module('starter.controllers', [])
       var tokenClaimed = {1:"GGG",2:"HHH"};;
       var userMission3 = {
           missionStatus: "Current",
-          missionID: "x1003GHI",
+          missionID: "X1003GHI",
           friendSaved: 2,
           startTime: "11:15am",
           endTime: 0,
@@ -80,7 +80,7 @@ angular.module('starter.controllers', [])
       var tokenClaimed = null;
       var userMission4 = {
           missionStatus: "Pending",
-          missionID: "x1004JKL",
+          missionID: "X1004JKL",
           friendSaved: 0,
           startTime: 0,
           endTime: 0,
@@ -102,9 +102,7 @@ angular.module('starter.controllers', [])
 
 
 .controller('missionDetailsCtrl', function($scope, $stateParams, $firebaseObject, userData) {
-
   $scope.missionID = $stateParams.missionID;
-  // $scope.missionInfo = $firebaseObject(firebase.database().ref('/location/' + $stateParams.location));
 })
 
 
@@ -112,22 +110,29 @@ angular.module('starter.controllers', [])
 .controller('AppCtrl', function($q, $scope, $ionicModal, $firebaseObject, $ionicPopover, $ionicScrollDelegate, $timeout, foodies, articles, tokens, $ionicSideMenuDelegate, userData) {
 
   firebase.auth().onAuthStateChanged(function () {
+    
     currentUserID = userData.getUser().uid;
-    console.log('currentUserID: ', currentUserID);
+    $scope.user = $firebaseObject(firebase.database().ref('/users/' + currentUserID));
 
-    $scope.user = foodies.getFoodie(currentUserID);
-    $scope.articles = articles.all();
+    firebase.database().ref('/users/'+ currentUserID + '/missionList/').orderByChild("missionStatus").equalTo("Current").on("value", function(snapshot) {
+    $scope.missionCurrent = snapshot.val() 
+    });
 
-    console.log($scope.user);
+    firebase.database().ref('/users/'+ currentUserID + '/missionList/').orderByChild("missionStatus").equalTo("Pending").on("value", function(snapshot) {
+    $scope.missionPending = snapshot.val() 
+    });
+
+    firebase.database().ref('/users/'+ currentUserID + '/missionList/').orderByChild("missionStatus").equalTo("Completed").on("value", function(snapshot) {
+    $scope.missionCompleted = snapshot.val() 
+    });
+
   });
-
 
   $scope.getMissionInfo = function (missionID) {
     return $firebaseObject(firebase.database().ref('/missions/' + missionID));
   };
-  // $scope.getMissionDetails = function (location) {
-  //   return $firebaseObject(firebase.database().ref('/users/' + currentUserID + '/completedMissions/' + location));
-  // };
+
+
 
 
   // ---------------------------------------------------------------------------------
@@ -341,26 +346,9 @@ angular.module('starter.controllers', [])
   };
 })
 
-//Favourite page controller
-.controller('favouriteCtrl', function($scope, articles, userData) {
-
-  // firebase.auth().onAuthStateChanged(function () {
-  //   $scope.favouriteArticle = userData.dataPath('bookmark');
-  //   console.log('favouriteArticle: ', $scope.favouriteArticle);
-  // });
-    
-    $scope.getArticlebyKey = function(articleKey){
-      console.log('articleKey',articleKey);
-      return articles.dataPath(articleKey);
-    };
 
 
-})
 
-
-//Selections page controller
-.controller('selectionsCtrl', function($scope, articles, userData) {
-})
 
 //Activities page controller
 .controller('activitiesCtrl', function($q, $scope, articles, foodies, userData) {
