@@ -3,6 +3,15 @@
 
   <ion-content>
 
+    <div  class="cardflat item-text-wrap"
+          ng-repeat="mission in missionCurrent"
+          ng-init='missionInfo=getMissionInfo(mission.missionID)'>
+
+          {{missionInfo.missionLocation}}<br>
+          {{missionInfo.missionInfo}}<br>
+          --- "mission in missionCurrent" ---
+    </div>
+
 
     <div  class="cardflat item-text-wrap"
           ng-repeat="mission in user.missionList"
@@ -10,9 +19,8 @@
           ng-init='missionInfo=getMissionInfo(mission.missionID)'>
 
           {{missionInfo.missionLocation}}<br>
-          {{missionInfo.missionInfo}}
-
-
+          {{missionInfo.missionInfo}}<br>
+          --- "mission in user.missionList" ---
     </div>
 
   <p></p>

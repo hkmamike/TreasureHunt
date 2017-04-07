@@ -112,6 +112,19 @@ angular.module('starter.controllers', [])
   firebase.auth().onAuthStateChanged(function () {
     currentUserID = userData.getUser().uid;
     $scope.user = $firebaseObject(firebase.database().ref('/users/' + currentUserID));
+
+    firebase.database().ref('/users/'+ currentUserID + '/missionList/').orderByChild("missionStatus").equalTo("Current").on("value", function(snapshot) {
+    $scope.missionCurrent = snapshot.val() 
+    });
+
+    firebase.database().ref('/users/'+ currentUserID + '/missionList/').orderByChild("missionStatus").equalTo("Pending").on("value", function(snapshot) {
+    $scope.missionPending = snapshot.val() 
+    });
+
+    firebase.database().ref('/users/'+ currentUserID + '/missionList/').orderByChild("missionStatus").equalTo("Completed").on("value", function(snapshot) {
+    $scope.missionCompleted = snapshot.val() 
+    });
+
   });
 
   $scope.getMissionInfo = function (missionID) {

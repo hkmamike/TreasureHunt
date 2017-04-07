@@ -3,7 +3,7 @@
 
   <button class="button button-block " ng-click="updateDatabase()">Update_Database</button>
   
-    <div  class="cardflat item-text-wrap"
+   <div  class="cardflat item-text-wrap"
           ng-repeat="mission in user.missionList"
           ng-if="mission.missionStatus === 'Current'"
           ng-init='missionInfo=getMissionInfo(mission.missionID)'>
