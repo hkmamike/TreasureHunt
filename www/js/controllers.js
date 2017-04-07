@@ -126,8 +126,14 @@ angular.module('starter.controllers', [])
     $scope.missionCompleted = snapshot.val() 
     });
 
-
-
+    $scope.getTokenClaimed= function(missionID) {
+      var tokenID = $q.defer();
+      firebase.database().ref('/users/'+ currentUserID + '/tokenClaimed/').orderByValue().equalTo(missionID).on('value', function(snapshot) {
+        var tokenClaimed = snapshot.val();
+        tokenID.resolve(tokenClaimed);
+      });
+      return tokenID.promise.$$state.value;
+    };
 
   });
 
@@ -136,16 +142,6 @@ angular.module('starter.controllers', [])
   };
 
 
-    $scope.getToken= function(missionID) {
-    var missionID = "X1001ABC"
-    var tokenID = $q.defer();
-    firebase.database().ref('/users/'+ currentUserID + '/tokenClaimed/').orderByValue().equalTo(missionID).on('value', function(snapshot) {
-      var tokenClaimed = snapshot.val();
-      tokenID.resolve(tokenClaimed);
-    });
-    console.log('tokenClaimed',tokenID.promise, tokenID.promise.$$state.value, tokenID.promise.$$state);
-    return tokenID.promise.$$state.value;
-    };
 
   // ---------------------------------------------------------------------------------
   // Treasure Hunt Stuff

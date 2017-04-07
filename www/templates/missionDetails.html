@@ -6,7 +6,7 @@
           ng-repeat="mission in user.missionList"
           ng-if="mission.missionID === missionID"
           ng-init="missionInfo=getMissionInfo(mission.missionID);
-                   tokenClaimed=getToken(mission.missionID)">
+                   tokenClaimed=getTokenClaimed(mission.missionID)">
 
       <div  class="pictureFrame" 
             style="background-image: url({{missionInfo.missionCover}});" 
