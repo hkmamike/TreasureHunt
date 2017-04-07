@@ -5,7 +5,8 @@
     <div  class="cardflat item-text-wrap"
           ng-repeat="mission in user.missionList"
           ng-if="mission.missionID === missionID"
-          ng-init='missionInfo=getMissionInfo(mission.missionID)'>
+          ng-init="missionInfo=getMissionInfo(mission.missionID);
+                   tokenClaimed=getToken(mission.missionID)">
 
       <div  class="pictureFrame" 
             style="background-image: url({{missionInfo.missionCover}});" 
@@ -41,6 +42,15 @@
             Info: {{missionInfo.missionInfo}} <br>
           </div>
 
+        </div>
+      </div>
+
+      <div class="card">
+
+        <div class="item item-text-wrap">
+          <div ng-repeat="(token, missionID) in tokenClaimed">
+          {{token}}
+          </div>
         </div>
       </div>
 

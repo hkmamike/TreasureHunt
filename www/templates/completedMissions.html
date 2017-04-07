@@ -5,7 +5,7 @@
     <div  class="cardflat item-text-wrap"
           ng-repeat="mission in user.missionList"
           ng-if="mission.missionStatus === 'Completed'"
-          ng-init='missionInfo=getMissionInfo(mission.missionID)'>
+          ng-init="missionInfo=getMissionInfo(mission.missionID)">
 
       <div  class="pictureFrame" 
             style="background-image: url({{missionInfo.missionCover}});" 
