@@ -182,6 +182,8 @@ angular.module('starter.controllers', [])
 
   $scope.claimToken = function (token) {
 
+    token = token.toLowerCase();
+
     //firebase data retrieval logics are in services
     $scope.tokenLocation = tokens.getTokenLocation(token);
     $scope.tokenMessage = tokens.getTokenMessage(token);
@@ -194,15 +196,12 @@ angular.module('starter.controllers', [])
   $scope.checkIfTokenExists = function(token) {
 
     return firebase.database().ref('/tokens/' + token).once('value').then(function(snapshot) {
-     
       var check = snapshot.exists();
-
       if (check) {
         $scope.openToken();
       } else {
         console.log('token does not exist and check value is : ', check);
       }
-
     });
   };
 
