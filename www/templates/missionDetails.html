@@ -51,6 +51,24 @@
     </div>
 
     <div class="card">
+      <div class="item item-text-wrap">
+        <form>
+
+          <h3>find the tokens, save the friends!</h3>
+          <div class="list">
+              <label class="item item-input item-floating-label">
+                <span class="input-label">Token code</span>
+                <input type="text" ng-model="tokenInput.code" placeholder="enter token code...">
+              </label>
+              <button type="submit" class="button button-block button-balanced" ng-click="claimToken(tokenInput.code)"> Claim Token </button>
+
+          </div>
+
+        </form>
+      </div>
+    </div>
+
+    <div class="card">
 
       <div class="item item-text-wrap">
       Tokens Claimed:
