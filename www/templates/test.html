@@ -6,27 +6,20 @@
   <ion-content>
 
     <div  class="cardflat item-text-wrap"
-          ng-repeat="mission in missionCurrent"
-          ng-init='missionInfo=getMissionInfo(mission.missionID)'>
-          Example of getting current mission from [missionCurrent] using ng-repeat<br>
-          {{missionInfo.$id}}<br>
-          {{missionInfo.missionLocation}}<br>
-          {{missionInfo.missionInfo}}<br>
-          --- "mission in missionCurrent" ---
-    </div>
-
-
-    <div  class="cardflat item-text-wrap"
           ng-repeat="mission in user.missionList"
-          ng-if="mission.missionStatus === 'Current'"
-          ng-init='missionInfo=getMissionInfo(mission.missionID)'>
-          Example of getting current mission from [user] using ng-repeat and ng-if<br>
-          {{missionInfo.$id}}<br>
-          {{missionInfo.missionLocation}}<br>
-          {{missionInfo.missionInfo}}<br>
-          --- "mission in user.missionList" and "mission.missionStatus === 'Current'" ---
-    </div>
+          ng-if="mission.missionID === missionID"
+          ng-init="missionInfo=getMissionInfo(mission.missionID);
+                   tokenClaimed=getTokenClaimed(mission.missionID)"> </div>
 
+      <div  class="pictureFrame" 
+            style="background-image: url({{missionInfo.missionCover}});" 
+            ui-sref="app.missionDetails({'missionID':missionInfo.$id})">
+
+        <img src={{missionInfo.missionCover}} style="visibility: hidden; width: 100%">
+        <div class="backgroundGradient"></div>
+        <div class="textShadow">{{missionInfo.missionLocation}}</div>
+
+      </div>
 
     <div class="card">
       <div class="item item-text-wrap">
@@ -41,16 +34,14 @@
     </div>
 
     <div class="card">
-
-      <h5>Friends Saved x/10</h5>
       <div class="item item-text-wrap">
 
         <div class="item">
-          <h5>Jimmy</h5>
-          <h5>Amy</h5>
-          <h5>Pork</h5>
-          <h5>Belly</h5>
-          <h5>Dor Dor</h5>
+          Friend Saved: {{mission.friendSaved}} <br>
+          Token Claimed: {{mission.tokenClaimed}} <br>
+          Completed Time: {{mission.endTime}} <br>  
+          Location: {{missionInfo.missionLocation}} <br>
+          Info: {{missionInfo.missionInfo}} <br>
         </div>
 
       </div>
@@ -60,7 +51,7 @@
       <div class="item item-text-wrap">
         <form>
 
-          <h3>claim tokens for saving friends!</h3>
+          <h3>find the tokens, save the friends!</h3>
           <div class="list">
               <label class="item item-input item-floating-label">
                 <span class="input-label">Token code</span>
@@ -82,18 +73,6 @@
       </ion-slide>
       </ion-slide-box>
     </div> -->
-
-    <div class="card">
-      <div class="item item-text-wrap">
-
-        <div class="item">
-          <h4>Token Location: {{tokenLocation.$value}}</h4>
-          <h4>Token Message: {{tokenMessage.$value}}</h4>
-          <h4>Token Prize: {{tokenPrize.$value}}</h4>
-        </div>
-
-      </div>
-    </div>
 
   </ion-content>
 </ion-view>
