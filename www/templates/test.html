@@ -5,7 +5,7 @@
 
   <ion-content>
 
-    <div  class="cardflat item-text-wrap"
+<!--     <div  class="cardflat item-text-wrap"
           ng-repeat="mission in missionCurrent"
           ng-init='missionInfo=getMissionInfo(mission.missionID)'>
           Example of getting current mission from [missionCurrent] using ng-repeat<br>
@@ -14,7 +14,6 @@
           {{missionInfo.missionInfo}}<br>
           --- "mission in missionCurrent" ---
     </div>
-
 
     <div  class="cardflat item-text-wrap"
           ng-repeat="mission in user.missionList"
@@ -25,7 +24,7 @@
           {{missionInfo.missionLocation}}<br>
           {{missionInfo.missionInfo}}<br>
           --- "mission in user.missionList" and "mission.missionStatus === 'Current'" ---
-    </div>
+    </div> -->
 
 
     <div class="card">
@@ -82,18 +81,6 @@
       </ion-slide>
       </ion-slide-box>
     </div> -->
-
-    <div class="card">
-      <div class="item item-text-wrap">
-
-        <div class="item">
-          <h4>Token Location: {{tokenLocation.$value}}</h4>
-          <h4>Token Message: {{tokenMessage.$value}}</h4>
-          <h4>Token Prize: {{tokenPrize.$value}}</h4>
-        </div>
-
-      </div>
-    </div>
 
   </ion-content>
 </ion-view>

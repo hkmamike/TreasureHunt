@@ -95,9 +95,9 @@ angular.module('starter.controllers', [])
 
       var updates = {};
       updates['/missions/'] = missions;
-      updates['/users/' + currentUserID + '/missionList/' ] = userMissions;      
+      updates['/users/' + currentUserID + '/missionList/' ] = userMissions;
       return firebase.database().ref().update(updates);
-      }
+      };
 })
 
 
@@ -109,21 +109,25 @@ angular.module('starter.controllers', [])
 
 .controller('AppCtrl', function($q, $scope, $ionicModal, $firebaseObject, $ionicPopover, $ionicScrollDelegate, $timeout, foodies, articles, tokens, $ionicSideMenuDelegate, userData) {
 
+
+  // ---------------------------------------------------------------------------------
+  // Treasure Hunt Stuff
+
   firebase.auth().onAuthStateChanged(function () {
     
     currentUserID = userData.getUser().uid;
     $scope.user = $firebaseObject(firebase.database().ref('/users/' + currentUserID));
 
     firebase.database().ref('/users/'+ currentUserID + '/missionList/').orderByChild("missionStatus").equalTo("Current").on("value", function(snapshot) {
-    $scope.missionCurrent = snapshot.val() 
+    $scope.missionCurrent = snapshot.val();
     });
 
     firebase.database().ref('/users/'+ currentUserID + '/missionList/').orderByChild("missionStatus").equalTo("Pending").on("value", function(snapshot) {
-    $scope.missionPending = snapshot.val() 
+    $scope.missionPending = snapshot.val();
     });
 
     firebase.database().ref('/users/'+ currentUserID + '/missionList/').orderByChild("missionStatus").equalTo("Completed").on("value", function(snapshot) {
-    $scope.missionCompleted = snapshot.val() 
+    $scope.missionCompleted = snapshot.val();
     });
 
     $scope.getTokenClaimed= function(missionID) {
@@ -140,11 +144,6 @@ angular.module('starter.controllers', [])
   $scope.getMissionInfo = function (missionID) {
     return $firebaseObject(firebase.database().ref('/missions/' + missionID));
   };
-
-
-
-  // ---------------------------------------------------------------------------------
-  // Treasure Hunt Stuff
 
   $scope.toggleInfo = function(info) {
     if ($scope.isInfoShown(info)) {
@@ -181,26 +180,48 @@ angular.module('starter.controllers', [])
     });
   };
 
-
-
-
-
-
   $scope.claimToken = function (token) {
 
-
-  // ---------------------------------------------------------------------------------
-  // Treasure Hunt Stuff
-    //firebase data retrieval in services
+    //firebase data retrieval logics are in services
     $scope.tokenLocation = tokens.getTokenLocation(token);
     $scope.tokenMessage = tokens.getTokenMessage(token);
     $scope.tokenPrize = tokens.getTokenPrize(token);
-
-    //register token on user node
-
+    $scope.checkIfTokenExists(token);
     tokens.claimToken(token);
 
   };
+
+  $scope.checkIfTokenExists = function(token) {
+
+    return firebase.database().ref('/tokens/' + token).once('value').then(function(snapshot) {
+     
+      var check = snapshot.exists();
+
+      if (check) {
+        $scope.openToken();
+      } else {
+        console.log('token does not exist and check value is : ', check);
+      }
+
+    });
+  };
+
+  //code for showing token details in modal
+  $scope.tokenData = {};
+  $ionicModal.fromTemplateUrl('templates/tokenDetails.html', {
+    scope: $scope
+  }).then(function(modal) {
+    $scope.token = modal;
+  });
+
+  $scope.closeToken = function() {
+    $scope.token.hide();
+  };
+
+  $scope.openToken = function() {
+    $scope.token.show();
+  };
+
 
   // ---------------------------------------------------------------------------------
 
@@ -354,10 +375,6 @@ angular.module('starter.controllers', [])
   };
 })
 
-
-
-
-
 //Activities page controller
 .controller('activitiesCtrl', function($q, $scope, articles, foodies, userData) {
 
@@ -396,7 +413,6 @@ angular.module('starter.controllers', [])
   return totalScole;
   };
 
-
   $scope.getSelectedArticleFoodieInfo = function(foodieID){
     return foodies.getFoodieInfo(foodieID);
   };
@@ -418,8 +434,6 @@ angular.module('starter.controllers', [])
   $scope.isRateArticle = function(articleKey){
     return articles.isRateArticle(articleKey);
   };
-
-
 
   $scope.countChildd = function(path){
 

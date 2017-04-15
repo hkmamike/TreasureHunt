@@ -188,13 +188,28 @@ angular.module('starter.services', [])
   };
 })
 
-.factory('tokens',['userData', '$firebaseObject', '$firebaseArray', function( userData, $firebaseObject, $firebaseArray) {
+.factory('tokens',['$rootScope', '$q','userData', '$firebaseObject', '$firebaseArray', function( $rootScope, $q, userData, $firebaseObject, $firebaseArray) {
   var self = this;
   var firebaseRef = firebase.database();
   var ref = firebase.database().ref().child('tokens');
   var articles = $firebaseObject(ref);
 
   return {
+
+    checkIfTokenExists: function(token) {
+
+      return firebase.database().ref('/tokens/' + token).once('value').then(function(snapshot) {
+       
+        var check = snapshot.exists();
+
+        if (check) {
+          $rootScope.openToken();
+        } else {
+          console.log('token does not exist and check value is : ', check);
+        }
+
+      });
+    },
 
     getTokenLocation: function(token) {
       tokenLocation = $firebaseObject(ref.child(token).child('location'));

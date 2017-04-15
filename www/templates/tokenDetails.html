@@ -1,0 +1,25 @@
+<ion-modal-view>
+
+  <ion-header-bar>
+    <h1 class="title">Success! You saved a friend!</h1>
+    <div class="buttons">
+      <button class="button button-cross" ng-click="closeToken()">Close</button>
+    </div>
+  </ion-header-bar>
+
+  <ion-content>
+    <div class="card">
+      <div class="item item-text-wrap">
+
+        <div class="item">
+          <h4>Token Location: {{tokenLocation.$value}}</h4>
+          <h4>Token Message: {{tokenMessage.$value}}</h4>
+          <h4>Token Prize: {{tokenPrize.$value}}</h4>
+        </div>
+
+      </div>
+    </div>
+  </ion-content>
+
+</ion-modal-view>
+
