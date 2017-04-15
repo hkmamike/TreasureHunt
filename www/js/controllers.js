@@ -107,7 +107,7 @@ angular.module('starter.controllers', [])
 
 
 
-.controller('AppCtrl', function($q, $scope, $ionicModal, $firebaseObject, $ionicPopover, $ionicScrollDelegate, $timeout, foodies, articles, tokens, $ionicSideMenuDelegate, userData) {
+.controller('AppCtrl', function($q, $scope, $stateParams, $ionicModal, $firebaseObject, $ionicPopover, $ionicScrollDelegate, $timeout, foodies, articles, tokens, $ionicSideMenuDelegate, userData) {
 
 
   // ---------------------------------------------------------------------------------
@@ -140,6 +140,8 @@ angular.module('starter.controllers', [])
     };
 
   });
+
+  $scope.missionID = $stateParams.missionID;
 
   $scope.getMissionInfo = function (missionID) {
     return $firebaseObject(firebase.database().ref('/missions/' + missionID));
@@ -181,7 +183,6 @@ angular.module('starter.controllers', [])
   };
 
   $scope.claimToken = function (token) {
-
     token = token.toLowerCase();
 
     //firebase data retrieval logics are in services
@@ -194,7 +195,6 @@ angular.module('starter.controllers', [])
   };
 
   $scope.checkIfTokenExists = function(token) {
-
     return firebase.database().ref('/tokens/' + token).once('value').then(function(snapshot) {
       var check = snapshot.exists();
       if (check) {
