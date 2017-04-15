@@ -8,36 +8,65 @@
           ng-repeat="mission in user.missionList"
           ng-if="mission.missionID === missionID"
           ng-init="missionInfo=getMissionInfo(mission.missionID);
-                   tokenClaimed=getTokenClaimed(mission.missionID)">
+                   tokenList=getTokenList(mission.missionID)">
 
 
       <div  class="pictureFrame" 
             style="background-image: url({{missionInfo.missionCover}});" 
             ui-sref="app.missionDetails({'missionID':missionInfo.$id})">
-
         <img src={{missionInfo.missionCover}} style="visibility: hidden; width: 100%">
         <div class="backgroundGradient"></div>
         <div class="textShadow">{{missionInfo.missionLocation}}</div>
-
       </div>
 
-    </div>
-
-
-    <div class="card">
-      <div class="item item-text-wrap">
-        <div ng-class="isInfoShown(mission) ? 'item-expand active' : 'item-expand inactive'">
-          <p>{{missionInfo.missionInfo}}</p>
-        </div>
-        <div ng-click="toggleInfo(mission)" class="item-expand-footer">
-          <i ng-class="isInfoShown(mission) ? 'ion-ios-minus-outline' : 'ion-ios-plus-outline'"></i>
-          {{isInfoShown(mission) ? 'Less' : 'More' }}
+      <div class="card">
+        <div class="item item-text-wrap">
+          <div ng-class="isInfoShown(mission) ? 'item-expand active' : 'item-expand inactive'">
+            <p>{{missionInfo.missionInfo}}</p>
+          </div>
+          <div ng-click="toggleInfo(mission)" class="item-expand-footer">
+            <i ng-class="isInfoShown(mission) ? 'ion-ios-minus-outline' : 'ion-ios-plus-outline'"></i>
+            {{isInfoShown(mission) ? 'Less' : 'More' }}
+          </div>
         </div>
       </div>
-    </div>
 
+      <div class="card">
+        <div  class="item item-text-wrap" 
+              ng-repeat="tokenID in missionInfo.missionToken"
+              ng-init="tokenInfo=getTokenInfo(tokenID)">
+          {{tokenInfo.friendName}} : 
+          <span ng-if="user.missionList[missionID].tokenClaimed[tokenID] == tokenID">{{tokenInfo.comment}}</span>
+          <span ng-if="user.missionList[missionID].tokenClaimed[tokenID] !== tokenID">[You hvnt find him yet]</span>
+        </div>
+      </div>
+
+
+<!--       <div class="card">
+        <div class="item item-text-wrap"
+             ng-init="tokenClaimed=getTokenClaimed(mission.missionID);
+                      tokenClaimedNumber=getTokenClaimedNumber(mission.missionID)">
+          Tokens Claimed: {{tokenClaimedNumber}}
+          <div ng-repeat="(token, missionID) in tokenClaimed">
+          {{token}}
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="item item-text-wrap">
+
+          <div class="item">
+            Friend Saved: {{mission.friendSaved}} <br>
+            Token Claimed: {{mission.tokenClaimed}} <br>
+            Completed Time: {{mission.endTime}} <br>  
+            Location: {{missionInfo.missionLocation}} <br>
+            Info: {{missionInfo.missionInfo}} <br>
+          </div>
+=======
     <div class="card">
       <div class="item item-text-wrap">
+>>>>>>> origin/master
 
         <div class="item">
           Friend Saved: {{mission.friendSaved}} <br>
@@ -46,9 +75,10 @@
           Location: {{missionInfo.missionLocation}} <br>
           Info: {{missionInfo.missionInfo}} <br>
         </div>
+<<<<<<< HEAD
+      </div> -->
 
-      </div>
-    </div>
+
 
     <div class="card">
       <div class="item item-text-wrap">
@@ -76,6 +106,8 @@
         {{token}}
         </div>
       </div>
+    </div>
+
     </div>
 
   </ion-content>

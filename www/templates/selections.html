@@ -44,6 +44,17 @@
         </div>
       </div>
 
+
+      <div class="card" ng-init="tokenClaimedNumber=getTokenClaimedNumber(mission.missionID)">
+        <h5>Friends Saved {{tokenClaimedNumber}}/10</h5>
+        <div class="item item-text-wrap">
+          <div  ng-repeat="tokenID in missionInfo.missionToken" 
+                ng-init="tokenStatus=getTokenClaimedStatus(tokenID)">
+            {{tokenID}} {{tokenStatus}}
+          </div>
+        </div>
+      </div>
+
       <div class="card">
         <div class="item item-text-wrap">
           <div class="item">

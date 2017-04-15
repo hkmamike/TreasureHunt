@@ -5,29 +5,29 @@ angular.module('starter.controllers', [])
 
     $scope.updateDatabase=function(){
  
-      var Token = {1:"AAA", 2:"BBB", 3:"CCC"};
+      var missionToken = {1:"AAA", 2:"BBB", 3:"CCC"};
       var mission1 = {
           missionID: "X1001ABC",
           missionCover: "http://www.discoverhongkong.com/eng/images/see-do/highlight-attractions/large/1.1.1.2-Peak_03.jpg",
-          missionToken: Token,
+          missionToken: missionToken,
           missionLocation: "The Peak",
-          missionInfo: "This is The Peak, This is The Peak, This is The Peak",
+          missionInfo: "This is The Peak, This is The Peak, This is The Peak <br> This is The Peak, This is The Peak, This is The Peak",
       };
 
       var missionToken = {1:"DDD", 2:"EEE", 3:"FFF"};
       var mission2 = {
           missionID: "X1002DEF",
           missionCover: "http://www.discoverhongkong.com/eng/images/see-do/highlight-attractions/large/1.1.1.2-Peak_03.jpg",
-          missionToken: Token,
+          missionToken: missionToken,
           missionLocation: "Avenue of Star",
-          missionInfo: "This is Avenue of Star, This is Avenue of Star, This is Avenue of Star",
+          missionInfo: "This is Avenue of Star, This is Avenue of Star, This is Avenue of Star <br> This is Avenue of Star, This is Avenue of Star, This is Avenue of Star",
       };
 
       var missionToken = {1:"GGG", 2:"HHH", 3:"III"};
       var mission3 = {
           missionID: "X1003GHI",
           missionCover: "http://www.discoverhongkong.com/eng/images/see-do/highlight-attractions/large/1.1.1.2-Peak_03.jpg",
-          missionToken: Token,
+          missionToken: missionToken,
           missionLocation: "Temple Street",
           missionInfo: "This is Temple Street, This is Temple Street, This is Temple Street",
       };
@@ -36,7 +36,7 @@ angular.module('starter.controllers', [])
       var mission4 = {
           missionID: "X1004JKL",
           missionCover: "http://www.discoverhongkong.com/eng/images/see-do/highlight-attractions/large/1.1.1.2-Peak_03.jpg",
-          missionToken: Token,
+          missionToken: missionToken,
           missionLocation: "History Museum",
           missionInfo: "This is History Museum, This is History Museum, This is History Museum",
       };
@@ -133,10 +133,25 @@ angular.module('starter.controllers', [])
     $scope.getTokenClaimed= function(missionID) {
       var tokenID = $q.defer();
       firebase.database().ref('/users/'+ currentUserID + '/tokenClaimed/').orderByValue().equalTo(missionID).on('value', function(snapshot) {
-        var tokenClaimed = snapshot.val();
-        tokenID.resolve(tokenClaimed);
+        tokenID.resolve(snapshot.val());
       });
       return tokenID.promise.$$state.value;
+    };
+
+    $scope.getTokenClaimedNumber= function(missionID) {
+      var tokenCount = $q.defer();
+      firebase.database().ref('/users/'+ currentUserID + '/tokenClaimed/').orderByValue().equalTo(missionID).on('value', function(snapshot) {
+        tokenCount.resolve(snapshot.numChildren());
+      });
+      return tokenCount.promise.$$state.value;
+    };
+
+    $scope.getTokenClaimedStatus= function(tokenID) {
+      var tokenStatus = $q.defer();
+      firebase.database().ref('/users/'+ currentUserID + '/tokenClaimed/').orderByKey().equalTo(tokenID).on('value', function(snapshot) {
+        tokenStatus.resolve(snapshot.numChildren());
+      });
+      return tokenStatus.promise.$$state.value===1;
     };
 
   });
@@ -146,6 +161,22 @@ angular.module('starter.controllers', [])
   $scope.getMissionInfo = function (missionID) {
     return $firebaseObject(firebase.database().ref('/missions/' + missionID));
   };
+
+  $scope.getTokenInfo = function (tokenID) {
+    return $firebaseObject(firebase.database().ref('/tokens/' + tokenID));
+  };
+
+
+  // $scope.getTokenList = function (missionID) {
+  //     var tokenList = $q.defer();
+  //     firebase.database().ref('/tokens/').orderByChild("missionID").equalTo(missionID).on('value', function(snapshot) {
+  //       tokenList.resolve(snapshot.val());
+  //     });
+  //     return tokenList.promise.$$state.value;
+  // };
+
+  // ---------------------------------------------------------------------------------
+  // Treasure Hunt Stuff
 
   $scope.toggleInfo = function(info) {
     if ($scope.isInfoShown(info)) {
