@@ -7,7 +7,7 @@ admin.initializeApp(functions.config().firebase);
 
 
 // Keeps track of the length of the 'likes' child list in a separate property.
-exports.countlikechange = functions.database.ref('/users/{userID}/missionList/{missionID}/tokenClaimed/{tokenID}').onWrite(event => {
+exports.counttokenclaimed = functions.database.ref('/users/{userID}/missionList/{missionID}/tokenClaimed/{tokenID}').onWrite(event => {
   const collectionRef = event.data.ref.parent;
   const countRef = collectionRef.parent.child('tokenCount');
 
