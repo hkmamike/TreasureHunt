@@ -167,5 +167,5 @@ angular.module('starter', ['ionic', 'chart.js', 'starter.controllers', 'starter.
 
   ;
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/favourites');
+  $urlRouterProvider.otherwise('/app/List');
 });

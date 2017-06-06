@@ -11,7 +11,8 @@
 				Check Progress
 		</button>
 		<button ng-if="UserRecord[SelectedCity].Campaign[CampaignID] == null"
-				class="button button-cross assertive">
+				class="button button-cross assertive"
+				ng-click="EnrollCampaign(CampaignID)">
 				Enroll Now
 		</button>
 

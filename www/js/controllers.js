@@ -47,7 +47,17 @@ angular.module('starter.controllers', [])
 		var FirebaseUser = firebase.auth().currentUser;
 		$scope.UserInfo = $firebaseObject(firebase.database().ref('/User/' + FirebaseUser.uid + '/UserInfo/'));
 		$scope.UserRecord = $firebaseObject(firebase.database().ref('/User/' + FirebaseUser.uid + '/Record/'));
+		UserID = FirebaseUser.uid
 	});
+// ---------------------------------------------------------------------------------
+
+
+// USER ACTION----------------------------------------------------------------------
+
+	$scope.EnrollCampaign= function(CampaignID) {
+		console.log(CampaignID);
+		firebase.database().ref('/User/'+ UserID +'/Input/' + '/EnrollCampaign/').set(CampaignID);
+	}
 // ---------------------------------------------------------------------------------
 
 	$scope.CampaignList = $firebaseObject(firebase.database().ref('/DatabaseInfo/' + '/CityCampaignInfo/'));
@@ -58,10 +68,6 @@ angular.module('starter.controllers', [])
 .controller('ListCtrl', function($scope, $stateParams) {
 	$scope.SelectedCity = $stateParams.CityID;
 	$scope.SelectedCampaign = $stateParams.CampaignID;
-})
-
-.controller('CampaignCtrl', function($scope, $stateParams) {
-	$scope.SelectedCampaign = $stateParams.Campaign;
 })
 
 
