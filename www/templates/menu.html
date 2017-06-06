@@ -2,7 +2,7 @@
 
   <ion-side-menu-content drag-content="false">
 
-    <ion-nav-bar class="bar-stable bar-energized">
+    <ion-nav-bar class="bar-stable bar-energized" icon="ion-navicon" ng-click="toggleRightSideMenu()">
 
       <ion-nav-back-button>
       </ion-nav-back-button>
@@ -17,7 +17,7 @@
 <!-- TABS ===========================================================================================-->
     <ion-tabs class="tabs-icon-top tabs-color-active-energized tabs-light">
 
-      <ion-tab title="Completed Missions" icon-off="ion-ios-paper" icon-on="ion-ios-paper" ui-sref="app.completedMissions">
+      <ion-tab title="Completed Missions" icon-off="ion-ios-paper" icon-on="ion-ios-paper" ui-sref="app.completedMissions" hidden="true">
           <ion-nav-view name="tab_completedMissions"></ion-nav-view>
       </ion-tab>
 
@@ -25,15 +25,11 @@
         <ion-nav-view name="tab_missionDetails"></ion-nav-view>
       </ion-tab>
 
-
-
-
-
-      <ion-tab title="Editor's Choice" icon-off="ion-ios-color-wand" icon-on="ion-ios-color-wand" ui-sref="app.selections">
+      <ion-tab title="Editor's Choice" icon-off="ion-ios-color-wand" icon-on="ion-ios-color-wand" ui-sref="app.selections" hidden="true">
         <ion-nav-view name="tab_selections" ></ion-nav-view>
       </ion-tab>
 
-      <ion-tab title="Favourites" icon-off="ion-heart" icon-on="ion-heart" ui-sref="app.favourites">
+      <ion-tab title="Favourites" icon-off="ion-heart" icon-on="ion-heart" ui-sref="app.favourites" hidden="true">
         <ion-nav-view name="tab_favourites"></ion-nav-view>
       </ion-tab>
 
@@ -41,14 +37,30 @@
         <ion-nav-view name="tab_profile"></ion-nav-view>
       </ion-tab>
 
-      <ion-tab title="TestTab" icon-off="ion-android-create"" icon-on="ion-android-create"" ui-sref="app.test">
+      <ion-tab title="TestTab" icon-off="ion-android-create"" icon-on="ion-android-create"" ui-sref="app.test" hidden="true">
         <ion-nav-view name="tab_test"></ion-nav-view>
       </ion-tab>
-
 
       <ion-tab title="Restaurant" icon-off="ion-android-create"" icon-on="ion-android-create"" ui-sref="app.restaurant" hidden="true" >
         <ion-nav-view name="tab_restaurant"></ion-nav-view>
       </ion-tab>
+
+
+
+
+      <ion-tab title="List" icon-off="ion-android-create"" icon-on="ion-android-create"" ui-sref="app.List">
+        <ion-nav-view name="tab_List"></ion-nav-view>
+      </ion-tab>
+
+      <ion-tab title="City" icon-off="ion-android-create"" icon-on="ion-android-create"" ui-sref="app.City">
+        <ion-nav-view name="tab_City"></ion-nav-view>
+      </ion-tab>
+
+
+      <ion-tab title="Campaign" icon-off="ion-android-create"" icon-on="ion-android-create"" ui-sref="app.Campaign">
+        <ion-nav-view name="tab_Campaign"></ion-nav-view>
+      </ion-tab>
+
 
       <ion-tab icon="ion-navicon" ng-click="toggleRightSideMenu()">
       </ion-tab>
@@ -80,6 +92,11 @@
         <ion-item menu-close ui-sref="app.favourites">My Followings</ion-item>
         <ion-item menu-close ui-sref="app.favourites">My Points</ion-item>
         <ion-item menu-close ng-click="openNewArticle()">Recommand</ion-item>
+
+        <ion-item menu-close ng-click="CopyDatabase()">CopyDatabase</ion-item>
+        <ion-item menu-close ng-click="updateDatabase()">UpdateDatabase</ion-item>
+
+
       </ion-list>
     </ion-content>
 

@@ -1,0 +1,22 @@
+<ion-view view-title="List" hide-nav-bar="false">
+
+<ion-content>
+
+	<div class="cardflat item-text-wrap"
+		 ng-repeat="(CityID, City) in CampaignList">
+		
+		<div class="pictureFrame"
+			 style="background-image: url({{City.CoverImg}});"
+			 ui-sref="app.City({CityID: CityID})">
+			
+			<img src={{City.CoverImg}} style="visibility: hidden; width: 100%">
+			<div class="backgroundGradient"></div>
+			<div class="textShadow">{{City.CityName}}</div>
+
+		</div>
+
+	</div>
+
+</ion-content>
+
+ 

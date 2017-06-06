@@ -1,0 +1,20 @@
+<ion-view view-title="Campaign" hide-nav-bar="false">
+
+<ion-content>
+{{SelectedCampaign}}
+{{UserRecord.HongKong.Campaign.HongKong_3}}
+	<div class="cardflat item-text-wrap"
+		 ng-repeat="(MissionID, Mission) in UserRecord[SelectedCity].Campaign[SelectedCampaign].Mission">
+		
+		<div class="pictureFrame"
+			 style="background-image: url({{Campaign.CoverImg}});">
+			
+			<img src={{Campaign.CoverImg}} style="visibility: hidden; width: 100%">
+			<div class="backgroundGradient"></div>
+			<div class="textShadow">{{MissionID}}</div>
+
+		</div>
+
+	</div>
+
+</ion-content>

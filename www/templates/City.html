@@ -1,0 +1,31 @@
+<ion-view view-title="City" hide-nav-bar="false">
+
+<ion-content>
+
+	<div class="cardflat item-text-wrap"
+		 ng-repeat="(CampaignID, Campaign) in CampaignList[SelectedCity].Campaign">
+		
+		<button ng-if="UserRecord[SelectedCity].Campaign[CampaignID] != null"
+				class="button button-cross positive"
+				ui-sref="app.Campaign({CityID: SelectedCity, CampaignID: CampaignID})">
+				Check Progress
+		</button>
+		<button ng-if="UserRecord[SelectedCity].Campaign[CampaignID] == null"
+				class="button button-cross assertive">
+				Enroll Now
+		</button>
+
+		<div class="pictureFrame"
+			 style="background-image: url({{Campaign.CoverImg}});">
+			
+			<img src={{Campaign.CoverImg}} style="visibility: hidden; width: 100%">
+			<div class="backgroundGradient"></div>
+			<div class="textShadow">{{CampaignID}}</div>
+
+		</div>
+
+	</div>
+
+</ion-content>
+
+ 

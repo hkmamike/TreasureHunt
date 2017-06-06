@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
 
-angular.module('starter', ['ionic', 'chart.js', 'starter.controllers', 'starter.services', 'firebase'])
+angular.module('starter', ['ionic', 'chart.js', 'starter.controllers', 'starter.services', 'starter.DatabaseUploader', 'firebase'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -33,6 +33,57 @@ angular.module('starter', ['ionic', 'chart.js', 'starter.controllers', 'starter.
     controller: 'AppCtrl'
   })
 
+  .state('app.List', {
+    url: '/List',
+    views: {
+      'tab_List': {
+        templateUrl: 'templates/List.html',
+      }
+    }
+  })
+
+  .state('app.City', {
+    url: '/List/City/:CityID',
+    views: {
+      'tab_City': {
+        templateUrl: 'templates/City.html',
+        controller: 'ListCtrl'
+      }
+    }
+  })
+
+  .state('app.Campaign', {
+    url: '/List/City/:CityID/Campaign/:CampaignID',
+    views: {
+      'tab_Campaign': {
+        templateUrl: 'templates/Campaign.html',
+        controller: 'ListCtrl'
+      }
+    }
+  })
+
+  .state('app.Mission', {
+    url: '/List?CityID?CampaignID?MissionID',
+    views: {
+      'tab_Mission': {
+        templateUrl: 'templates/Mission.html',
+        controller: 'ListCtrl'
+      }
+    }
+  })
+
+
+
+
+
+
+
+
+
+
+
+
+
   .state('app.completedMissions', {
     url: '/completedMissions',
     views: {
@@ -42,12 +93,13 @@ angular.module('starter', ['ionic', 'chart.js', 'starter.controllers', 'starter.
     }
   })
 
+
   .state('app.missionDetails', {
     url: '/missionDetails/:missionID',
     views: {
       'tab_missionDetails': {
         templateUrl: 'templates/missionDetails.html',
-        controller: 'missionDetailsCtrl'
+        // controller: 'missionDetailsCtrl'
       }
     }
   })
@@ -78,7 +130,7 @@ angular.module('starter', ['ionic', 'chart.js', 'starter.controllers', 'starter.
     views: {
       'tab_profile': {
         templateUrl: 'templates/profile.html',
-        controller: 'profileCtrl'
+        // controller: 'profileCtrl'
       }
     }
   })
@@ -88,7 +140,7 @@ angular.module('starter', ['ionic', 'chart.js', 'starter.controllers', 'starter.
     views: {
       'tab_restaurant': {
         templateUrl: 'templates/restaurant.html',
-        controller: 'restaurantCtrl'
+        // controller: 'restaurantCtrl'
       }
     }
   })
@@ -98,7 +150,7 @@ angular.module('starter', ['ionic', 'chart.js', 'starter.controllers', 'starter.
     views: {
       'tab_test': {
         templateUrl: 'templates/test.html',
-        controller: 'testCtrl'
+        // controller: 'testCtrl'
       }
     }
   })
@@ -108,12 +160,12 @@ angular.module('starter', ['ionic', 'chart.js', 'starter.controllers', 'starter.
     views: {
       'page_article': {
         templateUrl: 'templates/article.html',
-        controller: 'articleCtrl'
+        // controller: 'articleCtrl'
       }
     }
   })
 
   ;
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/completedMissions');
+  $urlRouterProvider.otherwise('/app/favourites');
 });
