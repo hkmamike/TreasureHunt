@@ -58,6 +58,11 @@ angular.module('starter.controllers', [])
 		console.log(CampaignID);
 		firebase.database().ref('/User/'+ UserID +'/Input/' + '/EnrollCampaign/').set(CampaignID);
 	}
+
+	$scope.ClaimToken= function(TokenID, TokenPW) {
+		console.log(TokenID, TokenPW);
+		firebase.database().ref('/User/'+ UserID +'/Input/' + '/ClaimToken/').set(TokenID + ',' + TokenPW);
+	}
 // ---------------------------------------------------------------------------------
 
 	$scope.CampaignList = $firebaseObject(firebase.database().ref('/DatabaseInfo/' + '/CityCampaignInfo/'));
@@ -67,7 +72,8 @@ angular.module('starter.controllers', [])
 
 .controller('ListCtrl', function($scope, $stateParams) {
 	$scope.SelectedCity = $stateParams.CityID;
-	$scope.SelectedCampaign = $stateParams.CampaignID;
+	$scope.SelectedCampaign = $stateParams.CampaignID;;
+	$scope.SelectedMission = $stateParams.MissionID
 })
 
 

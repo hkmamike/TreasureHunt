@@ -7,7 +7,8 @@
 		
 		<button ng-if="UserRecord[SelectedCity].Campaign[CampaignID] != null"
 				class="button button-cross positive"
-				ui-sref="app.Campaign({CityID: SelectedCity, CampaignID: CampaignID})">
+				ui-sref="app.Campaign({CityID: SelectedCity, CampaignID: CampaignID})"
+				href="#/app/List/City/{{SelectedCity}}/Campaign/{{CampaignID}}">
 				Check Progress
 		</button>
 		<button ng-if="UserRecord[SelectedCity].Campaign[CampaignID] == null"

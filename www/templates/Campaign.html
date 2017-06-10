@@ -6,8 +6,10 @@
 		 ng-repeat="(MissionID, Mission) in UserRecord[SelectedCity].Campaign[SelectedCampaign].Mission">
 		
 		<div class="pictureFrame"
-			 style="background-image: url({{Campaign.CoverImg}});">
-			
+			 style="background-image: url({{Campaign.CoverImg}});"
+			 ui-sref="app.Mission({CityID: SelectedCity, CampaignID: SelectedCampaign, MissionID: MissionID})"
+			 href="#/app/List/City/{{SelectedCity}}/Campaign/{{SelectedCampaign}}/Mission/{{MissionID}}">
+			 
 			<img src={{Campaign.CoverImg}} style="visibility: hidden; width: 100%">
 			<div class="backgroundGradient"></div>
 			<div class="textShadow">{{MissionID}}</div>

@@ -42,6 +42,7 @@ angular.module('starter', ['ionic', 'chart.js', 'starter.controllers', 'starter.
     }
   })
 
+  //Campaign List in City
   .state('app.City', {
     url: '/List/City/:CityID',
     views: {
@@ -52,6 +53,7 @@ angular.module('starter', ['ionic', 'chart.js', 'starter.controllers', 'starter.
     }
   })
 
+  //Mission List in Campaign
   .state('app.Campaign', {
     url: '/List/City/:CityID/Campaign/:CampaignID',
     views: {
@@ -62,8 +64,9 @@ angular.module('starter', ['ionic', 'chart.js', 'starter.controllers', 'starter.
     }
   })
 
+  //Mission Details
   .state('app.Mission', {
-    url: '/List?CityID?CampaignID?MissionID',
+    url: '/List/City/:CityID/Campaign/:CampaignID/Mission/:MissionID',
     views: {
       'tab_Mission': {
         templateUrl: 'templates/Mission.html',

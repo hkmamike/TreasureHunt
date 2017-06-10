@@ -13,19 +13,23 @@ exports.EnrollCampaign = functions.database.ref('/User/{UserID}/Input/EnrollCamp
 	var Campaign = Input;
 	var Mission = Input + '_1';
 
+	admin.database().ref('/User/'+ UserID +'/Record/' + City + '/Campaign/' + Campaign).on('value', function(snapshot) {
 
-	if (snapshot.val()=null) {
-		//Copy Compaign
-		admin.database().ref('/DatabaseInfo/CityCampaignInfo/' + City +'/Campaign/' + Campaign ).on('value', function(snapshot) {
-			admin.database().ref('/User/'+ UserID +'/Record/' + City + '/Campaign/' + Campaign).set(snapshot.val());
-		});
+		console.log(snapshot.val());
 
-		//Copy Mission1
-		admin.database().ref('/DatabaseInfo/MissionInfo/' + Mission).on('value', function(snapshot) {
-			admin.database().ref('/User/'+ UserID +'/Record/' + City + '/Campaign/' + Campaign + '/Mission/' + Mission).set(snapshot.val());
-		});
-	}
+		if (snapshot.val()=null) {
+			//Copy Compaign
+			admin.database().ref('/DatabaseInfo/CityCampaignInfo/' + City +'/Campaign/' + Campaign ).on('value', function(snapshot) {
+				admin.database().ref('/User/'+ UserID +'/Record/' + City + '/Campaign/' + Campaign).set(snapshot.val());
+			});
 
+			//Copy Mission1
+			admin.database().ref('/DatabaseInfo/MissionInfo/' + Mission).on('value', function(snapshot) {
+				admin.database().ref('/User/'+ UserID +'/Record/' + City + '/Campaign/' + Campaign + '/Mission/' + Mission).set(snapshot.val());
+			});
+		}
+
+	});
 });
 
 // exports.NextMission = functions.database.ref('/User/{UserID}/Input/NextMission/').onWrite(event => {
@@ -158,7 +162,7 @@ exports.MissionComplete = functions.database.ref('/User/{UserID}/Input/MissionCo
 
 
 
-exports.UnlockToken = functions.database.ref('/User/{UserID}/Input/UnlockToken/').onWrite(event => {
+exports.UnlockToken = functions.database.ref('/User/{UserID}/Input/ClaimToken/').onWrite(event => {
 
 	var UserID= event.params.UserID;
 	var Input = event.data.val();
@@ -175,6 +179,9 @@ exports.UnlockToken = functions.database.ref('/User/{UserID}/Input/UnlockToken/'
 				//Check Mission Exist
 				if (snapshot.val() !== null) {
 					var AllToken = snapshot.val().Token;
+					admin.database().ref('/User/'+ UserID +'/Record/' + City + '/Campaign/' + Campaign + '/Mission/' + Mission +'/Token/'+ Token + '/ClaimStatus').set('Unlocked');
+					admin.database().ref('/User/'+ UserID +'/Unlocked/Token/' + Token).set(Date());
+					
 					var TokenUnlocked = 0
 					if (AllToken[Mission + '_1'].ClaimStatus == 'Unlocked') { TokenUnlocked = TokenUnlocked + 1};
 					if (AllToken[Mission + '_2'].ClaimStatus == 'Unlocked') { TokenUnlocked = TokenUnlocked + 1};
@@ -182,10 +189,9 @@ exports.UnlockToken = functions.database.ref('/User/{UserID}/Input/UnlockToken/'
 					if (AllToken[Mission + '_4'].ClaimStatus == 'Unlocked') { TokenUnlocked = TokenUnlocked + 1};
 					if (AllToken[Mission + '_5'].ClaimStatus == 'Unlocked') { TokenUnlocked = TokenUnlocked + 1};
 					if (AllToken[Mission + '_6'].ClaimStatus == 'Unlocked') { TokenUnlocked = TokenUnlocked + 1};
+					
 					//Record Unlock
 					admin.database().ref('/User/'+ UserID +'/Record/' + City + '/Campaign/' + Campaign + '/Mission/' + Mission +'/TokenUnlocked/').set(TokenUnlocked);					
-					admin.database().ref('/User/'+ UserID +'/Record/' + City + '/Campaign/' + Campaign + '/Mission/' + Mission +'/Token/'+ Token + '/ClaimStatus').set('Unlocked');
-					admin.database().ref('/User/'+ UserID +'/Unlocked/Token/' + Token).set(Date());
 				} 
 			});
 		}
