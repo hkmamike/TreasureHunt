@@ -17,7 +17,7 @@ exports.EnrollCampaign = functions.database.ref('/User/{UserID}/Input/EnrollCamp
 
 		console.log(snapshot.val());
 
-		if (snapshot.val()=null) {
+		if (snapshot.val()==null) {
 			//Copy Compaign
 			admin.database().ref('/DatabaseInfo/CityCampaignInfo/' + City +'/Campaign/' + Campaign ).on('value', function(snapshot) {
 				admin.database().ref('/User/'+ UserID +'/Record/' + City + '/Campaign/' + Campaign).set(snapshot.val());
