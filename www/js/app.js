@@ -84,9 +84,6 @@ angular.module('starter', ['ionic', 'chart.js', 'starter.controllers', 'starter.
 
 
 
-
-
-
   .state('app.completedMissions', {
     url: '/completedMissions',
     views: {

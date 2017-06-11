@@ -12,8 +12,8 @@ angular.module('starter.controllers', [])
 
 
 // SIDE MENU------------------------------------------------------------------------
- 	$scope.toggleRightSideMenu = function() {
-		$ionicSideMenuDelegate.toggleRight();
+	$scope.toggleRightSideMenu = function() {
+	$ionicSideMenuDelegate.toggleRight();
 	};
 // ---------------------------------------------------------------------------------
 
@@ -47,7 +47,7 @@ angular.module('starter.controllers', [])
 		var FirebaseUser = firebase.auth().currentUser;
 		$scope.UserInfo = $firebaseObject(firebase.database().ref('/User/' + FirebaseUser.uid + '/UserInfo/'));
 		$scope.UserRecord = $firebaseObject(firebase.database().ref('/User/' + FirebaseUser.uid + '/Record/'));
-		UserID = FirebaseUser.uid
+		UserID = FirebaseUser.uid;
 	});
 // ---------------------------------------------------------------------------------
 
@@ -57,12 +57,12 @@ angular.module('starter.controllers', [])
 	$scope.EnrollCampaign= function(CampaignID) {
 		console.log(CampaignID);
 		firebase.database().ref('/User/'+ UserID +'/Input/' + '/EnrollCampaign/').set(CampaignID);
-	}
+	};
 
 	$scope.ClaimToken= function(TokenID, TokenPW) {
 		console.log(TokenID, TokenPW);
 		firebase.database().ref('/User/'+ UserID +'/Input/' + '/ClaimToken/').set(TokenID + ',' + TokenPW);
-	}
+	};
 // ---------------------------------------------------------------------------------
 
 	$scope.CampaignList = $firebaseObject(firebase.database().ref('/DatabaseInfo/' + '/CityCampaignInfo/'));
@@ -72,8 +72,8 @@ angular.module('starter.controllers', [])
 
 .controller('ListCtrl', function($scope, $stateParams) {
 	$scope.SelectedCity = $stateParams.CityID;
-	$scope.SelectedCampaign = $stateParams.CampaignID;;
-	$scope.SelectedMission = $stateParams.MissionID
-})
+	$scope.SelectedCampaign = $stateParams.CampaignID;
+	$scope.SelectedMission = $stateParams.MissionID;
+});
 
 
