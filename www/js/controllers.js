@@ -41,6 +41,35 @@ angular.module('starter.controllers', [])
 	});
 // ---------------------------------------------------------------------------------
 
+// CLAIM TOKEN MODAL----------------------------------------------------------------
+	$scope.TokenClaimData = {};
+	$ionicModal.fromTemplateUrl('templates/tokenClaim.html', {
+		scope: $scope
+	}).then(function(modal) {
+		$scope.TokenClaim = modal;
+	});
+	$scope.closeTokenClaim = function() {
+		$scope.TokenClaim.hide();
+	};
+	$scope.openTokenClaim = function() {
+		$scope.TokenClaim.show();
+	};
+// ---------------------------------------------------------------------------------
+
+// SEE TOKEN HINTS MODAL----------------------------------------------------------------
+	$scope.TokenHintsData = {};
+	$ionicModal.fromTemplateUrl('templates/tokenHints.html', {
+		scope: $scope
+	}).then(function(modal) {
+		$scope.Hints = modal;
+	});
+	$scope.closeHints = function() {
+		$scope.Hints.hide();
+	};
+	$scope.openHints = function() {
+		$scope.Hints.show();
+	};
+// ---------------------------------------------------------------------------------
 
 // USER INFO------------------------------------------------------------------------
 	firebase.auth().onAuthStateChanged(function () {
@@ -60,7 +89,8 @@ angular.module('starter.controllers', [])
 	};
 
 	$scope.ClaimToken= function(TokenID, TokenPW) {
-		console.log(TokenID, TokenPW);
+		console.log('Claim this token: ', TokenID, TokenPW);
+		console.log('UserID: ', UserID);
 		firebase.database().ref('/User/'+ UserID +'/Input/' + '/ClaimToken/').set(TokenID + ',' + TokenPW);
 	};
 // ---------------------------------------------------------------------------------

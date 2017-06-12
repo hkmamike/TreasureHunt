@@ -13,36 +13,38 @@
 		
 	</div>
 
-<!-- 	<div class="card item-text-wrap">
-
-		<div class="oneThird"> <img src= 'img/squareFood2.jpg' style="width: 100%; padding: 0px"> 
-		<button class="button button-block " ng-click="openlogin()" menu-close>Login</button>
-		<button class="button button-block " ng-click="openlogin()" menu-close>Login</button>
-		</div>
-		<div class="twoThird card"> 123<br>123<br>123<br>123<br>123<br>123<br>123<br>123<br>123<br>123<br>123<br>123<br> </div>
-
-	</div> -->
 
 	<div class="card item-text-wrap">
 
 		<div>
-			{{TokensList[TokenNumber].TokenMsg}}
+			{{TokensList[TokenNumber].TokenMsg}} <br>
+			{{TokenNumber}}
 		</div>
 
 		<div class="half"> <img src= 'img/squareFood2.jpg' style="width: 100%; padding: 0px"></div>
 		<div class="half"> 
-			<div class="card">
-			<button class="button button-block " ng-click="openlogin()" menu-close>Hints</button>
-        	</div>
-        	<div class="card">
-<!--         	<label class="item item-input">
-          		<span class="input-label">Token</span>
-          		<input type="text" ng-model="loginData.username">
-        	</label>
- -->			<button class="button button-block " ng-click='ClaimToken("HongKong_1_1_2", "xxx")'>Claim</button>
-			</div>
+
+				<button class="button button-block " ng-click="openHints()" menu-close>Token Hints</button>
+
+ 
+				<button class="button button-block " ng-click='openTokenClaim()'>Token Claim</button>
+
 		</div>
 
 	</div>
+
+
+		<div class="half"> 
+
+				<button class="button button-block " ng-click="openlogin()" menu-close>Skip Mission</button>
+
+    </div>
+
+    <div class="half"> 
+
+				<button class="button button-block " ng-click='ClaimToken("HongKong_1_1_2", "xxx")'>Next Mission</button>
+
+		</div>
+
 
 </ion-content>

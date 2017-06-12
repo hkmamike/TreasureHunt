@@ -1,0 +1,27 @@
+<ion-modal-view>
+
+  <ion-header-bar>
+    <h1 class="title">Token Claim</h1>
+    <div class="buttons">
+      <button class="button button-cross" ng-click="closeTokenClaim()">Close</button>
+    </div>
+  </ion-header-bar>
+
+  <ion-content>
+
+    <div class="list">
+
+        <label class="item item-input item-floating-label">
+          <span class="input-label">Token code</span>
+          <input type="text" ng-model="TokenClaim.code" placeholder="enter token code...">
+        </label>
+        <button type="submit" class="button button-block button-balanced" ng-click="ClaimToken('HongKong_1_1_3' , TokenClaim.code)"> Claim Token </button>
+
+    </div>
+
+    <button class="button button-block " ng-click="closeTokenClaim(); openHints()" menu-close>Token Hints</button>
+
+  </ion-content>
+
+</ion-modal-view>
+
