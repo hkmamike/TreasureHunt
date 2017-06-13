@@ -41,36 +41,6 @@ angular.module('starter.controllers', [])
 	});
 // ---------------------------------------------------------------------------------
 
-// CLAIM TOKEN MODAL----------------------------------------------------------------
-	$scope.TokenClaimData = {};
-	$ionicModal.fromTemplateUrl('templates/tokenClaim.html', {
-		scope: $scope
-	}).then(function(modal) {
-		$scope.TokenClaim = modal;
-	});
-	$scope.closeTokenClaim = function() {
-		$scope.TokenClaim.hide();
-	};
-	$scope.openTokenClaim = function() {
-		$scope.TokenClaim.show();
-	};
-// ---------------------------------------------------------------------------------
-
-// SEE TOKEN HINTS MODAL----------------------------------------------------------------
-	$scope.TokenHintsData = {};
-	$ionicModal.fromTemplateUrl('templates/tokenHints.html', {
-		scope: $scope
-	}).then(function(modal) {
-		$scope.Hints = modal;
-	});
-	$scope.closeHints = function() {
-		$scope.Hints.hide();
-	};
-	$scope.openHints = function() {
-		$scope.Hints.show();
-	};
-// ---------------------------------------------------------------------------------
-
 // USER INFO------------------------------------------------------------------------
 	firebase.auth().onAuthStateChanged(function () {
 		var FirebaseUser = firebase.auth().currentUser;
@@ -100,10 +70,43 @@ angular.module('starter.controllers', [])
 })
 
 
-.controller('ListCtrl', function($scope, $stateParams) {
+.controller('ListCtrl', function($scope, $stateParams, $ionicModal) {
 	$scope.SelectedCity = $stateParams.CityID;
 	$scope.SelectedCampaign = $stateParams.CampaignID;
 	$scope.SelectedMission = $stateParams.MissionID;
+
+	// CLAIM TOKEN MODAL----------------------------------------------------------------
+	$scope.TokenClaimData = {};
+	$ionicModal.fromTemplateUrl('templates/tokenClaim.html', {
+		scope: $scope
+	}).then(function(modal) {
+		$scope.TokenClaim = modal;
+	});
+	$scope.closeTokenClaim = function() {
+		$scope.TokenClaim.hide();
+	};
+	$scope.openTokenClaim = function(TokenNumber) {
+		$scope.TokenClaim.show();
+		$scope.TokenNumber = TokenNumber;
+	};
+	// ---------------------------------------------------------------------------------
+
+	// SEE TOKEN HINTS MODAL----------------------------------------------------------------
+	$scope.TokenHintsData = {};
+	$ionicModal.fromTemplateUrl('templates/tokenHints.html', {
+		scope: $scope
+	}).then(function(modal) {
+		$scope.Hints = modal;
+	});
+	$scope.closeHints = function() {
+		$scope.Hints.hide();
+	};
+	$scope.openHints = function(TokenNumber) {
+		$scope.Hints.show();
+		$scope.TokenNumber = TokenNumber;
+	};
+	// ---------------------------------------------------------------------------------
+
 });
 
 
