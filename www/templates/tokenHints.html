@@ -9,6 +9,15 @@
 
   <ion-content>
 
+    <div class="card">
+      <div class="item item-text-wrap">
+        <div class="item">
+          Token: {{UserRecord[SelectedCity].Campaign[SelectedCampaign].Mission[SelectedMission].Token[TokenNumber].TokenName}} <br>
+          Status: {{UserRecord[SelectedCity].Campaign[SelectedCampaign].Mission[SelectedMission].Token[TokenNumber].ClaimStatus}} <br>
+          SearchHints: {{UserRecord[SelectedCity].Campaign[SelectedCampaign].Mission[SelectedMission].Token[TokenNumber].SearchHints}} <br>
+        </div>
+      </div>
+    </div>
 
     <button class="button button-block " ng-click="closeHints(); openTokenClaim(TokenNumber)" menu-close>Token Claim</button>
 
