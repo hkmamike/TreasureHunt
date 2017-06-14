@@ -14,6 +14,7 @@
 
         <label class="item item-input item-floating-label">
           <span class="input-label">Token code</span>
+          <div>{{UserRecord[SelectedCity].Campaign[SelectedCampaign].Mission[SelectedMission].Token[TokenNumber].TokenMsg}} </div>
           <input type="text" ng-model="TokenClaim.code" placeholder="enter token code...">
         </label>
         <button type="submit" class="button button-block button-balanced" ng-click="ClaimToken(TokenNumber, TokenClaim.code)"> Claim Token </button>
